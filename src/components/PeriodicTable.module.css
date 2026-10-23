@@ -1,0 +1,85 @@
+/*
+ * Mobile-first responsive strategy:
+ * The full 18-column table cannot fit a phone portrait screen at a readable size.
+ * Instead of shrinking cells to unreadable widths, we keep each cell at a fixed,
+ * legible minimum (--cell-size, ~56px on phones, with dark text on light color
+ * backgrounds) and let the whole grid pan horizontally inside .scroller
+ * (overflow-x: auto, touch pan/pinch enabled). At wider breakpoints we bump
+ * --cell-size up so the table fills more of the available space.
+ */
+
+.scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--mantine-spacing-xs);
+}
+
+.grid {
+  --cell-size: 56px;
+  --cell-gap: 3px;
+  display: grid;
+  grid-template-columns: repeat(18, var(--cell-size));
+  grid-auto-rows: var(--cell-size);
+  gap: var(--cell-gap);
+  /* keep the f-block rows visually separated from the main table */
+  width: max-content;
+  margin-inline: auto;
+}
+
+@media (min-width: 48em) {
+  .grid {
+    --cell-size: 64px;
+  }
+}
+
+@media (min-width: 75em) {
+  .grid {
+    --cell-size: 72px;
+  }
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* comfortable touch target on mobile */
+  min-width: 44px;
+  min-height: 44px;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  padding: 2px;
+  border-radius: 4px;
+  color: #1a1a1a;
+  line-height: 1.05;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+
+.cell:hover {
+  box-shadow: 0 0 0 2px var(--mantine-color-dark-4);
+  transform: scale(1.04);
+  z-index: 1;
+}
+
+.cell:focus-visible {
+  outline: 2px solid var(--mantine-color-blue-6);
+  outline-offset: 1px;
+  z-index: 1;
+}
+
+.number {
+  font-size: 9px;
+  align-self: flex-start;
+  line-height: 1;
+}
+
+.symbol {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.name {
+  font-size: 8px;
+  max-width: 100%;
+}
