@@ -1,5 +1,9 @@
-/*
- * Mobile-first responsive strategy:
+/* Copyright (C) 2026 Marc Gimpel.
+ * This file is part of the Periodic Table App project
+ * (https://github.com/mgimpel/periodic-table-app).
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+/* Mobile-first responsive strategy:
  * The full 18-column table cannot fit a phone portrait screen at a readable size.
  * Instead of shrinking cells to unreadable widths, we keep each cell at a fixed,
  * legible minimum (--cell-size, ~56px on phones, with dark text on light color
@@ -53,7 +57,9 @@
   border-radius: 4px;
   color: #1a1a1a;
   line-height: 1.05;
-  transition: transform 80ms ease, box-shadow 80ms ease;
+  transition:
+    transform 80ms ease,
+    box-shadow 80ms ease;
 }
 
 .cell:hover {

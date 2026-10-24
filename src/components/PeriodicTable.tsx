@@ -1,10 +1,15 @@
-import { useState } from 'react';
-import { Box, Stack, Text, Title } from '@mantine/core';
-import { ELEMENTS, type Element } from '../data/elements';
-import { ElementCell } from './ElementCell';
-import { CategoryLegend } from './CategoryLegend';
-import { ElementDetail } from './ElementDetail';
-import classes from './PeriodicTable.module.css';
+// Copyright (C) 2026 Marc Gimpel.
+// This file is part of the Periodic Table App project
+// (https://github.com/mgimpel/periodic-table-app).
+// SPDX-License-Identifier: BSD-3-Clause
+
+import { useState } from "react";
+import { Box, Stack, Text, Title } from "@mantine/core";
+import { ELEMENTS, type Element } from "../data/elements";
+import { ElementCell } from "./ElementCell";
+import { CategoryLegend } from "./CategoryLegend";
+import { ElementDetail } from "./ElementDetail";
+import classes from "./PeriodicTable.module.css";
 
 // Owns the selected-element state and composes the legend, the scrollable grid,
 // and the detail view. The dataset's xpos/ypos already place every element in

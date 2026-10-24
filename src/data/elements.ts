@@ -1,21 +1,25 @@
+// Copyright (C) 2026 Marc Gimpel.
+// This file is part of the Periodic Table App project
+// (https://github.com/mgimpel/periodic-table-app).
+// SPDX-License-Identifier: BSD-3-Clause
+
 // Element data adapter.
 //
-// Source: Bowserinator/Periodic-Table-JSON (PeriodicTableJSON.json),
+// Element data Source: Bowserinator/Periodic-Table-JSON (PeriodicTableJSON.json),
 // https://github.com/Bowserinator/Periodic-Table-JSON
 // Licensed under Creative Commons Attribution-ShareAlike 3.0 Unported (CC-BY-SA 3.0).
 // The unmodified dataset and its license are vendored alongside this file as
 // periodic-table.json and periodic-table.LICENSE.txt. This adapter normalizes the
-// raw entries into the typed `Element` model; any redistribution of this derived
-// data must remain under a compatible share-alike license.
+// raw entries into the typed `Element` model.
 //
 // The source ships 119 entries (it includes the hypothetical element 119, Uue).
 // We expose exactly the 118 confirmed elements, so entries above 118 are dropped.
 
-import raw from './periodic-table.json';
-import type { Element, ElementCategory } from './element';
-import { CATEGORY_COLORS } from './element';
+import raw from "./periodic-table.json";
+import type { Element, ElementCategory } from "./element";
+import { CATEGORY_COLORS } from "./element";
 
-export type { Element } from './element';
+export type { Element } from "./element";
 
 interface RawElement {
   number: number;
@@ -40,11 +44,11 @@ interface RawElement {
 /** Map a raw source category string onto the fixed `ElementCategory` union. */
 function normalizeCategory(rawCategory: string): ElementCategory {
   const c = rawCategory.toLowerCase().trim();
-  if (c.startsWith('unknown')) return 'unknown';
-  if (c.includes('nonmetal')) return 'reactive-nonmetal'; // diatomic + polyatomic nonmetals
-  const hyphenated = c.replace(/\s+/g, '-');
+  if (c.startsWith("unknown")) return "unknown";
+  if (c.includes("nonmetal")) return "reactive-nonmetal"; // diatomic + polyatomic nonmetals
+  const hyphenated = c.replace(/\s+/g, "-");
   if (hyphenated in CATEGORY_COLORS) return hyphenated as ElementCategory;
-  return 'unknown';
+  return "unknown";
 }
 
 function adapt(entry: RawElement): Element {

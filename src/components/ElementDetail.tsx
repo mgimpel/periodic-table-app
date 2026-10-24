@@ -1,3 +1,8 @@
+// Copyright (C) 2026 Marc Gimpel.
+// This file is part of the Periodic Table App project
+// (https://github.com/mgimpel/periodic-table-app).
+// SPDX-License-Identifier: BSD-3-Clause
+
 import {
   Badge,
   Box,
@@ -8,20 +13,26 @@ import {
   Stack,
   Text,
   Title,
-} from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+} from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import {
   CATEGORY_COLORS,
   CATEGORY_LABELS,
   type Element,
-} from '../data/element';
+} from "../data/element";
 
 interface ElementDetailProps {
   element: Element | null;
   onClose: () => void;
 }
 
-function DetailRow({ label, value }: { label: string; value: string | number }) {
+function DetailRow({
+  label,
+  value,
+}: {
+  label: string;
+  value: string | number;
+}) {
   return (
     <Box>
       <Text size="xs" c="dimmed" tt="uppercase">
@@ -42,11 +53,11 @@ function DetailBody({ element }: { element: Element }) {
           style={{
             backgroundColor: CATEGORY_COLORS[element.category],
             borderRadius: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#1a1a1a',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#1a1a1a",
           }}
         >
           <Text size="xs">{element.atomicNumber}</Text>
@@ -67,20 +78,25 @@ function DetailBody({ element }: { element: Element }) {
       <SimpleGrid cols={2} spacing="sm">
         <DetailRow label="Atomic number" value={element.atomicNumber} />
         <DetailRow label="Atomic mass" value={element.atomicMass} />
-        <DetailRow label="Group" value={element.group ?? '—'} />
+        <DetailRow label="Group" value={element.group ?? "—"} />
         <DetailRow label="Period" value={element.period} />
         <DetailRow label="Phase" value={element.phase} />
         <DetailRow label="Block" value={element.block} />
       </SimpleGrid>
 
-      <DetailRow label="Electron configuration" value={element.electronConfiguration} />
+      <DetailRow
+        label="Electron configuration"
+        value={element.electronConfiguration}
+      />
       <DetailRow
         label="Electron configuration (semantic)"
         value={element.electronConfigurationSemantic}
       />
-      <DetailRow label="Electron shells" value={element.shells.join(', ')} />
+      <DetailRow label="Electron shells" value={element.shells.join(", ")} />
 
-      {element.appearance && <DetailRow label="Appearance" value={element.appearance} />}
+      {element.appearance && (
+        <DetailRow label="Appearance" value={element.appearance} />
+      )}
       {element.discoveredBy && (
         <DetailRow label="Discovered by" value={element.discoveredBy} />
       )}
@@ -101,9 +117,9 @@ function DetailBody({ element }: { element: Element }) {
 // on small screens, a centered Modal from the `sm` breakpoint up. Both are
 // dismissable (close button, overlay click, Esc).
 export function ElementDetail({ element, onClose }: ElementDetailProps) {
-  const isWide = useMediaQuery('(min-width: 48em)');
+  const isWide = useMediaQuery("(min-width: 48em)");
   const opened = element !== null;
-  const title = element ? `${element.name} (${element.symbol})` : '';
+  const title = element ? `${element.name} (${element.symbol})` : "";
 
   if (isWide) {
     return (
