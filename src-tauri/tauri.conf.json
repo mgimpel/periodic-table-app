@@ -14,9 +14,9 @@
       {
         "title": "periodic-table-app",
         "width": 1100,
-        "height": 760,
+        "height": 720,
         "minWidth": 1100,
-        "minHeight": 760,
+        "minHeight": 720,
         "resizable": false
       }
     ],
