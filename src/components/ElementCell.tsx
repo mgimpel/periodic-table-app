@@ -10,12 +10,16 @@ import classes from "./PeriodicTable.module.css";
 interface ElementCellProps {
   element: Element;
   onSelect: (element: Element) => void;
+  // When true, render only the symbol (omit atomic number and name) for
+  // legibility at small fit-scales. The aria-label and affordances are
+  // unchanged, so selection stays identical in both modes.
+  symbolOnly?: boolean;
 }
 
 // One tappable element cell. Position-agnostic: the parent grid applies
 // gridColumn/gridRow. Uses an UnstyledButton so it is keyboard- and
 // touch-accessible with a comfortable minimum tap target (see CSS module).
-export function ElementCell({ element, onSelect }: ElementCellProps) {
+export function ElementCell({ element, onSelect, symbolOnly = false }: ElementCellProps) {
   return (
     <UnstyledButton
       className={classes.cell}
@@ -27,11 +31,15 @@ export function ElementCell({ element, onSelect }: ElementCellProps) {
       }}
       onClick={() => onSelect(element)}
     >
-      <Text className={classes.number}>{element.atomicNumber}</Text>
+      {!symbolOnly && (
+        <Text className={classes.number}>{element.atomicNumber}</Text>
+      )}
       <Text className={classes.symbol}>{element.symbol}</Text>
-      <Text className={classes.name} lineClamp={1}>
-        {element.name}
-      </Text>
+      {!symbolOnly && (
+        <Text className={classes.name} lineClamp={1}>
+          {element.name}
+        </Text>
+      )}
     </UnstyledButton>
   );
 }

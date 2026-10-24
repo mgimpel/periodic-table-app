@@ -13,8 +13,11 @@
     "windows": [
       {
         "title": "periodic-table-app",
-        "width": 800,
-        "height": 600
+        "width": 1100,
+        "height": 760,
+        "minWidth": 1100,
+        "minHeight": 760,
+        "resizable": false
       }
     ],
     "security": {

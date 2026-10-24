@@ -3,44 +3,42 @@
  * (https://github.com/mgimpel/periodic-table-app).
  * SPDX-License-Identifier: BSD-3-Clause
 */
-/* Mobile-first responsive strategy:
- * The full 18-column table cannot fit a phone portrait screen at a readable size.
- * Instead of shrinking cells to unreadable widths, we keep each cell at a fixed,
- * legible minimum (--cell-size, ~56px on phones, with dark text on light color
- * backgrounds) and let the whole grid pan horizontally inside .scroller
- * (overflow-x: auto, touch pan/pinch enabled). At wider breakpoints we bump
- * --cell-size up so the table fills more of the available space.
+/* Fit-to-viewport strategy:
+ * The full 18-column table cannot fit a phone portrait screen at natural cell
+ * size, and shrinking cells via CSS to unreadable widths is worse than scaling
+ * the whole table uniformly. So the grid keeps its fixed, natural cell sizes
+ * (--cell-size) — its scrollWidth/scrollHeight report the true unscaled size —
+ * and useFitScale measures that against .viewport and sets --fit-scale (<= 1).
+ * We apply that as a CSS transform so the entire table shrinks to fit without
+ * any horizontal scroll. symbolOnly mode (from the same hook) drops the number
+ * and name when cells get too small to read.
  */
 
-.scroller {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: var(--mantine-spacing-xs);
+/* Fills the usable area and centers the (scaled) grid. */
+.viewport {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
 .grid {
   --cell-size: 56px;
   --cell-gap: 3px;
+  --fit-scale: 1;
   display: grid;
   grid-template-columns: repeat(18, var(--cell-size));
   grid-auto-rows: var(--cell-size);
   gap: var(--cell-gap);
-  /* keep the f-block rows visually separated from the main table */
   width: max-content;
-  margin-inline: auto;
-}
-
-@media (min-width: 48em) {
-  .grid {
-    --cell-size: 64px;
-  }
-}
-
-@media (min-width: 75em) {
-  .grid {
-    --cell-size: 72px;
-  }
+  /* Uniform fit scale from useFitScale; anchored so it shrinks toward the top
+   * center of the available space. Transforms don't change scrollWidth/Height,
+   * so the hook still measures the true natural size. */
+  transform: scale(var(--fit-scale));
+  transform-origin: top center;
 }
 
 .cell {
