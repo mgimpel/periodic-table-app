@@ -11,6 +11,10 @@
 //    MantineProvider and useMediaQuery call it on mount, so without this every
 //    component test that renders a Mantine tree throws. Defaults to "not
 //    matched" (mobile-first); individual tests can override per query.
+// 3. Polyfill ResizeObserver, which jsdom does not implement. Mantine's
+//    SegmentedControl (via FloatingIndicator) observes its elements on mount,
+//    so any test rendering it throws without this. A no-op is enough: jsdom
+//    reports zero-size layout anyway, so there is nothing to observe.
 import "@testing-library/jest-dom/vitest";
 
 if (typeof window !== "undefined" && typeof window.matchMedia !== "function") {
@@ -25,4 +29,12 @@ if (typeof window !== "undefined" && typeof window.matchMedia !== "function") {
       removeEventListener: () => {},
       dispatchEvent: () => false,
     }) as MediaQueryList;
+}
+
+if (typeof globalThis.ResizeObserver !== "function") {
+  globalThis.ResizeObserver = class {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
 }

@@ -1,0 +1,14 @@
+/* Copyright (C) 2026 Marc Gimpel.
+ * This file is part of the Periodic Table App project
+ * (https://github.com/mgimpel/periodic-table-app).
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+
+/* Thin header bar: full viewport width, fixed height clamped between the 44px
+ * touch-target minimum and 56px (Req 1.5, 1.6). flex-shrink:0 so the table
+ * region below takes the remaining height. */
+.header {
+  flex: 0 0 auto;
+  width: 100vw;
+  height: clamp(44px, 12vh, 56px);
+}

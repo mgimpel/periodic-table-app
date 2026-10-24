@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { useEffect, useRef, useState } from "react";
-import { Alert, Box, Stack, Title } from "@mantine/core";
+import { Alert, Box, Stack } from "@mantine/core";
 import { ELEMENTS, type Element } from "../data/elements";
 import { ElementCell } from "./ElementCell";
 import { CategoryLegend } from "./CategoryLegend";
@@ -54,12 +54,12 @@ export function PeriodicTable() {
     };
   }, [showOrientationNotice]);
 
+  // Fill the parent table region (AppLayout's flex:1 child) as a full-height
+  // flex column so .viewport's flex:1 expands to the space below the header.
+  // That makes useFitScale's measured clientHeight already exclude the header
+  // height — no pixel constant to keep in sync (see design: Vertical layout).
   return (
-    <Stack gap="md" p="md">
-      <Title order={1} size="h3" ta="center">
-        Periodic Table of Elements
-      </Title>
-
+    <Stack gap="md" p="md" h="100%" mih={0}>
       {showOrientationNotice && (
         <Alert
           color="yellow"

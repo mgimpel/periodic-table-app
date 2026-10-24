@@ -1,0 +1,25 @@
+/* Copyright (C) 2026 Marc Gimpel.
+ * This file is part of the Periodic Table App project
+ * (https://github.com/mgimpel/periodic-table-app).
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+/* Vertical layout: a full-height flex column. The HeaderBar is a fixed-height
+ * flex child and the table region is the remaining flex:1 child. This lets the
+ * table region's clientHeight exclude the header height structurally, so
+ * useFitScale measures the correct available space with no pixel constant to
+ * keep in sync with the header's CSS height.
+ */
+
+/* Full-height flex column: header above, table region filling the rest. */
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+/* The Table_Area below the header — fills remaining vertical space. min-height:0
+ * lets it shrink so the grid can scale to fit instead of overflowing. */
+.tableRegion {
+  flex: 1 1 auto;
+  min-height: 0;
+}
