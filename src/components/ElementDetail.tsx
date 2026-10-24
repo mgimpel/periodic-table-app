@@ -123,7 +123,14 @@ export function ElementDetail({ element, onClose }: ElementDetailProps) {
 
   if (isWide) {
     return (
-      <Modal opened={opened} onClose={onClose} title={title} centered size="lg">
+      <Modal
+        opened={opened}
+        onClose={onClose}
+        title={title}
+        centered
+        size="lg"
+        closeButtonProps={{ "aria-label": "Close" }}
+      >
         {element && <DetailBody element={element} />}
       </Modal>
     );
@@ -136,6 +143,7 @@ export function ElementDetail({ element, onClose }: ElementDetailProps) {
       title={title}
       position="bottom"
       size="80%"
+      closeButtonProps={{ "aria-label": "Close" }}
     >
       {element && <DetailBody element={element} />}
     </Drawer>

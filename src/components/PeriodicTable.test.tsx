@@ -12,11 +12,6 @@
 // (4.2, 4.3), selecting another cell swaps the detail (4.4), and dismissing
 // closes it while the scaled grid stays mounted with its fit-scale (4.5).
 
-// Register jest-dom matchers (toBeInTheDocument, ...) for vitest. There is no
-// shared test setup file in this project, so each test file that uses these
-// matchers pulls them in directly. No new dependency — jest-dom is already a
-// devDependency.
-import "@testing-library/jest-dom/vitest";
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import {
   render,

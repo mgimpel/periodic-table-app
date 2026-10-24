@@ -35,5 +35,7 @@ export default defineConfig(() => ({
   test: {
     environment: "jsdom",
     globals: true,
+    // Register jest-dom matchers once for every test file.
+    setupFiles: ["./src/test-setup.ts"],
   },
 }));

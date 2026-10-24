@@ -9,15 +9,14 @@
 
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 
-// Resolve the config relative to this test file so the check is independent of
-// the working directory vitest is launched from.
-const configUrl = new URL(
-  "../../src-tauri/tauri.conf.json",
-  import.meta.url,
-);
-const config = JSON.parse(readFileSync(fileURLToPath(configUrl), "utf-8"));
+// Vitest runs with the project root as the working directory, so resolve the
+// config from there. (Going through `new URL(..., import.meta.url)` +
+// `fileURLToPath` fails under Vitest, where `import.meta.url` is not a
+// `file:` URL.)
+const configPath = resolve(process.cwd(), "src-tauri", "tauri.conf.json");
+const config = JSON.parse(readFileSync(configPath, "utf-8"));
 
 describe("tauri.conf.json fixed-window smoke test", () => {
   // Validates: Requirements 3.1, 3.4
