@@ -10,7 +10,7 @@
 
 import { describe, it, expect, afterEach, vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
-import { useOrientationLock } from "./useOrientationLock";
+import { useOrientationLock } from "../useOrientationLock";
 
 // Swap screen.orientation for the duration of a test, then restore it. The
 // property is replaced (not just .lock) so the "missing API entirely" case can

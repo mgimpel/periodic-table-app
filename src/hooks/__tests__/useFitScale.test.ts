@@ -11,7 +11,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { createRef, type RefObject } from "react";
-import { useFitScale } from "./useFitScale";
+import { useFitScale } from "../useFitScale";
 
 // --- Mock ResizeObserver ---------------------------------------------------
 // jsdom has no ResizeObserver. We install a mock that records the callback so

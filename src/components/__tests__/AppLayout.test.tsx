@@ -25,7 +25,7 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
-import { AppLayout } from "./AppLayout";
+import { AppLayout } from "../AppLayout";
 
 afterEach(() => {
   cleanup();

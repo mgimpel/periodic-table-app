@@ -22,8 +22,8 @@ import {
   fireEvent,
 } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
-import { PeriodicTable } from "./PeriodicTable";
-import { getElementByNumber } from "../data/elements";
+import { PeriodicTable } from "../PeriodicTable";
+import { getElementByNumber } from "../../data/elements";
 
 // --- Environment stubs -----------------------------------------------------
 // jsdom has no ResizeObserver; useFitScale constructs one on mount and would

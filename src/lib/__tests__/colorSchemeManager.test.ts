@@ -8,8 +8,8 @@
 // invalid-value normalization to auto (5.3), and the save-failure signal (5.4).
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { createAppColorSchemeManager } from "./colorSchemeManager";
-import { DEFAULT_THEME } from "./theme";
+import { createAppColorSchemeManager } from "../colorSchemeManager";
+import { DEFAULT_THEME } from "../theme";
 
 // The localStorage key Mantine's manager uses by default (confirmed against the
 // installed @mantine/core: color-scheme-managers/local-storage-manager).

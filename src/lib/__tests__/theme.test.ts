@@ -7,7 +7,7 @@
 
 import { describe, it, expect } from "vitest";
 import fc from "fast-check";
-import { normalizeStoredTheme, DEFAULT_THEME, type ThemeOption } from "./theme";
+import { normalizeStoredTheme, DEFAULT_THEME, type ThemeOption } from "../theme";
 
 const THEME_OPTIONS: ThemeOption[] = ["light", "dark", "auto"];
 

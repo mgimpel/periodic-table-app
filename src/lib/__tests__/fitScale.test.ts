@@ -12,7 +12,7 @@ import {
   NATURAL_CELL_PX,
   LEGIBILITY_MIN_CELL_PX,
   type Size,
-} from "./fitScale";
+} from "../fitScale";
 
 /**
  * Positive, finite, bounded dimension. Values stay in [1, 1e6] so computeFitScale's

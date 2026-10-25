@@ -12,7 +12,7 @@ import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
-import { HeaderBar } from "./HeaderBar";
+import { HeaderBar } from "../HeaderBar";
 
 afterEach(cleanup);
 

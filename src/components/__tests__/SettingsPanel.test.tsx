@@ -17,7 +17,7 @@ import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
-import { SettingsPanel } from "./SettingsPanel";
+import { SettingsPanel } from "../SettingsPanel";
 
 afterEach(() => {
   cleanup();

@@ -9,8 +9,8 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
-import { ElementCell } from "./ElementCell";
-import { getElementByNumber } from "../data/elements";
+import { ElementCell } from "../ElementCell";
+import { getElementByNumber } from "../../data/elements";
 
 afterEach(cleanup);
 

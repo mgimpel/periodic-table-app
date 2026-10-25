@@ -13,13 +13,13 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
 
-vi.mock("../lib/platform", () => ({ isMobilePlatform: () => true }));
-vi.mock("../hooks/useOrientationLock", () => ({
+vi.mock("../../lib/platform", () => ({ isMobilePlatform: () => true }));
+vi.mock("../../hooks/useOrientationLock", () => ({
   // Lock attempted but denied -> the notice should render.
   useOrientationLock: () => ({ attempted: true, locked: false }),
 }));
 
-import { PeriodicTable } from "./PeriodicTable";
+import { PeriodicTable } from "../PeriodicTable";
 
 class MockResizeObserver {
   observe = vi.fn();
