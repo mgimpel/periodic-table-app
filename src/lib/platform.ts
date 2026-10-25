@@ -3,47 +3,123 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-// Best-effort, synchronous mobile-platform detection. Used to gate
+// Best-effort, synchronous OS-platform detection. Used to gate
 // useOrientationLock and mobile-only UI (Req 1.1 mobile landscape lock,
 // Req 1.3 desktop follows the OS). Kept synchronous so callers (hooks, render)
 // can branch without awaiting.
 //
-// Tauri 2's core @tauri-apps/api exposes no synchronous OS-platform API — the
-// platform() call lives in the separate @tauri-apps/plugin-os package, which
-// would add a dependency and a capability permission. Both the Tauri mobile
-// WebView (Android/iOS) and a mobile browser dev target report the OS in the
-// user-agent string, so a UA heuristic covers both without that dependency.
-// ponytail: UA sniffing is a heuristic with a known ceiling — spoofed or
-// unusual user-agents can misclassify. Upgrade path: depend on
-// @tauri-apps/plugin-os and read platform() === "android" | "ios" when exact
-// native detection is needed.
+// Primary source: @tauri-apps/plugin-os platform(), which the plugin injects
+// synchronously at WebView startup (no async IPC) and which reports Rust's
+// std::env::consts::OS. Fallback: the pure user-agent heuristic below, used
+// whenever the native binding is absent or throws — i.e. a plain browser
+// (`pnpm dev`), the vitest/jsdom env, or any non-Tauri context.
+// ponytail: the UA fallback is a heuristic with a known ceiling — spoofed or
+// unusual user-agents can misclassify. It only runs outside a Tauri WebView,
+// where platform() has no backing; inside Tauri the native value wins.
+
+import { platform } from "@tauri-apps/plugin-os";
 
 /**
- * Returns true when the app is running on a mobile platform (Android or iOS),
- * best-effort from the user-agent. Returns false in unknown/non-browser
- * environments (treated as desktop, the safe default for orientation).
+ * Current OS platform. Prefers the native @tauri-apps/plugin-os platform()
+ * call (synchronous — injected at WebView startup); falls back to the UA
+ * heuristic on any failure (not in a Tauri WebView, throws, or an OS value
+ * outside the Platform union). Stays synchronous so callers needn't await.
  */
-export function isMobilePlatform(): boolean {
-  const ua =
-    typeof navigator !== "undefined" && typeof navigator.userAgent === "string"
-      ? navigator.userAgent
-      : "";
-  return isMobileUserAgent(ua);
+export function currentPlatform(): Platform {
+  try {
+    switch (platform()) {
+      case "windows":
+        return "windows";
+      case "macos":
+        return "macos";
+      case "linux":
+        return "linux";
+      case "android":
+        return "android";
+      case "ios":
+        return "ios";
+      // Other OS values (e.g. "freebsd") → fall through to "unknown".
+    }
+  } catch {
+    // No native binding (plain browser / dev / vitest) → UA fallback below.
+  }
+  return detectPlatform(currentUserAgent());
 }
 
 /**
- * Pure UA classifier, split out so it can be exercised without a live
- * `navigator`. Matches Android and the iOS family (iPhone/iPad/iPod), including
- * iPadOS, which reports as "Macintosh" but with touch points.
+ * Returns true when the app is running on a mobile platform (Android or iOS).
+ * Prefers the native platform(), falling back to the user-agent heuristic.
+ * Returns false in unknown/non-browser environments (treated as desktop, the
+ * safe default for orientation).
+ */
+export function isMobilePlatform(): boolean {
+  const current = currentPlatform();
+  return current === "android" || current === "ios";
+}
+
+/**
+ * Returns true when the app is running on Windows. Prefers the native
+ * platform(), falling back to the user-agent heuristic. Used only for small
+ * platform-specific visual tuning (e.g. font metrics differ, so a swatch nudge
+ * needs to be smaller on Windows).
+ */
+export function isWindowsPlatform(): boolean {
+  return currentPlatform() === "windows";
+}
+
+/** The platforms detectPlatform can identify; "unknown" is the safe default. */
+export type Platform =
+  | "windows"
+  | "macos"
+  | "linux"
+  | "android"
+  | "ios"
+  | "unknown";
+
+/** Current user-agent, or "" in a non-browser env. Shared by the wrappers. */
+function currentUserAgent(): string {
+  return typeof navigator !== "undefined" &&
+    typeof navigator.userAgent === "string"
+    ? navigator.userAgent
+    : "";
+}
+
+/**
+ * Pure OS classifier from a user-agent — the single source of truth the other
+ * classifiers consult. Order matters: Android's UA also contains "Linux", and
+ * iPadOS reports as "Macintosh", so the mobile OSes are matched before their
+ * desktop lookalikes. iPadOS 13+ masquerades as desktop Safari ("Macintosh")
+ * but is a touch device, so touch points disambiguate it from a real Mac.
+ * Returns "unknown" when nothing matches (non-browser env or unusual UA).
+ */
+export function detectPlatform(
+  userAgent: string,
+  maxTouchPoints = typeof navigator !== "undefined" ? navigator.maxTouchPoints : 0,
+): Platform {
+  if (/Android/i.test(userAgent)) return "android";
+  if (/iPhone|iPad|iPod/i.test(userAgent)) return "ios";
+  if (/Windows/i.test(userAgent)) return "windows";
+  // iPadOS before macOS: a touch-enabled "Macintosh" is really an iPad.
+  if (/Macintosh|Mac OS X/i.test(userAgent)) {
+    return maxTouchPoints > 1 ? "ios" : "macos";
+  }
+  if (/Linux/i.test(userAgent)) return "linux";
+  return "unknown";
+}
+
+/** Pure Windows UA classifier, split out so it can be tested without navigator. */
+export function isWindowsUserAgent(userAgent: string): boolean {
+  return detectPlatform(userAgent) === "windows";
+}
+
+/**
+ * Pure mobile (Android or iOS) UA classifier, derived from detectPlatform so
+ * the mobile/desktop split stays consistent with the per-OS detection.
  */
 export function isMobileUserAgent(
   userAgent: string,
   maxTouchPoints = typeof navigator !== "undefined" ? navigator.maxTouchPoints : 0,
 ): boolean {
-  if (/Android/i.test(userAgent)) return true;
-  if (/iPhone|iPad|iPod/i.test(userAgent)) return true;
-  // iPadOS 13+ masquerades as desktop Safari ("Macintosh") but is a touch
-  // device; distinguish it from a real Mac by the presence of touch points.
-  if (/Macintosh/i.test(userAgent) && maxTouchPoints > 1) return true;
-  return false;
+  const platform = detectPlatform(userAgent, maxTouchPoints);
+  return platform === "android" || platform === "ios";
 }
