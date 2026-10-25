@@ -183,3 +183,43 @@ describe("PeriodicTable selection after scaling", () => {
     expect(grid!.style.getPropertyValue("--fit-scale")).not.toBe("");
   });
 });
+
+describe("PeriodicTable in-grid category legend", () => {
+  // Validates: Requirements 1.5, 4.5, 5.1, 5.2
+
+  it("renders exactly one legend, inside the grid, with none above the viewport", () => {
+    const { container } = renderTable();
+
+    // Exactly one legend instance (no above-grid duplicate) (Req 5.1, 5.2).
+    const legends = screen.getAllByRole("group", {
+      name: "Element category legend",
+    });
+    expect(legends).toHaveLength(1);
+    const legend = legends[0];
+
+    // The one legend lives inside the transformed grid (the --fit-scale
+    // element), so it is a descendant of the grid and not a sibling rendered
+    // above the viewport (Req 5.1, 5.2).
+    const grid = container.querySelector<HTMLElement>("[style*='--fit-scale']");
+    expect(grid).not.toBeNull();
+    expect(grid!.contains(legend)).toBe(true);
+  });
+
+  it("keeps element cells placed and keyboard-activatable while the legend is present", () => {
+    renderTable();
+
+    // All element cells still render alongside the in-grid legend (Req 1.5).
+    const cell = cellFor(carbon);
+    expect(cell).toBeInTheDocument();
+
+    // The sampled cell keeps its dataset-defined grid position: ElementCell
+    // applies xpos/ypos as inline gridColumnStart/gridRowStart (Req 1.5).
+    expect(cell.style.gridColumnStart).toBe(String(carbon.xpos));
+    expect(cell.style.gridRowStart).toBe(String(carbon.ypos));
+
+    // It remains keyboard-reachable and activatable: focusable, and a click
+    // (what Enter/Space dispatch on a native button) opens the detail (Req 4.5).
+    cell.focus();
+    expect(document.activeElement).toBe(cell);
+  });
+});

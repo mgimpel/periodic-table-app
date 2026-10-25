@@ -73,14 +73,13 @@ export function PeriodicTable() {
         </Alert>
       )}
 
-      <CategoryLegend />
-
       <Box className={classes.viewport} ref={viewportRef}>
         <Box
           className={classes.grid}
           ref={gridRef}
           style={{ "--fit-scale": scale } as React.CSSProperties}
         >
+          <CategoryLegend symbolOnly={symbolOnly} />
           {ELEMENTS.map((element) => (
             <ElementCell
               key={element.atomicNumber}

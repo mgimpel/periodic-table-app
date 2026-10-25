@@ -3,35 +3,50 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-import { Box, Group, Paper, Text } from "@mantine/core";
 import {
   CATEGORY_COLORS,
   CATEGORY_LABELS,
   type ElementCategory,
 } from "../data/element";
+import classes from "./PeriodicTable.module.css";
 
-// Legend mapping each category to its color swatch + label. Wraps on narrow
-// screens so it stays usable on phones.
-export function CategoryLegend() {
+interface CategoryLegendProps {
+  /** When true, show swatches only and drop the label text (mirrors ElementCell). */
+  symbolOnly?: boolean;
+}
+
+// Category color key rendered as a grid item placed in the table's empty
+// top-center region (see .legend in PeriodicTable.module.css), so it scales
+// with the table via the grid's transform. In symbolOnly mode the label text
+// is dropped but each entry keeps its accessible name.
+export function CategoryLegend({ symbolOnly = false }: CategoryLegendProps) {
   const categories = Object.keys(CATEGORY_LABELS) as ElementCategory[];
   return (
-    <Group gap="xs" wrap="wrap" justify="center">
-      {categories.map((category) => (
-        <Paper key={category} withBorder px="xs" py={4} radius="sm">
-          <Group gap={6} wrap="nowrap">
-            <Box
-              w={14}
-              h={14}
-              style={{
-                backgroundColor: CATEGORY_COLORS[category],
-                borderRadius: 3,
-                flexShrink: 0,
-              }}
+    <div
+      className={classes.legend}
+      role="group"
+      aria-label="Element category legend"
+    >
+      {categories.map((category) => {
+        const label = CATEGORY_LABELS[category];
+        // Fall back to the raw key so the accessible name is never empty (Req 4.3).
+        const accessibleName = label || category;
+        return (
+          <div
+            key={category}
+            className={classes.legendEntry}
+            aria-label={accessibleName}
+          >
+            <span
+              className={classes.legendSwatch}
+              style={{ backgroundColor: CATEGORY_COLORS[category] }}
             />
-            <Text size="xs">{CATEGORY_LABELS[category]}</Text>
-          </Group>
-        </Paper>
-      ))}
-    </Group>
+            {!symbolOnly && (
+              <span className={classes.legendLabel}>{label}</span>
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
 }
