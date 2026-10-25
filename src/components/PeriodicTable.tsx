@@ -79,7 +79,7 @@ export function PeriodicTable() {
           ref={gridRef}
           style={{ "--fit-scale": scale } as React.CSSProperties}
         >
-          <CategoryLegend symbolOnly={symbolOnly} />
+          <CategoryLegend />
           {ELEMENTS.map((element) => (
             <ElementCell
               key={element.atomicNumber}

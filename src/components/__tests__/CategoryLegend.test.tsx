@@ -89,7 +89,7 @@ describe("CategoryLegend property 1: entry set matches the category keys", () =>
               normalizeColor(CATEGORY_COLORS[category]),
             );
 
-            // With symbolOnly inactive, the visible label text is present.
+            // The visible label text is always present.
             expect(within(entry).getByText(label)).toBeInTheDocument();
           }
 
@@ -101,57 +101,61 @@ describe("CategoryLegend property 1: entry set matches the category keys", () =>
   });
 });
 
-describe("CategoryLegend property 2: label visibility follows the mode uniformly", () => {
-  // Feature: in-grid-category-legend, Property 2: Label visibility follows the mode uniformly
-  // Validates: Requirements 3.1, 3.2, 3.4, 3.5
-  it("shows every label when symbolOnly is false, hides every label when true, and always shows the swatch", () => {
+describe("CategoryLegend property 2: every entry always shows its swatch and label", () => {
+  // Feature: in-grid-category-legend, Property 2: Every entry always shows its swatch and label
+  // Validates: Requirements 3.1, 3.2, 3.4
+  it("always shows both the swatch and the visible label for every entry, with no entry dropping its label", () => {
     fc.assert(
-      fc.property(fc.boolean(), (symbolOnly) => {
-        render(
-          <MantineProvider>
-            <CategoryLegend symbolOnly={symbolOnly} />
-          </MantineProvider>,
-        );
+      // The legend has no mode input, so vary the assertion over the category
+      // key set (shuffled subarrays) to confirm the invariant holds for every
+      // entry rather than over a symbolOnly boolean.
+      fc.property(
+        fc.shuffledSubarray(CATEGORY_KEYS, {
+          minLength: CATEGORY_KEYS.length,
+        }),
+        (keys) => {
+          render(
+            <MantineProvider>
+              <CategoryLegend />
+            </MantineProvider>,
+          );
 
-        const legend = screen.getByRole("group", {
-          name: "Element category legend",
-        });
+          const legend = screen.getByRole("group", {
+            name: "Element category legend",
+          });
 
-        // Read entry children directly (avoid tree-wide accessible-name scans).
-        const entries = Array.from(legend.children) as HTMLElement[];
-        expect(entries).toHaveLength(CATEGORY_KEYS.length);
+          // Read entry children directly (avoid tree-wide accessible-name scans).
+          const entries = Array.from(legend.children) as HTMLElement[];
+          expect(entries).toHaveLength(CATEGORY_KEYS.length);
 
-        for (const entry of entries) {
-          // The swatch (a span carrying the inline backgroundColor) is present
-          // in both modes.
-          const swatch = entry.querySelector(
-            "span[style]",
-          ) as HTMLElement | null;
-          expect(swatch).not.toBeNull();
+          for (const entry of entries) {
+            // The swatch (a span carrying the inline backgroundColor) is present.
+            const swatch = entry.querySelector(
+              "span[style]",
+            ) as HTMLElement | null;
+            expect(swatch).not.toBeNull();
 
-          // With the real category data every label is non-empty, so the
-          // entry's accessible name is the label text the entry would show.
-          const labelText = entry.getAttribute("aria-label") as string;
-
-          if (symbolOnly) {
-            // No visible label text node in symbol-only mode.
-            expect(within(entry).queryByText(labelText)).toBeNull();
-          } else {
-            // Label text is shown.
+            // With the real category data every label is non-empty, so the
+            // entry's accessible name equals the visible label it must show.
+            const labelText = entry.getAttribute("aria-label") as string;
             expect(within(entry).getByText(labelText)).toBeInTheDocument();
           }
-        }
 
-        cleanup();
-      }),
+          // The varied key order drives nothing structural; it only confirms
+          // the invariant is phrased over the whole category set.
+          void keys;
+
+          cleanup();
+        },
+      ),
       { numRuns: 100 },
     );
   });
 });
 
-describe("CategoryLegend property 3: every entry has a non-empty accessible name in both modes", () => {
-  // Feature: in-grid-category-legend, Property 3: Every entry has a non-empty accessible name in both modes
-  // Validates: Requirements 3.3, 4.2, 4.3, 4.4
+describe("CategoryLegend property 3: every entry has a non-empty accessible name", () => {
+  // Feature: in-grid-category-legend, Property 3: Every entry has a non-empty accessible name
+  // Validates: Requirements 4.2, 4.3, 4.4
 
   // Mirror the component's accessible-name derivation: name = label || category.
   // The component reads the static CATEGORY_LABELS (no label prop), so the
@@ -160,7 +164,7 @@ describe("CategoryLegend property 3: every entry has a non-empty accessible name
   const deriveAccessibleName = (label: string | undefined, category: string) =>
     label || category;
 
-  it("derives a non-empty accessible name, falling back to the key when the label is empty/missing, independent of symbolOnly", () => {
+  it("derives a non-empty accessible name, falling back to the key when the label is empty/missing", () => {
     // Per key, pick the real label, an empty string, or a normal string.
     const labelMapArb = fc.record(
       Object.fromEntries(
@@ -176,81 +180,48 @@ describe("CategoryLegend property 3: every entry has a non-empty accessible name
     );
 
     fc.assert(
-      fc.property(
-        labelMapArb,
-        fc.boolean(),
-        (labels, symbolOnly) => {
-          for (const category of CATEGORY_KEYS) {
-            const label = labels[category];
-            const name = deriveAccessibleName(label, category);
+      fc.property(labelMapArb, (labels) => {
+        for (const category of CATEGORY_KEYS) {
+          const label = labels[category];
+          const name = deriveAccessibleName(label, category);
 
-            // Never empty, regardless of label state.
-            expect(name).toBeTruthy();
+          // Never empty, regardless of label state.
+          expect(name).toBeTruthy();
 
-            if (label) {
-              // A non-empty label is conveyed verbatim.
-              expect(name).toBe(label);
-            } else {
-              // Empty/missing label falls back to the raw (non-empty) key.
-              expect(name).toBe(category);
-              expect(category).toBeTruthy();
-            }
-
-            // Derivation does not depend on symbolOnly: same name for both modes.
-            expect(deriveAccessibleName(label, category)).toBe(
-              deriveAccessibleName(label, category),
-            );
-            // symbolOnly is generated but must not influence the name.
-            void symbolOnly;
+          if (label) {
+            // A non-empty label is conveyed verbatim.
+            expect(name).toBe(label);
+          } else {
+            // Empty/missing label falls back to the raw (non-empty) key.
+            expect(name).toBe(category);
+            expect(category).toBeTruthy();
           }
-        },
-      ),
+        }
+      }),
       { numRuns: 100 },
     );
   });
 
-  it("renders a non-empty accessible name per entry that conveys the category label, identical across symbolOnly true/false", () => {
-    fc.assert(
-      fc.property(fc.boolean(), (symbolOnly) => {
-        // Render both modes to compare accessible names across them.
-        render(
-          <MantineProvider>
-            <CategoryLegend symbolOnly={symbolOnly} />
-          </MantineProvider>,
-        );
-        const legendA = screen.getByRole("group", {
-          name: "Element category legend",
-        });
-        const namesA = (Array.from(legendA.children) as HTMLElement[]).map((e) =>
-          e.getAttribute("aria-label"),
-        );
-        cleanup();
-
-        render(
-          <MantineProvider>
-            <CategoryLegend symbolOnly={!symbolOnly} />
-          </MantineProvider>,
-        );
-        const legendB = screen.getByRole("group", {
-          name: "Element category legend",
-        });
-        const namesB = (Array.from(legendB.children) as HTMLElement[]).map((e) =>
-          e.getAttribute("aria-label"),
-        );
-        cleanup();
-
-        // Every real-data entry has a non-empty name equal to its label, and
-        // the set of names is unchanged between the two modes.
-        expect(namesA).toHaveLength(CATEGORY_KEYS.length);
-        for (const name of namesA) {
-          expect(name).toBeTruthy();
-        }
-        const expected = CATEGORY_KEYS.map((c) => CATEGORY_LABELS[c]);
-        expect(namesA).toEqual(expected);
-        expect(namesA).toEqual(namesB);
-      }),
-      { numRuns: 100 },
+  it("renders a non-empty accessible name per entry that conveys the category label", () => {
+    render(
+      <MantineProvider>
+        <CategoryLegend />
+      </MantineProvider>,
     );
+    const legend = screen.getByRole("group", {
+      name: "Element category legend",
+    });
+    const names = (Array.from(legend.children) as HTMLElement[]).map((e) =>
+      e.getAttribute("aria-label"),
+    );
+
+    // Every real-data entry has a non-empty name equal to its label.
+    expect(names).toHaveLength(CATEGORY_KEYS.length);
+    for (const name of names) {
+      expect(name).toBeTruthy();
+    }
+    const expected = CATEGORY_KEYS.map((c) => CATEGORY_LABELS[c]);
+    expect(names).toEqual(expected);
   });
 });
 

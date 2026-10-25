@@ -10,16 +10,13 @@ import {
 } from "../data/element";
 import classes from "./PeriodicTable.module.css";
 
-interface CategoryLegendProps {
-  /** When true, show swatches only and drop the label text (mirrors ElementCell). */
-  symbolOnly?: boolean;
-}
-
 // Category color key rendered as a grid item placed in the table's empty
 // top-center region (see .legend in PeriodicTable.module.css), so it scales
-// with the table via the grid's transform. In symbolOnly mode the label text
-// is dropped but each entry keeps its accessible name.
-export function CategoryLegend({ symbolOnly = false }: CategoryLegendProps) {
+// with the table via the grid's transform. The legend always shows both the
+// swatch and the label: because it lives inside the transformed grid, its text
+// shrinks and grows uniformly with the table rather than being dropped when
+// cells fall back to symbol-only, so the key stays legible at every scale.
+export function CategoryLegend() {
   const categories = Object.keys(CATEGORY_LABELS) as ElementCategory[];
   return (
     <div
@@ -41,9 +38,7 @@ export function CategoryLegend({ symbolOnly = false }: CategoryLegendProps) {
               className={classes.legendSwatch}
               style={{ backgroundColor: CATEGORY_COLORS[category] }}
             />
-            {!symbolOnly && (
-              <span className={classes.legendLabel}>{label}</span>
-            )}
+            <span className={classes.legendLabel}>{label}</span>
           </div>
         );
       })}
