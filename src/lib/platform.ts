@@ -19,6 +19,15 @@
 
 import { platform } from "@tauri-apps/plugin-os";
 
+/** The platforms detectPlatform can identify; "unknown" is the safe default. */
+export type Platform =
+  | "windows"
+  | "macos"
+  | "linux"
+  | "android"
+  | "ios"
+  | "unknown";
+
 /**
  * Current OS platform. Prefers the native @tauri-apps/plugin-os platform()
  * call (synchronous — injected at WebView startup); falls back to the UA
@@ -53,28 +62,9 @@ export function currentPlatform(): Platform {
  * safe default for orientation).
  */
 export function isMobilePlatform(): boolean {
-  const current = currentPlatform();
-  return current === "android" || current === "ios";
+  const platform = currentPlatform();
+  return platform === "android" || platform === "ios";
 }
-
-/**
- * Returns true when the app is running on Windows. Prefers the native
- * platform(), falling back to the user-agent heuristic. Used only for small
- * platform-specific visual tuning (e.g. font metrics differ, so a swatch nudge
- * needs to be smaller on Windows).
- */
-export function isWindowsPlatform(): boolean {
-  return currentPlatform() === "windows";
-}
-
-/** The platforms detectPlatform can identify; "unknown" is the safe default. */
-export type Platform =
-  | "windows"
-  | "macos"
-  | "linux"
-  | "android"
-  | "ios"
-  | "unknown";
 
 /** Current user-agent, or "" in a non-browser env. Shared by the wrappers. */
 function currentUserAgent(): string {
@@ -105,21 +95,4 @@ export function detectPlatform(
   }
   if (/Linux/i.test(userAgent)) return "linux";
   return "unknown";
-}
-
-/** Pure Windows UA classifier, split out so it can be tested without navigator. */
-export function isWindowsUserAgent(userAgent: string): boolean {
-  return detectPlatform(userAgent) === "windows";
-}
-
-/**
- * Pure mobile (Android or iOS) UA classifier, derived from detectPlatform so
- * the mobile/desktop split stays consistent with the per-OS detection.
- */
-export function isMobileUserAgent(
-  userAgent: string,
-  maxTouchPoints = typeof navigator !== "undefined" ? navigator.maxTouchPoints : 0,
-): boolean {
-  const platform = detectPlatform(userAgent, maxTouchPoints);
-  return platform === "android" || platform === "ios";
 }

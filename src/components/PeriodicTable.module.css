@@ -132,8 +132,11 @@
   height: 14px;
   border-radius: 3px;
   flex-shrink: 0;
-  /* The label's line box is taller than its glyphs, so its optical center sits
-   * slightly above the box center; nudge the swatch up to match. */
+  margin-top: -1px;
+}
+
+/* The label's is slightly misaligned on linux. */
+:global([data-os="linux"]) .legendSwatch {
   margin-top: -4px;
 }
 
