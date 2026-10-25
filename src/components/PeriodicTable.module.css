@@ -87,8 +87,12 @@
 }
 
 .symbol {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
+  /* Tight line box so the larger symbol doesn't crowd the number above or the
+   * name below — all three must still fit the 56px cell. */
+  line-height: 1;
+  margin: 1px 0;
 }
 
 .name {
@@ -112,7 +116,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 2px var(--cell-gap);
-  padding: 2px;
+  padding: 2px 24px;
   align-content: center;
 }
 
@@ -131,7 +135,7 @@
 }
 
 .legendLabel {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.1;
   color: var(--mantine-color-text);
   overflow: hidden;
