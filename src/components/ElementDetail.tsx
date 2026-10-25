@@ -11,6 +11,7 @@ import {
   Modal,
   SimpleGrid,
   Stack,
+  Tabs,
   Text,
   Title,
 } from "@mantine/core";
@@ -67,7 +68,10 @@ function DetailBody({ element }: { element: Element }) {
         </Box>
         <Box>
           <Title order={2} size="h4">
-            {element.name}
+            {element.name}{" "}
+            <Text span c="dimmed" inherit>
+              {element.symbol}
+            </Text>
           </Title>
           <Badge variant="light" color="gray">
             {CATEGORY_LABELS[element.category]}
@@ -75,40 +79,69 @@ function DetailBody({ element }: { element: Element }) {
         </Box>
       </Group>
 
-      <SimpleGrid cols={2} spacing="sm">
-        <DetailRow label="Atomic number" value={element.atomicNumber} />
-        <DetailRow label="Atomic mass" value={element.atomicMass} />
-        <DetailRow label="Group" value={element.group ?? "—"} />
-        <DetailRow label="Period" value={element.period} />
-        <DetailRow label="Phase" value={element.phase} />
-        <DetailRow label="Block" value={element.block} />
-      </SimpleGrid>
+      <Tabs defaultValue="atomic">
+        <Tabs.List aria-label="Element detail sections">
+          <Tabs.Tab value="atomic">Atomic details</Tabs.Tab>
+          <Tabs.Tab value="physical">Physical properties</Tabs.Tab>
+          <Tabs.Tab value="chemical">Chemical properties</Tabs.Tab>
+          <Tabs.Tab value="electron">Electron configuration</Tabs.Tab>
+          <Tabs.Tab value="description">Description</Tabs.Tab>
+        </Tabs.List>
 
-      <DetailRow
-        label="Electron configuration"
-        value={element.electronConfiguration}
-      />
-      <DetailRow
-        label="Electron configuration (semantic)"
-        value={element.electronConfigurationSemantic}
-      />
-      <DetailRow label="Electron shells" value={element.shells.join(", ")} />
+        <Tabs.Panel value="atomic" pt="md">
+          <SimpleGrid cols={2} spacing="sm">
+            <DetailRow label="Atomic number" value={element.atomicNumber} />
+            <DetailRow label="Atomic mass" value={element.atomicMass} />
+            <DetailRow label="Group" value={element.group ?? "—"} />
+            <DetailRow label="Period" value={element.period} />
+            <DetailRow label="Block" value={element.block} />
+          </SimpleGrid>
+        </Tabs.Panel>
 
-      {element.appearance && (
-        <DetailRow label="Appearance" value={element.appearance} />
-      )}
-      {element.discoveredBy && (
-        <DetailRow label="Discovered by" value={element.discoveredBy} />
-      )}
+        <Tabs.Panel value="physical" pt="md">
+          <Stack gap="sm">
+            <DetailRow label="Phase" value={element.phase} />
+            {element.appearance && (
+              <DetailRow label="Appearance" value={element.appearance} />
+            )}
+          </Stack>
+        </Tabs.Panel>
 
-      {element.summary && (
-        <Box>
-          <Text size="xs" c="dimmed" tt="uppercase">
-            Summary
+        <Tabs.Panel value="chemical" pt="md">
+          <Stack gap="sm">
+            <DetailRow
+              label="Category"
+              value={CATEGORY_LABELS[element.category]}
+            />
+            {element.discoveredBy && (
+              <DetailRow label="Discovered by" value={element.discoveredBy} />
+            )}
+          </Stack>
+        </Tabs.Panel>
+
+        <Tabs.Panel value="electron" pt="md">
+          <Stack gap="sm">
+            <DetailRow
+              label="Electron configuration"
+              value={element.electronConfiguration}
+            />
+            <DetailRow
+              label="Electron configuration (semantic)"
+              value={element.electronConfigurationSemantic}
+            />
+            <DetailRow
+              label="Electron shells"
+              value={element.shells.join(", ")}
+            />
+          </Stack>
+        </Tabs.Panel>
+
+        <Tabs.Panel value="description" pt="md">
+          <Text size="sm">
+            {element.summary || "No description available."}
           </Text>
-          <Text size="sm">{element.summary}</Text>
-        </Box>
-      )}
+        </Tabs.Panel>
+      </Tabs>
     </Stack>
   );
 }
@@ -119,14 +152,12 @@ function DetailBody({ element }: { element: Element }) {
 export function ElementDetail({ element, onClose }: ElementDetailProps) {
   const isWide = useMediaQuery("(min-width: 48em)");
   const opened = element !== null;
-  const title = element ? `${element.name} (${element.symbol})` : "";
 
   if (isWide) {
     return (
       <Modal
         opened={opened}
         onClose={onClose}
-        title={title}
         centered
         size="lg"
         closeButtonProps={{ "aria-label": "Close" }}
@@ -140,7 +171,6 @@ export function ElementDetail({ element, onClose }: ElementDetailProps) {
     <Drawer
       opened={opened}
       onClose={onClose}
-      title={title}
       position="bottom"
       size="80%"
       closeButtonProps={{ "aria-label": "Close" }}

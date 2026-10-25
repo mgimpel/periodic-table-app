@@ -88,9 +88,11 @@ describe("AppLayout", () => {
     // PeriodicTable is present before opening settings.
     expect(hydrogenCell()).toBeInTheDocument();
 
-    // Select an element; its detail Drawer titled "Hydrogen (H)" appears.
+    // Select an element; its detail Drawer opens with the element name in the
+    // custom header (the overlay no longer uses a built-in "name (symbol)" title).
     await user.click(hydrogenCell()!);
-    expect(await screen.findByText("Hydrogen (H)")).toBeInTheDocument();
+    const detail = await screen.findByRole("dialog");
+    expect(within(detail).getByText("Hydrogen")).toBeInTheDocument();
 
     // Open settings. The detail Drawer renders behind SettingsPanel, so the
     // trigger is covered for a real pointer — invoke its handler directly.
@@ -99,7 +101,7 @@ describe("AppLayout", () => {
 
     // PeriodicTable is still mounted and the element is still selected.
     expect(hydrogenCell()).toBeInTheDocument();
-    expect(screen.getByText("Hydrogen (H)")).toBeInTheDocument();
+    expect(within(detail).getByText("Hydrogen")).toBeInTheDocument();
   });
 
   it("surfaces and dismisses the inline save-error Alert (5.4)", async () => {

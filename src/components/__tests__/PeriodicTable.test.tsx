@@ -101,12 +101,12 @@ describe("PeriodicTable selection after scaling", () => {
     fireEvent.click(cellFor(carbon));
 
     const dialog = await screen.findByRole("dialog");
-    // Dialog title + body identify the selected element. Atomic mass lives in
-    // the detail body only, so finding it proves the detail (not a cell)
-    // rendered the selection.
-    expect(
-      within(dialog).getByText(`${carbon.name} (${carbon.symbol})`),
-    ).toBeInTheDocument();
+    // The custom detail header identifies the selected element by name and
+    // symbol (the overlay no longer renders a built-in "name (symbol)" title).
+    // Atomic mass lives in the detail body only, so finding it proves the detail
+    // (not a cell) rendered the selection.
+    expect(within(dialog).getByText(carbon.name)).toBeInTheDocument();
+    expect(within(dialog).getAllByText(carbon.symbol).length).toBeGreaterThan(0);
     expect(
       within(dialog).getByText(String(carbon.atomicMass)),
     ).toBeInTheDocument();
@@ -130,9 +130,7 @@ describe("PeriodicTable selection after scaling", () => {
     fireEvent.click(cell);
 
     const dialog = await screen.findByRole("dialog");
-    expect(
-      within(dialog).getByText(`${carbon.name} (${carbon.symbol})`),
-    ).toBeInTheDocument();
+    expect(within(dialog).getByText(carbon.name)).toBeInTheDocument();
   });
 
   it("swaps the detail content when a different cell is selected", async () => {
@@ -140,9 +138,7 @@ describe("PeriodicTable selection after scaling", () => {
 
     fireEvent.click(cellFor(carbon));
     expect(
-      within(await screen.findByRole("dialog")).getByText(
-        `${carbon.name} (${carbon.symbol})`,
-      ),
+      within(await screen.findByRole("dialog")).getByText(carbon.name),
     ).toBeInTheDocument();
 
     // Selecting another cell replaces the detail with the new element.
@@ -150,12 +146,8 @@ describe("PeriodicTable selection after scaling", () => {
 
     await waitFor(() => {
       const dialog = screen.getByRole("dialog");
-      expect(
-        within(dialog).getByText(`${oxygen.name} (${oxygen.symbol})`),
-      ).toBeInTheDocument();
-      expect(
-        within(dialog).queryByText(`${carbon.name} (${carbon.symbol})`),
-      ).not.toBeInTheDocument();
+      expect(within(dialog).getByText(oxygen.name)).toBeInTheDocument();
+      expect(within(dialog).queryByText(carbon.name)).not.toBeInTheDocument();
     });
   });
 
