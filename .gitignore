@@ -1,10 +1,15 @@
-# Windows #
+# Windows, Mac, Linux
 Thumbs.db
 [Dd]esktop.ini
 $RECYCLE.BIN/
-
-# MacOS #
 .DS_Store
+*~
+
+# Private files
+.env
+
+# Temporary files
+.tmp
 
 # Logs
 logs
