@@ -4,8 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { ActionIcon, Group, Title } from "@mantine/core";
-import { AppLogo } from "./AppLogo";
-import { GearIcon } from "./GearIcon";
+import { AppLogo, GearIcon } from "./Asset";
 import classes from "./HeaderBar.module.css";
 
 interface HeaderBarProps {
