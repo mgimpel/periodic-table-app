@@ -5,10 +5,10 @@
 */
 
 /* Thin header bar: full viewport width, fixed height clamped between the 44px
- * touch-target minimum and 56px (Req 1.5, 1.6). flex-shrink:0 so the table
+ * touch-target minimum and 48px (Req 1.5, 1.6). flex-shrink:0 so the table
  * region below takes the remaining height. */
 .header {
   flex: 0 0 auto;
   width: 100vw;
-  height: clamp(44px, 12vh, 56px);
+  height: clamp(44px, 8vh, 48px);
 }
