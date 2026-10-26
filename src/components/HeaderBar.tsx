@@ -26,7 +26,7 @@ export function HeaderBar({ onOpenSettings, settingsButtonRef }: HeaderBarProps)
       gap="sm"
       wrap="nowrap"
     >
-      <AppLogo />
+      <AppLogo size="32" />
       <Title
         order={1}
         size="h3"
@@ -43,7 +43,7 @@ export function HeaderBar({ onOpenSettings, settingsButtonRef }: HeaderBarProps)
       <ActionIcon
         ref={settingsButtonRef}
         variant="subtle"
-        size={44}
+        size={32}
         aria-label="Open settings"
         onClick={onOpenSettings}
       >

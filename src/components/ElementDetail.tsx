@@ -49,38 +49,57 @@ function DetailBody({ element }: { element: Element }) {
     <Stack gap="md">
       <Group gap="sm" align="center">
         <Box
-          w={56}
-          h={56}
+          w={32}
+          h={32}
           style={{
             backgroundColor: CATEGORY_COLORS[element.category],
             borderRadius: 8,
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             color: "#1a1a1a",
           }}
         >
-          <Text size="xs">{element.atomicNumber}</Text>
-          <Text fw={700} size="lg">
+          <Text fw={700} size="lg" style={{ lineHeight: 1, paddingTop: 4 }}>
             {element.symbol}
           </Text>
         </Box>
-        <Box>
+        <Group gap="xs" align="center">
+          <Text span c="dimmed">
+            {element.atomicNumber}
+          </Text>
           <Title order={2} size="h4">
-            {element.name}{" "}
-            <Text span c="dimmed" inherit>
-              {element.symbol}
-            </Text>
+            {element.name}
           </Title>
           <Badge variant="light" color="gray">
             {CATEGORY_LABELS[element.category]}
           </Badge>
-        </Box>
+        </Group>
       </Group>
 
-      <Tabs defaultValue="atomic">
-        <Tabs.List aria-label="Element detail sections">
+      <Tabs
+        defaultValue="atomic"
+        styles={{
+          // Keep all tabs on one line without scrolling: let each tab shrink
+          // and truncate its label with an ellipsis instead of overflowing.
+          tab: {
+            minWidth: 0,
+            paddingInline: "var(--mantine-spacing-xs)",
+          },
+          tabLabel: {
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            // Nudge the label down so the full glyph height is visible.
+            paddingTop: 2,
+          },
+        }}
+      >
+        <Tabs.List
+          grow
+          aria-label="Element detail sections"
+          style={{ flexWrap: "nowrap" }}
+        >
           <Tabs.Tab value="atomic">Atomic details</Tabs.Tab>
           <Tabs.Tab value="physical">Physical properties</Tabs.Tab>
           <Tabs.Tab value="chemical">Chemical properties</Tabs.Tab>
@@ -160,7 +179,7 @@ export function ElementDetail({ element, onClose }: ElementDetailProps) {
         onClose={onClose}
         centered
         size="lg"
-        closeButtonProps={{ "aria-label": "Close" }}
+        withCloseButton={false}
       >
         {element && <DetailBody element={element} />}
       </Modal>
