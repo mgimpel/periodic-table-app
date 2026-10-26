@@ -26,7 +26,7 @@ export function HeaderBar({ onOpenSettings, settingsButtonRef }: HeaderBarProps)
       gap="sm"
       wrap="nowrap"
     >
-      <AppLogo size="32" />
+      <AppLogo size={32} />
       <Title
         order={1}
         size="h3"

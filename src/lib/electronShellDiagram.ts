@@ -8,7 +8,7 @@
 // electron configuration, shell occupancies, fill color) rather than an Element,
 // so the function stays testable in isolation.
 //
-// Geometry mirrors the reference Python generator exactly: the nucleus sits at
+// Geometry mirrors the reference generator exactly: the nucleus sits at
 // the origin (r=200), each shell is an orbit circle at r = 300 + index*100 with
 // its electrons drawn as r=30 dots on that orbit. The first electron sits at the
 // top (cy = -(radius), no rotation) and the rest are spaced evenly by rotating
@@ -32,8 +32,6 @@ function buildShellsMarkup(shells: number[]): string {
     if (shell > 1) {
       const angle = 360 / shell;
       for (let i = 1; i < shell; i++) {
-        // Math.trunc matches Python's int() (truncation toward zero); angle*i is
-        // always non-negative here so it equals Math.floor too.
         lines.push(
           `<circle r="30" cy="-${radius}" transform="rotate(${Math.trunc(
             i * angle,
