@@ -66,4 +66,20 @@ assert(
   "Ac should be an actinide",
 );
 
+// Newly mapped fields (physical/electron/description tabs). Hydrogen carries
+// non-null values for all of them, so a single element exercises the mapping.
+const h = getElementByNumber(1);
+assert(h?.boil === 20.271, `H boil should map, got ${h?.boil}`);
+assert(h?.melt === 13.99, `H melt should map, got ${h?.melt}`);
+assert(h?.density === 0.08988, `H density should map, got ${h?.density}`);
+assert(h?.densityUnit === "g/L", `H densityUnit should map, got ${h?.densityUnit}`);
+assert(
+  h?.electronAffinity === 72.769,
+  `H electronAffinity should map, got ${h?.electronAffinity}`,
+);
+assert(
+  h?.namedBy === "Antoine Lavoisier",
+  `H namedBy should map, got ${h?.namedBy}`,
+);
+
 console.log(`ok: ${ELEMENTS.length} elements validated`);

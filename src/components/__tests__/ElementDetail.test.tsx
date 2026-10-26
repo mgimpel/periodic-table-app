@@ -55,12 +55,18 @@ function makeElement(overrides: Partial<Element> = {}): Element {
     ypos: 4,
     electronConfiguration: "1s2 2s2 2p6 3s2 3p6 3d6 4s2",
     electronConfigurationSemantic: "[Ar] 3d6 4s2",
+    electronAffinity: 15.7,
     shells: [2, 8, 14, 2],
     phase: "Solid",
     block: "d",
+    density: 7.874,
+    densityUnit: "g/cm3",
+    boil: 3134,
+    melt: 1811,
     summary: "Iron is a metal in the first transition series.",
     appearance: "lustrous metallic with a grayish tinge",
     discoveredBy: "Ancient civilizations",
+    namedBy: "Ancient namers",
     ...overrides,
   };
 }
@@ -106,7 +112,6 @@ function Harness({
 const TAB_NAMES = [
   "Atomic details",
   "Physical properties",
-  "Chemical properties",
   "Electron configuration",
   "Description",
 ];
@@ -156,7 +161,7 @@ describe("ElementDetail", () => {
     expect(screen.queryByText("Iron")).not.toBeInTheDocument();
   });
 
-  it("renders exactly five tabs in order, in a list named 'Element detail sections' (4.1, 4.5, 6.1)", () => {
+  it("renders exactly four tabs in order, in a list named 'Element detail sections' (4.1, 4.5, 6.1)", () => {
     render(<Harness initial={makeElement()} />);
 
     const tablist = screen.getByRole("tablist", {
@@ -224,58 +229,57 @@ describe("ElementDetail", () => {
     // them mounted but hidden, so they live in no visible section but the atomic one.
     await user.click(screen.getByRole("tab", { name: "Physical properties" }));
     expect(screen.getByText("Phase")).toBeVisible(); // 5.2
+    // Physical panel carries density, boiling and melting points.
+    expect(screen.getByText("Density")).toBeVisible();
+    expect(screen.getByText("7.874 g/cm3")).toBeVisible();
+    expect(screen.getByText("Boiling point")).toBeVisible();
+    expect(screen.getByText("3134 K")).toBeVisible();
+    expect(screen.getByText("Melting point")).toBeVisible();
+    expect(screen.getByText("1811 K")).toBeVisible();
     for (const label of atomicLabels) {
       expect(screen.getByText(label)).not.toBeVisible();
     }
 
-    await user.click(screen.getByRole("tab", { name: "Chemical properties" }));
-    // Category label row is visible in the chemical panel (5.5). The same label
-    // also appears in the header badge, so pick the visible panel occurrence.
-    const categoryMatches = screen.getAllByText(
-      CATEGORY_LABELS["transition-metal"],
-    );
-    expect(categoryMatches.some((el) => el.textContent === "Transition metals")).toBe(
-      true,
-    );
-    for (const label of atomicLabels) {
-      expect(screen.getByText(label)).not.toBeVisible();
-    }
-
-    // Electron panel: shells joined innermost→outermost (5.7).
+    // Electron panel: shells joined innermost→outermost (5.7), plus affinity.
     await user.click(
       screen.getByRole("tab", { name: "Electron configuration" }),
     );
     expect(screen.getByText("2, 8, 14, 2")).toBeVisible();
+    expect(screen.getByText("Electron affinity")).toBeVisible();
+    expect(screen.getByText("15.7 kJ/mol")).toBeVisible();
   });
 
-  it("shows appearance and discoveredBy when present (5.3, 5.6)", async () => {
+  it("shows appearance, discoveredBy and namedBy in Description when present (5.3, 5.6)", async () => {
     const user = userEvent.setup();
     render(<Harness initial={makeElement()} />);
 
-    await user.click(screen.getByRole("tab", { name: "Physical properties" }));
+    await user.click(screen.getByRole("tab", { name: "Description" }));
     expect(screen.getByText("Appearance")).toBeInTheDocument();
     expect(
       screen.getByText("lustrous metallic with a grayish tinge"),
     ).toBeInTheDocument();
-
-    await user.click(screen.getByRole("tab", { name: "Chemical properties" }));
     expect(screen.getByText("Discovered by")).toBeInTheDocument();
     expect(screen.getByText("Ancient civilizations")).toBeInTheDocument();
+    expect(screen.getByText("Named by")).toBeInTheDocument();
+    expect(screen.getByText("Ancient namers")).toBeInTheDocument();
   });
 
-  it("omits appearance and discoveredBy when null or empty (5.4)", async () => {
+  it("omits appearance, discoveredBy and namedBy when null or empty (5.4)", async () => {
     const user = userEvent.setup();
     render(
       <Harness
-        initial={makeElement({ appearance: null, discoveredBy: "" })}
+        initial={makeElement({
+          appearance: null,
+          discoveredBy: "",
+          namedBy: null,
+        })}
       />,
     );
 
-    await user.click(screen.getByRole("tab", { name: "Physical properties" }));
+    await user.click(screen.getByRole("tab", { name: "Description" }));
     expect(screen.queryByText("Appearance")).not.toBeInTheDocument();
-
-    await user.click(screen.getByRole("tab", { name: "Chemical properties" }));
     expect(screen.queryByText("Discovered by")).not.toBeInTheDocument();
+    expect(screen.queryByText("Named by")).not.toBeInTheDocument();
   });
 
   it("renders the '—' placeholder when group is null (5.9)", () => {
@@ -352,12 +356,12 @@ describe("ElementDetail", () => {
     // overlay's focus trap can pull focus to the close control between focusing a
     // tab and the async keystroke, which would then close the overlay.) We assert
     // the button nature plus that activating a tab selects it.
-    const chemical = screen.getByRole("tab", { name: "Chemical properties" });
-    expect(chemical.tagName).toBe("BUTTON");
-    expect(chemical).toHaveAttribute("type", "button");
+    const physical = screen.getByRole("tab", { name: "Physical properties" });
+    expect(physical.tagName).toBe("BUTTON");
+    expect(physical).toHaveAttribute("type", "button");
 
-    fireEvent.click(chemical);
-    expect(selected()).toHaveAccessibleName("Chemical properties");
+    fireEvent.click(physical);
+    expect(selected()).toHaveAccessibleName("Physical properties");
 
     fireEvent.click(screen.getByRole("tab", { name: "Electron configuration" }));
     expect(selected()).toHaveAccessibleName("Electron configuration");
@@ -414,7 +418,7 @@ describe("ElementDetail", () => {
     );
   });
 
-  it("renders a centered Modal with a working Close on wide viewports (1.5)", async () => {
+  it("renders a centered Modal with no built-in close button, dismissable via Escape, on wide viewports (1.5)", async () => {
     useWideViewport();
     const user = userEvent.setup();
     const onClose = vi.fn();
@@ -423,7 +427,11 @@ describe("ElementDetail", () => {
     // Modal branch still renders the custom header.
     expect(screen.getByText("Iron")).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "Close" }));
+    // The wide Modal suppresses the built-in close button (withCloseButton=false);
+    // the custom header bar is the chrome. Escape still dismisses it.
+    expect(screen.queryByRole("button", { name: "Close" })).not.toBeInTheDocument();
+
+    await user.keyboard("{Escape}");
     expect(onClose).toHaveBeenCalled();
     await waitFor(() =>
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),

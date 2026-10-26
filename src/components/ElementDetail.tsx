@@ -102,7 +102,6 @@ function DetailBody({ element }: { element: Element }) {
         >
           <Tabs.Tab value="atomic">Atomic details</Tabs.Tab>
           <Tabs.Tab value="physical">Physical properties</Tabs.Tab>
-          <Tabs.Tab value="chemical">Chemical properties</Tabs.Tab>
           <Tabs.Tab value="electron">Electron configuration</Tabs.Tab>
           <Tabs.Tab value="description">Description</Tabs.Tab>
         </Tabs.List>
@@ -118,24 +117,27 @@ function DetailBody({ element }: { element: Element }) {
         </Tabs.Panel>
 
         <Tabs.Panel value="physical" pt="md">
-          <Stack gap="sm">
+          <SimpleGrid cols={2} spacing="sm">
             <DetailRow label="Phase" value={element.phase} />
-            {element.appearance && (
-              <DetailRow label="Appearance" value={element.appearance} />
-            )}
-          </Stack>
-        </Tabs.Panel>
-
-        <Tabs.Panel value="chemical" pt="md">
-          <Stack gap="sm">
             <DetailRow
-              label="Category"
-              value={CATEGORY_LABELS[element.category]}
+              label="Density"
+              value={
+                element.density !== null
+                  ? `${element.density}${
+                      element.densityUnit ? ` ${element.densityUnit}` : ""
+                    }`
+                  : "—"
+              }
             />
-            {element.discoveredBy && (
-              <DetailRow label="Discovered by" value={element.discoveredBy} />
-            )}
-          </Stack>
+            <DetailRow
+              label="Boiling point"
+              value={element.boil !== null ? `${element.boil} K` : "—"}
+            />
+            <DetailRow
+              label="Melting point"
+              value={element.melt !== null ? `${element.melt} K` : "—"}
+            />
+          </SimpleGrid>
         </Tabs.Panel>
 
         <Tabs.Panel value="electron" pt="md">
@@ -152,13 +154,32 @@ function DetailBody({ element }: { element: Element }) {
               label="Electron shells"
               value={element.shells.join(", ")}
             />
+            <DetailRow
+              label="Electron affinity"
+              value={
+                element.electronAffinity !== null
+                  ? `${element.electronAffinity} kJ/mol`
+                  : "—"
+              }
+            />
           </Stack>
         </Tabs.Panel>
 
         <Tabs.Panel value="description" pt="md">
-          <Text size="sm">
-            {element.summary || "No description available."}
-          </Text>
+          <Stack gap="sm">
+            {element.appearance && (
+              <DetailRow label="Appearance" value={element.appearance} />
+            )}
+            {element.discoveredBy && (
+              <DetailRow label="Discovered by" value={element.discoveredBy} />
+            )}
+            {element.namedBy && (
+              <DetailRow label="Named by" value={element.namedBy} />
+            )}
+            <Text size="sm">
+              {element.summary || "No description available."}
+            </Text>
+          </Stack>
         </Tabs.Panel>
       </Tabs>
     </Stack>

@@ -36,9 +36,19 @@ export interface Element {
   shells: number[];
   phase: string;
   block: string;
+  /** Electron affinity in kJ/mol; null when the source leaves it unset. */
+  electronAffinity: number | null;
+  density: number | null;
+  /** Unit string for `density` (e.g. "g/cm3", "g/L"). */
+  densityUnit: string | null;
+  /** Boiling point in Kelvin; null when unknown. */
+  boil: number | null;
+  /** Melting point in Kelvin; null when unknown. */
+  melt: number | null;
   summary: string;
   appearance: string | null;
   discoveredBy: string | null;
+  namedBy: string | null;
 }
 
 export const CATEGORY_LABELS: Record<ElementCategory, string> = {

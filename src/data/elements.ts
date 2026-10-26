@@ -33,12 +33,18 @@ interface RawElement {
   ypos: number;
   electron_configuration: string;
   electron_configuration_semantic: string;
+  electron_affinity: number | null;
   shells: number[];
   phase: string;
   block: string;
+  density: number | null;
+  density_unit: string | null;
+  boil: number | null;
+  melt: number | null;
   summary: string;
   appearance: string | null;
   discovered_by: string | null;
+  named_by: string | null;
 }
 
 /** Map a raw source category string onto the fixed `ElementCategory` union. */
@@ -64,12 +70,18 @@ function adapt(entry: RawElement): Element {
     ypos: entry.ypos,
     electronConfiguration: entry.electron_configuration,
     electronConfigurationSemantic: entry.electron_configuration_semantic,
+    electronAffinity: entry.electron_affinity ?? null,
     shells: entry.shells,
     phase: entry.phase,
     block: entry.block,
+    density: entry.density ?? null,
+    densityUnit: entry.density_unit ?? null,
+    boil: entry.boil ?? null,
+    melt: entry.melt ?? null,
     summary: entry.summary,
     appearance: entry.appearance ?? null,
     discoveredBy: entry.discovered_by ?? null,
+    namedBy: entry.named_by ?? null,
   };
 }
 
