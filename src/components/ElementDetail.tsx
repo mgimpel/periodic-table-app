@@ -21,10 +21,36 @@ import {
   CATEGORY_LABELS,
   type Element,
 } from "../data/element";
+import { buildElectronShellDiagram } from "../lib/electronShellDiagram";
 
 interface ElementDetailProps {
   element: Element | null;
   onClose: () => void;
+}
+
+// Render the element's Bohr shell diagram. The pure generator returns an SVG
+// string; embedding it as a data-URI <img> keeps the markup isolated (no inline
+// DOM injection) and lets it scale responsively. Elements with no shells (none
+// in the shipped data, but the field is a plain array) render nothing.
+function ElectronShellDiagram({ element }: { element: Element }) {
+  if (element.shells.length === 0) return null;
+  const svg = buildElectronShellDiagram(
+    element.atomicNumber,
+    element.symbol,
+    element.electronConfigurationSemantic,
+    element.shells,
+    CATEGORY_COLORS[element.category],
+  );
+  const src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+  return (
+    <img
+      src={src}
+      alt={`Electron shell diagram for ${element.name}`}
+      width={200}
+      height={200}
+      style={{ flex: "0 0 auto" }}
+    />
+  );
 }
 
 function DetailRow({
@@ -141,28 +167,31 @@ function DetailBody({ element }: { element: Element }) {
         </Tabs.Panel>
 
         <Tabs.Panel value="electron" pt="md">
-          <Stack gap="sm">
-            <DetailRow
-              label="Electron configuration"
-              value={element.electronConfiguration}
-            />
-            <DetailRow
-              label="Electron configuration (semantic)"
-              value={element.electronConfigurationSemantic}
-            />
-            <DetailRow
-              label="Electron shells"
-              value={element.shells.join(", ")}
-            />
-            <DetailRow
-              label="Electron affinity"
-              value={
-                element.electronAffinity !== null
-                  ? `${element.electronAffinity} kJ/mol`
-                  : "—"
-              }
-            />
-          </Stack>
+          <Group gap="md" align="flex-start" wrap="nowrap">
+            <Stack gap="sm" style={{ flex: 1, minWidth: 0 }}>
+              <DetailRow
+                label="Electron configuration"
+                value={element.electronConfiguration}
+              />
+              <DetailRow
+                label="Electron configuration (semantic)"
+                value={element.electronConfigurationSemantic}
+              />
+              <DetailRow
+                label="Electron shells"
+                value={element.shells.join(", ")}
+              />
+              <DetailRow
+                label="Electron affinity"
+                value={
+                  element.electronAffinity !== null
+                    ? `${element.electronAffinity} kJ/mol`
+                    : "—"
+                }
+              />
+            </Stack>
+            <ElectronShellDiagram element={element} />
+          </Group>
         </Tabs.Panel>
 
         <Tabs.Panel value="description" pt="md">
