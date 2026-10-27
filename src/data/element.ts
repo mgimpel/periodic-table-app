@@ -51,6 +51,24 @@ export interface Element {
   namedBy: string | null;
 }
 
+// Canonical display order for the ten categories (legend order). Explicit and
+// stable: the legend iterates this rather than relying on object key-insertion
+// order, and the ui:category.* translation keys are generated from it. Its sync
+// with the union (exactly the keys of CATEGORY_COLORS) is guarded by
+// src/locales/elements.check.ts.
+export const CATEGORY_KEYS: ElementCategory[] = [
+  "alkali-metal",
+  "alkaline-earth-metal",
+  "transition-metal",
+  "post-transition-metal",
+  "metalloid",
+  "reactive-nonmetal",
+  "noble-gas",
+  "lanthanide",
+  "actinide",
+  "unknown",
+];
+
 export const CATEGORY_LABELS: Record<ElementCategory, string> = {
   "alkali-metal": "Alkali metals",
   "alkaline-earth-metal": "Alkaline earth metals",

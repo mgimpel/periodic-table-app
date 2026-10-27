@@ -1,0 +1,88 @@
+{
+  "app": {
+    "title": "Periodic Table of Elements"
+  },
+  "header": {
+    "openSettings": "Open settings"
+  },
+  "settings": {
+    "title": "Settings"
+  },
+  "common": {
+    "close": "Close"
+  },
+  "theme": {
+    "label": "Color theme",
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "Same as device"
+  },
+  "language": {
+    "label": "Language",
+    "system": "System default",
+    "en": "English",
+    "fr": "French"
+  },
+  "saveError": {
+    "theme": {
+      "title": "Theme preference couldn't be saved",
+      "body": "Your theme choice applies for now but couldn't be saved, so it may not be remembered next time."
+    },
+    "language": {
+      "title": "Language preference couldn't be saved",
+      "body": "Your language choice applies for now but couldn't be saved, so it may not be remembered next time."
+    },
+    "dismiss": "Dismiss"
+  },
+  "orientation": {
+    "title": "Rotate for a wider view",
+    "body": "This device won't lock to landscape. Rotate it to landscape for a larger, easier-to-read table."
+  },
+  "legend": {
+    "groupLabel": "Element category legend"
+  },
+  "detail": {
+    "sections": "Element detail sections",
+    "noDescription": "No description available.",
+    "shellDiagramAlt": "Electron shell diagram for {{name}}",
+    "tab": {
+      "atomic": "Atomic details",
+      "physical": "Physical properties",
+      "electron": "Electron configuration",
+      "description": "Description"
+    },
+    "field": {
+      "atomicNumber": "Atomic number",
+      "atomicMass": "Atomic mass",
+      "group": "Group",
+      "period": "Period",
+      "block": "Block",
+      "phase": "Phase",
+      "density": "Density",
+      "boil": "Boiling point",
+      "melt": "Melting point",
+      "electronConfiguration": "Electron configuration",
+      "electronConfigurationSemantic": "Electron configuration (semantic)",
+      "shells": "Electron shells",
+      "electronAffinity": "Electron affinity",
+      "appearance": "Appearance",
+      "discoveredBy": "Discovered by",
+      "namedBy": "Named by"
+    }
+  },
+  "cell": {
+    "ariaLabel": "{{name}}, atomic number {{number}}"
+  },
+  "category": {
+    "alkali-metal": "Alkali metals",
+    "alkaline-earth-metal": "Alkaline earth metals",
+    "transition-metal": "Transition metals",
+    "post-transition-metal": "Post-transition metals",
+    "metalloid": "Metalloids",
+    "reactive-nonmetal": "Reactive nonmetals",
+    "noble-gas": "Noble gases",
+    "lanthanide": "Lanthanides",
+    "actinide": "Actinides",
+    "unknown": "Unknown"
+  }
+}

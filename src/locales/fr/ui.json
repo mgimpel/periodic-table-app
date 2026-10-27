@@ -1,0 +1,88 @@
+{
+  "app": {
+    "title": "Tableau périodique des éléments"
+  },
+  "header": {
+    "openSettings": "Ouvrir les paramètres"
+  },
+  "settings": {
+    "title": "Paramètres"
+  },
+  "common": {
+    "close": "Fermer"
+  },
+  "theme": {
+    "label": "Thème de couleur",
+    "light": "Clair",
+    "dark": "Sombre",
+    "auto": "Identique à l'appareil"
+  },
+  "language": {
+    "label": "Langue",
+    "system": "Par défaut du système",
+    "en": "Anglais",
+    "fr": "Français"
+  },
+  "saveError": {
+    "theme": {
+      "title": "Impossible d'enregistrer la préférence de thème",
+      "body": "Votre choix de thème s'applique pour l'instant mais n'a pas pu être enregistré ; il pourrait ne pas être conservé la prochaine fois."
+    },
+    "language": {
+      "title": "Impossible d'enregistrer la préférence de langue",
+      "body": "Votre choix de langue s'applique pour l'instant mais n'a pas pu être enregistré ; il pourrait ne pas être conservé la prochaine fois."
+    },
+    "dismiss": "Fermer"
+  },
+  "orientation": {
+    "title": "Pivoter pour une vue plus large",
+    "body": "Cet appareil ne se verrouille pas en mode paysage. Faites-le pivoter en mode paysage pour un tableau plus grand et plus lisible."
+  },
+  "legend": {
+    "groupLabel": "Légende des catégories d'éléments"
+  },
+  "detail": {
+    "sections": "Sections de détail de l'élément",
+    "noDescription": "Aucune description disponible.",
+    "shellDiagramAlt": "Diagramme des couches électroniques de {{name}}",
+    "tab": {
+      "atomic": "Détails atomiques",
+      "physical": "Propriétés physiques",
+      "electron": "Configuration électronique",
+      "description": "Description"
+    },
+    "field": {
+      "atomicNumber": "Numéro atomique",
+      "atomicMass": "Masse atomique",
+      "group": "Groupe",
+      "period": "Période",
+      "block": "Bloc",
+      "phase": "État",
+      "density": "Densité",
+      "boil": "Point d'ébullition",
+      "melt": "Point de fusion",
+      "electronConfiguration": "Configuration électronique",
+      "electronConfigurationSemantic": "Configuration électronique (sémantique)",
+      "shells": "Couches électroniques",
+      "electronAffinity": "Affinité électronique",
+      "appearance": "Apparence",
+      "discoveredBy": "Découvert par",
+      "namedBy": "Nommé par"
+    }
+  },
+  "cell": {
+    "ariaLabel": "{{name}}, numéro atomique {{number}}"
+  },
+  "category": {
+    "alkali-metal": "Métaux alcalins",
+    "alkaline-earth-metal": "Métaux alcalino-terreux",
+    "transition-metal": "Métaux de transition",
+    "post-transition-metal": "Métaux pauvres",
+    "metalloid": "Métalloïdes",
+    "reactive-nonmetal": "Non-métaux réactifs",
+    "noble-gas": "Gaz nobles",
+    "lanthanide": "Lanthanides",
+    "actinide": "Actinides",
+    "unknown": "Inconnu"
+  }
+}

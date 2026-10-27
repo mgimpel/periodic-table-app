@@ -7,6 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { currentPlatform } from "./lib/platform";
+import "./i18n";
 
 // Expose the OS as a data attribute so CSS can make small platform-specific
 // tweaks (e.g. Windows font metrics need a smaller legend-swatch nudge, via
