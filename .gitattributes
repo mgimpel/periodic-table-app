@@ -10,6 +10,7 @@ LICENSE    text
 *.png      binary
 *.jpg      binary
 *.jpeg     binary
+*.webp     binary
 *.gif      binary
 *.ico      binary
 # SVG treated as text by default.
