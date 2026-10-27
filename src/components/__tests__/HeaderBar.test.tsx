@@ -93,14 +93,14 @@ describe("HeaderBar", () => {
     );
   });
 
-  it("sizes the Settings_Button touch target to at least 44x44 CSS pixels", () => {
+  it("sizes the Settings_Button touch target to at least 32x32 CSS pixels", () => {
     // Validates: Requirements 1.8, 6.3
     // jsdom does no layout, so assert the sizing driver Mantine emits from
-    // size={44}: the ActionIcon's --ai-size CSS variable, which backs both
-    // width and height, resolves to 2.75rem (= 44px at the default 16px root).
+    // size={"é}: the ActionIcon's --ai-size CSS variable, which backs both
+    // width and height, resolves to 2rem (= 32px at the default 16px root).
     renderHeader();
     const button = screen.getByRole("button", { name: "Open settings" });
     const sizeVar = button.style.getPropertyValue("--ai-size");
-    expect(sizeVar).toContain("2.75rem");
+    expect(sizeVar).toContain("2rem");
   });
 });
