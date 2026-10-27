@@ -45,6 +45,7 @@
     "sections": "Sections de détail de l'élément",
     "noDescription": "Aucune description disponible.",
     "shellDiagramAlt": "Diagramme des couches électroniques de {{name}}",
+    "imageAlt": "Photographie de {{name}}",
     "tab": {
       "atomic": "Détails atomiques",
       "physical": "Propriétés physiques",

@@ -25,6 +25,48 @@ interface ElementDetailProps {
   onClose: () => void;
 }
 
+// Bundle the element photos (keyed by English element name, e.g. "Hydrogen").
+// import.meta.glob with eager+url is Vite's native way to ship a whole asset
+// folder and map it by filename — no runtime fetch, no new dependency. Not every
+// element has a photo (104 images, 118 elements); missing names resolve to
+// undefined and the image is simply omitted.
+const ELEMENT_IMAGES = Object.fromEntries(
+  Object.entries(
+    import.meta.glob<string>("../assets/images/*.webp", {
+      eager: true,
+      import: "default",
+      query: "?url",
+    }),
+  ).map(([path, url]) => [
+    path.slice(path.lastIndexOf("/") + 1, -".webp".length),
+    url,
+  ]),
+) as Record<string, string>;
+
+// Element photo for the description tab. Rendered only when the element's
+// English name has a matching bundled image.
+function ElementImage({ element }: { element: Element }) {
+  const { t } = useTranslation(["elements", "ui"]);
+  const src = ELEMENT_IMAGES[element.name];
+  if (!src) return null;
+  return (
+    <img
+      src={src}
+      alt={t("ui:detail.imageAlt", {
+        name: t(`elements:name.${element.atomicNumber}`),
+      })}
+      width={160}
+      style={{
+        flex: "0 0 auto",
+        width: 160,
+        height: "auto",
+        borderRadius: 8,
+        objectFit: "contain",
+      }}
+    />
+  );
+}
+
 // Render the element's Bohr shell diagram. The pure generator returns an SVG
 // string; embedding it as a data-URI <img> keeps the markup isolated (no inline
 // DOM injection) and lets it scale responsively. Elements with no shells (none
@@ -214,30 +256,33 @@ function DetailBody({ element }: { element: Element }) {
         </Tabs.Panel>
 
         <Tabs.Panel value="description" pt="md">
-          <Stack gap="sm">
-            {element.appearance && (
-              <DetailRow
-                label={t("ui:detail.field.appearance")}
-                value={element.appearance}
-              />
-            )}
-            {element.discoveredBy && (
-              <DetailRow
-                label={t("ui:detail.field.discoveredBy")}
-                value={element.discoveredBy}
-              />
-            )}
-            {element.namedBy && (
-              <DetailRow
-                label={t("ui:detail.field.namedBy")}
-                value={element.namedBy}
-              />
-            )}
-            <Text size="sm">
-              {t(`elements:summary.${element.atomicNumber}`) ||
-                t("ui:detail.noDescription")}
-            </Text>
-          </Stack>
+          <Group gap="md" align="flex-start" wrap="nowrap">
+            <Stack gap="sm" style={{ flex: 1, minWidth: 0 }}>
+              {element.appearance && (
+                <DetailRow
+                  label={t("ui:detail.field.appearance")}
+                  value={element.appearance}
+                />
+              )}
+              {element.discoveredBy && (
+                <DetailRow
+                  label={t("ui:detail.field.discoveredBy")}
+                  value={element.discoveredBy}
+                />
+              )}
+              {element.namedBy && (
+                <DetailRow
+                  label={t("ui:detail.field.namedBy")}
+                  value={element.namedBy}
+                />
+              )}
+              <Text size="sm">
+                {t(`elements:summary.${element.atomicNumber}`) ||
+                  t("ui:detail.noDescription")}
+              </Text>
+            </Stack>
+            <ElementImage element={element} />
+          </Group>
         </Tabs.Panel>
       </Tabs>
     </Stack>

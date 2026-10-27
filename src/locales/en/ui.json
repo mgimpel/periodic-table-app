@@ -45,6 +45,7 @@
     "sections": "Element detail sections",
     "noDescription": "No description available.",
     "shellDiagramAlt": "Electron shell diagram for {{name}}",
+    "imageAlt": "Photograph of {{name}}",
     "tab": {
       "atomic": "Atomic details",
       "physical": "Physical properties",
