@@ -3,11 +3,8 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-import {
-  CATEGORY_COLORS,
-  CATEGORY_LABELS,
-  type ElementCategory,
-} from "../data/element";
+import { useTranslation } from "react-i18next";
+import { CATEGORY_COLORS, CATEGORY_KEYS } from "../data/element";
 import classes from "./PeriodicTable.module.css";
 
 // Category color key rendered as a grid item placed in the table's empty
@@ -17,15 +14,15 @@ import classes from "./PeriodicTable.module.css";
 // shrinks and grows uniformly with the table rather than being dropped when
 // cells fall back to symbol-only, so the key stays legible at every scale.
 export function CategoryLegend() {
-  const categories = Object.keys(CATEGORY_LABELS) as ElementCategory[];
+  const { t } = useTranslation("ui");
   return (
     <div
       className={classes.legend}
       role="group"
-      aria-label="Element category legend"
+      aria-label={t("legend.groupLabel")}
     >
-      {categories.map((category) => {
-        const label = CATEGORY_LABELS[category];
+      {CATEGORY_KEYS.map((category) => {
+        const label = t(`category.${category}`);
         // Fall back to the raw key so the accessible name is never empty (Req 4.3).
         const accessibleName = label || category;
         return (

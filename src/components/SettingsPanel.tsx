@@ -3,14 +3,19 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-import { Drawer, Modal } from "@mantine/core";
+import { Drawer, Modal, Stack } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { useTranslation } from "react-i18next";
 import { ThemeControl } from "./ThemeControl";
+import { LanguageControl } from "./LanguageControl";
 
 interface SettingsPanelProps {
   opened: boolean;
   onClose: () => void;
   returnFocusRef: React.RefObject<HTMLButtonElement | null>;
+  // Forwarded to LanguageControl so a failed language persist surfaces the
+  // save-error notice AppLayout owns.
+  onLanguageSaveError?: (error: unknown) => void;
 }
 
 // Settings overlay. Mirrors ElementDetail: a centered Modal from the `sm`
@@ -23,7 +28,9 @@ export function SettingsPanel({
   opened,
   onClose,
   returnFocusRef,
+  onLanguageSaveError,
 }: SettingsPanelProps) {
+  const { t } = useTranslation("ui");
   const isWide = useMediaQuery("(min-width: 48em)");
 
   const handleClose = () => {
@@ -31,17 +38,25 @@ export function SettingsPanel({
     returnFocusRef.current?.focus();
   };
 
+  // Theme first, language stacked beneath it; both full width.
+  const content = (
+    <Stack gap="md">
+      <ThemeControl />
+      <LanguageControl onSaveError={onLanguageSaveError} />
+    </Stack>
+  );
+
   if (isWide) {
     return (
       <Modal
         opened={opened}
         onClose={handleClose}
-        title="Settings"
+        title={t("settings.title")}
         centered
         size="lg"
-        closeButtonProps={{ "aria-label": "Close" }}
+        closeButtonProps={{ "aria-label": t("common.close") }}
       >
-        <ThemeControl />
+        {content}
       </Modal>
     );
   }
@@ -50,12 +65,12 @@ export function SettingsPanel({
     <Drawer
       opened={opened}
       onClose={handleClose}
-      title="Settings"
+      title={t("settings.title")}
       position="bottom"
       size="80%"
-      closeButtonProps={{ "aria-label": "Close" }}
+      closeButtonProps={{ "aria-label": t("common.close") }}
     >
-      <ThemeControl />
+      {content}
     </Drawer>
   );
 }

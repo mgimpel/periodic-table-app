@@ -12,6 +12,9 @@ import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
+// Initialise the shared i18next default instance so useTranslation resolves to
+// the English resources (equal to the former literals) instead of raw keys.
+import "../../i18n";
 import { HeaderBar } from "../HeaderBar";
 
 afterEach(cleanup);
@@ -38,8 +41,10 @@ describe("HeaderBar", () => {
   it("exposes the logo's accessible name identifying the app", () => {
     // Validates: Requirements 6.2
     renderHeader();
+    // The logo alt now reuses the ui:app.title string (design §2.4 inventory:
+    // "Periodic Table App" -> app.title), so its accessible name matches the title.
     expect(
-      screen.getByRole("img", { name: "Periodic Table App" }),
+      screen.getByRole("img", { name: "Periodic Table of Elements" }),
     ).toBeInTheDocument();
   });
 

@@ -25,6 +25,9 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
+// Initialise the shared i18next default instance so the header, save-error
+// Alert, and cell labels resolve to the English resources instead of raw keys.
+import "../../i18n";
 import { AppLayout } from "../AppLayout";
 
 afterEach(() => {

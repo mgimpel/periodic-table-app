@@ -13,6 +13,9 @@ import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
 import { render, screen, within, cleanup } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
 import fc from "fast-check";
+// Initialise the shared i18next default instance so category labels resolve to
+// the English resources (equal to CATEGORY_LABELS) rather than raw keys.
+import "../../i18n";
 import { CategoryLegend } from "../CategoryLegend";
 import { PeriodicTable } from "../PeriodicTable";
 import { readFileSync } from "node:fs";

@@ -12,6 +12,9 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
+// Initialise the shared i18next default instance so the orientation notice
+// resolves to its English resource text instead of raw keys.
+import "../../i18n";
 
 vi.mock("../../lib/platform", () => ({ isMobilePlatform: () => true }));
 vi.mock("../../hooks/useOrientationLock", () => ({

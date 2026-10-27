@@ -7,6 +7,7 @@
 // source each), imported here: the logo as a bundled URL, the gear as raw
 // markup inlined into the DOM.
 
+import { useTranslation } from "react-i18next";
 import logoUrl from "../assets/logo.svg";
 import gearMarkup from "../assets/gear.svg?raw";
 
@@ -18,7 +19,8 @@ interface AssetProps {
 // the accessible name identifying the app (Req 6.2); an empty alt would hide
 // it from assistive tech.
 export function AppLogo({ size = 28 }: AssetProps) {
-  return <img src={logoUrl} alt="Periodic Table App" width={size} height={size} />;
+  const { t } = useTranslation("ui");
+  return <img src={logoUrl} alt={t("app.title")} width={size} height={size} />;
 }
 
 // Gear (settings) icon. Decorative: its accessible name comes from the

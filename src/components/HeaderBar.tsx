@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { ActionIcon, Group, Title } from "@mantine/core";
+import { useTranslation } from "react-i18next";
 import { AppLogo, GearIcon } from "./Asset";
 import classes from "./HeaderBar.module.css";
 
@@ -18,6 +19,7 @@ interface HeaderBarProps {
 // is a >=44x44 touch target (Req 1.8, 6.3) and carries the accessible name
 // (Req 6.1). ref lets the Settings_Panel return focus here on close (Req 6.9).
 export function HeaderBar({ onOpenSettings, settingsButtonRef }: HeaderBarProps) {
+  const { t } = useTranslation("ui");
   return (
     <Group
       component="header"
@@ -38,13 +40,13 @@ export function HeaderBar({ onOpenSettings, settingsButtonRef }: HeaderBarProps)
         }}
         ta="center"
       >
-        Periodic Table of Elements
+        {t("app.title")}
       </Title>
       <ActionIcon
         ref={settingsButtonRef}
         variant="subtle"
         size={32}
-        aria-label="Open settings"
+        aria-label={t("header.openSettings")}
         onClick={onOpenSettings}
       >
         <GearIcon />

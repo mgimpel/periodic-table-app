@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { UnstyledButton, Text } from "@mantine/core";
+import { useTranslation } from "react-i18next";
 import { CATEGORY_COLORS, type Element } from "../data/element";
 import classes from "./PeriodicTable.module.css";
 
@@ -20,10 +21,17 @@ interface ElementCellProps {
 // gridColumn/gridRow. Uses an UnstyledButton so it is keyboard- and
 // touch-accessible with a comfortable minimum tap target (see CSS module).
 export function ElementCell({ element, onSelect, symbolOnly = false }: ElementCellProps) {
+  const { t } = useTranslation(["elements", "ui"]);
+  // Translated name: reused for both the visible text and the accessible label
+  // so a French cell never carries an English name in either.
+  const name = t(`elements:name.${element.atomicNumber}`);
   return (
     <UnstyledButton
       className={classes.cell}
-      aria-label={`${element.name}, atomic number ${element.atomicNumber}`}
+      aria-label={t("ui:cell.ariaLabel", {
+        name,
+        number: element.atomicNumber,
+      })}
       style={{
         gridColumnStart: element.xpos,
         gridRowStart: element.ypos,
@@ -37,7 +45,7 @@ export function ElementCell({ element, onSelect, symbolOnly = false }: ElementCe
       <Text className={classes.symbol}>{element.symbol}</Text>
       {!symbolOnly && (
         <Text className={classes.name} lineClamp={1}>
-          {element.name}
+          {name}
         </Text>
       )}
     </UnstyledButton>

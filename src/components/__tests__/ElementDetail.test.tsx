@@ -26,12 +26,17 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
+// Initialise the shared i18next default instance so detail labels, the category
+// badge, and the resource-sourced element name/summary resolve to the English
+// resources instead of raw keys.
+import "../../i18n";
 import { ElementDetail } from "../ElementDetail";
 import {
   CATEGORY_LABELS,
   type Element,
   type ElementCategory,
 } from "../../data/element";
+import enElements from "../../locales/en/elements.json";
 
 const originalMatchMedia = window.matchMedia;
 
@@ -290,14 +295,22 @@ describe("ElementDetail", () => {
     expect(screen.getByText("—")).toBeInTheDocument();
   });
 
-  it("renders the no-description placeholder when summary is empty (5.8)", async () => {
+  it("renders the summary from the elements resource, keyed by atomic number (5.8)", async () => {
     const user = userEvent.setup();
-    render(<Harness initial={makeElement({ summary: "" })} />);
+    // The detail now sources the summary from the i18n `elements` namespace by
+    // atomicNumber (t('elements:summary.<n>')), not from element.summary — the
+    // static dataset stays the language-neutral source but is read through the
+    // resource, so the resource text is what renders. The `|| noDescription`
+    // guard only fires for a missing/empty resource key (no real element hits it,
+    // since every en summary is present and guarded by elements.check.ts).
+    render(<Harness initial={makeElement()} />);
 
     await user.click(screen.getByRole("tab", { name: "Description" }));
+    expect(screen.getByText(enElements.summary["26"])).toBeInTheDocument();
+    // The placeholder is not shown because a real summary resource exists.
     expect(
-      screen.getByText("No description available."),
-    ).toBeInTheDocument();
+      screen.queryByText("No description available."),
+    ).not.toBeInTheDocument();
   });
 
   it("exposes roving tabindex: only the selected tab is in the tab order (6.1)", () => {

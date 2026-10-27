@@ -14,9 +14,12 @@
 
 import { useRef, useState } from "react";
 import { describe, it, expect, afterEach } from "vitest";
-import { render, screen, cleanup, waitFor } from "@testing-library/react";
+import { render, screen, cleanup, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
+// Initialise the shared i18next default instance so the panel title, close
+// label, and the theme/language controls resolve to the English resources.
+import "../../i18n";
 import { SettingsPanel } from "../SettingsPanel";
 
 afterEach(() => {
@@ -61,12 +64,19 @@ describe("SettingsPanel", () => {
 
     await openPanel(user);
 
-    const radios = screen.getAllByRole("radio") as HTMLInputElement[];
+    // The panel now also hosts the LanguageControl, so scope the theme-option
+    // assertion to the Color theme radiogroup rather than the whole tree.
+    const themeGroup = screen.getByRole("radiogroup", { name: "Color theme" });
+    const radios = within(themeGroup).getAllByRole("radio") as HTMLInputElement[];
     expect(radios).toHaveLength(3);
-    expect(screen.getByRole("radio", { name: "Light" })).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "Dark" })).toBeInTheDocument();
     expect(
-      screen.getByRole("radio", { name: "Same as device" }),
+      within(themeGroup).getByRole("radio", { name: "Light" }),
+    ).toBeInTheDocument();
+    expect(
+      within(themeGroup).getByRole("radio", { name: "Dark" }),
+    ).toBeInTheDocument();
+    expect(
+      within(themeGroup).getByRole("radio", { name: "Same as device" }),
     ).toBeInTheDocument();
   });
 

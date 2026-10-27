@@ -9,6 +9,9 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
+// Initialise the shared i18next default instance so the cell's translated name
+// and aria-label resolve to the English resources (equal to element.name).
+import "../../i18n";
 import { ElementCell } from "../ElementCell";
 import { getElementByNumber } from "../../data/elements";
 

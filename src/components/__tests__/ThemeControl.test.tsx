@@ -12,6 +12,10 @@ import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
+// Initialise the shared i18next default instance so useTranslation resolves
+// against the English resources (which equal the former literals) rather than
+// returning raw keys.
+import "../../i18n";
 import { ThemeControl } from "../ThemeControl";
 
 afterEach(() => {

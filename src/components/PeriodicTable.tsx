@@ -5,6 +5,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Alert, Box, Stack } from "@mantine/core";
+import { useTranslation } from "react-i18next";
 import { ELEMENTS, type Element } from "../data/elements";
 import { ElementCell } from "./ElementCell";
 import { CategoryLegend } from "./CategoryLegend";
@@ -24,6 +25,7 @@ import classes from "./PeriodicTable.module.css";
 // a CSS transform, so the whole table shrinks to fit. symbolOnly drops the
 // number/name when cells get too small to read.
 export function PeriodicTable() {
+  const { t } = useTranslation("ui");
   const [selected, setSelected] = useState<Element | null>(null);
   const [noticeDismissed, setNoticeDismissed] = useState(false);
 
@@ -66,10 +68,9 @@ export function PeriodicTable() {
           variant="light"
           withCloseButton
           onClose={() => setNoticeDismissed(true)}
-          title="Rotate for a wider view"
+          title={t("orientation.title")}
         >
-          This device won't lock to landscape. Rotate it to landscape for a
-          larger, easier-to-read table.
+          {t("orientation.body")}
         </Alert>
       )}
 

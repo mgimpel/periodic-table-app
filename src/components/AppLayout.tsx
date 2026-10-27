@@ -6,6 +6,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Alert } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { useTranslation } from "react-i18next";
 import { HeaderBar } from "./HeaderBar";
 import { PeriodicTable } from "./PeriodicTable";
 import { SettingsPanel } from "./SettingsPanel";
@@ -28,14 +29,17 @@ interface AppLayoutProps {
 // position survive opening settings (Req 3.8). settingsButtonRef lets the panel
 // return focus to the trigger on close (Req 6.9).
 export function AppLayout({ registerSaveErrorHandler }: AppLayoutProps) {
+  const { t } = useTranslation("ui");
   const [opened, { open, close }] = useDisclosure(false);
-  const [saveError, setSaveError] = useState(false);
+  // Which preference failed to persist, or null for no notice. A single active
+  // kind — the latest failure wins, matching the one-Alert UI.
+  const [saveError, setSaveError] = useState<null | "theme" | "language">(null);
   const settingsButtonRef = useRef<HTMLButtonElement>(null);
 
   // Stable handler so App can route the manager's onSaveError here. A failed
   // theme save is non-blocking: the session keeps the selected scheme and we
   // just surface a dismissable inline notice (Req 5.4).
-  const handleSaveError = useCallback(() => setSaveError(true), []);
+  const handleSaveError = useCallback(() => setSaveError("theme"), []);
 
   useEffect(() => {
     registerSaveErrorHandler?.(handleSaveError);
@@ -50,12 +54,11 @@ export function AppLayout({ registerSaveErrorHandler }: AppLayoutProps) {
           color="yellow"
           variant="light"
           withCloseButton
-          closeButtonLabel="Dismiss"
-          onClose={() => setSaveError(false)}
-          title="Theme preference couldn't be saved"
+          closeButtonLabel={t("saveError.dismiss")}
+          onClose={() => setSaveError(null)}
+          title={t(`saveError.${saveError}.title`)}
         >
-          Your theme choice applies for now but couldn't be saved, so it may not
-          be remembered next time.
+          {t(`saveError.${saveError}.body`)}
         </Alert>
       )}
 
@@ -67,6 +70,7 @@ export function AppLayout({ registerSaveErrorHandler }: AppLayoutProps) {
         opened={opened}
         onClose={close}
         returnFocusRef={settingsButtonRef}
+        onLanguageSaveError={() => setSaveError("language")}
       />
     </div>
   );

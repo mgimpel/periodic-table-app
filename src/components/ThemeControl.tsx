@@ -8,6 +8,7 @@ import {
   useMantineColorScheme,
   type MantineColorScheme,
 } from "@mantine/core";
+import { useTranslation } from "react-i18next";
 
 // Theme picker: three mutually-exclusive color-scheme options wired straight
 // into Mantine's color-scheme context (no local store). `value={colorScheme}`
@@ -15,16 +16,17 @@ import {
 // when nothing is stored.
 export function ThemeControl() {
   const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const { t } = useTranslation("ui");
   return (
     <SegmentedControl
       value={colorScheme}
       onChange={(v) => setColorScheme(v as MantineColorScheme)}
       data={[
-        { label: "Light", value: "light" },
-        { label: "Dark", value: "dark" },
-        { label: "Same as device", value: "auto" },
+        { label: t("theme.light"), value: "light" },
+        { label: t("theme.dark"), value: "dark" },
+        { label: t("theme.auto"), value: "auto" },
       ]}
-      aria-label="Color theme"
+      aria-label={t("theme.label")}
       fullWidth
     />
   );

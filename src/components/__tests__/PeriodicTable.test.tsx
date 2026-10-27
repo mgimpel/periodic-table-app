@@ -22,6 +22,9 @@ import {
   fireEvent,
 } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
+// Initialise the shared i18next default instance so cell names/labels resolve
+// to the English resources (equal to the dataset names) instead of raw keys.
+import "../../i18n";
 import { PeriodicTable } from "../PeriodicTable";
 import { getElementByNumber } from "../../data/elements";
 

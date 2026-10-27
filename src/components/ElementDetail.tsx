@@ -16,11 +16,8 @@ import {
   Title,
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import {
-  CATEGORY_COLORS,
-  CATEGORY_LABELS,
-  type Element,
-} from "../data/element";
+import { useTranslation } from "react-i18next";
+import { CATEGORY_COLORS, type Element } from "../data/element";
 import { buildElectronShellDiagram } from "../lib/electronShellDiagram";
 
 interface ElementDetailProps {
@@ -33,6 +30,7 @@ interface ElementDetailProps {
 // DOM injection) and lets it scale responsively. Elements with no shells (none
 // in the shipped data, but the field is a plain array) render nothing.
 function ElectronShellDiagram({ element }: { element: Element }) {
+  const { t } = useTranslation(["elements", "ui"]);
   if (element.shells.length === 0) return null;
   const svg = buildElectronShellDiagram(
     element.atomicNumber,
@@ -45,7 +43,9 @@ function ElectronShellDiagram({ element }: { element: Element }) {
   return (
     <img
       src={src}
-      alt={`Electron shell diagram for ${element.name}`}
+      alt={t("ui:detail.shellDiagramAlt", {
+        name: t(`elements:name.${element.atomicNumber}`),
+      })}
       width={200}
       height={200}
       style={{ flex: "0 0 auto" }}
@@ -71,6 +71,7 @@ function DetailRow({
 }
 
 function DetailBody({ element }: { element: Element }) {
+  const { t } = useTranslation(["elements", "ui"]);
   return (
     <Stack gap="md">
       <Group gap="sm" align="center">
@@ -95,10 +96,10 @@ function DetailBody({ element }: { element: Element }) {
             {element.atomicNumber}
           </Text>
           <Title order={2} size="h4">
-            {element.name}
+            {t(`elements:name.${element.atomicNumber}`)}
           </Title>
           <Badge variant="light" color="gray">
-            {CATEGORY_LABELS[element.category]}
+            {t(`ui:category.${element.category}`)}
           </Badge>
         </Group>
       </Group>
@@ -123,30 +124,48 @@ function DetailBody({ element }: { element: Element }) {
       >
         <Tabs.List
           grow
-          aria-label="Element detail sections"
+          aria-label={t("ui:detail.sections")}
           style={{ flexWrap: "nowrap" }}
         >
-          <Tabs.Tab value="atomic">Atomic details</Tabs.Tab>
-          <Tabs.Tab value="physical">Physical properties</Tabs.Tab>
-          <Tabs.Tab value="electron">Electron configuration</Tabs.Tab>
-          <Tabs.Tab value="description">Description</Tabs.Tab>
+          <Tabs.Tab value="atomic">{t("ui:detail.tab.atomic")}</Tabs.Tab>
+          <Tabs.Tab value="physical">{t("ui:detail.tab.physical")}</Tabs.Tab>
+          <Tabs.Tab value="electron">{t("ui:detail.tab.electron")}</Tabs.Tab>
+          <Tabs.Tab value="description">{t("ui:detail.tab.description")}</Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="atomic" pt="md">
           <SimpleGrid cols={2} spacing="sm">
-            <DetailRow label="Atomic number" value={element.atomicNumber} />
-            <DetailRow label="Atomic mass" value={element.atomicMass} />
-            <DetailRow label="Group" value={element.group ?? "—"} />
-            <DetailRow label="Period" value={element.period} />
-            <DetailRow label="Block" value={element.block} />
+            <DetailRow
+              label={t("ui:detail.field.atomicNumber")}
+              value={element.atomicNumber}
+            />
+            <DetailRow
+              label={t("ui:detail.field.atomicMass")}
+              value={element.atomicMass}
+            />
+            <DetailRow
+              label={t("ui:detail.field.group")}
+              value={element.group ?? "—"}
+            />
+            <DetailRow
+              label={t("ui:detail.field.period")}
+              value={element.period}
+            />
+            <DetailRow
+              label={t("ui:detail.field.block")}
+              value={element.block}
+            />
           </SimpleGrid>
         </Tabs.Panel>
 
         <Tabs.Panel value="physical" pt="md">
           <SimpleGrid cols={2} spacing="sm">
-            <DetailRow label="Phase" value={element.phase} />
             <DetailRow
-              label="Density"
+              label={t("ui:detail.field.phase")}
+              value={element.phase}
+            />
+            <DetailRow
+              label={t("ui:detail.field.density")}
               value={
                 element.density !== null
                   ? `${element.density}${
@@ -156,11 +175,11 @@ function DetailBody({ element }: { element: Element }) {
               }
             />
             <DetailRow
-              label="Boiling point"
+              label={t("ui:detail.field.boil")}
               value={element.boil !== null ? `${element.boil} K` : "—"}
             />
             <DetailRow
-              label="Melting point"
+              label={t("ui:detail.field.melt")}
               value={element.melt !== null ? `${element.melt} K` : "—"}
             />
           </SimpleGrid>
@@ -170,19 +189,19 @@ function DetailBody({ element }: { element: Element }) {
           <Group gap="md" align="flex-start" wrap="nowrap">
             <Stack gap="sm" style={{ flex: 1, minWidth: 0 }}>
               <DetailRow
-                label="Electron configuration"
+                label={t("ui:detail.field.electronConfiguration")}
                 value={element.electronConfiguration}
               />
               <DetailRow
-                label="Electron configuration (semantic)"
+                label={t("ui:detail.field.electronConfigurationSemantic")}
                 value={element.electronConfigurationSemantic}
               />
               <DetailRow
-                label="Electron shells"
+                label={t("ui:detail.field.shells")}
                 value={element.shells.join(", ")}
               />
               <DetailRow
-                label="Electron affinity"
+                label={t("ui:detail.field.electronAffinity")}
                 value={
                   element.electronAffinity !== null
                     ? `${element.electronAffinity} kJ/mol`
@@ -197,16 +216,26 @@ function DetailBody({ element }: { element: Element }) {
         <Tabs.Panel value="description" pt="md">
           <Stack gap="sm">
             {element.appearance && (
-              <DetailRow label="Appearance" value={element.appearance} />
+              <DetailRow
+                label={t("ui:detail.field.appearance")}
+                value={element.appearance}
+              />
             )}
             {element.discoveredBy && (
-              <DetailRow label="Discovered by" value={element.discoveredBy} />
+              <DetailRow
+                label={t("ui:detail.field.discoveredBy")}
+                value={element.discoveredBy}
+              />
             )}
             {element.namedBy && (
-              <DetailRow label="Named by" value={element.namedBy} />
+              <DetailRow
+                label={t("ui:detail.field.namedBy")}
+                value={element.namedBy}
+              />
             )}
             <Text size="sm">
-              {element.summary || "No description available."}
+              {t(`elements:summary.${element.atomicNumber}`) ||
+                t("ui:detail.noDescription")}
             </Text>
           </Stack>
         </Tabs.Panel>
@@ -219,6 +248,7 @@ function DetailBody({ element }: { element: Element }) {
 // on small screens, a centered Modal from the `sm` breakpoint up. Both are
 // dismissable (close button, overlay click, Esc).
 export function ElementDetail({ element, onClose }: ElementDetailProps) {
+  const { t } = useTranslation("ui");
   const isWide = useMediaQuery("(min-width: 48em)");
   const opened = element !== null;
 
@@ -242,7 +272,7 @@ export function ElementDetail({ element, onClose }: ElementDetailProps) {
       onClose={onClose}
       position="bottom"
       size="80%"
-      closeButtonProps={{ "aria-label": "Close" }}
+      closeButtonProps={{ "aria-label": t("common.close") }}
     >
       {element && <DetailBody element={element} />}
     </Drawer>
