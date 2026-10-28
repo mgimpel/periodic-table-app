@@ -105,7 +105,10 @@ describe("resolveLanguage: always a supported locale", () => {
 
   it("example cases: empty, unsupported, region subtag, mixed case, junk", () => {
     expect(resolveLanguage("system", [])).toBe("en");
-    expect(resolveLanguage("system", ["de", "es"])).toBe("en");
+    expect(resolveLanguage("system", ["ja", "zh"])).toBe("en");
+    expect(resolveLanguage("system", ["es-MX"])).toBe("es");
+    expect(resolveLanguage("system", ["de-AT"])).toBe("de");
+    expect(resolveLanguage("system", ["DE"])).toBe("de");
     expect(resolveLanguage("system", ["fr-CA", "en"])).toBe("fr");
     expect(resolveLanguage("system", ["FR"])).toBe("fr");
     // Non-string / empty junk entries are filtered safely.

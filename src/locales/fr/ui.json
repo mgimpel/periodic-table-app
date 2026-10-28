@@ -22,7 +22,9 @@
     "label": "Langue",
     "system": "Par défaut du système",
     "en": "Anglais",
-    "fr": "Français"
+    "fr": "Français",
+    "es": "Espagnol",
+    "de": "Allemand"
   },
   "temperature": {
     "label": "Unité de température",

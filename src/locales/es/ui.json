@@ -1,0 +1,107 @@
+{
+  "app": {
+    "title": "Tabla periódica de los elementos"
+  },
+  "header": {
+    "openSettings": "Abrir ajustes"
+  },
+  "settings": {
+    "title": "Ajustes"
+  },
+  "common": {
+    "close": "Cerrar",
+    "dismiss": "Descartar"
+  },
+  "theme": {
+    "label": "Tema de color",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "auto": "Igual que el dispositivo"
+  },
+  "language": {
+    "label": "Idioma",
+    "system": "Predeterminado del sistema",
+    "en": "Inglés",
+    "fr": "Francés",
+    "es": "Español",
+    "de": "Alemán"
+  },
+  "temperature": {
+    "label": "Unidad de temperatura",
+    "kelvin": "Kelvin",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit"
+  },
+  "saveError": {
+    "theme": {
+      "title": "No se pudo guardar la preferencia de tema",
+      "body": "El tema elegido se aplica por ahora, pero no se pudo guardar, así que es posible que no se recuerde la próxima vez."
+    },
+    "language": {
+      "title": "No se pudo guardar la preferencia de idioma",
+      "body": "El idioma elegido se aplica por ahora, pero no se pudo guardar, así que es posible que no se recuerde la próxima vez."
+    },
+    "temperature": {
+      "title": "No se pudo guardar la preferencia de unidad de temperatura",
+      "body": "La unidad de temperatura elegida se aplica por ahora, pero no se pudo guardar, así que es posible que no se recuerde la próxima vez."
+    }
+  },
+  "orientation": {
+    "title": "Gira el dispositivo para una vista más amplia",
+    "body": "Este dispositivo no se bloquea en horizontal. Gíralo a horizontal para ver una tabla más grande y fácil de leer."
+  },
+  "legend": {
+    "groupLabel": "Leyenda de categorías de elementos"
+  },
+  "detail": {
+    "sections": "Secciones de detalle del elemento",
+    "noDescription": "No hay descripción disponible.",
+    "shellDiagramAlt": "Diagrama de capas electrónicas de {{name}}",
+    "imageAlt": "Fotografía de {{name}}",
+    "spectrumAlt": "Espectro de emisión de {{name}}",
+    "tab": {
+      "atomic": "Detalles atómicos",
+      "physical": "Propiedades físicas",
+      "electron": "Configuración electrónica",
+      "description": "Descripción"
+    },
+    "field": {
+      "atomicNumber": "Número atómico",
+      "atomicMass": "Masa atómica",
+      "group": "Grupo",
+      "period": "Periodo",
+      "block": "Bloque",
+      "phase": "Estado",
+      "density": "Densidad",
+      "boil": "Punto de ebullición",
+      "melt": "Punto de fusión",
+      "electronConfiguration": "Configuración electrónica",
+      "electronConfigurationSemantic": "Configuración electrónica (semántica)",
+      "shells": "Capas electrónicas",
+      "electronAffinity": "Afinidad electrónica",
+      "appearance": "Apariencia",
+      "discoveredBy": "Descubierto por",
+      "namedBy": "Nombrado por"
+    }
+  },
+  "phase": {
+    "Gas": "Gas",
+    "Liquid": "Líquido",
+    "Solid": "Sólido"
+  },
+  "cell": {
+    "ariaLabel": "{{name}}, número atómico {{number}}"
+  },
+  "category": {
+    "alkali-metal": "Metales alcalinos",
+    "alkaline-earth-metal": "Metales alcalinotérreos",
+    "transition-metal": "Metales de transición",
+    "post-transition-metal": "Metales del bloque p",
+    "metalloid": "Metaloides",
+    "reactive-nonmetal": "No metales reactivos",
+    "noble-gas": "Gases nobles",
+    "lanthanide": "Lantánidos",
+    "actinide": "Actínidos",
+    "unknown": "Desconocido"
+  }
+}

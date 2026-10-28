@@ -1,0 +1,107 @@
+{
+  "app": {
+    "title": "Periodensystem der Elemente"
+  },
+  "header": {
+    "openSettings": "Einstellungen öffnen"
+  },
+  "settings": {
+    "title": "Einstellungen"
+  },
+  "common": {
+    "close": "Schließen",
+    "dismiss": "Ausblenden"
+  },
+  "theme": {
+    "label": "Farbschema",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "auto": "Wie Gerät"
+  },
+  "language": {
+    "label": "Sprache",
+    "system": "Systemstandard",
+    "en": "Englisch",
+    "fr": "Französisch",
+    "es": "Spanisch",
+    "de": "Deutsch"
+  },
+  "temperature": {
+    "label": "Temperatureinheit",
+    "kelvin": "Kelvin",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit"
+  },
+  "saveError": {
+    "theme": {
+      "title": "Farbschema konnte nicht gespeichert werden",
+      "body": "Das gewählte Farbschema gilt vorerst, konnte aber nicht gespeichert werden und wird beim nächsten Start möglicherweise nicht übernommen."
+    },
+    "language": {
+      "title": "Spracheinstellung konnte nicht gespeichert werden",
+      "body": "Die gewählte Sprache gilt vorerst, konnte aber nicht gespeichert werden und wird beim nächsten Start möglicherweise nicht übernommen."
+    },
+    "temperature": {
+      "title": "Temperatureinheit konnte nicht gespeichert werden",
+      "body": "Die gewählte Temperatureinheit gilt vorerst, konnte aber nicht gespeichert werden und wird beim nächsten Start möglicherweise nicht übernommen."
+    }
+  },
+  "orientation": {
+    "title": "Für eine breitere Ansicht drehen",
+    "body": "Dieses Gerät lässt sich nicht im Querformat sperren. Drehen Sie es ins Querformat, um eine größere, besser lesbare Tabelle zu sehen."
+  },
+  "legend": {
+    "groupLabel": "Legende der Elementkategorien"
+  },
+  "detail": {
+    "sections": "Abschnitte der Elementdetails",
+    "noDescription": "Keine Beschreibung verfügbar.",
+    "shellDiagramAlt": "Elektronenschalendiagramm von {{name}}",
+    "imageAlt": "Foto von {{name}}",
+    "spectrumAlt": "Emissionsspektrum von {{name}}",
+    "tab": {
+      "atomic": "Atomare Details",
+      "physical": "Physikalische Eigenschaften",
+      "electron": "Elektronenkonfiguration",
+      "description": "Beschreibung"
+    },
+    "field": {
+      "atomicNumber": "Ordnungszahl",
+      "atomicMass": "Atommasse",
+      "group": "Gruppe",
+      "period": "Periode",
+      "block": "Block",
+      "phase": "Aggregatzustand",
+      "density": "Dichte",
+      "boil": "Siedepunkt",
+      "melt": "Schmelzpunkt",
+      "electronConfiguration": "Elektronenkonfiguration",
+      "electronConfigurationSemantic": "Elektronenkonfiguration (semantisch)",
+      "shells": "Elektronenschalen",
+      "electronAffinity": "Elektronenaffinität",
+      "appearance": "Aussehen",
+      "discoveredBy": "Entdeckt von",
+      "namedBy": "Benannt von"
+    }
+  },
+  "phase": {
+    "Gas": "Gasförmig",
+    "Liquid": "Flüssig",
+    "Solid": "Fest"
+  },
+  "cell": {
+    "ariaLabel": "{{name}}, Ordnungszahl {{number}}"
+  },
+  "category": {
+    "alkali-metal": "Alkalimetalle",
+    "alkaline-earth-metal": "Erdalkalimetalle",
+    "transition-metal": "Übergangsmetalle",
+    "post-transition-metal": "Post-Übergangsmetalle",
+    "metalloid": "Halbmetalle",
+    "reactive-nonmetal": "Reaktive Nichtmetalle",
+    "noble-gas": "Edelgase",
+    "lanthanide": "Lanthanoide",
+    "actinide": "Actinoide",
+    "unknown": "Unbekannt"
+  }
+}

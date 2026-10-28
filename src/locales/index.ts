@@ -18,13 +18,19 @@ import enUi from "./en/ui.json";
 import enElements from "./en/elements.json";
 import frUi from "./fr/ui.json";
 import frElements from "./fr/elements.json";
+import esUi from "./es/ui.json";
+import esElements from "./es/elements.json";
+import deUi from "./de/ui.json";
+import deElements from "./de/elements.json";
 
 export const resources = {
   en: { ui: enUi, elements: enElements },
   fr: { ui: frUi, elements: frElements },
+  es: { ui: esUi, elements: esElements },
+  de: { ui: deUi, elements: deElements },
 } as const;
 
-export type SupportedLocale = keyof typeof resources; // "en" | "fr"
+export type SupportedLocale = keyof typeof resources; // "en" | "fr" | "es" | "de"
 export const SUPPORTED_LOCALES = Object.keys(resources) as SupportedLocale[];
 export const FALLBACK_LOCALE: SupportedLocale = "en";
 export const NAMESPACES = ["ui", "elements"] as const;

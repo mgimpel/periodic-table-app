@@ -21,6 +21,11 @@ import { ElementCell } from "../ElementCell";
 import { ElementDetail } from "../ElementDetail";
 import { getElementByNumber } from "../../data/elements";
 import enElements from "../../locales/en/elements.json";
+import enUi from "../../locales/en/ui.json";
+import esUi from "../../locales/es/ui.json";
+import esElements from "../../locales/es/elements.json";
+import deUi from "../../locales/de/ui.json";
+import deElements from "../../locales/de/elements.json";
 
 const STORAGE_KEY = "app-language-option";
 
@@ -42,7 +47,7 @@ afterEach(async () => {
 });
 
 // Locate a SegmentedControl option by its language-neutral `value` attribute
-// (system|en|fr) rather than its translated label, so assertions survive a
+// (system|en|fr|es|de) rather than its translated label, so assertions survive a
 // live language switch that changes the visible radio labels.
 const radioByValue = (value: string) =>
   screen.getByDisplayValue(value) as HTMLInputElement;
@@ -74,24 +79,69 @@ const radio = (label: string) =>
   screen.getByRole("radio", { name: label }) as HTMLInputElement;
 
 describe("LanguageControl", () => {
-  it("renders System default / English / French in order, one selected, defaulting to System default", () => {
+  it("renders System default then every locale in order, one selected, defaulting to System default", () => {
     renderControl();
 
+    const values = ["system", "en", "fr", "es", "de"] as const;
     const radios = screen.getAllByRole("radio") as HTMLInputElement[];
-    expect(radios).toHaveLength(3);
+    expect(radios).toHaveLength(values.length);
     // Order matters: System default first, then the registered locales.
-    expect(radios.map((r) => r.getAttribute("value") ?? "")).toEqual([
-      "system",
-      "en",
-      "fr",
-    ]);
-    expect(screen.getByRole("radio", { name: "System default" })).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "English" })).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "French" })).toBeInTheDocument();
+    expect(radios.map((r) => r.getAttribute("value") ?? "")).toEqual([...values]);
+    for (const v of values) {
+      expect(radio(enUi.language[v])).toBeInTheDocument();
+    }
 
     const checked = radios.filter((r) => r.checked);
     expect(checked).toHaveLength(1);
-    expect(radio("System default").checked).toBe(true);
+    expect(radio(enUi.language.system).checked).toBe(true);
+  });
+
+  it.each([
+    ["es", esUi, esElements],
+    ["de", deUi, deElements],
+  ] as const)(
+    "selecting %s flips a chrome string and an element name live, keeping symbol and number",
+    async (locale, ui, elements) => {
+      const user = userEvent.setup();
+      const noop = vi.fn();
+      const settingsRef = { current: null } as React.RefObject<HTMLButtonElement | null>;
+      render(
+        <I18nextProvider i18n={i18n}>
+          <MantineProvider>
+            <SettingsPanel
+              opened
+              onClose={noop}
+              returnFocusRef={settingsRef}
+              temperatureUnit="kelvin"
+              onTemperatureUnitChange={noop}
+            />
+            <ElementCell element={hydrogen} onSelect={vi.fn()} />
+          </MantineProvider>
+        </I18nextProvider>,
+      );
+
+      await user.click(radioByValue(locale));
+
+      await waitFor(() => expect(i18n.language).toBe(locale));
+      expect(window.localStorage.getItem(STORAGE_KEY)).toBe(locale);
+      await waitFor(() =>
+        expect(screen.getByText(ui.settings.title)).toBeInTheDocument(),
+      );
+      expect(screen.getByText(elements.name["1"])).toBeInTheDocument();
+      expect(screen.getByText("H")).toBeInTheDocument();
+      expect(screen.getByText("1")).toBeInTheDocument();
+    },
+  );
+
+  it("supports vertical keyboard (ArrowDown) selection", async () => {
+    const user = userEvent.setup();
+    renderControl();
+
+    radioByValue("fr").focus();
+    await user.keyboard("{ArrowDown}");
+
+    expect(radioByValue("es").checked).toBe(true);
+    await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("es"));
   });
 
   it("exposes an accessible name", () => {

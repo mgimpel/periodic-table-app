@@ -18,14 +18,17 @@ To add locale `xx`:
    `en/` files and translate). `elements.json` needs at least all `name.*`;
    the `category.*` labels live in `ui.json`. `summary.*` can be omitted (see below).
 2. Add one import pair and one entry to `resources` in `src/locales/index.ts`.
-3. Add the human language name under `ui:language.xx` in each language file so
-   the option shows its own label.
+3. Add the language name under `ui:language.xx` in each language file, written
+   in that file's language (en `"de": "German"`, de `"de": "Deutsch"`).
+
+`pnpm check` (`elements.check.ts`) fails if a locale's `ui.json` key set differs
+from `en` or its `elements.json` lacks a name for any of the 118 elements.
 
 No component, control, lib, or bootstrap code changes.
 
 ## Summary fallback ceiling
 
-French (and any future locale) ships translated element **names** and
+French, Spanish, German (and any future locale) ship translated element **names** and
 **category labels**, but element **summaries** — and the free-text
 `appearance` / `discoveredBy` / `namedBy` fields — are not hand-translated for
 all 118 elements. Any missing `summary.<n>` (or free-text field) falls back to

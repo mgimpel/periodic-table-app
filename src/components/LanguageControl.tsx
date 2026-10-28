@@ -26,6 +26,8 @@ interface LanguageControlProps {
 // source is local React state seeded from the validated stored value, because
 // i18n.language only holds the resolved locale and can't represent "system".
 // Persistence and failure signalling are explicit here, the same as ThemeControl.
+// Vertical: five options (e.g. "Predeterminado del sistema") don't fit one row
+// of a narrow mobile drawer; native radios keep arrow-key navigation.
 export function LanguageControl({ onSaveError }: LanguageControlProps) {
   const { t, i18n } = useTranslation("ui");
   const [option, setOption] = useState<LanguageOption>(readStoredLanguage);
@@ -48,6 +50,7 @@ export function LanguageControl({ onSaveError }: LanguageControlProps) {
       onChange={onChange}
       data={data}
       aria-label={t("language.label")}
+      orientation="vertical"
       fullWidth
     />
   );
