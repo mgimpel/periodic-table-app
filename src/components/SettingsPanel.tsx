@@ -7,10 +7,12 @@ import { Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { ThemeControl } from "./ThemeControl";
 import { LanguageControl } from "./LanguageControl";
+import { TemperatureControl } from "./TemperatureControl";
 import { ResponsiveOverlay } from "./ResponsiveOverlay";
+import type { TemperatureOption } from "../lib/temperature";
 
 /** Which preference failed to persist; selects the save-error notice strings. */
-export type SaveErrorKind = "theme" | "language";
+export type SaveErrorKind = "theme" | "language" | "temperature";
 
 interface SettingsPanelProps {
   opened: boolean;
@@ -19,6 +21,9 @@ interface SettingsPanelProps {
   // Fired with the failing preference when a control's persist fails, so
   // AppLayout can surface its non-blocking save-error notice.
   onSaveError?: (kind: SaveErrorKind) => void;
+  // The temperature unit is owned by AppLayout because ElementDetail reads it.
+  temperatureUnit: TemperatureOption;
+  onTemperatureUnitChange: (unit: TemperatureOption) => void;
 }
 
 // Settings overlay, shown in the shared ResponsiveOverlay (Drawer on mobile,
@@ -31,6 +36,8 @@ export function SettingsPanel({
   onClose,
   returnFocusRef,
   onSaveError,
+  temperatureUnit,
+  onTemperatureUnitChange,
 }: SettingsPanelProps) {
   const { t } = useTranslation("ui");
 
@@ -48,6 +55,11 @@ export function SettingsPanel({
       <Stack gap="md">
         <ThemeControl onSaveError={() => onSaveError?.("theme")} />
         <LanguageControl onSaveError={() => onSaveError?.("language")} />
+        <TemperatureControl
+          value={temperatureUnit}
+          onChange={onTemperatureUnitChange}
+          onSaveError={() => onSaveError?.("temperature")}
+        />
       </Stack>
     </ResponsiveOverlay>
   );

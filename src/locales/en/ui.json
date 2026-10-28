@@ -24,6 +24,12 @@
     "en": "English",
     "fr": "French"
   },
+  "temperature": {
+    "label": "Temperature unit",
+    "kelvin": "Kelvin",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit"
+  },
   "saveError": {
     "theme": {
       "title": "Theme preference couldn't be saved",
@@ -32,6 +38,10 @@
     "language": {
       "title": "Language preference couldn't be saved",
       "body": "Your language choice applies for now but couldn't be saved, so it may not be remembered next time."
+    },
+    "temperature": {
+      "title": "Temperature unit preference couldn't be saved",
+      "body": "Your temperature unit choice applies for now but couldn't be saved, so it may not be remembered next time."
     }
   },
   "orientation": {

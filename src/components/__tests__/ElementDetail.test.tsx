@@ -34,6 +34,7 @@ import { ElementDetail } from "../ElementDetail";
 import type { Element, ElementCategory } from "../../data/element";
 import enElements from "../../locales/en/elements.json";
 import enUi from "../../locales/en/ui.json";
+import type { TemperatureOption } from "../../lib/temperature";
 
 const originalMatchMedia = window.matchMedia;
 
@@ -92,15 +93,18 @@ function useWideViewport() {
 function Harness({
   initial,
   onClose,
+  temperatureUnit,
 }: {
   initial: Element | null;
   onClose?: () => void;
+  temperatureUnit?: TemperatureOption;
 }) {
   const [element, setElement] = useState<Element | null>(initial);
   return (
     <MantineProvider env="test">
       <ElementDetail
         element={element}
+        temperatureUnit={temperatureUnit}
         onClose={() => {
           onClose?.();
           setElement(null);
@@ -248,6 +252,37 @@ describe("ElementDetail", () => {
     expect(screen.getByText("2, 8, 14, 2")).toBeVisible();
     expect(screen.getByText("Electron affinity")).toBeVisible();
     expect(screen.getByText("15.7 kJ/mol")).toBeVisible();
+  });
+
+  it("converts melting and boiling points to the chosen unit and updates live", async () => {
+    const user = userEvent.setup();
+    const element = makeElement(); // boil 3134 K, melt 1811 K
+    const { rerender } = render(
+      <Harness initial={element} temperatureUnit="celsius" />,
+    );
+    await user.click(screen.getByRole("tab", { name: enUi.detail.tab.physical }));
+    const panel = screen.getByRole("tabpanel", { name: enUi.detail.tab.physical });
+    expect(within(panel).getByText("2860.85 °C")).toBeVisible();
+    expect(within(panel).getByText("1537.85 °C")).toBeVisible();
+
+    // 3134·9/5 − 459.67 = 5181.53; 1811·9/5 − 459.67 = 2800.13.
+    rerender(<Harness initial={element} temperatureUnit="fahrenheit" />);
+    expect(within(panel).getByText("5181.53 °F")).toBeVisible();
+    expect(within(panel).getByText("2800.13 °F")).toBeVisible();
+    expect(within(panel).queryByText("2860.85 °C")).not.toBeInTheDocument();
+  });
+
+  it("keeps the '—' placeholder for unknown temperatures in any unit", async () => {
+    const user = userEvent.setup();
+    render(
+      <Harness
+        initial={makeElement({ boil: null, melt: null })}
+        temperatureUnit="celsius"
+      />,
+    );
+    await user.click(screen.getByRole("tab", { name: enUi.detail.tab.physical }));
+    const panel = screen.getByRole("tabpanel", { name: enUi.detail.tab.physical });
+    expect(within(panel).getAllByText("—")).toHaveLength(2);
   });
 
   it("shows appearance, discoveredBy and namedBy in Description when present (5.3, 5.6)", async () => {

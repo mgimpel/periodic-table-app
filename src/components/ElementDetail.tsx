@@ -20,11 +20,18 @@ import { useTranslation } from "react-i18next";
 import { CATEGORY_COLORS, type Element } from "../data/element";
 import { elementImageUrl, elementSpectrumUrl } from "../data/elementImages";
 import { buildElectronShellDiagram } from "../lib/electronShellDiagram";
+import {
+  DEFAULT_TEMPERATURE,
+  formatTemperature,
+  type TemperatureOption,
+} from "../lib/temperature";
 import { ResponsiveOverlay } from "./ResponsiveOverlay";
 
 interface ElementDetailProps {
   element: Element | null;
   onClose: () => void;
+  // Unit for the melting/boiling points (dataset values are Kelvin).
+  temperatureUnit?: TemperatureOption;
 }
 
 // Format a nullable numeric field with an optional unit; "—" when unknown.
@@ -121,9 +128,11 @@ function DetailRow({
 function DetailBody({
   element,
   onClose,
+  temperatureUnit,
 }: {
   element: Element;
   onClose: () => void;
+  temperatureUnit: TemperatureOption;
 }) {
   const { t } = useTranslation(["elements", "ui"]);
   return (
@@ -237,11 +246,11 @@ function DetailBody({
             />
             <DetailRow
               label={t("ui:detail.field.boil")}
-              value={fmt(element.boil, "K")}
+              value={formatTemperature(element.boil, temperatureUnit)}
             />
             <DetailRow
               label={t("ui:detail.field.melt")}
-              value={fmt(element.melt, "K")}
+              value={formatTemperature(element.melt, temperatureUnit)}
             />
           </SimpleGrid>
         </Tabs.Panel>
@@ -308,14 +317,24 @@ function DetailBody({
 // (Drawer on mobile, Modal on desktop). No overlay title or built-in close
 // button: DetailBody's header names the dialog and holds the close button after
 // the category badge. Overlay click and Esc still dismiss.
-export function ElementDetail({ element, onClose }: ElementDetailProps) {
+export function ElementDetail({
+  element,
+  onClose,
+  temperatureUnit = DEFAULT_TEMPERATURE,
+}: ElementDetailProps) {
   return (
     <ResponsiveOverlay
       opened={element !== null}
       onClose={onClose}
       withCloseButton={false}
     >
-      {element && <DetailBody element={element} onClose={onClose} />}
+      {element && (
+        <DetailBody
+          element={element}
+          onClose={onClose}
+          temperatureUnit={temperatureUnit}
+        />
+      )}
     </ResponsiveOverlay>
   );
 }

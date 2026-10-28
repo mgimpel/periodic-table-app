@@ -111,7 +111,13 @@ describe("LanguageControl", () => {
     render(
       <I18nextProvider i18n={i18n}>
         <MantineProvider>
-          <SettingsPanel opened onClose={noop} returnFocusRef={settingsRef} />
+          <SettingsPanel
+            opened
+            onClose={noop}
+            returnFocusRef={settingsRef}
+            temperatureUnit="kelvin"
+            onTemperatureUnitChange={noop}
+          />
           <ElementCell element={hydrogen} onSelect={vi.fn()} />
         </MantineProvider>
       </I18nextProvider>,

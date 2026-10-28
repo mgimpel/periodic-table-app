@@ -24,6 +24,12 @@
     "en": "Anglais",
     "fr": "Français"
   },
+  "temperature": {
+    "label": "Unité de température",
+    "kelvin": "Kelvin",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit"
+  },
   "saveError": {
     "theme": {
       "title": "Impossible d'enregistrer la préférence de thème",
@@ -32,6 +38,10 @@
     "language": {
       "title": "Impossible d'enregistrer la préférence de langue",
       "body": "Votre choix de langue s'applique pour l'instant mais n'a pas pu être enregistré ; il pourrait ne pas être conservé la prochaine fois."
+    },
+    "temperature": {
+      "title": "Impossible d'enregistrer la préférence d'unité de température",
+      "body": "Votre choix d'unité de température s'applique pour l'instant mais n'a pas pu être enregistré ; il pourrait ne pas être conservé la prochaine fois."
     }
   },
   "orientation": {

@@ -12,6 +12,7 @@ import { CategoryLegend } from "./CategoryLegend";
 import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
 import { useOrientationLock } from "../hooks/useOrientationLock";
+import { DEFAULT_TEMPERATURE, type TemperatureOption } from "../lib/temperature";
 import classes from "./PeriodicTable.module.css";
 
 // Owns the selected-element state and composes the legend, the fit-to-viewport
@@ -23,7 +24,11 @@ import classes from "./PeriodicTable.module.css";
 // that against the viewport wrapper and returns a scale (<= 1) that we apply as
 // a CSS transform, so the whole table shrinks to fit. symbolOnly drops the
 // number/name when cells get too small to read.
-export function PeriodicTable() {
+export function PeriodicTable({
+  temperatureUnit = DEFAULT_TEMPERATURE,
+}: {
+  temperatureUnit?: TemperatureOption;
+}) {
   const { t } = useTranslation("ui");
   const [selected, setSelected] = useState<Element | null>(null);
 
@@ -69,7 +74,11 @@ export function PeriodicTable() {
         </Box>
       </Box>
 
-      <ElementDetail element={selected} onClose={() => setSelected(null)} />
+      <ElementDetail
+        element={selected}
+        onClose={() => setSelected(null)}
+        temperatureUnit={temperatureUnit}
+      />
     </Stack>
   );
 }

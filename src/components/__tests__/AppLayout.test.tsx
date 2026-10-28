@@ -30,6 +30,9 @@ import { MantineProvider } from "@mantine/core";
 import i18n from "../../i18n";
 import { AppLayout } from "../AppLayout";
 import { createAppColorSchemeManager } from "../../lib/colorSchemeManager";
+import { formatTemperature } from "../../lib/temperature";
+import { getElementByNumber } from "../../data/elements";
+import enUi from "../../locales/en/ui.json";
 
 afterEach(async () => {
   cleanup();
@@ -117,9 +120,37 @@ describe("AppLayout", () => {
   // choice for the session and surfaces the dismissable inline Alert (5.4).
   // Options are located by their language-neutral value, and the Alert strings
   // via i18n.t, because the language case switches the UI to French.
+  it("updates the open element detail live when the temperature unit changes", async () => {
+    const user = userEvent.setup();
+    const hydrogen = getElementByNumber(1)!;
+    renderLayout();
+
+    await user.click(hydrogenCell()!);
+    const detail = await screen.findByRole("dialog");
+    await user.click(
+      within(detail).getByRole("tab", { name: enUi.detail.tab.physical }),
+    );
+    expect(
+      within(detail).getByText(formatTemperature(hydrogen.melt, "kelvin")),
+    ).toBeInTheDocument();
+
+    act(() => settingsButton().click());
+    await screen.findByText(enUi.settings.title);
+    await user.click(screen.getByDisplayValue("celsius"));
+
+    expect(
+      within(detail).getByText(formatTemperature(hydrogen.melt, "celsius")),
+    ).toBeInTheDocument();
+    expect(
+      within(detail).getByText(formatTemperature(hydrogen.boil, "celsius")),
+    ).toBeInTheDocument();
+    expect(window.localStorage.getItem("app-temperature-unit")).toBe("celsius");
+  });
+
   it.each([
     ["theme", "dark"],
     ["language", "fr"],
+    ["temperature", "celsius"],
   ])(
     "surfaces and dismisses the save-error Alert when the %s save fails (5.4)",
     async (kind, value) => {

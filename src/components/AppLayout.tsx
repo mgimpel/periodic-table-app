@@ -10,6 +10,8 @@ import { useTranslation } from "react-i18next";
 import { HeaderBar } from "./HeaderBar";
 import { PeriodicTable } from "./PeriodicTable";
 import { SettingsPanel, type SaveErrorKind } from "./SettingsPanel";
+import type { TemperatureOption } from "../lib/temperature";
+import { readStoredTemperature } from "../lib/temperatureManager";
 import classes from "./AppLayout.module.css";
 
 // Owns the Settings_Panel open/close state and the full-height flex column
@@ -27,6 +29,9 @@ export function AppLayout() {
   // non-blocking: the session keeps the selected value (Req 5.4).
   const [saveError, setSaveError] = useState<SaveErrorKind | null>(null);
   const settingsButtonRef = useRef<HTMLButtonElement>(null);
+  // Shared by the settings control and the element detail, so it lives here.
+  const [temperatureUnit, setTemperatureUnit] =
+    useState<TemperatureOption>(readStoredTemperature);
 
   return (
     <div className={classes.root}>
@@ -46,7 +51,7 @@ export function AppLayout() {
       )}
 
       <div className={classes.tableRegion}>
-        <PeriodicTable />
+        <PeriodicTable temperatureUnit={temperatureUnit} />
       </div>
 
       <SettingsPanel
@@ -54,6 +59,8 @@ export function AppLayout() {
         onClose={close}
         returnFocusRef={settingsButtonRef}
         onSaveError={setSaveError}
+        temperatureUnit={temperatureUnit}
+        onTemperatureUnitChange={setTemperatureUnit}
       />
     </div>
   );

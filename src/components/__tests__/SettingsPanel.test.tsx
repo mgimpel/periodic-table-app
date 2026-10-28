@@ -21,6 +21,8 @@ import { MantineProvider } from "@mantine/core";
 // label, and the theme/language controls resolve to the English resources.
 import "../../i18n";
 import { SettingsPanel } from "../SettingsPanel";
+import type { TemperatureOption } from "../../lib/temperature";
+import enUi from "../../locales/en/ui.json";
 
 afterEach(() => {
   cleanup();
@@ -34,6 +36,7 @@ afterEach(() => {
 // assertion exercises the real dismiss path.
 function Harness() {
   const [opened, setOpened] = useState(false);
+  const [unit, setUnit] = useState<TemperatureOption>("kelvin");
   const triggerRef = useRef<HTMLButtonElement>(null);
   return (
     <MantineProvider env="test" defaultColorScheme="auto">
@@ -44,6 +47,8 @@ function Harness() {
         opened={opened}
         onClose={() => setOpened(false)}
         returnFocusRef={triggerRef}
+        temperatureUnit={unit}
+        onTemperatureUnitChange={setUnit}
       />
     </MantineProvider>
   );
@@ -78,6 +83,30 @@ describe("SettingsPanel", () => {
     expect(
       within(themeGroup).getByRole("radio", { name: "Same as device" }),
     ).toBeInTheDocument();
+  });
+
+  it("renders the temperature unit control with its three options", async () => {
+    const user = userEvent.setup();
+    render(<Harness />);
+
+    await openPanel(user);
+
+    const group = screen.getByRole("radiogroup", {
+      name: enUi.temperature.label,
+    });
+    const radios = within(group).getAllByRole("radio") as HTMLInputElement[];
+    expect(radios.map((r) => r.value)).toEqual([
+      "kelvin",
+      "celsius",
+      "fahrenheit",
+    ]);
+    for (const label of [
+      enUi.temperature.kelvin,
+      enUi.temperature.celsius,
+      enUi.temperature.fahrenheit,
+    ]) {
+      expect(within(group).getByRole("radio", { name: label })).toBeInTheDocument();
+    }
   });
 
   it("closes and returns focus to the trigger when Escape is pressed (3.5, 3.7, 6.9)", async () => {
