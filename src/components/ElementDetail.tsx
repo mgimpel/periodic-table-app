@@ -7,6 +7,7 @@ import {
   Badge,
   Box,
   Group,
+  Image,
   ModalBaseTitle,
   SimpleGrid,
   Stack,
@@ -16,6 +17,7 @@ import {
 } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { CATEGORY_COLORS, type Element } from "../data/element";
+import { elementImageUrl } from "../data/elementImages";
 import { buildElectronShellDiagram } from "../lib/electronShellDiagram";
 import { ResponsiveOverlay } from "./ResponsiveOverlay";
 
@@ -24,44 +26,27 @@ interface ElementDetailProps {
   onClose: () => void;
 }
 
-// Bundle the element photos (keyed by English element name, e.g. "Hydrogen").
-// import.meta.glob with eager+url is Vite's native way to ship a whole asset
-// folder and map it by filename — no runtime fetch, no new dependency. Not every
-// element has a photo; missing names resolve to undefined and the image is
-// simply omitted.
-const ELEMENT_IMAGES = Object.fromEntries(
-  Object.entries(
-    import.meta.glob<string>("../assets/images/*.webp", {
-      eager: true,
-      import: "default",
-      query: "?url",
-    }),
-  ).map(([path, url]) => [
-    path.slice(path.lastIndexOf("/") + 1, -".webp".length),
-    url,
-  ]),
-) as Record<string, string>;
+// Format a nullable numeric field with an optional unit; "—" when unknown.
+const fmt = (v: number | null, unit?: string | null) =>
+  v === null ? "—" : unit ? `${v} ${unit}` : String(v);
 
 // Element photo for the description tab. Rendered only when the element's
 // English name has a matching bundled image.
 function ElementImage({ element }: { element: Element }) {
   const { t } = useTranslation(["elements", "ui"]);
-  const src = ELEMENT_IMAGES[element.name];
+  const src = elementImageUrl(element.name);
   if (!src) return null;
   return (
-    <img
+    <Image
       src={src}
       alt={t("ui:detail.imageAlt", {
         name: t(`elements:name.${element.atomicNumber}`),
       })}
-      width={160}
-      style={{
-        flex: "0 0 auto",
-        width: 160,
-        height: "auto",
-        borderRadius: 8,
-        objectFit: "contain",
-      }}
+      w={160}
+      h="auto"
+      radius="md"
+      fit="contain"
+      flex="0 0 auto"
     />
   );
 }
@@ -82,14 +67,14 @@ function ElectronShellDiagram({ element }: { element: Element }) {
   );
   const src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
   return (
-    <img
+    <Image
       src={src}
       alt={t("ui:detail.shellDiagramAlt", {
         name: t(`elements:name.${element.atomicNumber}`),
       })}
-      width={200}
-      height={200}
-      style={{ flex: "0 0 auto" }}
+      w={200}
+      h={200}
+      flex="0 0 auto"
     />
   );
 }
@@ -119,16 +104,13 @@ function DetailBody({ element }: { element: Element }) {
         <Box
           w={32}
           h={32}
-          style={{
-            backgroundColor: CATEGORY_COLORS[element.category],
-            borderRadius: 8,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#1a1a1a",
-          }}
+          bg={CATEGORY_COLORS[element.category]}
+          c="#1a1a1a"
+          bdrs="md"
+          display="flex"
+          style={{ alignItems: "center", justifyContent: "center" }}
         >
-          <Text fw={700} size="lg" style={{ lineHeight: 1, paddingTop: 4 }}>
+          <Text fw={700} size="lg" lh={1} pt={4}>
             {element.symbol}
           </Text>
         </Box>
@@ -195,7 +177,7 @@ function DetailBody({ element }: { element: Element }) {
             />
             <DetailRow
               label={t("ui:detail.field.group")}
-              value={element.group ?? "—"}
+              value={fmt(element.group)}
             />
             <DetailRow
               label={t("ui:detail.field.period")}
@@ -216,28 +198,22 @@ function DetailBody({ element }: { element: Element }) {
             />
             <DetailRow
               label={t("ui:detail.field.density")}
-              value={
-                element.density !== null
-                  ? `${element.density}${
-                      element.densityUnit ? ` ${element.densityUnit}` : ""
-                    }`
-                  : "—"
-              }
+              value={fmt(element.density, element.densityUnit)}
             />
             <DetailRow
               label={t("ui:detail.field.boil")}
-              value={element.boil !== null ? `${element.boil} K` : "—"}
+              value={fmt(element.boil, "K")}
             />
             <DetailRow
               label={t("ui:detail.field.melt")}
-              value={element.melt !== null ? `${element.melt} K` : "—"}
+              value={fmt(element.melt, "K")}
             />
           </SimpleGrid>
         </Tabs.Panel>
 
         <Tabs.Panel value="electron" pt="md">
           <Group gap="md" align="flex-start" wrap="nowrap">
-            <Stack gap="sm" style={{ flex: 1, minWidth: 0 }}>
+            <Stack gap="sm" flex={1} miw={0}>
               <DetailRow
                 label={t("ui:detail.field.electronConfiguration")}
                 value={element.electronConfiguration}
@@ -252,11 +228,7 @@ function DetailBody({ element }: { element: Element }) {
               />
               <DetailRow
                 label={t("ui:detail.field.electronAffinity")}
-                value={
-                  element.electronAffinity !== null
-                    ? `${element.electronAffinity} kJ/mol`
-                    : "—"
-                }
+                value={fmt(element.electronAffinity, "kJ/mol")}
               />
             </Stack>
             <ElectronShellDiagram element={element} />
@@ -265,7 +237,7 @@ function DetailBody({ element }: { element: Element }) {
 
         <Tabs.Panel value="description" pt="md">
           <Group gap="md" align="flex-start" wrap="nowrap">
-            <Stack gap="sm" style={{ flex: 1, minWidth: 0 }}>
+            <Stack gap="sm" flex={1} miw={0}>
               {element.appearance && (
                 <DetailRow
                   label={t("ui:detail.field.appearance")}

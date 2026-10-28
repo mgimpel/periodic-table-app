@@ -3,7 +3,7 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Alert, Box, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { ELEMENTS, type Element } from "../data/elements";
@@ -12,7 +12,6 @@ import { CategoryLegend } from "./CategoryLegend";
 import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
 import { useOrientationLock } from "../hooks/useOrientationLock";
-import { isMobilePlatform } from "../lib/platform";
 import classes from "./PeriodicTable.module.css";
 
 // Owns the selected-element state and composes the legend, the fit-to-viewport
@@ -27,34 +26,11 @@ import classes from "./PeriodicTable.module.css";
 export function PeriodicTable() {
   const { t } = useTranslation("ui");
   const [selected, setSelected] = useState<Element | null>(null);
-  const [noticeDismissed, setNoticeDismissed] = useState(false);
 
   const viewportRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const { scale, symbolOnly } = useFitScale(viewportRef, gridRef);
-
-  // Orientation lock is mobile-only (Req 1.1); desktop/web follows the OS.
-  const mobile = isMobilePlatform();
-  const { attempted, locked } = useOrientationLock(mobile);
-  const showOrientationNotice = mobile && attempted && !locked && !noticeDismissed;
-
-  // The notice asks the user to rotate; once they do, it has served its
-  // purpose, so auto-dismiss it on the next rotation. Only listen while it is
-  // showing, so the listener is absent when there is nothing to close.
-  // screen.orientation's "change" is the modern signal; window
-  // "orientationchange" is the legacy fallback (iOS/older WebViews), so we
-  // listen for both.
-  useEffect(() => {
-    if (!showOrientationNotice) return;
-    const dismiss = () => setNoticeDismissed(true);
-    const orientation = screen.orientation;
-    orientation?.addEventListener?.("change", dismiss);
-    window.addEventListener("orientationchange", dismiss);
-    return () => {
-      orientation?.removeEventListener?.("change", dismiss);
-      window.removeEventListener("orientationchange", dismiss);
-    };
-  }, [showOrientationNotice]);
+  const { showNotice, dismissNotice } = useOrientationLock();
 
   // Fill the parent table region (AppLayout's flex:1 child) as a full-height
   // flex column so .viewport's flex:1 expands to the space below the header.
@@ -62,13 +38,13 @@ export function PeriodicTable() {
   // height — no pixel constant to keep in sync (see design: Vertical layout).
   return (
     <Stack gap="md" p="md" h="100%" mih={0}>
-      {showOrientationNotice && (
+      {showNotice && (
         <Alert
           color="yellow"
           variant="light"
           withCloseButton
           closeButtonLabel={t("common.dismiss")}
-          onClose={() => setNoticeDismissed(true)}
+          onClose={dismissNotice}
           title={t("orientation.title")}
         >
           {t("orientation.body")}
