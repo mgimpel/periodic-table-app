@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Assert-based self-check for the locale resources (no test framework).
-// Run with a TS runner (e.g. `pnpm exec vite-node src/locales/elements.check.ts`).
+// Run via `pnpm check` (or `pnpm exec vite-node src/locales/elements.check.ts`).
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
 //
 // Guards two invariants (the single enforcement point for both):
@@ -12,13 +12,10 @@
 //       and every summary.<n> is a present non-empty string, with no stray keys.
 //   (2) CATEGORY_KEYS contains exactly the keys of CATEGORY_COLORS.
 
+import assert from "node:assert/strict";
 import { ELEMENTS } from "../data/elements";
 import { CATEGORY_COLORS, CATEGORY_KEYS } from "../data/element";
 import enElements from "./en/elements.json";
-
-function assert(cond: boolean, msg: string): void {
-  if (!cond) throw new Error(`FAIL: ${msg}`);
-}
 
 const names = enElements.name as Record<string, string>;
 const summaries = enElements.summary as Record<string, string>;

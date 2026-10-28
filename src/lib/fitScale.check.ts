@@ -4,14 +4,11 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Assert-based self-check for computeFitScale (no test framework).
-// Run with a TS runner (e.g. `pnpm exec vite-node src/lib/fitScale.check.ts`).
+// Run via `pnpm check` (or `pnpm exec vite-node src/lib/fitScale.check.ts`).
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
 
+import assert from "node:assert/strict";
 import { computeFitScale } from "./fitScale";
-
-function assert(cond: boolean, msg: string): void {
-  if (!cond) throw new Error(`FAIL: ${msg}`);
-}
 
 // Exact fit → scale 1, full cells.
 {

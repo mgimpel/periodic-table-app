@@ -4,14 +4,11 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Assert-based self-check for the pure language core (no test framework).
-// Run with a TS runner (e.g. `pnpm exec vite-node src/lib/language.check.ts`).
+// Run via `pnpm check` (or `pnpm exec vite-node src/lib/language.check.ts`).
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
 
+import assert from "node:assert/strict";
 import { normalizeStoredLanguage, resolveLanguage } from "./language";
-
-function assert(cond: boolean, msg: string): void {
-  if (!cond) throw new Error(`FAIL: ${msg}`);
-}
 
 // Valid options pass through unchanged.
 for (const opt of ["system", "en", "fr"] as const) {

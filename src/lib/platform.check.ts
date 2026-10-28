@@ -4,17 +4,14 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Assert-based self-check for the pure user-agent OS classifier (no test
-// framework). Run with a TS runner (e.g.
+// framework). Run via `pnpm check` (or
 // `pnpm exec vite-node src/lib/platform.check.ts`). Throws on the first failed
 // assertion, so any runner exits non-zero on failure. detectPlatform is the
 // single source of truth; the mobile/desktop split (isMobilePlatform) is just
 // "result is android or ios", so classifying each UA correctly here covers it.
 
+import assert from "node:assert/strict";
 import { detectPlatform } from "./platform";
-
-function assert(cond: boolean, msg: string): void {
-  if (!cond) throw new Error(`FAIL: ${msg}`);
-}
 
 // --- detectPlatform ---------------------------------------------------------
 

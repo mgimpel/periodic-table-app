@@ -4,15 +4,12 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Assert-based self-check for the element data adapter (no test framework).
-// Run with a TS runner (e.g. `pnpm exec vite-node src/data/elements.check.ts`).
+// Run via `pnpm check` (or `pnpm exec vite-node src/data/elements.check.ts`).
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
 
+import assert from "node:assert/strict";
 import { ELEMENTS, getElementByNumber } from "./elements";
 import { CATEGORY_COLORS, type ElementCategory } from "./element";
-
-function assert(cond: boolean, msg: string): void {
-  if (!cond) throw new Error(`FAIL: ${msg}`);
-}
 
 // (a) exactly 118 elements
 assert(

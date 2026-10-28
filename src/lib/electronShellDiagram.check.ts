@@ -4,15 +4,12 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Assert-based self-check for the electron-shell diagram generator (no test
-// framework). Run with a TS runner, e.g.
-//   pnpm exec vite-node src/lib/electronShellDiagram.check.ts
+// framework). Run via `pnpm check` (or
+// `pnpm exec vite-node src/lib/electronShellDiagram.check.ts`).
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
 
+import assert from "node:assert/strict";
 import { buildElectronShellDiagram } from "./electronShellDiagram";
-
-function assert(cond: boolean, msg: string): void {
-  if (!cond) throw new Error(`FAIL: ${msg}`);
-}
 
 // (1) Geometry/header for a two-shell element. size = 300 + 100*2 = 500.
 const svg = buildElectronShellDiagram(3,"Li","1s2 2s1",[2, 1],"#00ffa0");
