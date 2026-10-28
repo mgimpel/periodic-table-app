@@ -427,7 +427,7 @@ describe("ElementDetail", () => {
     );
   });
 
-  it("renders a centered Modal with no built-in close button, dismissable via Escape, on wide viewports (1.5)", async () => {
+  it("renders a centered Modal with a 'Close' button that fires onClose on wide viewports (1.5)", async () => {
     useWideViewport();
     const user = userEvent.setup();
     const onClose = vi.fn();
@@ -436,14 +436,34 @@ describe("ElementDetail", () => {
     // Modal branch still renders the custom header.
     expect(screen.getByText("Iron")).toBeInTheDocument();
 
-    // The wide Modal suppresses the built-in close button (withCloseButton=false);
-    // the custom header bar is the chrome. Escape still dismisses it.
-    expect(screen.queryByRole("button", { name: "Close" })).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Close" }));
+    expect(onClose).toHaveBeenCalled();
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+  });
+
+  it("closes the wide Modal when Escape is pressed (1.5, 1.7)", async () => {
+    useWideViewport();
+    const user = userEvent.setup();
+    const onClose = vi.fn();
+    render(<Harness initial={makeElement()} onClose={onClose} />);
 
     await user.keyboard("{Escape}");
     expect(onClose).toHaveBeenCalled();
     await waitFor(() =>
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
     );
+  });
+
+  it("names the Drawer dialog by the element name", () => {
+    render(<Harness initial={makeElement()} />);
+    expect(screen.getByRole("dialog", { name: "Iron" })).toBeInTheDocument();
+  });
+
+  it("names the wide Modal dialog by the element name", () => {
+    useWideViewport();
+    render(<Harness initial={makeElement()} />);
+    expect(screen.getByRole("dialog", { name: "Iron" })).toBeInTheDocument();
   });
 });

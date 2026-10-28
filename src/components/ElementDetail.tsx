@@ -6,19 +6,18 @@
 import {
   Badge,
   Box,
-  Drawer,
   Group,
-  Modal,
+  ModalBaseTitle,
   SimpleGrid,
   Stack,
   Tabs,
   Text,
   Title,
 } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
 import { useTranslation } from "react-i18next";
 import { CATEGORY_COLORS, type Element } from "../data/element";
 import { buildElectronShellDiagram } from "../lib/electronShellDiagram";
+import { ResponsiveOverlay } from "./ResponsiveOverlay";
 
 interface ElementDetailProps {
   element: Element | null;
@@ -137,7 +136,16 @@ function DetailBody({ element }: { element: Element }) {
           <Text span c="dimmed">
             {element.atomicNumber}
           </Text>
-          <Title order={2} size="h4">
+          {/* ponytail: rendering the heading as ModalBaseTitle registers it as
+              the dialog's aria-labelledby target, so the dialog is named by the
+              element name without moving it into the overlay title. Modal/Drawer
+              don't forward aria-labelledby to the dialog element. Verified
+              against Mantine 9.7.3; the dialog-name tests guard it. */}
+          <Title
+            order={2}
+            size="h4"
+            renderRoot={(props) => <ModalBaseTitle {...props} />}
+          >
             {t(`elements:name.${element.atomicNumber}`)}
           </Title>
           <Badge variant="light" color="gray">
@@ -289,37 +297,13 @@ function DetailBody({ element }: { element: Element }) {
   );
 }
 
-// Detail view for the selected element. Mobile-first: a bottom-anchored Drawer
-// on small screens, a centered Modal from the `sm` breakpoint up. Both are
-// dismissable (close button, overlay click, Esc).
+// Detail view for the selected element, in the shared ResponsiveOverlay
+// (Drawer on mobile, Modal on desktop; both with a close button, overlay click
+// and Esc). No overlay title: DetailBody's header names the dialog.
 export function ElementDetail({ element, onClose }: ElementDetailProps) {
-  const { t } = useTranslation("ui");
-  const isWide = useMediaQuery("(min-width: 48em)");
-  const opened = element !== null;
-
-  if (isWide) {
-    return (
-      <Modal
-        opened={opened}
-        onClose={onClose}
-        centered
-        size="lg"
-        withCloseButton={false}
-      >
-        {element && <DetailBody element={element} />}
-      </Modal>
-    );
-  }
-
   return (
-    <Drawer
-      opened={opened}
-      onClose={onClose}
-      position="bottom"
-      size="80%"
-      closeButtonProps={{ "aria-label": t("common.close") }}
-    >
+    <ResponsiveOverlay opened={element !== null} onClose={onClose}>
       {element && <DetailBody element={element} />}
-    </Drawer>
+    </ResponsiveOverlay>
   );
 }
