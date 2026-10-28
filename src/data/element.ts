@@ -45,7 +45,6 @@ export interface Element {
   boil: number | null;
   /** Melting point in Kelvin; null when unknown. */
   melt: number | null;
-  summary: string;
   appearance: string | null;
   discoveredBy: string | null;
   namedBy: string | null;
@@ -68,19 +67,6 @@ export const CATEGORY_KEYS: ElementCategory[] = [
   "actinide",
   "unknown",
 ];
-
-export const CATEGORY_LABELS: Record<ElementCategory, string> = {
-  "alkali-metal": "Alkali metals",
-  "alkaline-earth-metal": "Alkaline earth metals",
-  "transition-metal": "Transition metals",
-  "post-transition-metal": "Post-transition metals",
-  metalloid: "Metalloids",
-  "reactive-nonmetal": "Reactive nonmetals",
-  "noble-gas": "Noble gases",
-  lanthanide: "Lanthanides",
-  actinide: "Actinides",
-  unknown: "Unknown",
-};
 
 // CSS color strings (not Mantine tokens) so cells and swatches can set background
 // directly and stay readable against dark text in both color schemes.

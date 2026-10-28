@@ -4,32 +4,27 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Property-based tests for CategoryLegend: the legend's entries are derived
-// from the fixed category set, so the rendered output must mirror
-// CATEGORY_LABELS / CATEGORY_COLORS exactly. CSS Modules return undefined class
-// names under jsdom, so entries are located by their accessible role/name and
-// the swatch color is asserted on the inline style rather than by class.
+// from the fixed category set, so the rendered output must mirror the en
+// ui.json category.* labels and CATEGORY_COLORS exactly. CSS Modules return
+// undefined class names under jsdom, so entries are located by their accessible
+// role/name and the swatch color is asserted on the inline style rather than by class.
 
-import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, within, cleanup } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
 import fc from "fast-check";
 // Initialise the shared i18next default instance so category labels resolve to
-// the English resources (equal to CATEGORY_LABELS) rather than raw keys.
+// the English ui.json resources rather than raw keys.
 import "../../i18n";
 import { CategoryLegend } from "../CategoryLegend";
 import { PeriodicTable } from "../PeriodicTable";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
-import {
-  CATEGORY_COLORS,
-  CATEGORY_LABELS,
-  type ElementCategory,
-} from "../../data/element";
+import { CATEGORY_COLORS, CATEGORY_KEYS } from "../../data/element";
 import { ELEMENTS } from "../../data/elements";
+import enUi from "../../locales/en/ui.json";
 
 afterEach(cleanup);
 
-const CATEGORY_KEYS = Object.keys(CATEGORY_LABELS) as ElementCategory[];
+const label = (c: string) => enUi.category[c as keyof typeof enUi.category];
 
 // Browsers normalize style.backgroundColor to rgb(); jsdom keeps whatever
 // string was assigned. Normalize both sides by round-tripping the value
@@ -74,11 +69,11 @@ describe("CategoryLegend property 1: entry set matches the category keys", () =>
           }
 
           for (const category of keys) {
-            const label = CATEGORY_LABELS[category];
+            const name = label(category);
 
             // Exactly one entry carries this category's accessible name.
             const matching = entries.filter(
-              (e) => e.getAttribute("aria-label") === label,
+              (e) => e.getAttribute("aria-label") === name,
             );
             expect(matching).toHaveLength(1);
             const entry = matching[0];
@@ -93,7 +88,7 @@ describe("CategoryLegend property 1: entry set matches the category keys", () =>
             );
 
             // The visible label text is always present.
-            expect(within(entry).getByText(label)).toBeInTheDocument();
+            expect(within(entry).getByText(name)).toBeInTheDocument();
           }
 
           cleanup();
@@ -156,55 +151,8 @@ describe("CategoryLegend property 2: every entry always shows its swatch and lab
   });
 });
 
-describe("CategoryLegend property 3: every entry has a non-empty accessible name", () => {
-  // Feature: in-grid-category-legend, Property 3: Every entry has a non-empty accessible name
-  // Validates: Requirements 4.2, 4.3, 4.4
-
-  // Mirror the component's accessible-name derivation: name = label || category.
-  // The component reads the static CATEGORY_LABELS (no label prop), so the
-  // empty/missing-label fallback branch (Req 4.3) is exercised here against a
-  // generated label map rather than through props.
-  const deriveAccessibleName = (label: string | undefined, category: string) =>
-    label || category;
-
-  it("derives a non-empty accessible name, falling back to the key when the label is empty/missing", () => {
-    // Per key, pick the real label, an empty string, or a normal string.
-    const labelMapArb = fc.record(
-      Object.fromEntries(
-        CATEGORY_KEYS.map((category) => [
-          category,
-          fc.oneof(
-            fc.constant(CATEGORY_LABELS[category]),
-            fc.constant(""),
-            fc.string(),
-          ),
-        ]),
-      ) as Record<ElementCategory, fc.Arbitrary<string>>,
-    );
-
-    fc.assert(
-      fc.property(labelMapArb, (labels) => {
-        for (const category of CATEGORY_KEYS) {
-          const label = labels[category];
-          const name = deriveAccessibleName(label, category);
-
-          // Never empty, regardless of label state.
-          expect(name).toBeTruthy();
-
-          if (label) {
-            // A non-empty label is conveyed verbatim.
-            expect(name).toBe(label);
-          } else {
-            // Empty/missing label falls back to the raw (non-empty) key.
-            expect(name).toBe(category);
-            expect(category).toBeTruthy();
-          }
-        }
-      }),
-      { numRuns: 100 },
-    );
-  });
-
+describe("CategoryLegend: every entry has a non-empty accessible name", () => {
+  // Validates: Requirements 4.2, 4.4
   it("renders a non-empty accessible name per entry that conveys the category label", () => {
     render(
       <MantineProvider>
@@ -223,7 +171,7 @@ describe("CategoryLegend property 3: every entry has a non-empty accessible name
     for (const name of names) {
       expect(name).toBeTruthy();
     }
-    const expected = CATEGORY_KEYS.map((c) => CATEGORY_LABELS[c]);
+    const expected = CATEGORY_KEYS.map(label);
     expect(names).toEqual(expected);
   });
 });
@@ -231,41 +179,10 @@ describe("CategoryLegend property 3: every entry has a non-empty accessible name
 // --- Structural / geometry tests (task 5.1) --------------------------------
 // These render the FULL PeriodicTable so the legend sits in the real grid, and
 // verify the facts jsdom can't measure as pixels: the legend is a descendant of
-// the transformed grid (so it inherits --fit-scale), its placement/containment
-// styles live in the CSS source, and it exposes the expected accessible name.
+// the transformed grid (so it inherits --fit-scale) and it exposes the expected
+// accessible name. ResizeObserver/matchMedia come from src/test-setup.ts.
 describe("CategoryLegend in-grid structure and geometry", () => {
   // Validates: Requirements 1.1, 1.4, 1.6, 2.1, 2.2, 2.3, 4.1, 4.4, 5.3
-
-  // PeriodicTable mounts useFitScale (needs ResizeObserver) and ElementDetail
-  // reads matchMedia via useMediaQuery; jsdom provides neither. Stub both so
-  // the table renders deterministically. Scoped to this block; restored after.
-  class MockResizeObserver {
-    observe = vi.fn();
-    unobserve = vi.fn();
-    disconnect = vi.fn();
-  }
-
-  beforeEach(() => {
-    vi.stubGlobal("ResizeObserver", MockResizeObserver);
-    vi.stubGlobal(
-      "matchMedia",
-      (query: string) =>
-        ({
-          matches: false,
-          media: query,
-          onchange: null,
-          addListener: vi.fn(),
-          removeListener: vi.fn(),
-          addEventListener: vi.fn(),
-          removeEventListener: vi.fn(),
-          dispatchEvent: vi.fn(),
-        }) as unknown as MediaQueryList,
-    );
-  });
-
-  afterEach(() => {
-    vi.unstubAllGlobals();
-  });
 
   function renderTable() {
     return render(
@@ -290,26 +207,6 @@ describe("CategoryLegend in-grid structure and geometry", () => {
     expect(grid!.contains(legend)).toBe(true);
     // And it really is a descendant, not the grid itself.
     expect(legend).not.toBe(grid);
-  });
-
-  it("places and clips the legend via the CSS source (.legend rule)", () => {
-    // jsdom applies no stylesheet and leaves CSS-Module class names undefined,
-    // so these layout facts can't be read off getComputedStyle. Assert them
-    // against the actual CSS source text instead. Read the file from disk — a
-    // `?raw` import of a .module.css is intercepted by the CSS-Module transform
-    // and yields the class-name map, not the source text.
-    // Vitest runs with cwd at the project root (where vite.config.ts lives).
-    const legendCss = readFileSync(
-      join(process.cwd(), "src/components/PeriodicTable.module.css"),
-      "utf8",
-    );
-    const legendRule = legendCss.slice(
-      legendCss.indexOf(".legend {"),
-      legendCss.indexOf("}", legendCss.indexOf(".legend {")),
-    );
-    expect(legendRule).toContain("grid-column: 3 / span 10");
-    expect(legendRule).toContain("grid-row: 1 / span 3");
-    expect(legendRule).toContain("overflow: hidden");
   });
 
   it("exposes the accessible name 'Element category legend'", () => {

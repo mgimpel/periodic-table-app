@@ -10,9 +10,9 @@ import { currentPlatform } from "./lib/platform";
 import "./i18n";
 
 // Expose the OS as a data attribute so CSS can make small platform-specific
-// tweaks (e.g. Windows font metrics need a smaller legend-swatch nudge, via
-// :global([data-os="windows"])) without threading a prop through the component
-// tree. Any OS can be targeted the same way (e.g. [data-os="macos"]). Set once;
+// tweaks via :global([data-os="…"]) without threading a prop through the
+// component tree. Today only the Linux legend-swatch nudge in
+// PeriodicTable.module.css uses it. Set once;
 // the OS can't change mid-session. Skip "unknown" so the attribute is absent in
 // non-Tauri/unrecognized contexts rather than carrying a meaningless value.
 const os = currentPlatform();

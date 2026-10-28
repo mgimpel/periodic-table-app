@@ -9,7 +9,7 @@
 // orientation-lock modules (the selection-flow test deliberately runs the
 // desktop path, where the notice never shows).
 
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
 // Initialise the shared i18next default instance so the orientation notice
@@ -24,20 +24,7 @@ vi.mock("../../hooks/useOrientationLock", () => ({
 
 import { PeriodicTable } from "../PeriodicTable";
 
-class MockResizeObserver {
-  observe = vi.fn();
-  unobserve = vi.fn();
-  disconnect = vi.fn();
-}
-
-beforeEach(() => {
-  vi.stubGlobal("ResizeObserver", MockResizeObserver);
-});
-
-afterEach(() => {
-  cleanup();
-  vi.unstubAllGlobals();
-});
+afterEach(cleanup);
 
 function renderTable() {
   return render(

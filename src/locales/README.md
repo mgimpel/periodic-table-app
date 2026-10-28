@@ -15,8 +15,8 @@ and the pure language core (`src/lib/language.ts`) consume.
 To add locale `xx`:
 
 1. Create `src/locales/xx/ui.json` and `src/locales/xx/elements.json` (copy the
-   `en/` files and translate). `elements.json` needs at least all `name.*` and
-   the `category.*` keys in `ui.json`; `summary.*` can be omitted (see below).
+   `en/` files and translate). `elements.json` needs at least all `name.*`;
+   the `category.*` labels live in `ui.json`. `summary.*` can be omitted (see below).
 2. Add one import pair and one entry to `resources` in `src/locales/index.ts`.
 3. Add the human language name under `ui:language.xx` in each language file so
    the option shows its own label.

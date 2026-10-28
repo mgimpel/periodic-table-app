@@ -7,7 +7,6 @@
 // framework). Run with a TS runner, e.g.
 //   pnpm exec vite-node src/lib/electronShellDiagram.check.ts
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
-// Uses no Node globals so it also type-checks under the app's DOM-only tsconfig.
 
 import { buildElectronShellDiagram } from "./electronShellDiagram";
 

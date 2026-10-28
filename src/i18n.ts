@@ -9,7 +9,7 @@
 
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import { resources, FALLBACK_LOCALE, DEFAULT_NAMESPACE } from "./locales";
+import { resources, FALLBACK_LOCALE, DEFAULT_NAMESPACE, NAMESPACES } from "./locales";
 import { readStoredLanguage } from "./lib/languageManager";
 import { resolveLanguage, navigatorLanguages } from "./lib/language";
 
@@ -22,7 +22,7 @@ void i18n.use(initReactI18next).init({
   lng,
   fallbackLng: FALLBACK_LOCALE, // per-string English fallback (e.g. fr summaries)
   defaultNS: DEFAULT_NAMESPACE, // "ui"
-  ns: ["ui", "elements"],
+  ns: NAMESPACES,
   interpolation: { escapeValue: false }, // React already escapes
   returnNull: false, // missing key -> fallback string, never null
 });

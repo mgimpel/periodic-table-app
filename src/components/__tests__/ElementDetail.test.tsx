@@ -31,12 +31,9 @@ import { MantineProvider } from "@mantine/core";
 // resources instead of raw keys.
 import "../../i18n";
 import { ElementDetail } from "../ElementDetail";
-import {
-  CATEGORY_LABELS,
-  type Element,
-  type ElementCategory,
-} from "../../data/element";
+import type { Element, ElementCategory } from "../../data/element";
 import enElements from "../../locales/en/elements.json";
+import enUi from "../../locales/en/ui.json";
 
 const originalMatchMedia = window.matchMedia;
 
@@ -68,7 +65,6 @@ function makeElement(overrides: Partial<Element> = {}): Element {
     densityUnit: "g/cm3",
     boil: 3134,
     melt: 1811,
-    summary: "Iron is a metal in the first transition series.",
     appearance: "lustrous metallic with a grayish tinge",
     discoveredBy: "Ancient civilizations",
     namedBy: "Ancient namers",
@@ -155,7 +151,7 @@ describe("ElementDetail", () => {
 
     // Category label (3.6) — present in the header badge.
     expect(
-      within(dialog).getAllByText(CATEGORY_LABELS["transition-metal"]).length,
+      within(dialog).getAllByText(enUi.category["transition-metal"]).length,
     ).toBeGreaterThan(0);
   });
 

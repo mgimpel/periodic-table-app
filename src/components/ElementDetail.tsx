@@ -28,8 +28,8 @@ interface ElementDetailProps {
 // Bundle the element photos (keyed by English element name, e.g. "Hydrogen").
 // import.meta.glob with eager+url is Vite's native way to ship a whole asset
 // folder and map it by filename — no runtime fetch, no new dependency. Not every
-// element has a photo (104 images, 118 elements); missing names resolve to
-// undefined and the image is simply omitted.
+// element has a photo; missing names resolve to undefined and the image is
+// simply omitted.
 const ELEMENT_IMAGES = Object.fromEntries(
   Object.entries(
     import.meta.glob<string>("../assets/images/*.webp", {

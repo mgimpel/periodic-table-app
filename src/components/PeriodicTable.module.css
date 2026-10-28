@@ -135,7 +135,7 @@
   margin-top: -1px;
 }
 
-/* The label's is slightly misaligned on linux. */
+/* The legend swatch is slightly misaligned on Linux. */
 :global([data-os="linux"]) .legendSwatch {
   margin-top: -4px;
 }

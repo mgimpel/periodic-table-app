@@ -6,8 +6,6 @@
 // Assert-based self-check for the element data adapter (no test framework).
 // Run with a TS runner (e.g. `pnpm exec vite-node src/data/elements.check.ts`).
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
-// Uses no Node globals (no `process`) so it also type-checks under the app's
-// DOM-only tsconfig without adding @types/node.
 
 import { ELEMENTS, getElementByNumber } from "./elements";
 import { CATEGORY_COLORS, type ElementCategory } from "./element";

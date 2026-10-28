@@ -78,7 +78,6 @@ function adapt(entry: RawElement): Element {
     densityUnit: entry.density_unit ?? null,
     boil: entry.boil ?? null,
     melt: entry.melt ?? null,
-    summary: entry.summary,
     appearance: entry.appearance ?? null,
     discoveredBy: entry.discovered_by ?? null,
     namedBy: entry.named_by ?? null,

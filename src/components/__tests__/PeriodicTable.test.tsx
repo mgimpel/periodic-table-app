@@ -12,7 +12,7 @@
 // (4.2, 4.3), selecting another cell swaps the detail (4.4), and dismissing
 // closes it while the scaled grid stays mounted with its fit-scale (4.5).
 
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import {
   render,
   screen,
@@ -28,48 +28,9 @@ import "../../i18n";
 import { PeriodicTable } from "../PeriodicTable";
 import { getElementByNumber } from "../../data/elements";
 
-// --- Environment stubs -----------------------------------------------------
-// jsdom has no ResizeObserver; useFitScale constructs one on mount and would
-// throw without it. Minimal mock (same shape as the useFitScale unit test): we
-// only need construction + observe/disconnect to be no-ops, because this test
-// asserts on selection behavior, not on resize-driven recomputes.
-class MockResizeObserver {
-  observe = vi.fn();
-  unobserve = vi.fn();
-  disconnect = vi.fn();
-}
-
-// Mantine's ElementDetail calls useMediaQuery, which reads matchMedia. jsdom
-// doesn't implement it. Stub it to a stable "not wide" result so the detail
-// renders the bottom Drawer (the mobile-first default) deterministically. Both
-// the Drawer and the Modal branch render the same title/body and a "Close"
-// button, so the assertions below hold either way.
-function stubMatchMedia(matches: boolean) {
-  vi.stubGlobal(
-    "matchMedia",
-    (query: string) =>
-      ({
-        matches,
-        media: query,
-        onchange: null,
-        addListener: vi.fn(),
-        removeListener: vi.fn(),
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-        dispatchEvent: vi.fn(),
-      }) as unknown as MediaQueryList,
-  );
-}
-
-beforeEach(() => {
-  vi.stubGlobal("ResizeObserver", MockResizeObserver);
-  stubMatchMedia(false);
-});
-
-afterEach(() => {
-  cleanup();
-  vi.unstubAllGlobals();
-});
+// ResizeObserver and matchMedia ("not wide", so the detail is the bottom
+// Drawer) come from the shared polyfills in src/test-setup.ts.
+afterEach(cleanup);
 
 // Real dataset entries, not hand-rolled fixtures. Carbon and Oxygen have short,
 // unambiguous names/symbols for querying.

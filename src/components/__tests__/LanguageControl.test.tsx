@@ -20,6 +20,7 @@ import { SettingsPanel } from "../SettingsPanel";
 import { ElementCell } from "../ElementCell";
 import { ElementDetail } from "../ElementDetail";
 import { getElementByNumber } from "../../data/elements";
+import enElements from "../../locales/en/elements.json";
 
 const STORAGE_KEY = "app-language-option";
 
@@ -165,14 +166,14 @@ describe("LanguageControl", () => {
 
     // The English summary from the dataset is shown up front (Description tab is
     // rendered in the panel; the summary Text is always present).
-    expect(screen.getByText(hydrogen.summary)).toBeInTheDocument();
+    expect(screen.getByText(enElements.summary["1"])).toBeInTheDocument();
 
     await user.click(radioByValue("fr"));
     await waitFor(() => expect(i18n.language).toBe("fr"));
 
     // No French summary exists, so i18next falls back to the English string —
     // never blank, never the raw key.
-    expect(screen.getByText(hydrogen.summary)).toBeInTheDocument();
+    expect(screen.getByText(enElements.summary["1"])).toBeInTheDocument();
     expect(
       screen.queryByText(`elements:summary.${hydrogen.atomicNumber}`),
     ).not.toBeInTheDocument();
