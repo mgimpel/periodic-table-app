@@ -283,6 +283,45 @@ describe("ElementDetail", () => {
     expect(screen.queryByText("Named by")).not.toBeInTheDocument();
   });
 
+  it("shows the emission spectrum in the Atomic details tab when one is bundled", () => {
+    // src/assets/spectra/Iron.webp exists.
+    render(<Harness initial={makeElement()} />);
+    const atomicPanel = screen.getByRole("tabpanel", { name: "Atomic details" });
+    expect(
+      within(atomicPanel).getByRole("img", {
+        name: "Emission spectrum of Iron",
+      }),
+    ).toBeVisible();
+  });
+
+  it("translates the spectrum alt text with the localized name in French", async () => {
+    await i18n.changeLanguage("fr");
+    try {
+      render(<Harness initial={makeElement()} />);
+      expect(
+        screen.getByRole("img", { name: "Spectre d'émission de Fer" }),
+      ).toBeInTheDocument();
+    } finally {
+      await i18n.changeLanguage("en");
+    }
+  });
+
+  it("renders no spectrum image when none is bundled", () => {
+    // There is no src/assets/spectra/Oganesson.webp.
+    render(
+      <Harness
+        initial={makeElement({
+          atomicNumber: 118,
+          symbol: "Og",
+          name: "Oganesson",
+        })}
+      />,
+    );
+    expect(
+      screen.queryByRole("img", { name: /Emission spectrum/ }),
+    ).not.toBeInTheDocument();
+  });
+
   it("translates the phase value in French", async () => {
     await i18n.changeLanguage("fr");
     try {

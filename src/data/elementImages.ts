@@ -24,3 +24,23 @@ const ELEMENT_IMAGES = Object.fromEntries(
 export function elementImageUrl(name: string): string | undefined {
   return ELEMENT_IMAGES[name];
 }
+
+// Emission spectrum strips, bundled and keyed the same way (CC0, see
+// ../assets/spectra/spectra.LICENSE.txt). Not every element has one.
+const ELEMENT_SPECTRA = Object.fromEntries(
+  Object.entries(
+    import.meta.glob<string>("../assets/spectra/*.webp", {
+      eager: true,
+      import: "default",
+      query: "?url",
+    }),
+  ).map(([path, url]) => [
+    path.slice(path.lastIndexOf("/") + 1, -".webp".length),
+    url,
+  ]),
+) as Record<string, string>;
+
+/** Bundled spectrum URL for an element's English name, or undefined if none. */
+export function elementSpectrumUrl(name: string): string | undefined {
+  return ELEMENT_SPECTRA[name];
+}

@@ -46,6 +46,7 @@
     "noDescription": "No description available.",
     "shellDiagramAlt": "Electron shell diagram for {{name}}",
     "imageAlt": "Photograph of {{name}}",
+    "spectrumAlt": "Emission spectrum of {{name}}",
     "tab": {
       "atomic": "Atomic details",
       "physical": "Physical properties",

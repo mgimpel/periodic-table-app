@@ -46,6 +46,7 @@
     "noDescription": "Aucune description disponible.",
     "shellDiagramAlt": "Diagramme des couches électroniques de {{name}}",
     "imageAlt": "Photographie de {{name}}",
+    "spectrumAlt": "Spectre d'émission de {{name}}",
     "tab": {
       "atomic": "Détails atomiques",
       "physical": "Propriétés physiques",

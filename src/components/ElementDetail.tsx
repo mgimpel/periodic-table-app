@@ -17,7 +17,7 @@ import {
 } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { CATEGORY_COLORS, type Element } from "../data/element";
-import { elementImageUrl } from "../data/elementImages";
+import { elementImageUrl, elementSpectrumUrl } from "../data/elementImages";
 import { buildElectronShellDiagram } from "../lib/electronShellDiagram";
 import { ResponsiveOverlay } from "./ResponsiveOverlay";
 
@@ -47,6 +47,27 @@ function ElementImage({ element }: { element: Element }) {
       radius="md"
       fit="contain"
       flex="0 0 auto"
+    />
+  );
+}
+
+// Emission spectrum strip for the atomic tab, full width. Rendered only when
+// the element's English name has a matching bundled spectrum.
+function ElementSpectrum({ element }: { element: Element }) {
+  const { t } = useTranslation(["elements", "ui"]);
+  const src = elementSpectrumUrl(element.name);
+  if (!src) return null;
+  return (
+    <Image
+      src={src}
+      alt={t("ui:detail.spectrumAlt", {
+        name: t(`elements:name.${element.atomicNumber}`),
+      })}
+      w="100%"
+      h="auto"
+      radius="md"
+      fit="contain"
+      mt="md"
     />
   );
 }
@@ -188,6 +209,7 @@ function DetailBody({ element }: { element: Element }) {
               value={element.block}
             />
           </SimpleGrid>
+          <ElementSpectrum element={element} />
         </Tabs.Panel>
 
         <Tabs.Panel value="physical" pt="md">
