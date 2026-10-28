@@ -8,7 +8,7 @@
 // pointer and keyboard selection drive Mantine's applied color scheme, which
 // surfaces as the `data-mantine-color-scheme` attribute on <html>.
 
-import { describe, it, expect, afterEach } from "vitest";
+import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
@@ -17,6 +17,9 @@ import { MantineProvider } from "@mantine/core";
 // returning raw keys.
 import "../../i18n";
 import { ThemeControl } from "../ThemeControl";
+import { createAppColorSchemeManager } from "../../lib/colorSchemeManager";
+
+const STORAGE_KEY = "mantine-color-scheme-value";
 
 afterEach(() => {
   cleanup();
@@ -24,14 +27,18 @@ afterEach(() => {
   // the "defaults to auto with nothing stored" assertion is honest per test.
   window.localStorage.clear();
   document.documentElement.removeAttribute("data-mantine-color-scheme");
+  vi.restoreAllMocks();
 });
 
-// defaultColorScheme="auto" mirrors the app's MantineProvider. With nothing in
-// storage, the control should reflect "auto" (Same as device).
-function renderControl() {
+// Mirrors the app's MantineProvider (defaultColorScheme="auto" + the app's
+// manager). With nothing in storage, the control should reflect "auto".
+function renderControl(onSaveError?: (error: unknown) => void) {
   return render(
-    <MantineProvider defaultColorScheme="auto">
-      <ThemeControl />
+    <MantineProvider
+      defaultColorScheme="auto"
+      colorSchemeManager={createAppColorSchemeManager()}
+    >
+      <ThemeControl onSaveError={onSaveError} />
     </MantineProvider>,
   );
 }
@@ -103,5 +110,41 @@ describe("ThemeControl", () => {
 
     expect(radio("Light").checked).toBe(true);
     await waitFor(() => expect(appliedScheme()).toBe("light"));
+  });
+
+  it("exposes an accessible name", () => {
+    renderControl();
+    expect(
+      screen.getByRole("radiogroup", { name: "Color theme" }),
+    ).toBeInTheDocument();
+  });
+
+  it("persists the selected theme", async () => {
+    const user = userEvent.setup();
+    renderControl();
+    await user.click(radio("Dark"));
+    expect(window.localStorage.getItem(STORAGE_KEY)).toBe("dark");
+  });
+
+  it("falls back to Same as device for an invalid stored value", () => {
+    window.localStorage.setItem(STORAGE_KEY, "chartreuse");
+    renderControl();
+    expect(radio("Same as device").checked).toBe(true);
+  });
+
+  it("does not break selection and fires onSaveError when localStorage.setItem throws", async () => {
+    const user = userEvent.setup();
+    const onSaveError = vi.fn();
+    vi.spyOn(window.localStorage.__proto__, "setItem").mockImplementation(() => {
+      throw new Error("blocked");
+    });
+    renderControl(onSaveError);
+
+    await user.click(radio("Dark"));
+
+    // Selection still applies for the session despite the failed persist.
+    expect(radio("Dark").checked).toBe(true);
+    await waitFor(() => expect(appliedScheme()).toBe("dark"));
+    expect(onSaveError).toHaveBeenCalledTimes(1);
   });
 });

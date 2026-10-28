@@ -229,6 +229,12 @@ describe("LanguageControl", () => {
     await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("fr"));
   });
 
+  it("falls back to System default for an invalid stored value", () => {
+    window.localStorage.setItem(STORAGE_KEY, "klingon");
+    renderControl();
+    expect(radioByValue("system").checked).toBe(true);
+  });
+
   it("does not break selection and fires onSaveError when localStorage.setItem throws", async () => {
     const user = userEvent.setup();
     const onSaveError = vi.fn();

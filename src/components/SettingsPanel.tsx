@@ -9,13 +9,16 @@ import { useTranslation } from "react-i18next";
 import { ThemeControl } from "./ThemeControl";
 import { LanguageControl } from "./LanguageControl";
 
+/** Which preference failed to persist; selects the save-error notice strings. */
+export type SaveErrorKind = "theme" | "language";
+
 interface SettingsPanelProps {
   opened: boolean;
   onClose: () => void;
   returnFocusRef: React.RefObject<HTMLButtonElement | null>;
-  // Forwarded to LanguageControl so a failed language persist surfaces the
-  // save-error notice AppLayout owns.
-  onLanguageSaveError?: (error: unknown) => void;
+  // Fired with the failing preference when a control's persist fails, so
+  // AppLayout can surface its non-blocking save-error notice.
+  onSaveError?: (kind: SaveErrorKind) => void;
 }
 
 // Settings overlay. Mirrors ElementDetail: a centered Modal from the `sm`
@@ -28,7 +31,7 @@ export function SettingsPanel({
   opened,
   onClose,
   returnFocusRef,
-  onLanguageSaveError,
+  onSaveError,
 }: SettingsPanelProps) {
   const { t } = useTranslation("ui");
   const isWide = useMediaQuery("(min-width: 48em)");
@@ -38,11 +41,10 @@ export function SettingsPanel({
     returnFocusRef.current?.focus();
   };
 
-  // Theme first, language stacked beneath it; both full width.
   const content = (
     <Stack gap="md">
-      <ThemeControl />
-      <LanguageControl onSaveError={onLanguageSaveError} />
+      <ThemeControl onSaveError={() => onSaveError?.("theme")} />
+      <LanguageControl onSaveError={() => onSaveError?.("language")} />
     </Stack>
   );
 

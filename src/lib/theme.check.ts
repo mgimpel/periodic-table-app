@@ -7,14 +7,14 @@
 // Run with a TS runner (e.g. `pnpm exec vite-node src/lib/theme.check.ts`).
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
 
-import { normalizeStoredTheme } from "./theme";
+import { normalizeStoredTheme, THEME_OPTIONS } from "./theme";
 
 function assert(cond: boolean, msg: string): void {
   if (!cond) throw new Error(`FAIL: ${msg}`);
 }
 
 // Valid options pass through unchanged.
-for (const opt of ["light", "dark", "auto"] as const) {
+for (const opt of THEME_OPTIONS) {
   const r = normalizeStoredTheme(opt);
   assert(r === opt, `valid option ${opt} should pass through, got ${r}`);
 }

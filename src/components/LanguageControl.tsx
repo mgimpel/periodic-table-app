@@ -16,29 +16,28 @@ import {
 import { persistLanguage, readStoredLanguage } from "../lib/languageManager";
 
 interface LanguageControlProps {
-  // Threaded down from AppLayout via SettingsPanel so a failed persist surfaces
-  // the same non-blocking save-error notice as the theme path.
+  // Fired when persisting the choice fails, so the caller can show a
+  // non-blocking save-error notice.
   onSaveError?: (error: unknown) => void;
 }
 
-// Language picker: "System default" first, then each supported locale, built
-// generically from SUPPORTED_LOCALES so a new locale appears automatically. The
-// selected LanguageOption is React state seeded from the persisted value —
-// i18n.language only ever holds the resolved "en"/"fr" and cannot represent the
-// "system" sentinel, so the option (which persistence owns) is the tracked
-// source of truth. Seeding from readStoredLanguage() keeps a remount drift-free.
+// Language picker: "System default" first, then one option per
+// SUPPORTED_LOCALES entry, so a new locale appears automatically. The state
+// source is local React state seeded from the validated stored value, because
+// i18n.language only holds the resolved locale and can't represent "system".
+// Persistence and failure signalling are explicit here, the same as ThemeControl.
 export function LanguageControl({ onSaveError }: LanguageControlProps) {
   const { t, i18n } = useTranslation("ui");
-  const [option, setOption] = useState<LanguageOption>(readStoredLanguage());
+  const [option, setOption] = useState<LanguageOption>(readStoredLanguage);
 
-  const data = [
-    { value: "system", label: t("language.system") },
-    ...SUPPORTED_LOCALES.map((l) => ({ value: l, label: t(`language.${l}`) })),
-  ];
+  const data = ["system", ...SUPPORTED_LOCALES].map((o) => ({
+    value: o,
+    label: t(`language.${o}`),
+  }));
 
   const onChange = (v: string) => {
     const opt = normalizeStoredLanguage(v);
-    setOption(opt); // guaranteed re-render / selected radio, no reliance on i18next repaint
+    setOption(opt); // applies for the session even if the save fails
     void i18n.changeLanguage(resolveLanguage(opt, navigatorLanguages()));
     persistLanguage(opt, onSaveError); // never throws; fires onSaveError on failure
   };

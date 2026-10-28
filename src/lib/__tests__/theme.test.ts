@@ -7,9 +7,12 @@
 
 import { describe, it, expect } from "vitest";
 import fc from "fast-check";
-import { normalizeStoredTheme, DEFAULT_THEME, type ThemeOption } from "../theme";
-
-const THEME_OPTIONS: ThemeOption[] = ["light", "dark", "auto"];
+import {
+  normalizeStoredTheme,
+  DEFAULT_THEME,
+  THEME_OPTIONS,
+  type ThemeOption,
+} from "../theme";
 
 /**
  * Inputs spanning everything storage (or a tampered store) could hand us:

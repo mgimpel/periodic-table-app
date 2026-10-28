@@ -6,15 +6,15 @@
 // Component/integration tests for AppLayout: activating the Settings_Button
 // opens the panel (3.1); re-activating never spawns a second panel (3.4);
 // opening settings leaves PeriodicTable mounted and keeps a selected element
-// (3.8); and firing the registered save-error handler surfaces the dismissable
-// inline Alert (5.4).
+// (3.8); and a failed theme or language save surfaces the dismissable inline
+// Alert while the choice still applies (5.4).
 //
 // The test-setup matchMedia polyfill defaults matches:false, so every
 // useMediaQuery("(min-width: 48em)") is false and both SettingsPanel and
 // ElementDetail render their mobile Drawer. `env="test"` disables Mantine
 // transitions so open/close is synchronous and deterministic.
 
-import { describe, it, expect, afterEach } from "vitest";
+import { describe, it, expect, afterEach, vi } from "vitest";
 import {
   render,
   screen,
@@ -27,22 +27,28 @@ import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
 // Initialise the shared i18next default instance so the header, save-error
 // Alert, and cell labels resolve to the English resources instead of raw keys.
-import "../../i18n";
+import i18n from "../../i18n";
 import { AppLayout } from "../AppLayout";
+import { createAppColorSchemeManager } from "../../lib/colorSchemeManager";
 
-afterEach(() => {
+afterEach(async () => {
   cleanup();
-  // Mantine's color-scheme state lives on <html> and in storage; reset both.
+  vi.restoreAllMocks();
+  // Mantine's color-scheme state lives on <html> and in storage, and i18next is
+  // a shared singleton; reset all three.
   window.localStorage.clear();
   document.documentElement.removeAttribute("data-mantine-color-scheme");
+  await i18n.changeLanguage("en");
 });
 
-function renderLayout(
-  registerSaveErrorHandler?: (handler: () => void) => void,
-) {
+function renderLayout() {
   return render(
-    <MantineProvider env="test" defaultColorScheme="auto">
-      <AppLayout registerSaveErrorHandler={registerSaveErrorHandler} />
+    <MantineProvider
+      env="test"
+      defaultColorScheme="auto"
+      colorSchemeManager={createAppColorSchemeManager()}
+    >
+      <AppLayout />
     </MantineProvider>,
   );
 }
@@ -107,32 +113,38 @@ describe("AppLayout", () => {
     expect(within(detail).getByText("Hydrogen")).toBeInTheDocument();
   });
 
-  it("surfaces and dismisses the inline save-error Alert (5.4)", async () => {
-    const user = userEvent.setup();
-    let saveErrorHandler: (() => void) | undefined;
-    renderLayout((handler) => {
-      saveErrorHandler = handler;
-    });
+  // Both controls share one save-failure path: a throwing setItem keeps the
+  // choice for the session and surfaces the dismissable inline Alert (5.4).
+  // Options are located by their language-neutral value, and the Alert strings
+  // via i18n.t, because the language case switches the UI to French.
+  it.each([
+    ["theme", "dark"],
+    ["language", "fr"],
+  ])(
+    "surfaces and dismisses the save-error Alert when the %s save fails (5.4)",
+    async (kind, value) => {
+      const user = userEvent.setup();
+      vi.spyOn(window.localStorage.__proto__, "setItem").mockImplementation(() => {
+        throw new Error("blocked");
+      });
+      renderLayout();
+      await user.click(settingsButton());
+      await screen.findByRole("dialog");
 
-    // AppLayout registers its stable handler in a useEffect.
-    expect(saveErrorHandler).toBeDefined();
-    expect(
-      screen.queryByText("Theme preference couldn't be saved"),
-    ).not.toBeInTheDocument();
+      const option = () => screen.getByDisplayValue(value) as HTMLInputElement;
+      await user.click(option());
 
-    // Firing the handler is a state update → wrap in act.
-    act(() => saveErrorHandler!());
-    const alert = screen.getByRole("alert");
-    expect(alert).toHaveTextContent("Theme preference couldn't be saved");
+      // The choice still applies for the session.
+      expect(option().checked).toBe(true);
+      const alert = await screen.findByRole("alert");
+      expect(alert).toHaveTextContent(i18n.t(`ui:saveError.${kind}.title`));
 
-    // The Alert is dismissable: its withCloseButton renders the close button
-    // (accessible name "Dismiss" via closeButtonLabel) inside the alert region.
-    const { getByRole } = within(alert);
-    await user.click(getByRole("button", { name: "Dismiss" }));
-    await waitFor(() =>
-      expect(
-        screen.queryByText("Theme preference couldn't be saved"),
-      ).not.toBeInTheDocument(),
-    );
-  });
+      await user.click(
+        within(alert).getByRole("button", { name: i18n.t("ui:saveError.dismiss") }),
+      );
+      await waitFor(() =>
+        expect(screen.queryByRole("alert")).not.toBeInTheDocument(),
+      );
+    },
+  );
 });

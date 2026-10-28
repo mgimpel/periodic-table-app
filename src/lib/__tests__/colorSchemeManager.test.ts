@@ -3,56 +3,35 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-// Unit tests for createAppColorSchemeManager — the thin wrapper over Mantine's
-// localStorageColorSchemeManager. Covers: persist (5.1), read-back (5.2),
-// invalid-value normalization to auto (5.3), and the save-failure signal (5.4).
+// Unit tests for the theme persistence helpers and the read-only Mantine
+// manager. Covers: persist (5.1), read-back (5.2), invalid/unreadable value
+// normalization to auto (5.3), and the save-failure signal (5.4).
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { createAppColorSchemeManager } from "../colorSchemeManager";
+import {
+  createAppColorSchemeManager,
+  persistTheme,
+  readStoredTheme,
+} from "../colorSchemeManager";
 import { DEFAULT_THEME } from "../theme";
 
-// The localStorage key Mantine's manager uses by default (confirmed against the
-// installed @mantine/core: color-scheme-managers/local-storage-manager).
+// The localStorage key Mantine's manager and ColorSchemeScript use by default.
 const STORAGE_KEY = "mantine-color-scheme-value";
 
-describe("createAppColorSchemeManager", () => {
-  beforeEach(() => {
-    window.localStorage.clear();
-  });
+beforeEach(() => {
+  window.localStorage.clear();
+});
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-    window.localStorage.clear();
-  });
+afterEach(() => {
+  vi.restoreAllMocks();
+  window.localStorage.clear();
+});
 
+describe("persistTheme", () => {
   // Validates: Requirements 5.1
-  it("persists the selected scheme to localStorage under the expected key", () => {
-    const manager = createAppColorSchemeManager();
-
-    manager.set("dark");
-
+  it("persists the selected theme under the expected key", () => {
+    persistTheme("dark");
     expect(window.localStorage.getItem(STORAGE_KEY)).toBe("dark");
-  });
-
-  // Validates: Requirements 5.2
-  it("reads back a valid stored value", () => {
-    window.localStorage.setItem(STORAGE_KEY, "dark");
-    const manager = createAppColorSchemeManager();
-
-    // defaultValue is ignored because a valid value is stored.
-    expect(manager.get("auto")).toBe("dark");
-  });
-
-  // Validates: Requirements 5.3
-  it("resolves a present-but-invalid stored value to auto via normalizeStoredTheme", () => {
-    // A tampered/garbage value that is not one of the three options.
-    window.localStorage.setItem(STORAGE_KEY, "chartreuse");
-    const manager = createAppColorSchemeManager();
-
-    // Even if the caller offers a non-default fallback, an invalid stored value
-    // normalizes to Same_As_Device rather than passing the junk through.
-    expect(manager.get("light")).toBe(DEFAULT_THEME);
-    expect(manager.get("light")).toBe("auto");
   });
 
   // Validates: Requirements 5.4
@@ -62,11 +41,45 @@ describe("createAppColorSchemeManager", () => {
       throw failure;
     });
     const onSaveError = vi.fn();
-    const manager = createAppColorSchemeManager(onSaveError);
 
-    // The session must continue (no throw) and the failure must be signalled.
-    expect(() => manager.set("dark")).not.toThrow();
+    expect(() => persistTheme("dark", onSaveError)).not.toThrow();
     expect(onSaveError).toHaveBeenCalledTimes(1);
     expect(onSaveError).toHaveBeenCalledWith(failure);
+  });
+});
+
+describe("readStoredTheme", () => {
+  // Validates: Requirements 5.2
+  it("reads back a valid stored value", () => {
+    window.localStorage.setItem(STORAGE_KEY, "dark");
+    expect(readStoredTheme()).toBe("dark");
+  });
+
+  // Validates: Requirements 5.3
+  it("resolves a present-but-invalid stored value to auto", () => {
+    window.localStorage.setItem(STORAGE_KEY, "chartreuse");
+    expect(readStoredTheme()).toBe(DEFAULT_THEME);
+  });
+
+  // Validates: Requirements 5.3
+  it("resolves an unreadable store to auto", () => {
+    vi.spyOn(window.localStorage.__proto__, "getItem").mockImplementation(() => {
+      throw new Error("blocked");
+    });
+    expect(readStoredTheme()).toBe("auto");
+  });
+});
+
+describe("createAppColorSchemeManager", () => {
+  it("get returns the validated stored value, ignoring the caller's default", () => {
+    window.localStorage.setItem(STORAGE_KEY, "dark");
+    expect(createAppColorSchemeManager().get("light")).toBe("dark");
+    window.localStorage.setItem(STORAGE_KEY, "chartreuse");
+    expect(createAppColorSchemeManager().get("light")).toBe("auto");
+  });
+
+  it("set does not write (ThemeControl persists via persistTheme)", () => {
+    createAppColorSchemeManager().set("dark");
+    expect(window.localStorage.getItem(STORAGE_KEY)).toBeNull();
   });
 });
