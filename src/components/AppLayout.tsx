@@ -37,7 +37,7 @@ export function AppLayout() {
           color="yellow"
           variant="light"
           withCloseButton
-          closeButtonLabel={t("saveError.dismiss")}
+          closeButtonLabel={t("common.dismiss")}
           onClose={() => setSaveError(null)}
           title={t(`saveError.${saveError}.title`)}
         >

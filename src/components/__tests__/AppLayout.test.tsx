@@ -140,7 +140,7 @@ describe("AppLayout", () => {
       expect(alert).toHaveTextContent(i18n.t(`ui:saveError.${kind}.title`));
 
       await user.click(
-        within(alert).getByRole("button", { name: i18n.t("ui:saveError.dismiss") }),
+        within(alert).getByRole("button", { name: i18n.t("ui:common.dismiss") }),
       );
       await waitFor(() =>
         expect(screen.queryByRole("alert")).not.toBeInTheDocument(),

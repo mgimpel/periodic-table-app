@@ -212,7 +212,7 @@ function DetailBody({ element }: { element: Element }) {
           <SimpleGrid cols={2} spacing="sm">
             <DetailRow
               label={t("ui:detail.field.phase")}
-              value={element.phase}
+              value={t(`ui:phase.${element.phase}`, element.phase)}
             />
             <DetailRow
               label={t("ui:detail.field.density")}

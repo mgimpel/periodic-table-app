@@ -9,7 +9,8 @@
     "title": "Paramètres"
   },
   "common": {
-    "close": "Fermer"
+    "close": "Fermer",
+    "dismiss": "Fermer"
   },
   "theme": {
     "label": "Thème de couleur",
@@ -31,8 +32,7 @@
     "language": {
       "title": "Impossible d'enregistrer la préférence de langue",
       "body": "Votre choix de langue s'applique pour l'instant mais n'a pas pu être enregistré ; il pourrait ne pas être conservé la prochaine fois."
-    },
-    "dismiss": "Fermer"
+    }
   },
   "orientation": {
     "title": "Pivoter pour une vue plus large",
@@ -70,6 +70,11 @@
       "discoveredBy": "Découvert par",
       "namedBy": "Nommé par"
     }
+  },
+  "phase": {
+    "Gas": "Gaz",
+    "Liquid": "Liquide",
+    "Solid": "Solide"
   },
   "cell": {
     "ariaLabel": "{{name}}, numéro atomique {{number}}"

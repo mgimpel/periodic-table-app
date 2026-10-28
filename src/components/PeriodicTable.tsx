@@ -67,6 +67,7 @@ export function PeriodicTable() {
           color="yellow"
           variant="light"
           withCloseButton
+          closeButtonLabel={t("common.dismiss")}
           onClose={() => setNoticeDismissed(true)}
           title={t("orientation.title")}
         >

@@ -10,7 +10,13 @@
 // desktop path, where the notice never shows).
 
 import { describe, it, expect, afterEach, vi } from "vitest";
-import { render, screen, cleanup, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  cleanup,
+  waitFor,
+  fireEvent,
+} from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
 // Initialise the shared i18next default instance so the orientation notice
 // resolves to its English resource text instead of raw keys.
@@ -40,6 +46,17 @@ describe("PeriodicTable orientation notice", () => {
   it("shows the notice when the landscape lock was attempted but denied", () => {
     renderTable();
     expect(screen.getByText("Rotate for a wider view")).toBeInTheDocument();
+  });
+
+  it("has a labelled 'Dismiss' close button that hides the notice", async () => {
+    renderTable();
+    fireEvent.click(screen.getByRole("button", { name: "Dismiss" }));
+
+    await waitFor(() =>
+      expect(
+        screen.queryByText("Rotate for a wider view"),
+      ).not.toBeInTheDocument(),
+    );
   });
 
   it("auto-dismisses the notice when the device rotates", async () => {

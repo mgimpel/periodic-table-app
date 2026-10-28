@@ -29,7 +29,7 @@ import { MantineProvider } from "@mantine/core";
 // Initialise the shared i18next default instance so detail labels, the category
 // badge, and the resource-sourced element name/summary resolve to the English
 // resources instead of raw keys.
-import "../../i18n";
+import i18n from "../../i18n";
 import { ElementDetail } from "../ElementDetail";
 import type { Element, ElementCategory } from "../../data/element";
 import enElements from "../../locales/en/elements.json";
@@ -281,6 +281,21 @@ describe("ElementDetail", () => {
     expect(screen.queryByText("Appearance")).not.toBeInTheDocument();
     expect(screen.queryByText("Discovered by")).not.toBeInTheDocument();
     expect(screen.queryByText("Named by")).not.toBeInTheDocument();
+  });
+
+  it("translates the phase value in French", async () => {
+    await i18n.changeLanguage("fr");
+    try {
+      render(<Harness initial={makeElement()} />);
+      expect(screen.getByText("Solide")).toBeInTheDocument();
+    } finally {
+      await i18n.changeLanguage("en");
+    }
+  });
+
+  it("falls back to the raw phase value when it has no translation", () => {
+    render(<Harness initial={makeElement({ phase: "Plasma" })} />);
+    expect(screen.getByText("Plasma")).toBeInTheDocument();
   });
 
   it("renders the '—' placeholder when group is null (5.9)", () => {
