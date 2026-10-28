@@ -11,6 +11,8 @@ interface ResponsiveOverlayProps {
   opened: boolean;
   onClose: () => void;
   title?: React.ReactNode;
+  // A caller that renders its own labelled close control can opt out.
+  withCloseButton?: boolean;
   children: React.ReactNode;
 }
 
@@ -21,6 +23,7 @@ export function ResponsiveOverlay({
   opened,
   onClose,
   title,
+  withCloseButton = true,
   children,
 }: ResponsiveOverlayProps) {
   const { t } = useTranslation("ui");
@@ -29,6 +32,7 @@ export function ResponsiveOverlay({
     opened,
     onClose,
     title,
+    withCloseButton,
     closeButtonProps: { "aria-label": t("common.close") },
   };
 

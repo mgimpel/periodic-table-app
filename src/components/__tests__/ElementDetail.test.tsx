@@ -497,6 +497,44 @@ describe("ElementDetail", () => {
     );
   });
 
+  for (const [branch, wide] of [
+    ["Drawer", false],
+    ["wide Modal", true],
+  ] as const) {
+    it(`${branch}: has exactly one close button, in the header after the badge, which closes the overlay`, async () => {
+      if (wide) useWideViewport();
+      const user = userEvent.setup();
+      const onClose = vi.fn();
+      render(<Harness initial={makeElement()} onClose={onClose} />);
+
+      const dialog = screen.getByRole("dialog");
+      const buttons = within(dialog).getAllByRole("button", {
+        name: enUi.common.close,
+      });
+      expect(buttons).toHaveLength(1);
+      const button = buttons[0];
+
+      // The overlay's built-in close button is opted out.
+      expect(
+        document.querySelector(".mantine-Modal-close, .mantine-Drawer-close"),
+      ).toBeNull();
+
+      // Same header row as the category badge, and after it in DOM order.
+      const badge = within(dialog).getByText(enUi.category["transition-metal"]);
+      expect(button.parentElement).toContainElement(badge);
+      expect(
+        badge.compareDocumentPosition(button) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+
+      await user.click(button);
+      expect(onClose).toHaveBeenCalled();
+      await waitFor(() =>
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+      );
+    });
+  }
+
   it("closes the wide Modal when Escape is pressed (1.5, 1.7)", async () => {
     useWideViewport();
     const user = userEvent.setup();

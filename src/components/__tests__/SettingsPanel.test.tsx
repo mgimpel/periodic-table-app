@@ -123,6 +123,10 @@ describe("SettingsPanel", () => {
     const trigger = screen.getByRole("button", { name: "Open settings" });
     await openPanel(user);
 
+    // SettingsPanel keeps the overlay's built-in close button.
+    expect(
+      document.querySelector(".mantine-Modal-close, .mantine-Drawer-close"),
+    ).not.toBeNull();
     await user.click(screen.getByRole("button", { name: "Close" }));
 
     await waitFor(() =>

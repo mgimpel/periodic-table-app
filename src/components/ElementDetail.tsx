@@ -6,6 +6,7 @@
 import {
   Badge,
   Box,
+  CloseButton,
   Group,
   Image,
   ModalBaseTitle,
@@ -117,11 +118,17 @@ function DetailRow({
   );
 }
 
-function DetailBody({ element }: { element: Element }) {
+function DetailBody({
+  element,
+  onClose,
+}: {
+  element: Element;
+  onClose: () => void;
+}) {
   const { t } = useTranslation(["elements", "ui"]);
   return (
     <Stack gap="md">
-      <Group gap="sm" align="center">
+      <Group gap="sm" align="center" wrap="nowrap">
         <Box
           w={32}
           h={32}
@@ -135,7 +142,7 @@ function DetailBody({ element }: { element: Element }) {
             {element.symbol}
           </Text>
         </Box>
-        <Group gap="xs" align="center">
+        <Group gap="xs" align="center" flex={1} miw={0}>
           <Text span c="dimmed">
             {element.atomicNumber}
           </Text>
@@ -155,6 +162,12 @@ function DetailBody({ element }: { element: Element }) {
             {t(`ui:category.${element.category}`)}
           </Badge>
         </Group>
+        <CloseButton
+          onClick={onClose}
+          aria-label={t("ui:common.close")}
+          ml="auto"
+          style={{ flexShrink: 0 }}
+        />
       </Group>
 
       <Tabs
@@ -292,12 +305,17 @@ function DetailBody({ element }: { element: Element }) {
 }
 
 // Detail view for the selected element, in the shared ResponsiveOverlay
-// (Drawer on mobile, Modal on desktop; both with a close button, overlay click
-// and Esc). No overlay title: DetailBody's header names the dialog.
+// (Drawer on mobile, Modal on desktop). No overlay title or built-in close
+// button: DetailBody's header names the dialog and holds the close button after
+// the category badge. Overlay click and Esc still dismiss.
 export function ElementDetail({ element, onClose }: ElementDetailProps) {
   return (
-    <ResponsiveOverlay opened={element !== null} onClose={onClose}>
-      {element && <DetailBody element={element} />}
+    <ResponsiveOverlay
+      opened={element !== null}
+      onClose={onClose}
+      withCloseButton={false}
+    >
+      {element && <DetailBody element={element} onClose={onClose} />}
     </ResponsiveOverlay>
   );
 }
