@@ -90,6 +90,7 @@ function ElectronShellDiagram({ element }: { element: Element }) {
   const svg = buildElectronShellDiagram(
     element.atomicNumber,
     element.symbol,
+    element.name,
     element.electronConfigurationSemantic,
     element.shells,
     CATEGORY_COLORS[element.category],

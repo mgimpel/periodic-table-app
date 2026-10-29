@@ -51,6 +51,7 @@ function buildShellsMarkup(shells: number[]): string {
 export function buildElectronShellDiagram(
   atomicNumber: number,
   symbol: string,
+  name: string,
   electronConfiguration: string,
   shells: number[],
   color: string
@@ -65,7 +66,8 @@ export function buildElectronShellDiagram(
   const electronConf = electronConfiguration;
 
   return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-viewBox="-${size} -${size} ${viewSize} ${viewSize}" width="${dimension}" height="${dimension}">
+viewBox="-${size} -${size} ${viewSize} ${viewSize}" width="${dimension}" height="${dimension}"
+role="img" aria-label="Electron Shell Diagram of ${name}">
 <circle fill="${color}" r="${NUCLEUS_RADIUS}" stroke="#404040" stroke-width="8"/>
 <text x="0" y="-100" font-size="50" font-weight="bold" font="arial" text-anchor="middle">${atomicNumber}</text>
 <text x="0" y="50" font-size="150" font-weight="bold" font="arial" text-anchor="middle">${symbol}</text>

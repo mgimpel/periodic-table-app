@@ -12,7 +12,7 @@ import assert from "node:assert/strict";
 import { buildElectronShellDiagram } from "./electronShellDiagram";
 
 // (1) Geometry/header for a two-shell element. size = 300 + 100*2 = 500.
-const svg = buildElectronShellDiagram(3,"Li","1s2 2s1",[2, 1],"#00ffa0");
+const svg = buildElectronShellDiagram(3,"Li","Lithium","1s2 2s1",[2, 1],"#00ffa0");
 
 assert(
   svg.includes('viewBox="-500 -500 1000 1000"'),
@@ -29,6 +29,8 @@ assert(
 assert(svg.includes(">3</text>"), "atomic number should render");
 assert(svg.includes(">Li</text>"), "symbol should render");
 assert(svg.includes(">1s2 2s1</text>"), "electron configuration should render");
+assert(svg.includes("role=\"img\""), "SVG should have role");
+assert(svg.includes("aria-label="), "SVG should have aria-label");
 
 // (2) Shell markup must be byte-identical to the reference Python output.
 // shells=[2,1]: inner orbit r=300 with 2 electrons (top + rotate(180)),
@@ -48,19 +50,20 @@ assert(
 // (3) Degree truncation matches Python int(): shell of 3 → angle 120, dots at
 // rotate(120) and rotate(240) (both already integers); shell of 7 → angle
 // 51.428..., so i=1 → trunc 51, i=2 → trunc 102.
-const s3 = buildElectronShellDiagram(1, "X", "x", [3], "grey");
+const s3 = buildElectronShellDiagram(1, "X", "X", "x", [3], "grey");
 assert(s3.includes('transform="rotate(120)"'), "3-shell: 120deg dot");
 assert(s3.includes('transform="rotate(240)"'), "3-shell: 240deg dot");
 
-const s7 = buildElectronShellDiagram(1, "X", "x", [7], "grey");
+const s7 = buildElectronShellDiagram(1, "X", "X", "x", [7], "grey");
 assert(s7.includes('transform="rotate(51)"'), "7-shell: trunc(51.42)=51");
 assert(s7.includes('transform="rotate(102)"'), "7-shell: trunc(102.85)=102");
 assert(!s7.includes('transform="rotate(52)"'), "7-shell: must truncate, not round");
+assert(!s7.includes('transform="rotate(103)"'), "7-shell: must truncate, not round");
 
 // (6) Empty shells is rejected — a diagram needs at least one shell.
 let threw = false;
 try {
-  buildElectronShellDiagram(1, "X", "x", [], "grey");
+  buildElectronShellDiagram(1, "X", "X", "x", [], "grey");
 } catch {
   threw = true;
 }
