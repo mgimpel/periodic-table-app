@@ -33,10 +33,17 @@
    * actinide f-block on rows 9-10), so collapse it to a thin spacer instead
    * of a full cell-height gap. */
   --spacer-row: 12px;
+  /* Thin first row carrying the CAS group labels (I A, II A, ...) that sit
+   * directly above column 1 (H) and column 18 (He). Labels for the other
+   * columns live in the empty element-rows above their first element. */
+  --group-label-row: 12px;
   display: grid;
   grid-template-columns: repeat(18, var(--cell-size));
-  /* Rows 1-7 and 9-10 are full cell height; row 8 is the empty spacer. */
+  /* Row 1 is the thin group-label row; rows 2-8 are periods 1-7 (full cell
+   * height); row 9 is the empty spacer; rows 10-11 are the lanthanide/
+   * actinide f-block. Element ypos (1-based period) maps to ypos + 1. */
   grid-template-rows:
+    var(--group-label-row)
     repeat(7, var(--cell-size))
     var(--spacer-row)
     repeat(2, var(--cell-size));
@@ -107,7 +114,7 @@
  * displace an element cell. */
 .legend {
   grid-column: 3 / span 10;
-  grid-row: 1 / span 2;
+  grid-row: 2 / span 2;
   overflow: hidden;
   min-width: 0;
   min-height: 0;
@@ -159,4 +166,18 @@
   color: var(--mantine-color-text);
   grid-column: 1 / -1;
   text-align: center;
+}
+
+/* CAS group label (I A, II A, ... VIII A) above a column's first element.
+ * The parent places each in the grid cell directly above the first element of
+ * its column (an empty cell), and we align the small text to the bottom so it
+ * sits right on top of that element. As grid items of .grid they inherit the
+ * fit-scale transform, so the labels scale with the table. */
+.groupLabel {
+  align-self: end;
+  justify-self: center;
+  font-size: 9px;
+  line-height: 1;
+  color: var(--mantine-color-dimmed);
+  pointer-events: none;
 }

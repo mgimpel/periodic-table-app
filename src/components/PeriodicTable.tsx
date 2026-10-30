@@ -8,6 +8,7 @@ import { Alert, Box, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { ELEMENTS, type Element } from "../data/elements";
 import { ElementCell } from "./ElementCell";
+import { GroupLabels } from "./GroupLabels";
 import { SchemeLegend } from "./SchemeLegend";
 import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
@@ -70,6 +71,7 @@ export function PeriodicTable({
           style={{ "--fit-scale": scale } as React.CSSProperties}
         >
           <SchemeLegend scheme={coloringScheme} temperatureUnit={temperatureUnit} />
+          <GroupLabels />
           {ELEMENTS.map((element) => (
             <ElementCell
               key={element.atomicNumber}

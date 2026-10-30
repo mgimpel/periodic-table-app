@@ -37,7 +37,9 @@ export function ElementCell({ element, onSelect, symbolOnly = false, color }: El
       })}
       style={{
         gridColumnStart: element.xpos,
-        gridRowStart: element.ypos,
+        // +1: grid row 1 is the group-label row, so period N sits on row N+1
+        // (see PeriodicTable.module.css grid-template-rows).
+        gridRowStart: element.ypos + 1,
         backgroundColor: color,
       }}
       onClick={() => onSelect(element)}
