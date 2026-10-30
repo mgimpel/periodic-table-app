@@ -70,7 +70,10 @@ describe("SchemeLegend category scheme (discrete)", () => {
   it("renders exactly one swatch per category in canonical order with the localized label and CATEGORY_COLORS swatch", () => {
     renderLegend("category");
     const legend = screen.getByRole("group", { name: groupName });
-    const entries = Array.from(legend.children) as HTMLElement[];
+    // The group's first child is the <h3> title; entries are the labeled rows.
+    const entries = Array.from(
+      legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
+    );
 
     // One entry per category key, no extras or omissions.
     expect(entries).toHaveLength(CATEGORY_KEYS.length);
@@ -106,7 +109,10 @@ describe("SchemeLegend phase scheme (discrete)", () => {
   it("renders exactly four swatches in fixed PHASE_KEYS order with the localized label and PHASE_COLORS swatch", () => {
     renderLegend("phase");
     const legend = screen.getByRole("group", { name: groupName });
-    const entries = Array.from(legend.children) as HTMLElement[];
+    // The group's first child is the <h3> title; entries are the labeled rows.
+    const entries = Array.from(
+      legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
+    );
 
     // Exactly four: solid, liquid, gas, unknown.
     expect(entries).toHaveLength(PHASE_KEYS.length);
