@@ -37,6 +37,15 @@ export function SchemeLegend({
 }) {
   const { t } = useTranslation("ui");
 
+  const schemeTitle =
+    scheme === "category"
+      ? t("legend.categoryTitle")
+      : scheme === "phase"
+      ? t("legend.phaseTitle")
+      : scheme === "melting-point"
+      ? t("legend.meltingPointTitle")
+      : t("legend.boilingPointTitle");
+
   if (scheme === "melting-point" || scheme === "boiling-point") {
     return (
       <div
@@ -44,6 +53,7 @@ export function SchemeLegend({
         role="group"
         aria-label={t("legend.groupLabel")}
       >
+        <h3 className={gradientClasses.legendTitle}>{schemeTitle}</h3>
         <div className={gradientClasses.gradient}>
           <div
             className={gradientClasses.gradientBar}
@@ -91,6 +101,7 @@ export function SchemeLegend({
       role="group"
       aria-label={t("legend.groupLabel")}
     >
+      <h3 className={classes.legendTitle}>{schemeTitle}</h3>
       {entries.map(({ key, color, label }) => (
         <div
           key={key}

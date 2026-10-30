@@ -62,7 +62,11 @@
     "body": "Dieses Gerät lässt sich nicht im Querformat sperren. Drehen Sie es ins Querformat, um eine größere, besser lesbare Tabelle zu sehen."
   },
   "legend": {
-    "groupLabel": "Legende der Elementkategorien"
+    "groupLabel": "Legende der Elementkategorien",
+    "categoryTitle": "Kategorie",
+    "phaseTitle": "Aggregatzustand",
+    "meltingPointTitle": "Schmelzpunkt",
+    "boilingPointTitle": "Siedepunkt"
   },
   "detail": {
     "sections": "Abschnitte der Elementdetails",

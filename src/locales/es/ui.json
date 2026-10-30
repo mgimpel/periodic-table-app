@@ -62,7 +62,11 @@
     "body": "Este dispositivo no se bloquea en horizontal. Gíralo a horizontal para ver una tabla más grande y fácil de leer."
   },
   "legend": {
-    "groupLabel": "Leyenda de categorías de elementos"
+    "groupLabel": "Leyenda de categorías de elementos",
+    "categoryTitle": "Categoría",
+    "phaseTitle": "Estado",
+    "meltingPointTitle": "Punto de fusión",
+    "boilingPointTitle": "Punto de ebullición"
   },
   "detail": {
     "sections": "Secciones de detalle del elemento",

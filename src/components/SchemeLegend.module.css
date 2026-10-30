@@ -34,6 +34,14 @@
   margin-top: 4px;
 }
 
+/* Title above the gradient legend. */
+.legendTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--mantine-color-text);
+}
+
 /* Match the discrete legend's .legendLabel sizing so both legend forms share
  * one visual weight at every fit scale. */
 .gradientLabel {

@@ -62,7 +62,11 @@
     "body": "Cet appareil ne se verrouille pas en mode paysage. Faites-le pivoter en mode paysage pour un tableau plus grand et plus lisible."
   },
   "legend": {
-    "groupLabel": "Légende des catégories d'éléments"
+    "groupLabel": "Légende des catégories d'éléments",
+    "categoryTitle": "Catégorie",
+    "phaseTitle": "État",
+    "meltingPointTitle": "Point de fusion",
+    "boilingPointTitle": "Point d'ébullition"
   },
   "detail": {
     "sections": "Sections de détail de l'élément",

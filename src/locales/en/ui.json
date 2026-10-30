@@ -62,7 +62,11 @@
     "body": "This device won't lock to landscape. Rotate it to landscape for a larger, easier-to-read table."
   },
   "legend": {
-    "groupLabel": "Element category legend"
+    "groupLabel": "Element category legend",
+    "categoryTitle": "Category",
+    "phaseTitle": "Phase",
+    "meltingPointTitle": "Melting point",
+    "boilingPointTitle": "Boiling point"
   },
   "detail": {
     "sections": "Element detail sections",
