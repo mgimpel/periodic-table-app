@@ -31,8 +31,8 @@ export const MISSING_VALUE_COLOR = "#cfd8dc";
  */
 export const GRADIENT_STOPS = [
   { k: 0, rgb: [33, 102, 172] }, // blue
-  { k: 273, rgb: [247, 247, 247] }, // white
-  { k: 1000, rgb: [253, 174, 97] }, // orange
+  { k: 373, rgb: [247, 247, 247] }, // white
+  { k: 1273, rgb: [253, 174, 97] }, // orange
   { k: DATASET_MAX, rgb: [178, 24, 43] }, // red
 ] as const;
 
@@ -53,7 +53,7 @@ export function temperatureColor(kelvin: number): string {
     if (kelvin <= hi.k) {
       const lo = GRADIENT_STOPS[i - 1];
       // hi.k > lo.k here: kelvin > first.k on the first pass, and each later
-      // stop is strictly greater than the previous (273 < 1000 < DATASET_MAX).
+      // stop is strictly greater than the previous (373 < 1273 < DATASET_MAX).
       const t = (kelvin - lo.k) / (hi.k - lo.k);
       return rgb([
         Math.round(lo.rgb[0] + (hi.rgb[0] - lo.rgb[0]) * t),
