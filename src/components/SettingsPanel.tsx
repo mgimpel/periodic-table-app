@@ -8,11 +8,17 @@ import { useTranslation } from "react-i18next";
 import { ThemeControl } from "./ThemeControl";
 import { LanguageControl } from "./LanguageControl";
 import { TemperatureControl } from "./TemperatureControl";
+import { ColoringSchemeControl } from "./ColoringSchemeControl";
 import { ResponsiveOverlay } from "./ResponsiveOverlay";
 import type { TemperatureOption } from "../lib/temperature";
+import type { ColoringSchemeOption } from "../lib/coloringScheme";
 
 /** Which preference failed to persist; selects the save-error notice strings. */
-export type SaveErrorKind = "theme" | "language" | "temperature";
+export type SaveErrorKind =
+  | "theme"
+  | "language"
+  | "temperature"
+  | "coloringScheme";
 
 interface SettingsPanelProps {
   opened: boolean;
@@ -24,6 +30,9 @@ interface SettingsPanelProps {
   // The temperature unit is owned by AppLayout because ElementDetail reads it.
   temperatureUnit: TemperatureOption;
   onTemperatureUnitChange: (unit: TemperatureOption) => void;
+  // The coloring scheme is owned by AppLayout because PeriodicTable reads it.
+  coloringScheme: ColoringSchemeOption;
+  onColoringSchemeChange: (option: ColoringSchemeOption) => void;
 }
 
 // Settings overlay, shown in the shared ResponsiveOverlay (Drawer on mobile,
@@ -38,6 +47,8 @@ export function SettingsPanel({
   onSaveError,
   temperatureUnit,
   onTemperatureUnitChange,
+  coloringScheme,
+  onColoringSchemeChange,
 }: SettingsPanelProps) {
   const { t } = useTranslation("ui");
 
@@ -59,6 +70,11 @@ export function SettingsPanel({
           value={temperatureUnit}
           onChange={onTemperatureUnitChange}
           onSaveError={() => onSaveError?.("temperature")}
+        />
+        <ColoringSchemeControl
+          value={coloringScheme}
+          onChange={onColoringSchemeChange}
+          onSaveError={() => onSaveError?.("coloringScheme")}
         />
       </Stack>
     </ResponsiveOverlay>

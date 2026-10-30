@@ -5,7 +5,7 @@
 
 import { UnstyledButton, Text } from "@mantine/core";
 import { useTranslation } from "react-i18next";
-import { CATEGORY_COLORS, type Element } from "../data/element";
+import { type Element } from "../data/element";
 import classes from "./PeriodicTable.module.css";
 
 interface ElementCellProps {
@@ -15,12 +15,15 @@ interface ElementCellProps {
   // legibility at small fit-scales. The aria-label and affordances are
   // unchanged, so selection stays identical in both modes.
   symbolOnly?: boolean;
+  // Resolved cell background color, computed by the parent from the active
+  // coloring scheme (see src/lib/cellColor.ts).
+  color: string;
 }
 
 // One tappable element cell. Position-agnostic: the parent grid applies
 // gridColumn/gridRow. Uses an UnstyledButton so it is keyboard- and
 // touch-accessible with a comfortable minimum tap target (see CSS module).
-export function ElementCell({ element, onSelect, symbolOnly = false }: ElementCellProps) {
+export function ElementCell({ element, onSelect, symbolOnly = false, color }: ElementCellProps) {
   const { t } = useTranslation(["elements", "ui"]);
   // Translated name: reused for both the visible text and the accessible label
   // so a French cell never carries an English name in either.
@@ -35,7 +38,7 @@ export function ElementCell({ element, onSelect, symbolOnly = false }: ElementCe
       style={{
         gridColumnStart: element.xpos,
         gridRowStart: element.ypos,
-        backgroundColor: CATEGORY_COLORS[element.category],
+        backgroundColor: color,
       }}
       onClick={() => onSelect(element)}
     >

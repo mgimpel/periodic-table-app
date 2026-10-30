@@ -1,0 +1,44 @@
+/* Copyright (C) 2026 Marc Gimpel.
+ * This file is part of the Periodic Table App project
+ * (https://github.com/mgimpel/periodic-table-app).
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+/* Gradient legend for the melting-point / boiling-point coloring schemes.
+ * Shares the .legend grid cell placement (columns 3-12, rows 1-3) from
+ * PeriodicTable.module.css, so it inherits the table's fit-scale transform and
+ * scales with the table. The discrete (category / phase) legend path reuses the
+ * .legend* classes from PeriodicTable.module.css directly. */
+
+/* Wraps the bar + labels. .legend is a 2-col x 5-row grid; span both columns so
+ * the bar fills the region width, and vertically center it in the short region.
+ * .legend already supplies the 24px horizontal padding, so don't re-pad here —
+ * the bar then aligns with the content box of the discrete legend swatches. */
+.gradient {
+  grid-column: 1 / -1;
+  align-self: center;
+}
+
+/* The blue->white->orange->red bar. The background gradient is set inline by
+ * SchemeLegend from GRADIENT_STOPS positioned at (k / DATASET_MAX) * 100% so the
+ * visual bar matches the computed cell colors from temperatureColor. */
+.gradientBar {
+  height: 16px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+/* Endpoint labels (min at the left, max at the right) under the bar. */
+.gradientLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+/* Match the discrete legend's .legendLabel sizing so both legend forms share
+ * one visual weight at every fit scale. */
+.gradientLabel {
+  font-size: 14px;
+  line-height: 1.1;
+  color: var(--mantine-color-text);
+  white-space: nowrap;
+}

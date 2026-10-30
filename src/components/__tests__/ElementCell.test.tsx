@@ -23,12 +23,22 @@ afterEach(cleanup);
 const carbon = getElementByNumber(6)!;
 const expectedLabel = `${carbon.name}, atomic number ${carbon.atomicNumber}`;
 
+// A known, unambiguous color the parent would resolve from the active scheme.
+// jsdom normalizes any CSS color to its rgb() form, so assert against that.
+const TEST_COLOR = "rgb(1, 2, 3)";
+
 // Mantine components (UnstyledButton/Text) read theme context from a provider.
 function renderCell(props: Partial<Parameters<typeof ElementCell>[0]> = {}) {
   const onSelect = props.onSelect ?? vi.fn();
+  const color = props.color ?? TEST_COLOR;
   render(
     <MantineProvider>
-      <ElementCell element={carbon} onSelect={onSelect} symbolOnly={props.symbolOnly} />
+      <ElementCell
+        element={carbon}
+        onSelect={onSelect}
+        symbolOnly={props.symbolOnly}
+        color={color}
+      />
     </MantineProvider>,
   );
   return { onSelect };
@@ -62,6 +72,11 @@ describe("ElementCell", () => {
     expect(full).toBe(expectedLabel);
     expect(symbolOnly).toBe(expectedLabel);
     expect(full).toBe(symbolOnly);
+  });
+
+  it("applies the provided color as the cell background", () => {
+    renderCell({ color: "rgb(10, 20, 30)" });
+    expect(screen.getByRole("button")).toHaveStyle({ backgroundColor: "rgb(10, 20, 30)" });
   });
 
   it("fires onSelect with the element when clicked", () => {

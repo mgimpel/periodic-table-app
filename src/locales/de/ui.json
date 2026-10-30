@@ -32,6 +32,13 @@
     "celsius": "Celsius",
     "fahrenheit": "Fahrenheit"
   },
+  "coloringScheme": {
+    "label": "Farbgebungsschema",
+    "category": "Kategorie",
+    "phase": "Aggregatzustand",
+    "melting-point": "Schmelzpunkt",
+    "boiling-point": "Siedepunkt"
+  },
   "saveError": {
     "theme": {
       "title": "Farbschema konnte nicht gespeichert werden",
@@ -44,6 +51,10 @@
     "temperature": {
       "title": "Temperatureinheit konnte nicht gespeichert werden",
       "body": "Die gewählte Temperatureinheit gilt vorerst, konnte aber nicht gespeichert werden und wird beim nächsten Start möglicherweise nicht übernommen."
+    },
+    "coloringScheme": {
+      "title": "Farbgebungsschema konnte nicht gespeichert werden",
+      "body": "Das gewählte Farbgebungsschema gilt vorerst, konnte aber nicht gespeichert werden und wird beim nächsten Start möglicherweise nicht übernommen."
     }
   },
   "orientation": {
@@ -87,7 +98,11 @@
   "phase": {
     "Gas": "Gasförmig",
     "Liquid": "Flüssig",
-    "Solid": "Fest"
+    "Solid": "Fest",
+    "solid": "Fest",
+    "liquid": "Flüssig",
+    "gas": "Gasförmig",
+    "unknown": "Unbekannt"
   },
   "cell": {
     "ariaLabel": "{{name}}, Ordnungszahl {{number}}"

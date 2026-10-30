@@ -32,6 +32,8 @@ import { AppLayout } from "../AppLayout";
 import { createAppColorSchemeManager } from "../../lib/colorSchemeManager";
 import { formatTemperature } from "../../lib/temperature";
 import { getElementByNumber } from "../../data/elements";
+import { cellColor, PHASE_KEYS } from "../../lib/cellColor";
+import { CATEGORY_COLORS } from "../../data/element";
 import enUi from "../../locales/en/ui.json";
 
 afterEach(async () => {
@@ -178,4 +180,79 @@ describe("AppLayout", () => {
       );
     },
   );
+
+  // Req 1.7: on startup AppLayout resolves the stored coloring scheme through
+  // the Coloring_Scheme_Manager and both colors the cells and renders the
+  // matching legend. Seed the real STORAGE_KEY so the readStoredColoringScheme
+  // path runs for real (no mock).
+  it("colors cells and renders the legend per the stored scheme on startup (1.7)", () => {
+    // Oxygen (Gas) is a clean discriminator: its phase color differs from its
+    // category color, so a phase-colored startup is observable on one cell.
+    const oxygen = getElementByNumber(8)!;
+    expect(cellColor("phase", oxygen)).not.toBe(
+      CATEGORY_COLORS[oxygen.category],
+    );
+
+    window.localStorage.setItem("app-coloring-scheme", "phase");
+    renderLayout();
+
+    // The legend swapped to the four-swatch phase form (distinct from the ten
+    // category swatches), proving the stored scheme drives the legend.
+    const legend = screen.getByRole("group", {
+      name: enUi.legend.groupLabel,
+    });
+    const swatches = legend.querySelectorAll('span[style*="background-color"]');
+    expect(swatches).toHaveLength(PHASE_KEYS.length);
+    expect(within(legend).getByText(enUi.phase.solid)).toBeInTheDocument();
+
+    // And a sampled cell is colored by the phase scheme, not its category.
+    const oxygenCell = screen.getByRole("button", {
+      name: "Oxygen, atomic number 8",
+    });
+    expect(oxygenCell).toHaveStyle({
+      backgroundColor: cellColor("phase", oxygen),
+    });
+  });
+
+  // Req 6.6 + 6.7: a throwing setItem keeps the chosen coloring scheme for the
+  // session (the table recolors / legend swaps) and surfaces the dismissable
+  // save-error notice, mirroring the theme/language/temperature path above.
+  it("applies the coloring scheme for the session and shows the notice when the save fails (6.6, 6.7)", async () => {
+    const user = userEvent.setup();
+    const oxygen = getElementByNumber(8)!;
+    vi.spyOn(window.localStorage.__proto__, "setItem").mockImplementation(() => {
+      throw new Error("blocked");
+    });
+    // Default (category) at startup; select Phase in settings.
+    renderLayout();
+
+    const oxygenCell = () =>
+      screen.getByRole("button", { name: "Oxygen, atomic number 8" });
+    expect(oxygenCell()).toHaveStyle({
+      backgroundColor: cellColor("category", oxygen),
+    });
+
+    await user.click(settingsButton());
+    await screen.findByRole("dialog");
+    await user.click(screen.getByDisplayValue("phase"));
+
+    // Req 6.6: the scheme applies for the session despite the failed save —
+    // the cell recolors to the phase color and the legend swaps form.
+    expect(
+      (screen.getByDisplayValue("phase") as HTMLInputElement).checked,
+    ).toBe(true);
+    expect(oxygenCell()).toHaveStyle({
+      backgroundColor: cellColor("phase", oxygen),
+    });
+    const legend = screen.getByRole("group", {
+      name: enUi.legend.groupLabel,
+    });
+    expect(
+      legend.querySelectorAll('span[style*="background-color"]'),
+    ).toHaveLength(PHASE_KEYS.length);
+
+    // Req 6.7: the save-error notice appears with the coloringScheme strings.
+    const alert = await screen.findByRole("alert");
+    expect(alert).toHaveTextContent(enUi.saveError.coloringScheme.title);
+  });
 });

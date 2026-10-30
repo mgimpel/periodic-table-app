@@ -8,10 +8,15 @@ import { Alert, Box, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { ELEMENTS, type Element } from "../data/elements";
 import { ElementCell } from "./ElementCell";
-import { CategoryLegend } from "./CategoryLegend";
+import { SchemeLegend } from "./SchemeLegend";
 import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
 import { useOrientationLock } from "../hooks/useOrientationLock";
+import { cellColor } from "../lib/cellColor";
+import {
+  DEFAULT_COLORING_SCHEME,
+  type ColoringSchemeOption,
+} from "../lib/coloringScheme";
 import { DEFAULT_TEMPERATURE, type TemperatureOption } from "../lib/temperature";
 import classes from "./PeriodicTable.module.css";
 
@@ -25,8 +30,10 @@ import classes from "./PeriodicTable.module.css";
 // a CSS transform, so the whole table shrinks to fit. symbolOnly drops the
 // number/name when cells get too small to read.
 export function PeriodicTable({
+  coloringScheme = DEFAULT_COLORING_SCHEME,
   temperatureUnit = DEFAULT_TEMPERATURE,
 }: {
+  coloringScheme?: ColoringSchemeOption;
   temperatureUnit?: TemperatureOption;
 }) {
   const { t } = useTranslation("ui");
@@ -62,13 +69,14 @@ export function PeriodicTable({
           ref={gridRef}
           style={{ "--fit-scale": scale } as React.CSSProperties}
         >
-          <CategoryLegend />
+          <SchemeLegend scheme={coloringScheme} temperatureUnit={temperatureUnit} />
           {ELEMENTS.map((element) => (
             <ElementCell
               key={element.atomicNumber}
               element={element}
               onSelect={setSelected}
               symbolOnly={symbolOnly}
+              color={cellColor(coloringScheme, element)}
             />
           ))}
         </Box>

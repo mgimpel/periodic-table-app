@@ -32,6 +32,13 @@
     "celsius": "Celsius",
     "fahrenheit": "Fahrenheit"
   },
+  "coloringScheme": {
+    "label": "Coloring scheme",
+    "category": "Category",
+    "phase": "Phase",
+    "melting-point": "Melting point",
+    "boiling-point": "Boiling point"
+  },
   "saveError": {
     "theme": {
       "title": "Theme preference couldn't be saved",
@@ -44,6 +51,10 @@
     "temperature": {
       "title": "Temperature unit preference couldn't be saved",
       "body": "Your temperature unit choice applies for now but couldn't be saved, so it may not be remembered next time."
+    },
+    "coloringScheme": {
+      "title": "Coloring scheme preference couldn't be saved",
+      "body": "Your coloring scheme choice applies for now but couldn't be saved, so it may not be remembered next time."
     }
   },
   "orientation": {
@@ -87,7 +98,11 @@
   "phase": {
     "Gas": "Gas",
     "Liquid": "Liquid",
-    "Solid": "Solid"
+    "Solid": "Solid",
+    "solid": "Solid",
+    "liquid": "Liquid",
+    "gas": "Gas",
+    "unknown": "Unknown"
   },
   "cell": {
     "ariaLabel": "{{name}}, atomic number {{number}}"

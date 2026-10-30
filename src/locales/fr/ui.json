@@ -32,6 +32,13 @@
     "celsius": "Celsius",
     "fahrenheit": "Fahrenheit"
   },
+  "coloringScheme": {
+    "label": "Schéma de coloration",
+    "category": "Catégorie",
+    "phase": "État",
+    "melting-point": "Point de fusion",
+    "boiling-point": "Point d'ébullition"
+  },
   "saveError": {
     "theme": {
       "title": "Impossible d'enregistrer la préférence de thème",
@@ -44,6 +51,10 @@
     "temperature": {
       "title": "Impossible d'enregistrer la préférence d'unité de température",
       "body": "Votre choix d'unité de température s'applique pour l'instant mais n'a pas pu être enregistré ; il pourrait ne pas être conservé la prochaine fois."
+    },
+    "coloringScheme": {
+      "title": "Impossible d'enregistrer la préférence de schéma de coloration",
+      "body": "Votre choix de schéma de coloration s'applique pour l'instant mais n'a pas pu être enregistré ; il pourrait ne pas être conservé la prochaine fois."
     }
   },
   "orientation": {
@@ -87,7 +98,11 @@
   "phase": {
     "Gas": "Gaz",
     "Liquid": "Liquide",
-    "Solid": "Solide"
+    "Solid": "Solide",
+    "solid": "Solide",
+    "liquid": "Liquide",
+    "gas": "Gaz",
+    "unknown": "Inconnu"
   },
   "cell": {
     "ariaLabel": "{{name}}, numéro atomique {{number}}"

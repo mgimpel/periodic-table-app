@@ -22,6 +22,8 @@ import { MantineProvider } from "@mantine/core";
 import "../../i18n";
 import { SettingsPanel } from "../SettingsPanel";
 import type { TemperatureOption } from "../../lib/temperature";
+import type { ColoringSchemeOption } from "../../lib/coloringScheme";
+import { COLORING_SCHEME_OPTIONS } from "../../lib/coloringScheme";
 import enUi from "../../locales/en/ui.json";
 
 afterEach(() => {
@@ -37,6 +39,7 @@ afterEach(() => {
 function Harness() {
   const [opened, setOpened] = useState(false);
   const [unit, setUnit] = useState<TemperatureOption>("kelvin");
+  const [scheme, setScheme] = useState<ColoringSchemeOption>("category");
   const triggerRef = useRef<HTMLButtonElement>(null);
   return (
     <MantineProvider env="test" defaultColorScheme="auto">
@@ -49,6 +52,8 @@ function Harness() {
         returnFocusRef={triggerRef}
         temperatureUnit={unit}
         onTemperatureUnitChange={setUnit}
+        coloringScheme={scheme}
+        onColoringSchemeChange={setScheme}
       />
     </MantineProvider>
   );
@@ -107,6 +112,46 @@ describe("SettingsPanel", () => {
     ]) {
       expect(within(group).getByRole("radio", { name: label })).toBeInTheDocument();
     }
+  });
+
+  it("renders the coloring scheme control with its four options (1.1)", async () => {
+    const user = userEvent.setup();
+    render(<Harness />);
+
+    await openPanel(user);
+
+    const group = screen.getByRole("radiogroup", {
+      name: enUi.coloringScheme.label,
+    });
+    const radios = within(group).getAllByRole("radio") as HTMLInputElement[];
+    expect(radios.map((r) => r.value)).toEqual([...COLORING_SCHEME_OPTIONS]);
+    for (const option of COLORING_SCHEME_OPTIONS) {
+      expect(
+        within(group).getByRole("radio", { name: enUi.coloringScheme[option] }),
+      ).toBeInTheDocument();
+    }
+  });
+
+  it("selecting a coloring scheme option drives onColoringSchemeChange and reflects the new value", async () => {
+    const user = userEvent.setup();
+    render(<Harness />);
+
+    await openPanel(user);
+
+    const group = screen.getByRole("radiogroup", {
+      name: enUi.coloringScheme.label,
+    });
+    // Category is the harness's initial value; selecting Phase flows through
+    // onColoringSchemeChange back into the controlled value.
+    expect(
+      (within(group).getByDisplayValue("category") as HTMLInputElement).checked,
+    ).toBe(true);
+    await user.click(
+      within(group).getByRole("radio", { name: enUi.coloringScheme.phase }),
+    );
+    expect(
+      (within(group).getByDisplayValue("phase") as HTMLInputElement).checked,
+    ).toBe(true);
   });
 
   it("closes and returns focus to the trigger when Escape is pressed (3.5, 3.7, 6.9)", async () => {

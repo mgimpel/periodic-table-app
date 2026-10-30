@@ -69,7 +69,11 @@ function renderControlWithCell() {
     <I18nextProvider i18n={i18n}>
       <MantineProvider>
         <LanguageControl />
-        <ElementCell element={hydrogen} onSelect={vi.fn()} />
+        <ElementCell
+          element={hydrogen}
+          onSelect={vi.fn()}
+          color="rgb(1, 2, 3)"
+        />
       </MantineProvider>
     </I18nextProvider>,
   );
@@ -114,8 +118,14 @@ describe("LanguageControl", () => {
               returnFocusRef={settingsRef}
               temperatureUnit="kelvin"
               onTemperatureUnitChange={noop}
+              coloringScheme="category"
+              onColoringSchemeChange={noop}
             />
-            <ElementCell element={hydrogen} onSelect={vi.fn()} />
+            <ElementCell
+              element={hydrogen}
+              onSelect={vi.fn()}
+              color="rgb(1, 2, 3)"
+            />
           </MantineProvider>
         </I18nextProvider>,
       );
@@ -167,8 +177,14 @@ describe("LanguageControl", () => {
             returnFocusRef={settingsRef}
             temperatureUnit="kelvin"
             onTemperatureUnitChange={noop}
+            coloringScheme="category"
+            onColoringSchemeChange={noop}
           />
-          <ElementCell element={hydrogen} onSelect={vi.fn()} />
+          <ElementCell
+            element={hydrogen}
+            onSelect={vi.fn()}
+            color="rgb(1, 2, 3)"
+          />
         </MantineProvider>
       </I18nextProvider>,
     );

@@ -27,6 +27,14 @@ import { MantineProvider } from "@mantine/core";
 import "../../i18n";
 import { PeriodicTable } from "../PeriodicTable";
 import { getElementByNumber } from "../../data/elements";
+import {
+  cellColor,
+  phaseBucket,
+  PHASE_COLORS,
+  PHASE_KEYS,
+} from "../../lib/cellColor";
+import { CATEGORY_COLORS, CATEGORY_KEYS } from "../../data/element";
+import uiStrings from "../../locales/en/ui.json";
 
 // ResizeObserver and matchMedia ("not wide", so the detail is the bottom
 // Drawer) come from the shared polyfills in src/test-setup.ts.
@@ -45,12 +53,25 @@ function cellFor(e: { name: string; atomicNumber: number }) {
   return screen.getByRole("button", { name: labelFor(e) });
 }
 
-function renderTable() {
+function renderTable(
+  props: Partial<Parameters<typeof PeriodicTable>[0]> = {},
+) {
   return render(
     <MantineProvider>
-      <PeriodicTable />
+      <PeriodicTable {...props} />
     </MantineProvider>,
   );
+}
+
+// The legend's accessible group name (same key the former CategoryLegend used),
+// read from the locale JSON rather than hard-coded.
+const LEGEND_GROUP_NAME = uiStrings.legend.groupLabel;
+
+// Discrete legend swatches carry an inline background-color; the gradient bar
+// does not (it uses background-image). Counting them tells the two legend forms
+// apart without asserting on CSS-module class names.
+function legendSwatchCount(legend: HTMLElement) {
+  return legend.querySelectorAll('span[style*="background-color"]').length;
 }
 
 describe("PeriodicTable selection after scaling", () => {
@@ -140,7 +161,7 @@ describe("PeriodicTable selection after scaling", () => {
   });
 });
 
-describe("PeriodicTable in-grid category legend", () => {
+describe("PeriodicTable in-grid scheme legend", () => {
   // Validates: Requirements 1.5, 4.5, 5.1, 5.2
 
   it("renders exactly one legend, inside the grid, with none above the viewport", () => {
@@ -148,7 +169,7 @@ describe("PeriodicTable in-grid category legend", () => {
 
     // Exactly one legend instance (no above-grid duplicate) (Req 5.1, 5.2).
     const legends = screen.getAllByRole("group", {
-      name: "Element category legend",
+      name: LEGEND_GROUP_NAME,
     });
     expect(legends).toHaveLength(1);
     const legend = legends[0];
@@ -177,5 +198,70 @@ describe("PeriodicTable in-grid category legend", () => {
     // (what Enter/Space dispatch on a native button) opens the detail (Req 4.5).
     cell.focus();
     expect(document.activeElement).toBe(cell);
+  });
+});
+
+describe("PeriodicTable coloring scheme drives cells and legend", () => {
+  // Validates: Requirements 1.2, 1.3, 1.5
+
+  // Oxygen is a clean discriminator: its category color (reactive-nonmetal)
+  // and its phase color (Gas) differ, so recoloring is observable on the same
+  // cell. Pulled from the real dataset, not a fixture.
+  const sample = oxygen;
+
+  it("uses the category default when coloringScheme is omitted", () => {
+    // Req 1.5: no prop → the Default_Scheme (category).
+    renderTable();
+
+    // The legend renders the category discrete form: one swatch per category.
+    const legend = screen.getByRole("group", { name: LEGEND_GROUP_NAME });
+    expect(legendSwatchCount(legend)).toBe(CATEGORY_KEYS.length);
+    // A canonical category label is present (localized, not the raw key).
+    expect(
+      within(legend).getByText(uiStrings.category["alkali-metal"]),
+    ).toBeInTheDocument();
+
+    // The sampled cell is colored by its category (= the default scheme).
+    const cell = cellFor(sample);
+    expect(cell).toHaveStyle({ backgroundColor: cellColor("category", sample) });
+    expect(cell).toHaveStyle({
+      backgroundColor: CATEGORY_COLORS[sample.category],
+    });
+  });
+
+  it("recolors cells and swaps the legend to the phase form for coloringScheme='phase'", () => {
+    // Req 1.2 (recolor) + 1.3 (legend updates).
+    renderTable({ coloringScheme: "phase" });
+
+    // Cell background now follows the phase color, distinct from its category
+    // color for this element.
+    const cell = cellFor(sample);
+    const phaseColor = PHASE_COLORS[phaseBucket(sample.phase)];
+    expect(cell).toHaveStyle({ backgroundColor: phaseColor });
+    expect(cellColor("phase", sample)).toBe(phaseColor);
+    // Sanity: category vs phase really differ for the sampled element, so the
+    // recolor assertion above isn't vacuously true.
+    expect(phaseColor).not.toBe(CATEGORY_COLORS[sample.category]);
+
+    // Legend swapped to the four-swatch phase form, distinct from category's
+    // ten swatches.
+    const legend = screen.getByRole("group", { name: LEGEND_GROUP_NAME });
+    expect(legendSwatchCount(legend)).toBe(PHASE_KEYS.length);
+    expect(PHASE_KEYS.length).not.toBe(CATEGORY_KEYS.length);
+    expect(
+      within(legend).getByText(uiStrings.phase.solid),
+    ).toBeInTheDocument();
+  });
+
+  it("swaps the legend to the gradient-bar form for a gradient scheme", () => {
+    // Req 1.3: gradient schemes show the gradient bar, not discrete swatches.
+    renderTable({ coloringScheme: "melting-point" });
+
+    const legend = screen.getByRole("group", { name: LEGEND_GROUP_NAME });
+    // No discrete swatches; instead a single bar painted with a background
+    // gradient (inline background-image) lives inside the legend.
+    expect(legendSwatchCount(legend)).toBe(0);
+    const bar = legend.querySelector('div[style*="linear-gradient"]');
+    expect(bar).not.toBeNull();
   });
 });
