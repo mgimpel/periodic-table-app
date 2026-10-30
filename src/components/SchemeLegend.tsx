@@ -53,7 +53,7 @@ export function SchemeLegend({
         role="group"
         aria-label={t("legend.groupLabel")}
       >
-        <h3 className={gradientClasses.legendTitle}>{schemeTitle}</h3>
+        <h3 className={classes.legendTitle}>{schemeTitle}</h3>
         <div className={gradientClasses.gradient}>
           <div
             className={gradientClasses.gradientBar}
