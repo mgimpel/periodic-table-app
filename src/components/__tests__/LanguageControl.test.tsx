@@ -8,9 +8,20 @@
 // language change exercises react-i18next's live re-render across the whole tree
 // — the control, a visible chrome string, and a rendered element name — rather
 // than being asserted by assumption.
+//
+// LanguageControl is a Mantine Select (dropdown): the combobox input shows the
+// current localized label; opening it reveals a listbox whose options carry a
+// language-neutral `value` attribute (system|en|fr|es|de) and a translated
+// label. Because selecting a non-English option flips the whole app (including
+// the control's own aria-label and the visible labels) to that locale, the
+// helpers locate the combobox and its options by language-neutral means — the
+// combobox is the sole one on screen, the current option by the Select's hidden
+// input value, and each option by its `value` attribute — so assertions survive
+// the live switch. This mirrors the old SegmentedControl test, which located
+// radios by `value` for the same reason.
 
 import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
-import { render, screen, cleanup, waitFor } from "@testing-library/react";
+import { render, screen, cleanup, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
 import { I18nextProvider } from "react-i18next";
@@ -20,6 +31,7 @@ import { SettingsPanel } from "../SettingsPanel";
 import { ElementCell } from "../ElementCell";
 import { ElementDetail } from "../ElementDetail";
 import { getElementByNumber } from "../../data/elements";
+import { LANGUAGE_OPTIONS } from "../../lib/language";
 import enElements from "../../locales/en/elements.json";
 import enUi from "../../locales/en/ui.json";
 import esUi from "../../locales/es/ui.json";
@@ -33,7 +45,7 @@ const hydrogen = getElementByNumber(1)!;
 
 // The i18next instance is a shared singleton; reset storage and locale around
 // every test so each starts from a known English baseline and no test leaks a
-// French locale into a sibling (design review NIT 1).
+// non-English locale into a sibling (design review NIT 1).
 beforeEach(async () => {
   window.localStorage.clear();
   await i18n.changeLanguage("en");
@@ -46,16 +58,10 @@ afterEach(async () => {
   vi.restoreAllMocks();
 });
 
-// Locate a SegmentedControl option by its language-neutral `value` attribute
-// (system|en|fr|es|de) rather than its translated label, so assertions survive a
-// live language switch that changes the visible radio labels.
-const radioByValue = (value: string) =>
-  screen.getByDisplayValue(value) as HTMLInputElement;
-
 function renderControl(onSaveError?: (error: unknown) => void) {
   return render(
     <I18nextProvider i18n={i18n}>
-      <MantineProvider>
+      <MantineProvider env="test">
         <LanguageControl onSaveError={onSaveError} />
       </MantineProvider>
     </I18nextProvider>,
@@ -67,7 +73,7 @@ function renderControl(onSaveError?: (error: unknown) => void) {
 function renderControlWithCell() {
   return render(
     <I18nextProvider i18n={i18n}>
-      <MantineProvider>
+      <MantineProvider env="test">
         <LanguageControl />
         <ElementCell
           element={hydrogen}
@@ -79,25 +85,53 @@ function renderControlWithCell() {
   );
 }
 
-const radio = (label: string) =>
-  screen.getByRole("radio", { name: label }) as HTMLInputElement;
+// The sole combobox on screen, located without a name so the lookup survives a
+// live locale flip of the aria-label.
+const select = () => screen.getByRole("combobox") as HTMLInputElement;
+
+// The current LanguageOption, read from the Select's language-neutral hidden
+// input rather than the translated visible value.
+const currentOption = () =>
+  (document.querySelector('input[type="hidden"]') as HTMLInputElement).value;
+
+// Open the dropdown and click the option whose language-neutral `value`
+// attribute matches, so the click target is stable across locales.
+const selectLanguage = async (
+  user: ReturnType<typeof userEvent.setup>,
+  value: LanguageOption,
+) => {
+  await user.click(select());
+  const listbox = await screen.findByRole("listbox");
+  const option = listbox.querySelector(
+    `[role="option"][value="${value}"]`,
+  ) as HTMLElement;
+  await user.click(option);
+};
+
+type LanguageOption = (typeof LANGUAGE_OPTIONS)[number];
 
 describe("LanguageControl", () => {
-  it("renders System default then every locale in order, one selected, defaulting to System default", () => {
+  it("renders System default then every locale in order, defaulting to System default", async () => {
+    const user = userEvent.setup();
     renderControl();
 
-    const values = ["system", "en", "fr", "es", "de"] as const;
-    const radios = screen.getAllByRole("radio") as HTMLInputElement[];
-    expect(radios).toHaveLength(values.length);
-    // Order matters: System default first, then the registered locales.
-    expect(radios.map((r) => r.getAttribute("value") ?? "")).toEqual([...values]);
-    for (const v of values) {
-      expect(radio(enUi.language[v])).toBeInTheDocument();
-    }
+    // Current value shows System default by default.
+    expect(currentOption()).toBe("system");
+    expect(select().value).toBe(enUi.language.system);
 
-    const checked = radios.filter((r) => r.checked);
-    expect(checked).toHaveLength(1);
-    expect(radio(enUi.language.system).checked).toBe(true);
+    await user.click(select());
+    const listbox = await screen.findByRole("listbox");
+    const options = Array.from(
+      listbox.querySelectorAll('[role="option"]'),
+    ) as HTMLElement[];
+    // Order matters: System default first, then the registered locales.
+    expect(options.map((o) => o.getAttribute("value"))).toEqual([
+      ...LANGUAGE_OPTIONS,
+    ]);
+    // Labels are the translated strings (English baseline here).
+    expect(options.map((o) => o.textContent)).toEqual(
+      LANGUAGE_OPTIONS.map((v) => enUi.language[v]),
+    );
   });
 
   it.each([
@@ -111,7 +145,7 @@ describe("LanguageControl", () => {
       const settingsRef = { current: null } as React.RefObject<HTMLButtonElement | null>;
       render(
         <I18nextProvider i18n={i18n}>
-          <MantineProvider>
+          <MantineProvider env="test">
             <SettingsPanel
               opened
               onClose={noop}
@@ -128,7 +162,7 @@ describe("LanguageControl", () => {
         </I18nextProvider>,
       );
 
-      await user.click(radioByValue(locale));
+      await selectLanguage(user, locale);
 
       await waitFor(() => expect(i18n.language).toBe(locale));
       expect(window.localStorage.getItem(STORAGE_KEY)).toBe(locale);
@@ -141,22 +175,11 @@ describe("LanguageControl", () => {
     },
   );
 
-  it("supports vertical keyboard (ArrowDown) selection", async () => {
-    const user = userEvent.setup();
-    renderControl();
-
-    radioByValue("fr").focus();
-    await user.keyboard("{ArrowDown}");
-
-    expect(radioByValue("es").checked).toBe(true);
-    await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("es"));
-  });
-
   it("exposes an accessible name", () => {
     renderControl();
-    // SegmentedControl renders a radiogroup carrying the aria-label.
+    // From the English baseline the combobox carries the localized label.
     expect(
-      screen.getByRole("radiogroup", { name: "Language" }),
+      screen.getByRole("combobox", { name: enUi.language.label }),
     ).toBeInTheDocument();
   });
 
@@ -165,10 +188,10 @@ describe("LanguageControl", () => {
     const noop = vi.fn();
     const settingsRef = { current: null } as React.RefObject<HTMLButtonElement | null>;
     // SettingsPanel already hosts a LanguageControl; drive the switch through it
-    // (no extra standalone control) so there is a single fr radio to click.
+    // (no extra standalone control) so there is a single language Select to open.
     render(
       <I18nextProvider i18n={i18n}>
-        <MantineProvider>
+        <MantineProvider env="test">
           <SettingsPanel
             opened
             onClose={noop}
@@ -191,7 +214,7 @@ describe("LanguageControl", () => {
     expect(screen.getByText("H")).toBeInTheDocument();
     expect(screen.getByText("1")).toBeInTheDocument();
 
-    await user.click(radioByValue("fr"));
+    await selectLanguage(user, "fr");
 
     await waitFor(() => expect(i18n.language).toBe("fr"));
     // Persisted the LanguageOption (not the resolved locale).
@@ -213,7 +236,7 @@ describe("LanguageControl", () => {
     renderControlWithCell();
 
     expect(screen.getByText("Hydrogen")).toBeInTheDocument();
-    await user.click(radioByValue("fr"));
+    await selectLanguage(user, "fr");
     await waitFor(() =>
       expect(screen.getByText("Hydrogène")).toBeInTheDocument(),
     );
@@ -225,7 +248,7 @@ describe("LanguageControl", () => {
     const user = userEvent.setup();
     render(
       <I18nextProvider i18n={i18n}>
-        <MantineProvider>
+        <MantineProvider env="test">
           <LanguageControl />
           <ElementDetail element={hydrogen} onClose={vi.fn()} />
         </MantineProvider>
@@ -236,7 +259,7 @@ describe("LanguageControl", () => {
     // rendered in the panel; the summary Text is always present).
     expect(screen.getByText(enElements.summary["1"])).toBeInTheDocument();
 
-    await user.click(radioByValue("fr"));
+    await selectLanguage(user, "fr");
     await waitFor(() => expect(i18n.language).toBe("fr"));
 
     // No French summary exists, so i18next falls back to the English string —
@@ -251,7 +274,7 @@ describe("LanguageControl", () => {
     const user = userEvent.setup();
     const { unmount } = renderControl();
 
-    await user.click(radioByValue("fr"));
+    await selectLanguage(user, "fr");
     await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("fr"));
 
     unmount();
@@ -259,49 +282,27 @@ describe("LanguageControl", () => {
 
     renderControl();
     // Re-seeded from readStoredLanguage(): still French, not reset to System default.
-    expect(radioByValue("fr").checked).toBe(true);
+    expect(currentOption()).toBe("fr");
   });
 
   it("selecting System default persists 'system'", async () => {
     const user = userEvent.setup();
     renderControl();
 
-    await user.click(radioByValue("fr"));
+    await selectLanguage(user, "fr");
     await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("fr"));
 
-    await user.click(radioByValue("system"));
+    await selectLanguage(user, "system");
     await waitFor(() =>
       expect(window.localStorage.getItem(STORAGE_KEY)).toBe("system"),
     );
-    expect(radioByValue("system").checked).toBe(true);
-  });
-
-  it("supports keyboard (arrow) selection", async () => {
-    const user = userEvent.setup();
-    renderControl();
-
-    radioByValue("system").focus();
-    await user.keyboard("{ArrowRight}");
-
-    expect(radioByValue("en").checked).toBe(true);
-    await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("en"));
-  });
-
-  it("supports keyboard (Space) selection", async () => {
-    const user = userEvent.setup();
-    renderControl();
-
-    radioByValue("fr").focus();
-    await user.keyboard(" ");
-
-    expect(radioByValue("fr").checked).toBe(true);
-    await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("fr"));
+    expect(currentOption()).toBe("system");
   });
 
   it("falls back to System default for an invalid stored value", () => {
     window.localStorage.setItem(STORAGE_KEY, "klingon");
     renderControl();
-    expect(radioByValue("system").checked).toBe(true);
+    expect(currentOption()).toBe("system");
   });
 
   it("does not break selection and fires onSaveError when localStorage.setItem throws", async () => {
@@ -312,11 +313,11 @@ describe("LanguageControl", () => {
     });
 
     renderControl(onSaveError);
-    await user.click(radioByValue("fr"));
+    await selectLanguage(user, "fr");
 
     // Selection still applies for the session despite the failed persist.
     await waitFor(() => expect(i18n.language).toBe("fr"));
-    expect(radioByValue("fr").checked).toBe(true);
+    expect(currentOption()).toBe("fr");
     expect(onSaveError).toHaveBeenCalledTimes(1);
   });
 });

@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { useState } from "react";
-import { SegmentedControl } from "@mantine/core";
+import { Select } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import {
   LANGUAGE_OPTIONS,
@@ -26,8 +26,9 @@ interface LanguageControlProps {
 // source is local React state seeded from the validated stored value, because
 // i18n.language only holds the resolved locale and can't represent "system".
 // Persistence and failure signalling are explicit here, the same as ThemeControl.
-// Vertical: five options (e.g. "Predeterminado del sistema") don't fit one row
-// of a narrow mobile drawer; native radios keep arrow-key navigation.
+// Rendered as a Select (dropdown) so all options fit a narrow mobile drawer
+// regardless of their translated length. Non-clearable / non-searchable so it
+// stays a plain dropdown and always has a value.
 export function LanguageControl({ onSaveError }: LanguageControlProps) {
   const { t, i18n } = useTranslation("ui");
   const [option, setOption] = useState<LanguageOption>(readStoredLanguage);
@@ -37,7 +38,8 @@ export function LanguageControl({ onSaveError }: LanguageControlProps) {
     label: t(`language.${o}`),
   }));
 
-  const onChange = (v: string) => {
+  const onChange = (v: string | null) => {
+    // allowDeselect={false} keeps v non-null, but normalize guards anyway.
     const opt = normalizeStoredLanguage(v);
     setOption(opt); // applies for the session even if the save fails
     void i18n.changeLanguage(resolveLanguage(opt, navigatorLanguages()));
@@ -45,13 +47,14 @@ export function LanguageControl({ onSaveError }: LanguageControlProps) {
   };
 
   return (
-    <SegmentedControl
+    <Select
       value={option}
       onChange={onChange}
       data={data}
       aria-label={t("language.label")}
-      orientation="vertical"
-      fullWidth
+      allowDeselect={false}
+      searchable={false}
+      comboboxProps={{ withinPortal: true }}
     />
   );
 }

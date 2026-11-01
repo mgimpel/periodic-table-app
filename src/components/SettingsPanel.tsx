@@ -3,7 +3,7 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-import { Stack } from "@mantine/core";
+import { Input, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { ThemeControl } from "./ThemeControl";
 import { LanguageControl } from "./LanguageControl";
@@ -35,6 +35,10 @@ interface SettingsPanelProps {
 // restores focus to the previously-focused
 // element by default, which is the trigger button; `returnFocusRef` is applied
 // explicitly so focus lands there even if focus moved while the panel was open.
+//
+// Each setting gets a visible title via Input.Wrapper, reusing the control's
+// own `*.label` i18n string so the title and the control's accessible name stay
+// in sync. Input.Wrapper associates the label with the field for assistive tech.
 export function SettingsPanel({
   opened,
   onClose,
@@ -56,14 +60,20 @@ export function SettingsPanel({
       onClose={handleClose}
       title={t("settings.title")}
     >
-      <Stack gap="md">
-        <ThemeControl onSaveError={() => onSaveError?.("theme")} />
-        <LanguageControl onSaveError={() => onSaveError?.("language")} />
-        <TemperatureControl
-          value={temperatureUnit}
-          onChange={onTemperatureUnitChange}
-          onSaveError={() => onSaveError?.("temperature")}
-        />
+      <Stack gap="lg">
+        <Input.Wrapper label={t("theme.label")}>
+          <ThemeControl onSaveError={() => onSaveError?.("theme")} />
+        </Input.Wrapper>
+        <Input.Wrapper label={t("language.label")}>
+          <LanguageControl onSaveError={() => onSaveError?.("language")} />
+        </Input.Wrapper>
+        <Input.Wrapper label={t("temperature.label")}>
+          <TemperatureControl
+            value={temperatureUnit}
+            onChange={onTemperatureUnitChange}
+            onSaveError={() => onSaveError?.("temperature")}
+          />
+        </Input.Wrapper>
       </Stack>
     </ResponsiveOverlay>
   );
