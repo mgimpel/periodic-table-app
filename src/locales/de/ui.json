@@ -73,7 +73,6 @@
   },
   "detail": {
     "sections": "Abschnitte der Elementdetails",
-    "noDescription": "Keine Beschreibung verfügbar.",
     "shellDiagramAlt": "Elektronenschalendiagramm von {{name}}",
     "imageAlt": "Foto von {{name}}",
     "spectrumAlt": "Emissionsspektrum von {{name}}",
@@ -103,9 +102,6 @@
     }
   },
   "phase": {
-    "Gas": "Gasförmig",
-    "Liquid": "Flüssig",
-    "Solid": "Fest",
     "solid": "Fest",
     "liquid": "Flüssig",
     "gas": "Gasförmig",

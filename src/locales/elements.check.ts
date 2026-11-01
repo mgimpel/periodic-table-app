@@ -10,13 +10,13 @@
 // Guards two invariants (the single enforcement point for both):
 //   (1) en/elements.json equals the dataset — every name.<n> matches ELEMENTS
 //       and every summary.<n> is a present non-empty string, with no stray keys.
-//   (2) CATEGORY_KEYS contains exactly the keys of CATEGORY_COLORS.
-//   (3) Every locale in `resources` has exactly en's ui.json key set (same
+//   (2) Every locale in `resources` has exactly en's ui.json key set (same
 //       {{…}} tokens, non-empty values) and a name for each of the 118 elements.
+// (The CATEGORY_KEYS ↔ CATEGORY_COLORS invariant is now enforced at compile time
+// by `Record<ElementCategory, string>` in src/data/element.ts.)
 
 import assert from "node:assert/strict";
 import { ELEMENTS } from "../data/elements";
-import { CATEGORY_COLORS, CATEGORY_KEYS } from "../data/element";
 import enElements from "./en/elements.json";
 import { resources } from "./index";
 
@@ -50,22 +50,7 @@ for (const map of [names, summaries]) {
   }
 }
 
-// (2) CATEGORY_KEYS has exactly the keys of CATEGORY_COLORS.
-const colorKeys = Object.keys(CATEGORY_COLORS);
-assert(
-  CATEGORY_KEYS.length === colorKeys.length,
-  `CATEGORY_KEYS has ${CATEGORY_KEYS.length} entries, CATEGORY_COLORS has ${colorKeys.length}`,
-);
-const categorySet = new Set<string>(CATEGORY_KEYS);
-assert(
-  categorySet.size === CATEGORY_KEYS.length,
-  "CATEGORY_KEYS contains duplicates",
-);
-for (const k of colorKeys) {
-  assert(categorySet.has(k), `CATEGORY_KEYS missing category "${k}"`);
-}
-
-// (3) Every registered locale is in parity with en.
+// (2) Every registered locale is in parity with en.
 const flatKeys = (obj: object, prefix = ""): Map<string, unknown> =>
   new Map(
     Object.entries(obj).flatMap(([k, v]) =>
@@ -117,5 +102,5 @@ for (const [locale, res] of Object.entries(resources)) {
 }
 
 console.log(
-  `ok: ${ELEMENTS.length} element resources validated, ${CATEGORY_KEYS.length} categories in sync, ${Object.keys(resources).length} locales in parity`,
+  `ok: ${ELEMENTS.length} element resources validated, ${Object.keys(resources).length} locales in parity`,
 );

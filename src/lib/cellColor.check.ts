@@ -17,7 +17,8 @@ import {
   spectralCellColor,
 } from "./cellColor";
 import { electronegativityColor } from "./electronegativityGradient";
-import { MISSING_VALUE_COLOR, temperatureColor } from "./temperatureGradient";
+import { MISSING_VALUE_COLOR } from "./gradient";
+import { temperatureColor } from "./temperatureGradient";
 import { CATEGORY_COLORS } from "../data/element";
 import { ELEMENTS } from "../data/elements";
 

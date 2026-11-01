@@ -6,13 +6,12 @@
 // THE locale registry — the single source of truth for which locales exist.
 //
 // ADD A LOCALE: create src/locales/<xx>/ui.json and src/locales/<xx>/elements.json
-// (copy the en files and translate; elements.json needs at least all name.*,
-// category.* labels live in ui.json, summaries fall back to English
-// automatically), add one import pair
-// below and one entry to `resources`, and add the human language name under
-// ui:language.<xx> in each language file. Nothing else — SUPPORTED_LOCALES,
-// LanguageOption, the LanguageControl option list, and resolveLanguage's accepted
-// set all derive from here. See README.md.
+// (copy the en files and translate; elements.json needs at least every name.*
+// entry — category labels live in ui.json, and summaries fall back to English
+// automatically). Then add one import pair below, one entry to `resources`, and
+// the human language name under ui:language.<xx> in each ui.json. Nothing else:
+// SUPPORTED_LOCALES, SupportedLocale, the LanguageControl option list, and
+// resolveLanguage's accepted set all derive from `resources`. See README.md.
 
 import enUi from "./en/ui.json";
 import enElements from "./en/elements.json";

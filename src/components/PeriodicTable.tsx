@@ -12,6 +12,7 @@ import { GroupLabels } from "./GroupLabels";
 import { SchemeLegend } from "./SchemeLegend";
 import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
+import { NATURAL_CELL_PX } from "../lib/fitScale";
 import { useOrientationLock } from "../hooks/useOrientationLock";
 import { cellColor } from "../lib/cellColor";
 import {
@@ -68,7 +69,12 @@ export function PeriodicTable({
         <Box
           className={classes.grid}
           ref={gridRef}
-          style={{ "--fit-scale": scale } as React.CSSProperties}
+          style={
+            {
+              "--fit-scale": scale,
+              "--cell-size": `${NATURAL_CELL_PX}px`,
+            } as React.CSSProperties
+          }
         >
           <SchemeLegend scheme={coloringScheme} temperatureUnit={temperatureUnit} />
           <GroupLabels />

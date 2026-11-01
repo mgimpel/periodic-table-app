@@ -47,6 +47,23 @@ export function interpolateStops(stops: readonly Stop[], x: number): string {
   return rgb(last.rgb);
 }
 
+/**
+ * Build the CSS `linear-gradient(to right, …)` string for a set of `stops`,
+ * each positioned at ((x - first.x) / (last.x - first.x)) * 100% so the visual
+ * bar matches the per-cell interpolation above. Reuses the private `rgb()`
+ * formatter so the swatch bar and the cell colors share one color syntax.
+ */
+export function linearGradientCss(stops: readonly Stop[]): string {
+  const first = stops[0];
+  const last = stops[stops.length - 1];
+  const span = last.x - first.x;
+  return `linear-gradient(to right, ${stops
+    .map(
+      (stop) => `${rgb(stop.rgb)} ${((stop.x - first.x) / span) * 100}%`,
+    )
+    .join(", ")})`;
+}
+
 function rgb(channels: readonly number[]): string {
   return `rgb(${channels[0]}, ${channels[1]}, ${channels[2]})`;
 }

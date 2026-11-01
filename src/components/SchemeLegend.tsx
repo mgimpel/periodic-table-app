@@ -3,6 +3,7 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
+import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { CATEGORY_COLORS, CATEGORY_KEYS } from "../data/element";
 import {
@@ -17,7 +18,7 @@ import {
   DATASET_MIN_EN,
   EN_STOPS,
 } from "../lib/electronegativityGradient";
-import type { Stop } from "../lib/gradient";
+import { linearGradientCss, type Stop } from "../lib/gradient";
 import {
   formatTemperature,
   type TemperatureOption,
@@ -26,8 +27,35 @@ import {
   DATASET_MAX,
   GRADIENT_STOPS,
 } from "../lib/temperatureGradient";
-import gradientClasses from "./SchemeLegend.module.css";
-import classes from "./PeriodicTable.module.css";
+import classes from "./SchemeLegend.module.css";
+
+// The three discrete schemes draw one swatch per key: their i18n label prefix
+// equals the scheme name (t(`category.${key}`), t(`phase.${key}`),
+// t(`origin.${key}`)), so one lookup covers all three.
+const DISCRETE = {
+  category: [CATEGORY_KEYS, CATEGORY_COLORS],
+  phase: [PHASE_KEYS, PHASE_COLORS],
+  origin: [ORIGIN_KEYS, ORIGIN_COLORS],
+} as const;
+
+// The repeated legend frame: a labelled group with the scheme title and the
+// scheme-specific body (discrete swatches, gradient bar, or the spectral note).
+function LegendFrame({
+  title,
+  groupLabel,
+  children,
+}: {
+  title: string;
+  groupLabel: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className={classes.legend} role="group" aria-label={groupLabel}>
+      <h3 className={classes.legendTitle}>{title}</h3>
+      {children}
+    </div>
+  );
+}
 
 // Scheme-aware color key rendered as a grid item placed in the table's empty
 // top-center region (see .legend in PeriodicTable.module.css), so it scales
@@ -37,10 +65,11 @@ import classes from "./PeriodicTable.module.css";
 // with the table rather than being dropped when cells fall back to symbol-only,
 // so the key stays legible at every scale.
 //
-// This generalizes the former CategoryLegend: the category branch preserves its
-// behavior exactly, and phase / origin discrete legends, melting-point /
-// boiling-point / electronegativity gradients, and the spectral-colour
-// explanatory legend are added.
+// The legend adapts to the active scheme: the category, phase and origin
+// schemes render discrete swatches with labels; the melting-point, boiling-point
+// and electronegativity schemes render a gradient bar with endpoint labels; and
+// the spectral-colour scheme renders an explanatory note (each cell already
+// shows its own element's spectral colour).
 export function SchemeLegend({
   scheme,
   temperatureUnit,
@@ -96,62 +125,42 @@ export function SchemeLegend({
     // Each cell shows its own element's spectral colour, so there is no finite
     // key to swatch and no single gradient: just explain what the colors mean.
     return (
-      <div
-        className={classes.legend}
-        role="group"
-        aria-label={t("legend.groupLabel")}
-      >
-        <h3 className={classes.legendTitle}>{schemeTitle}</h3>
-        <p className={gradientClasses.description}>
+      <LegendFrame title={schemeTitle} groupLabel={t("legend.groupLabel")}>
+        <p className={classes.description}>
           {t("schemeLegend.spectral.description")}
         </p>
-      </div>
+      </LegendFrame>
     );
   }
 
-  // Discrete legend: category over CATEGORY_KEYS, phase over PHASE_KEYS,
-  // origin over ORIGIN_KEYS.
-  const entries =
-    scheme === "phase"
-      ? PHASE_KEYS.map((key) => ({
-          key,
-          color: PHASE_COLORS[key],
-          label: t(`phase.${key}`),
-        }))
-      : scheme === "origin"
-      ? ORIGIN_KEYS.map((key) => ({
-          key,
-          color: ORIGIN_COLORS[key],
-          label: t(`origin.${key}`),
-        }))
-      : CATEGORY_KEYS.map((key) => ({
-          key,
-          color: CATEGORY_COLORS[key],
-          label: t(`category.${key}`),
-        }));
+  // Discrete legend: one swatch per key for the category / phase / origin
+  // schemes. Keys, colors and the i18n label prefix all key off the scheme.
+  // keys and colors are paired per scheme, so every key indexes its colors;
+  // the cast bridges the three distinct Record types the lookup unions into.
+  const [keys, colors] = DISCRETE[
+    scheme as "category" | "phase" | "origin"
+  ] as readonly [readonly string[], Record<string, string>];
 
   return (
-    <div
-      className={classes.legend}
-      role="group"
-      aria-label={t("legend.groupLabel")}
-    >
-      <h3 className={classes.legendTitle}>{schemeTitle}</h3>
-      {entries.map(({ key, color, label }) => (
-        <div
-          key={key}
-          className={classes.legendEntry}
-          // Fall back to the raw key so the accessible name is never empty.
-          aria-label={label || key}
-        >
-          <span
-            className={classes.legendSwatch}
-            style={{ backgroundColor: color }}
-          />
-          <span className={classes.legendLabel}>{label}</span>
-        </div>
-      ))}
-    </div>
+    <LegendFrame title={schemeTitle} groupLabel={t("legend.groupLabel")}>
+      {keys.map((key) => {
+        const label = t(`${scheme}.${key}`);
+        return (
+          <div
+            key={key}
+            className={classes.legendEntry}
+            // Fall back to the raw key so the accessible name is never empty.
+            aria-label={label || key}
+          >
+            <span
+              className={classes.legendSwatch}
+              style={{ backgroundColor: colors[key] }}
+            />
+            <span className={classes.legendLabel}>{label}</span>
+          </div>
+        );
+      })}
+    </LegendFrame>
   );
 }
 
@@ -176,31 +185,18 @@ function GradientLegend({
   minLabel: string;
   maxLabel: string;
 }) {
-  const first = stops[0];
-  const last = stops[stops.length - 1];
-  const span = last.x - first.x;
   return (
-    <div className={classes.legend} role="group" aria-label={groupLabel}>
-      <h3 className={classes.legendTitle}>{title}</h3>
-      <div className={gradientClasses.gradient}>
+    <LegendFrame title={title} groupLabel={groupLabel}>
+      <div className={classes.gradient}>
         <div
-          className={gradientClasses.gradientBar}
-          style={{
-            backgroundImage: `linear-gradient(to right, ${stops
-              .map(
-                (stop) =>
-                  `rgb(${stop.rgb[0]}, ${stop.rgb[1]}, ${stop.rgb[2]}) ${
-                    ((stop.x - first.x) / span) * 100
-                  }%`,
-              )
-              .join(", ")})`,
-          }}
+          className={classes.gradientBar}
+          style={{ backgroundImage: linearGradientCss(stops) }}
         />
-        <div className={gradientClasses.gradientLabels}>
-          <span className={gradientClasses.gradientLabel}>{minLabel}</span>
-          <span className={gradientClasses.gradientLabel}>{maxLabel}</span>
+        <div className={classes.gradientLabels}>
+          <span className={classes.gradientLabel}>{minLabel}</span>
+          <span className={classes.gradientLabel}>{maxLabel}</span>
         </div>
       </div>
-    </div>
+    </LegendFrame>
   );
 }

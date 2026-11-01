@@ -3,9 +3,10 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-// Property + failure-path tests for the coloring-scheme persistence manager.
-// Covers: persist → read round-trip (6.1, 6.2), read-failure fallback (6.4),
-// and the non-throwing write-failure signal (6.5).
+// Property test for the coloring-scheme persistence manager: persist → read
+// round-trips every option (6.1, 6.2). The read-failure fallback (6.4) and the
+// non-throwing write-failure signal (6.5) delegate to storage.ts and are
+// covered by storage.check.ts.
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import fc from "fast-check";
@@ -13,10 +14,7 @@ import {
   persistColoringScheme,
   readStoredColoringScheme,
 } from "../coloringSchemeManager";
-import {
-  COLORING_SCHEME_OPTIONS,
-  DEFAULT_COLORING_SCHEME,
-} from "../coloringScheme";
+import { COLORING_SCHEME_OPTIONS } from "../coloringScheme";
 
 beforeEach(() => {
   window.localStorage.clear();
@@ -39,34 +37,5 @@ describe("persistColoringScheme / readStoredColoringScheme", () => {
         expect(readStoredColoringScheme()).toBe(option);
       }),
     );
-  });
-});
-
-describe("readStoredColoringScheme", () => {
-  // Validates: Requirements 6.4
-  it("resolves an unreadable store to the default scheme", () => {
-    vi.spyOn(window.localStorage.__proto__, "getItem").mockImplementation(
-      () => {
-        throw new Error("blocked");
-      },
-    );
-    expect(readStoredColoringScheme()).toBe(DEFAULT_COLORING_SCHEME);
-  });
-});
-
-describe("persistColoringScheme", () => {
-  // Validates: Requirements 6.5
-  it("invokes onSaveError and does not throw when persisting fails", () => {
-    const failure = new Error("quota exceeded");
-    vi.spyOn(window.localStorage.__proto__, "setItem").mockImplementation(
-      () => {
-        throw failure;
-      },
-    );
-    const onSaveError = vi.fn();
-
-    expect(() => persistColoringScheme("phase", onSaveError)).not.toThrow();
-    expect(onSaveError).toHaveBeenCalledTimes(1);
-    expect(onSaveError).toHaveBeenCalledWith(failure);
   });
 });

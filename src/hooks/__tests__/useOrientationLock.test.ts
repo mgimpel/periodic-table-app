@@ -52,7 +52,11 @@ describe("useOrientationLock", () => {
     const { result } = renderHook(() => useOrientationLock());
 
     await waitFor(() => expect(lock).toHaveBeenCalledWith("landscape"));
-    await Promise.resolve();
+    // Flush the resolved lock's microtasks so the effect's `.then` runs: if the
+    // success path erroneously set lockFailed(true), showNotice would flip and
+    // this test would go red.
+    await act(async () => {});
+    expect(lock).toHaveBeenCalledWith("landscape");
     expect(result.current.showNotice).toBe(false);
   });
 

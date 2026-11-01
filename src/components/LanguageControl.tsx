@@ -6,8 +6,8 @@
 import { useState } from "react";
 import { SegmentedControl } from "@mantine/core";
 import { useTranslation } from "react-i18next";
-import { SUPPORTED_LOCALES } from "../locales";
 import {
+  LANGUAGE_OPTIONS,
   navigatorLanguages,
   normalizeStoredLanguage,
   resolveLanguage,
@@ -32,7 +32,7 @@ export function LanguageControl({ onSaveError }: LanguageControlProps) {
   const { t, i18n } = useTranslation("ui");
   const [option, setOption] = useState<LanguageOption>(readStoredLanguage);
 
-  const data = ["system", ...SUPPORTED_LOCALES].map((o) => ({
+  const data = LANGUAGE_OPTIONS.map((o) => ({
     value: o,
     label: t(`language.${o}`),
   }));

@@ -73,7 +73,6 @@
   },
   "detail": {
     "sections": "Element detail sections",
-    "noDescription": "No description available.",
     "shellDiagramAlt": "Electron shell diagram for {{name}}",
     "imageAlt": "Photograph of {{name}}",
     "spectrumAlt": "Emission spectrum of {{name}}",
@@ -103,9 +102,6 @@
     }
   },
   "phase": {
-    "Gas": "Gas",
-    "Liquid": "Liquid",
-    "Solid": "Solid",
     "solid": "Solid",
     "liquid": "Liquid",
     "gas": "Gas",

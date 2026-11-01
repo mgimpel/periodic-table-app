@@ -4,9 +4,10 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Tests for SchemeLegend: the legend's form follows the active coloring scheme.
-// The two discrete schemes (category, phase) render one labeled swatch per key
-// in canonical order; the two gradient schemes (melting-point, boiling-point)
-// render the temperature-gradient bar with endpoint labels in the active unit.
+// The three discrete schemes (category, phase, origin) render one labeled
+// swatch per key in canonical order; the gradient schemes (melting-point,
+// boiling-point, electronegativity) render a gradient bar with endpoint labels;
+// the spectral-colour scheme renders an explanatory note with no swatches.
 //
 // CSS Modules return hashed/undefined class names under jsdom, so entries and
 // the gradient bar are located by accessible role/name, visible text, and
@@ -16,7 +17,6 @@
 import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, within, cleanup } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
-import fc from "fast-check";
 // Initialise the shared i18next default instance so scheme labels resolve to
 // the English ui.json resources rather than raw keys.
 import "../../i18n";
@@ -31,6 +31,7 @@ import {
 import {
   TEMPERATURE_OPTIONS,
   formatTemperature,
+  type TemperatureOption,
 } from "../../lib/temperature";
 import { DATASET_MAX } from "../../lib/temperatureGradient";
 import {
@@ -41,11 +42,9 @@ import enUi from "../../locales/en/ui.json";
 
 afterEach(cleanup);
 
+type Scheme = Parameters<typeof SchemeLegend>[0]["scheme"];
+
 const groupName = enUi.legend.groupLabel;
-const categoryLabel = (k: string) =>
-  enUi.category[k as keyof typeof enUi.category];
-const phaseLabel = (k: string) => enUi.phase[k as keyof typeof enUi.phase];
-const originLabel = (k: string) => enUi.origin[k as keyof typeof enUi.origin];
 const spectralDescription = enUi.schemeLegend.spectral.description;
 
 // Browsers normalize style.backgroundColor to rgb(); jsdom keeps whatever
@@ -58,8 +57,8 @@ function normalizeColor(color: string): string {
 }
 
 function renderLegend(
-  scheme: Parameters<typeof SchemeLegend>[0]["scheme"],
-  unit: Parameters<typeof SchemeLegend>[0]["temperatureUnit"] = "kelvin",
+  scheme: Scheme,
+  unit: TemperatureOption = "kelvin",
 ) {
   return render(
     <MantineProvider>
@@ -68,108 +67,99 @@ function renderLegend(
   );
 }
 
-// --- Discrete legends: category -------------------------------------------
-// Req 1.3 (legend reflects the scheme), 2.3 (one swatch per category in
-// canonical CATEGORY_KEYS order), 2.4 (localized label, not the raw key).
-describe("SchemeLegend category scheme (discrete)", () => {
-  // Validates: Requirements 1.3, 2.3, 2.4, 7.2
-  it("renders one group with the accessible name from ui.json", () => {
-    renderLegend("category");
-    expect(screen.getByRole("group", { name: groupName })).toBeInTheDocument();
-  });
+// The gradient bar is located structurally: a descendant carrying an inline
+// linear-gradient background image (set from the scheme's GRADIENT_STOPS /
+// EN_STOPS), not by CSS source text or class name.
+function gradientBars(container: HTMLElement): HTMLElement[] {
+  return Array.from(container.querySelectorAll<HTMLElement>("[style]")).filter(
+    (el) => el.style.backgroundImage.includes("linear-gradient"),
+  );
+}
 
-  it("renders exactly one swatch per category in canonical order with the localized label and CATEGORY_COLORS swatch", () => {
-    renderLegend("category");
-    const legend = screen.getByRole("group", { name: groupName });
-    // The group's first child is the <h3> title; entries are the labeled rows.
-    const entries = Array.from(
-      legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
-    );
+// --- Discrete legends: category / phase / origin --------------------------
+// One labeled swatch per key, in the scheme's canonical key order, with the
+// localized label (not the raw key) and the scheme's color for that key.
+//   Req 1.3 (legend reflects the scheme), 2.3/3.3/7.3 (one swatch per key in
+//   canonical order), 2.4/3.4/7.4 (localized label, not the raw key).
+const label = (group: Record<string, string>, k: string) =>
+  group[k as keyof typeof group] as string;
 
-    // One entry per category key, no extras or omissions.
-    expect(entries).toHaveLength(CATEGORY_KEYS.length);
+const DISCRETE_SCHEMES: ReadonlyArray<
+  [Scheme, readonly string[], Record<string, string>, Record<string, string>]
+> = [
+  ["category", CATEGORY_KEYS, CATEGORY_COLORS, enUi.category],
+  ["phase", PHASE_KEYS, PHASE_COLORS, enUi.phase],
+  ["origin", ORIGIN_KEYS, ORIGIN_COLORS, enUi.origin],
+];
 
-    // Accessible names appear in the canonical CATEGORY_KEYS order.
-    expect(entries.map((e) => e.getAttribute("aria-label"))).toEqual(
-      CATEGORY_KEYS.map(categoryLabel),
-    );
+describe("SchemeLegend discrete schemes", () => {
+  // Validates: Requirements 1.3, 2.3, 2.4, 3.3, 3.4, 7.2, 7.3, 7.4
+  it.each(DISCRETE_SCHEMES)(
+    "%s renders one group with the accessible name from ui.json",
+    (scheme) => {
+      renderLegend(scheme);
+      expect(
+        screen.getByRole("group", { name: groupName }),
+      ).toBeInTheDocument();
+    },
+  );
 
-    // Each entry shows its swatch (CATEGORY_COLORS color) and visible label.
-    entries.forEach((entry, i) => {
-      const key = CATEGORY_KEYS[i];
-      const swatch = entry.querySelector("span[style]") as HTMLElement | null;
-      expect(swatch).not.toBeNull();
-      expect(normalizeColor(swatch!.style.backgroundColor)).toBe(
-        normalizeColor(CATEGORY_COLORS[key]),
+  it.each(DISCRETE_SCHEMES)(
+    "%s renders exactly one swatch per key in canonical order with the localized label and scheme color",
+    (scheme, keys, colors, labels) => {
+      renderLegend(scheme);
+      const legend = screen.getByRole("group", { name: groupName });
+      // The group's first child is the <h3> title; entries are the labeled rows.
+      const entries = Array.from(
+        legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
       );
-      expect(within(entry).getByText(categoryLabel(key))).toBeInTheDocument();
-    });
-  });
-});
 
-// --- Discrete legends: phase ----------------------------------------------
-// Req 3.3 (exactly four swatches, one per phase value in fixed PHASE_KEYS
-// order), 3.4 (localized label, not the raw dataset value).
-describe("SchemeLegend phase scheme (discrete)", () => {
-  // Validates: Requirements 1.3, 3.3, 3.4, 7.2
-  it("renders one group with the accessible name from ui.json", () => {
-    renderLegend("phase");
-    expect(screen.getByRole("group", { name: groupName })).toBeInTheDocument();
-  });
-
-  it("renders exactly four swatches in fixed PHASE_KEYS order with the localized label and PHASE_COLORS swatch", () => {
-    renderLegend("phase");
-    const legend = screen.getByRole("group", { name: groupName });
-    // The group's first child is the <h3> title; entries are the labeled rows.
-    const entries = Array.from(
-      legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
-    );
-
-    // Exactly four: solid, liquid, gas, unknown.
-    expect(entries).toHaveLength(PHASE_KEYS.length);
-    expect(PHASE_KEYS).toHaveLength(4);
-
-    // Accessible names appear in the fixed PHASE_KEYS order.
-    expect(entries.map((e) => e.getAttribute("aria-label"))).toEqual(
-      PHASE_KEYS.map(phaseLabel),
-    );
-
-    entries.forEach((entry, i) => {
-      const key = PHASE_KEYS[i];
-      const swatch = entry.querySelector("span[style]") as HTMLElement | null;
-      expect(swatch).not.toBeNull();
-      expect(normalizeColor(swatch!.style.backgroundColor)).toBe(
-        normalizeColor(PHASE_COLORS[key]),
+      // One entry per key, no extras or omissions, in canonical order.
+      expect(entries).toHaveLength(keys.length);
+      expect(entries.map((e) => e.getAttribute("aria-label"))).toEqual(
+        keys.map((k) => label(labels, k)),
       );
-      expect(within(entry).getByText(phaseLabel(key))).toBeInTheDocument();
-    });
-  });
+
+      // Each entry shows its swatch (scheme color) and visible localized label.
+      entries.forEach((entry, i) => {
+        const key = keys[i];
+        const swatch = entry.querySelector("span[style]") as HTMLElement | null;
+        expect(swatch).not.toBeNull();
+        expect(normalizeColor(swatch!.style.backgroundColor)).toBe(
+          normalizeColor(colors[key]),
+        );
+        expect(
+          within(entry).getByText(label(labels, key)),
+        ).toBeInTheDocument();
+      });
+    },
+  );
 });
 
 // --- Gradient legends: melting-point / boiling-point ----------------------
-// Req 4.3 / 5.3: a gradient bar is present for both gradient schemes, with
-// endpoint labels. The bar is located by its inline background-image (the
-// blue->white->orange->red linear-gradient), a structural fact — not a CSS
-// source-text assertion.
-const GRADIENT_SCHEMES = ["melting-point", "boiling-point"] as const;
+// Req 4.3/5.3: a gradient bar is present for both temperature gradient schemes,
+// with endpoint labels. Req 4.4/5.4 (Property 8): the endpoint labels follow
+// the active temperature unit — formatTemperature(0, u) and
+// formatTemperature(DATASET_MAX, u) — across every unit and both schemes.
+// The former fast-check property (numRuns: 100) spanned a domain of only
+// 3 units x 2 schemes = 6 cases, so it is enumerated directly here.
+const TEMP_GRADIENT_SCHEMES = ["melting-point", "boiling-point"] as const;
+const UNIT_SCHEME_CASES: ReadonlyArray<[TemperatureOption, Scheme]> =
+  TEMPERATURE_OPTIONS.flatMap((unit) =>
+    TEMP_GRADIENT_SCHEMES.map((scheme) => [unit, scheme] as [TemperatureOption, Scheme]),
+  );
 
-describe("SchemeLegend gradient schemes", () => {
-  // Validates: Requirements 1.3, 4.3, 5.3, 7.2
-  it.each(GRADIENT_SCHEMES)(
-    "renders the gradient bar and two endpoint labels for the %s scheme",
-    (scheme) => {
-      const { container } = renderLegend(scheme, "kelvin");
-
-      // One legend group with the accessible name from ui.json.
+describe("SchemeLegend temperature gradient schemes", () => {
+  // Feature: element-color-schemes, Property 8: Gradient legend endpoint labels follow the active unit
+  // Validates: Requirements 1.3, 4.3, 4.4, 5.3, 5.4, 7.2
+  it.each(UNIT_SCHEME_CASES)(
+    "renders the gradient bar and the two endpoint labels in %s for the %s scheme",
+    (unit, scheme) => {
+      const { container } = renderLegend(scheme, unit);
       const legend = screen.getByRole("group", { name: groupName });
 
-      // The gradient bar: a descendant carrying an inline linear-gradient
-      // background image (set from GRADIENT_STOPS). Located structurally.
-      const bars = Array.from(
-        container.querySelectorAll<HTMLElement>("[style]"),
-      ).filter((el) =>
-        el.style.backgroundImage.includes("linear-gradient"),
-      );
+      // Exactly one gradient bar, inside the legend group.
+      const bars = gradientBars(container);
       expect(bars).toHaveLength(1);
       expect(legend.contains(bars[0])).toBe(true);
 
@@ -178,85 +168,15 @@ describe("SchemeLegend gradient schemes", () => {
         legend.querySelector("span[style*='background-color']"),
       ).toBeNull();
 
-      // Exactly two endpoint labels: min at 0 K, max at DATASET_MAX.
+      // Endpoint labels: min at 0 K and max at DATASET_MAX, in the active unit.
       expect(
-        within(legend).getByText(formatTemperature(0, "kelvin")),
+        within(legend).getByText(formatTemperature(0, unit)),
       ).toBeInTheDocument();
       expect(
-        within(legend).getByText(formatTemperature(DATASET_MAX, "kelvin")),
+        within(legend).getByText(formatTemperature(DATASET_MAX, unit)),
       ).toBeInTheDocument();
     },
   );
-});
-
-// --- Property 8 -----------------------------------------------------------
-describe("SchemeLegend property 8: gradient endpoint labels follow the active unit", () => {
-  // Feature: element-color-schemes, Property 8: Gradient legend endpoint labels follow the active unit
-  // Validates: Requirements 4.4, 5.4, 7.2
-  it("labels the gradient endpoints with formatTemperature(0, u) and formatTemperature(DATASET_MAX, u) for every unit and both gradient schemes", () => {
-    fc.assert(
-      fc.property(
-        fc.constantFrom(...TEMPERATURE_OPTIONS),
-        fc.constantFrom(...GRADIENT_SCHEMES),
-        (unit, scheme) => {
-          renderLegend(scheme, unit);
-          const legend = screen.getByRole("group", { name: groupName });
-
-          const minLabel = formatTemperature(0, unit);
-          const maxLabel = formatTemperature(DATASET_MAX, unit);
-
-          expect(within(legend).getByText(minLabel)).toBeInTheDocument();
-          expect(within(legend).getByText(maxLabel)).toBeInTheDocument();
-
-          cleanup();
-        },
-      ),
-      { numRuns: 100 },
-    );
-  });
-});
-
-// --- Discrete legend: origin ----------------------------------------------
-// Req 7.3 (exactly four swatches, one per origin bucket in fixed ORIGIN_KEYS
-// order), 7.4 (localized label, not the raw key; each swatch's color is the
-// cell color for that bucket — ORIGIN_COLORS[key], the value cellColor("origin",
-// element) returns for an element bucketing to that key).
-describe("SchemeLegend origin scheme (discrete)", () => {
-  // Validates: Requirements 7.3, 7.4
-  it("renders one group with the accessible name from ui.json", () => {
-    renderLegend("origin");
-    expect(screen.getByRole("group", { name: groupName })).toBeInTheDocument();
-  });
-
-  it("renders exactly four swatches in fixed ORIGIN_KEYS order with the localized label and ORIGIN_COLORS swatch", () => {
-    renderLegend("origin");
-    const legend = screen.getByRole("group", { name: groupName });
-    // The group's first child is the <h3> title; entries are the labeled rows.
-    const entries = Array.from(
-      legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
-    );
-
-    // Exactly four: primordial, from-decay, synthetic, unknown.
-    expect(entries).toHaveLength(ORIGIN_KEYS.length);
-    expect(ORIGIN_KEYS).toHaveLength(4);
-
-    // Accessible names appear in the fixed ORIGIN_KEYS order.
-    expect(entries.map((e) => e.getAttribute("aria-label"))).toEqual(
-      ORIGIN_KEYS.map(originLabel),
-    );
-
-    entries.forEach((entry, i) => {
-      const key = ORIGIN_KEYS[i];
-      const swatch = entry.querySelector("span[style]") as HTMLElement | null;
-      expect(swatch).not.toBeNull();
-      // The swatch color equals the cell color for that bucket
-      // (cellColor("origin", element) returns ORIGIN_COLORS[bucket]).
-      expect(normalizeColor(swatch!.style.backgroundColor)).toBe(
-        normalizeColor(ORIGIN_COLORS[key]),
-      );
-      expect(within(entry).getByText(originLabel(key))).toBeInTheDocument();
-    });
-  });
 });
 
 // --- Gradient legend: electronegativity -----------------------------------
@@ -269,11 +189,7 @@ describe("SchemeLegend electronegativity scheme (gradient)", () => {
     const { container } = renderLegend("electronegativity", "kelvin");
     const legend = screen.getByRole("group", { name: groupName });
 
-    // The gradient bar: a descendant carrying an inline linear-gradient
-    // background image. Located structurally, not by CSS source text.
-    const bars = Array.from(
-      container.querySelectorAll<HTMLElement>("[style]"),
-    ).filter((el) => el.style.backgroundImage.includes("linear-gradient"));
+    const bars = gradientBars(container);
     expect(bars).toHaveLength(1);
     expect(legend.contains(bars[0])).toBe(true);
 
@@ -316,7 +232,7 @@ describe("SchemeLegend electronegativity scheme (gradient)", () => {
 describe("SchemeLegend spectral-colour scheme (explanatory)", () => {
   // Validates: Requirements 8.4, 8.5
   it("renders the localized description text and no swatches", () => {
-    renderLegend("spectral-colour");
+    const { container } = renderLegend("spectral-colour");
     const legend = screen.getByRole("group", { name: groupName });
 
     // The localized explanation from en ui.json is present.
@@ -325,15 +241,10 @@ describe("SchemeLegend spectral-colour scheme (explanatory)", () => {
     ).toBeInTheDocument();
 
     // No discrete swatch entries and no gradient bar.
-    expect(
-      legend.querySelector(":scope > [aria-label]"),
-    ).toBeNull();
+    expect(legend.querySelector(":scope > [aria-label]")).toBeNull();
     expect(
       legend.querySelector("span[style*='background-color']"),
     ).toBeNull();
-    const hasGradient = Array.from(
-      legend.querySelectorAll<HTMLElement>("[style]"),
-    ).some((el) => el.style.backgroundImage.includes("linear-gradient"));
-    expect(hasGradient).toBe(false);
+    expect(gradientBars(container)).toHaveLength(0);
   });
 });

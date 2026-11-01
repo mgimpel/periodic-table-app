@@ -11,8 +11,6 @@
 import { ELEMENTS } from "../data/elements";
 import { type Stop, interpolateStops } from "./gradient";
 
-export { MISSING_VALUE_COLOR } from "./gradient";
-
 const EN_VALUES: readonly number[] = ELEMENTS.map(
   (e) => e.electronegativity,
 ).filter((v): v is number => v !== null);
@@ -37,15 +35,7 @@ export const EN_STOPS: readonly Stop[] = [
  * Map a Pauling electronegativity to a cell color via piecewise-linear RGB
  * interpolation between EN_STOPS. Clamped at both endpoints. Always returns a
  * valid "rgb(r, g, b)" string with integer channels.
- *
- * Degenerate guard (Req 6.3): if every non-null value is identical the two
- * stops collapse (min === max); interpolateStops would clamp everything to the
- * first (min) color, so return the max-endpoint color explicitly instead.
  */
 export function electronegativityColor(value: number): string {
-  if (DATASET_MIN_EN === DATASET_MAX_EN) {
-    const [r, g, b] = EN_STOPS[EN_STOPS.length - 1].rgb;
-    return `rgb(${r}, ${g}, ${b})`;
-  }
   return interpolateStops(EN_STOPS, value);
 }

@@ -73,7 +73,6 @@
   },
   "detail": {
     "sections": "Secciones de detalle del elemento",
-    "noDescription": "No hay descripción disponible.",
     "shellDiagramAlt": "Diagrama de capas electrónicas de {{name}}",
     "imageAlt": "Fotografía de {{name}}",
     "spectrumAlt": "Espectro de emisión de {{name}}",
@@ -103,9 +102,6 @@
     }
   },
   "phase": {
-    "Gas": "Gas",
-    "Liquid": "Líquido",
-    "Solid": "Sólido",
     "solid": "Sólido",
     "liquid": "Líquido",
     "gas": "Gas",

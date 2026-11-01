@@ -6,18 +6,6 @@
 // Typed element model and category system for the periodic table.
 // Categories are a fixed union used for color-coding cells and building the legend.
 
-export type ElementCategory =
-  | "alkali-metal"
-  | "alkaline-earth-metal"
-  | "transition-metal"
-  | "post-transition-metal"
-  | "metalloid"
-  | "reactive-nonmetal"
-  | "noble-gas"
-  | "lanthanide"
-  | "actinide"
-  | "unknown";
-
 export interface Element {
   atomicNumber: number;
   symbol: string;
@@ -56,12 +44,13 @@ export interface Element {
   spectralColour: string | null;
 }
 
-// Canonical display order for the ten categories (legend order). Explicit and
-// stable: the legend iterates this rather than relying on object key-insertion
-// order, and the ui:category.* translation keys are generated from it. Its sync
-// with the union (exactly the keys of CATEGORY_COLORS) is guarded by
-// src/locales/elements.check.ts.
-export const CATEGORY_KEYS: ElementCategory[] = [
+// Canonical display order for the ten categories (legend order), and the single
+// source of truth for the category set: `ElementCategory` is derived from it
+// below. Explicit and stable: the legend iterates this rather than relying on
+// object key-insertion order, and the ui:category.* translation keys are
+// generated from it. That `CATEGORY_COLORS` has exactly these keys is enforced
+// by the `Record<ElementCategory, string>` type below (tsc fails otherwise).
+export const CATEGORY_KEYS = [
   "alkali-metal",
   "alkaline-earth-metal",
   "transition-metal",
@@ -72,7 +61,9 @@ export const CATEGORY_KEYS: ElementCategory[] = [
   "lanthanide",
   "actinide",
   "unknown",
-];
+] as const;
+
+export type ElementCategory = (typeof CATEGORY_KEYS)[number];
 
 // CSS color strings (not Mantine tokens) so cells and swatches can set background
 // directly and stay readable against dark text in both color schemes.

@@ -73,7 +73,6 @@
   },
   "detail": {
     "sections": "Sections de détail de l'élément",
-    "noDescription": "Aucune description disponible.",
     "shellDiagramAlt": "Diagramme des couches électroniques de {{name}}",
     "imageAlt": "Photographie de {{name}}",
     "spectrumAlt": "Spectre d'émission de {{name}}",
@@ -103,9 +102,6 @@
     }
   },
   "phase": {
-    "Gas": "Gaz",
-    "Liquid": "Liquide",
-    "Solid": "Solide",
     "solid": "Solide",
     "liquid": "Liquide",
     "gas": "Gaz",

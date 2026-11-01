@@ -3,14 +3,76 @@
  * (https://github.com/mgimpel/periodic-table-app).
  * SPDX-License-Identifier: BSD-3-Clause
 */
-/* Gradient legend for the melting-point / boiling-point coloring schemes.
- * Shares the .legend grid cell placement (columns 3-12, rows 1-3) from
- * PeriodicTable.module.css, so it inherits the table's fit-scale transform and
- * scales with the table. The discrete (category / phase) legend path reuses the
- * .legend* classes from PeriodicTable.module.css directly. */
+/* All SchemeLegend styles: the discrete (category / phase / origin) swatch
+ * legend, the gradient-bar legend (melting-point, boiling-point,
+ * electronegativity) and the spectral-colour note. The .legend frame is a grid
+ * item of .grid (PeriodicTable.module.css) — placed in the empty top-center
+ * region (columns 3-12, spanning 2 rows) — so it inherits the table's
+ * fit-scale transform and scales with the table. */
 
-/* Wraps the bar + labels. .legend is a 2-col x 5-row grid; span both columns so
- * the bar fills the region width, and vertically center it in the short region.
+/* Scheme-aware legend frame placed in the empty top-center region of the grid
+ * (columns 3-12, spanning 2 rows). As a grid item of .grid it inherits the
+ * fit-scale transform for free, so it scales with the table. overflow:hidden +
+ * min-width/height:0 keep it clipped to its cell span — it can never resize the
+ * fixed tracks or displace an element cell. */
+.legend {
+  grid-column: 3 / span 10;
+  grid-row: 2 / span 2;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+  /* Discrete legend entries in a compact 3-col x 4-row grid filling the wide,
+   * short region. */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, min-content);
+  gap: 2px var(--cell-gap);
+  padding: 2px 24px;
+  align-content: start;
+  border: 1px solid var(--mantine-color-gray-4);
+}
+
+.legendEntry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.legendSwatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* The legend swatch is slightly misaligned on Linux. */
+:global([data-os="linux"]) .legendSwatch {
+  margin-top: -2px;
+}
+
+.legendLabel {
+  font-size: 14px;
+  line-height: 1.1;
+  color: var(--mantine-color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* Title above the legend entries. */
+.legendTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--mantine-color-text);
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* Wraps the bar + labels. Span both columns of the .legend inner grid so the
+ * bar fills the region width, and vertically center it in the short region.
  * .legend already supplies the 24px horizontal padding, so don't re-pad here —
  * the bar then aligns with the content box of the discrete legend swatches. */
 .gradient {

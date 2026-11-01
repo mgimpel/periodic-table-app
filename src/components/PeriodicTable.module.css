@@ -7,7 +7,8 @@
  * The full 18-column table cannot fit a phone portrait screen at natural cell
  * size, and shrinking cells via CSS to unreadable widths is worse than scaling
  * the whole table uniformly. So the grid keeps its fixed, natural cell sizes
- * (--cell-size) — its scrollWidth/scrollHeight report the true unscaled size —
+ * (--cell-size, supplied inline from NATURAL_CELL_PX in src/lib/fitScale.ts) —
+ * its scrollWidth/scrollHeight report the true unscaled size —
  * and useFitScale measures that against .viewport and sets --fit-scale (<= 1).
  * We apply that as a CSS transform so the entire table shrinks to fit without
  * any horizontal scroll. symbolOnly mode (from the same hook) drops the number
@@ -26,7 +27,9 @@
 }
 
 .grid {
-  --cell-size: 56px;
+  /* --cell-size is supplied inline from NATURAL_CELL_PX (src/lib/fitScale.ts),
+   * the single source of truth, so it can't drift from the symbol-only
+   * threshold math. */
   --cell-gap: 3px;
   --fit-scale: 1;
   /* Row 8 holds no elements (it separates period 7 from the lanthanide/
@@ -105,67 +108,6 @@
 .name {
   font-size: 8px;
   max-width: 100%;
-}
-
-/* Category legend placed in the empty top-center region of the grid (columns
- * 3-12, rows 1-2). As a grid item of .grid it inherits the fit-scale transform
- * for free, so it scales with the table. overflow:hidden + min-width/height:0
- * keep it clipped to its cell span — it can never resize the fixed tracks or
- * displace an element cell. */
-.legend {
-  grid-column: 3 / span 10;
-  grid-row: 2 / span 2;
-  overflow: hidden;
-  min-width: 0;
-  min-height: 0;
-  /* Ten entries in a compact 2-col x 5-row grid filling the wide, short region. */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, min-content);
-  gap: 2px var(--cell-gap);
-  padding: 2px 24px;
-  align-content: start;
-  border: 1px solid var(--mantine-color-gray-4);
-}
-
-.legendEntry {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
-
-.legendSwatch {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  flex-shrink: 0;
-  margin-top: 0;
-}
-
-/* The legend swatch is slightly misaligned on Linux. */
-:global([data-os="linux"]) .legendSwatch {
-  margin-top: -2px;
-}
-
-.legendLabel {
-  font-size: 14px;
-  line-height: 1.1;
-  color: var(--mantine-color-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
-}
-
-/* Title above the legend entries. */
-.legendTitle {
-  font-size: 16px;
-  font-weight: 700;
-  margin: 0 0 8px 0;
-  color: var(--mantine-color-text);
-  grid-column: 1 / -1;
-  text-align: center;
 }
 
 /* CAS group label (I A, II A, ... VIII A) above a column's first element.

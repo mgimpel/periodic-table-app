@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Component tests for ElementDetail: the overlay drops its built-in title in
-// favour of a custom Detail_Header (2.1, 2.2, 3.*), splits fields across five
+// favour of a custom Detail_Header (2.1, 2.2, 3.*), splits fields across four
 // tabs (4.*, 5.*), stays keyboard-operable (6.*), and is dismissable via the
 // close control, Escape, and an outside click (1.4-1.8).
 //
@@ -34,6 +34,7 @@ import { ElementDetail } from "../ElementDetail";
 import type { Element, ElementCategory } from "../../data/element";
 import enElements from "../../locales/en/elements.json";
 import enUi from "../../locales/en/ui.json";
+import frUi from "../../locales/fr/ui.json";
 import type { TemperatureOption } from "../../lib/temperature";
 
 const originalMatchMedia = window.matchMedia;
@@ -360,19 +361,23 @@ describe("ElementDetail", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("translates the phase value in French", async () => {
+  it("translates the phase value in French (a 'Solid' phase keys off phase.solid)", async () => {
     await i18n.changeLanguage("fr");
     try {
+      // makeElement() has phase "Solid"; the detail view keys off
+      // phaseBucket("Solid") → "solid", so it renders the fr phase.solid string.
       render(<Harness initial={makeElement()} />);
-      expect(screen.getByText("Solide")).toBeInTheDocument();
+      expect(screen.getByText(frUi.phase.solid)).toBeInTheDocument();
     } finally {
       await i18n.changeLanguage("en");
     }
   });
 
-  it("falls back to the raw phase value when it has no translation", () => {
+  it("renders the 'unknown' phase label for an unrecognized phase", () => {
+    // An unrecognized phase buckets to "unknown" (phaseBucket is total), so the
+    // detail view renders the phase.unknown label rather than the raw string.
     render(<Harness initial={makeElement({ phase: "Plasma" })} />);
-    expect(screen.getByText("Plasma")).toBeInTheDocument();
+    expect(screen.getByText(enUi.phase.unknown)).toBeInTheDocument();
   });
 
   it("renders the '—' placeholder when group is null (5.9)", () => {
@@ -385,20 +390,13 @@ describe("ElementDetail", () => {
 
   it("renders the summary from the elements resource, keyed by atomic number (5.8)", async () => {
     const user = userEvent.setup();
-    // The detail now sources the summary from the i18n `elements` namespace by
-    // atomicNumber (t('elements:summary.<n>')), not from element.summary — the
-    // static dataset stays the language-neutral source but is read through the
-    // resource, so the resource text is what renders. The `|| noDescription`
-    // guard only fires for a missing/empty resource key (no real element hits it,
-    // since every en summary is present and guarded by elements.check.ts).
+    // The detail sources the summary from the i18n `elements` namespace by
+    // atomicNumber (t('elements:summary.<n>')), so the resource text is what
+    // renders.
     render(<Harness initial={makeElement()} />);
 
     await user.click(screen.getByRole("tab", { name: "Description" }));
     expect(screen.getByText(enElements.summary["26"])).toBeInTheDocument();
-    // The placeholder is not shown because a real summary resource exists.
-    expect(
-      screen.queryByText("No description available."),
-    ).not.toBeInTheDocument();
   });
 
   it("exposes roving tabindex: only the selected tab is in the tab order (6.1)", () => {
@@ -513,22 +511,6 @@ describe("ElementDetail", () => {
     // name here since this file imports the data-model `Element` type.
     await user.click(overlay!);
 
-    expect(onClose).toHaveBeenCalled();
-    await waitFor(() =>
-      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
-    );
-  });
-
-  it("renders a centered Modal with a 'Close' button that fires onClose on wide viewports (1.5)", async () => {
-    useWideViewport();
-    const user = userEvent.setup();
-    const onClose = vi.fn();
-    render(<Harness initial={makeElement()} onClose={onClose} />);
-
-    // Modal branch still renders the custom header.
-    expect(screen.getByText("Iron")).toBeInTheDocument();
-
-    await user.click(screen.getByRole("button", { name: "Close" }));
     expect(onClose).toHaveBeenCalled();
     await waitFor(() =>
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),

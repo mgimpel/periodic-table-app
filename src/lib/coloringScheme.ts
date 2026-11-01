@@ -6,7 +6,8 @@
 // Pure coloring-scheme helper (mirrors temperature.ts). Owns the set of valid
 // scheme options and the safe fallback used when the persisted preference is
 // missing or invalid. The scheme decides how each Element_Cell is colored:
-// by category, phase, melting point, or boiling point.
+// by category, phase, melting point, boiling point, electronegativity, origin,
+// or spectral colour.
 
 /** The seven user-selectable coloring schemes, in display order. */
 export const COLORING_SCHEME_OPTIONS = [

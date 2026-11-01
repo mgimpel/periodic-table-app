@@ -18,7 +18,7 @@
 import raw from "./periodic-table.json";
 import raw2 from "./periodic-table2.json";
 import type { Element, ElementCategory } from "./element";
-import { CATEGORY_COLORS } from "./element";
+import { CATEGORY_KEYS } from "./element";
 
 export type { Element } from "./element";
 
@@ -90,7 +90,7 @@ function normalizeCategory(rawCategory: string): ElementCategory {
   if (c.startsWith("unknown")) return "unknown";
   if (c.includes("nonmetal")) return "reactive-nonmetal"; // diatomic + polyatomic nonmetals
   const hyphenated = c.replace(/\s+/g, "-");
-  if (hyphenated in CATEGORY_COLORS) return hyphenated as ElementCategory;
+  if ((CATEGORY_KEYS as readonly string[]).includes(hyphenated)) return hyphenated as ElementCategory;
   return "unknown";
 }
 

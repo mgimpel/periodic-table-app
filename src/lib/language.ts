@@ -17,6 +17,12 @@ import {
 /** The user-selectable options: "system" follows the device, else a locale. */
 export type LanguageOption = "system" | SupportedLocale;
 
+/** The selectable options in display order: "system" first, then each locale. */
+export const LANGUAGE_OPTIONS: readonly LanguageOption[] = [
+  "system",
+  ...SUPPORTED_LOCALES,
+];
+
 /** Fallback when no valid stored preference exists — follow the device. */
 export const DEFAULT_LANGUAGE: LanguageOption = "system";
 
@@ -26,11 +32,9 @@ export const DEFAULT_LANGUAGE: LanguageOption = "system";
  * `unknown` so callers can pass whatever came out of storage without checking.
  */
 export function normalizeStoredLanguage(raw: unknown): LanguageOption {
-  if (raw === "system") return "system";
-  if (typeof raw === "string" && (SUPPORTED_LOCALES as string[]).includes(raw)) {
-    return raw as SupportedLocale;
-  }
-  return DEFAULT_LANGUAGE;
+  return (LANGUAGE_OPTIONS as readonly unknown[]).includes(raw)
+    ? (raw as LanguageOption)
+    : DEFAULT_LANGUAGE;
 }
 
 /**

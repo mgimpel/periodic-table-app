@@ -29,8 +29,8 @@ describe("electronegativityColor", () => {
   // anchored, clamped, degenerate-safe, deterministic, and total.
   // Validates: Requirements 6.1, 6.3
 
-  // The real dataset has DATASET_MIN_EN !== DATASET_MAX_EN, so the degenerate
-  // (min === max) guard can't be forced on the real module — it is covered by
+  // electronegativityColor no longer has a degenerate (min === max) guard; the
+  // zero-width stop-set clamp is exercised directly against interpolateStops in
   // electronegativityGradient.check.ts. Here we assert the stop colors as the
   // source of truth and exercise the real function everywhere else.
   it("has the expected green→purple endpoint stop colors", () => {

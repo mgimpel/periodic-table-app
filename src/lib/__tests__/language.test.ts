@@ -8,17 +8,13 @@
 import { describe, it, expect } from "vitest";
 import fc from "fast-check";
 import {
+  LANGUAGE_OPTIONS,
   normalizeStoredLanguage,
   resolveLanguage,
   DEFAULT_LANGUAGE,
   type LanguageOption,
 } from "../language";
 import { SUPPORTED_LOCALES, type SupportedLocale } from "../../locales";
-
-const LANGUAGE_OPTIONS: LanguageOption[] = [
-  "system",
-  ...SUPPORTED_LOCALES,
-];
 
 /**
  * Inputs spanning everything storage (or a tampered store) could hand us:

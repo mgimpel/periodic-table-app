@@ -12,7 +12,7 @@ import "./i18n";
 // Expose the OS as a data attribute so CSS can make small platform-specific
 // tweaks via :global([data-os="…"]) without threading a prop through the
 // component tree. Today only the Linux legend-swatch nudge in
-// PeriodicTable.module.css uses it. Set once;
+// SchemeLegend.module.css uses it. Set once;
 // the OS can't change mid-session. Skip "unknown" so the attribute is absent in
 // non-Tauri/unrecognized contexts rather than carrying a meaningless value.
 const os = currentPlatform();

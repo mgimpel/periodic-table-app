@@ -29,15 +29,13 @@ function buildShellsMarkup(shells: number[]): string {
     const radius = FIRST_SHELL_RADIUS + index * SHELL_SPACING;
     lines.push(`<circle fill="none" r="${radius}"/>`);
     lines.push(`<circle r="30" cy="-${radius}"/>`);
-    if (shell > 1) {
-      const angle = 360 / shell;
-      for (let i = 1; i < shell; i++) {
-        lines.push(
-          `<circle r="30" cy="-${radius}" transform="rotate(${Math.trunc(
-            i * angle,
-          )})"/>`,
-        );
-      }
+    const angle = 360 / shell;
+    for (let i = 1; i < shell; i++) {
+      lines.push(
+        `<circle r="30" cy="-${radius}" transform="rotate(${Math.trunc(
+          i * angle,
+        )})"/>`,
+      );
     }
   });
   return lines.join("\n");
@@ -63,7 +61,6 @@ export function buildElectronShellDiagram(
   const size = 300 + 100 * shells.length;
   const viewSize = 2 * size;
   const dimension = size - 100;
-  const electronConf = electronConfiguration;
 
   return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
 viewBox="-${size} -${size} ${viewSize} ${viewSize}" width="${dimension}" height="${dimension}"
@@ -71,7 +68,7 @@ role="img" aria-label="Electron Shell Diagram of ${name}">
 <circle fill="${color}" r="${NUCLEUS_RADIUS}" stroke="#404040" stroke-width="8"/>
 <text x="0" y="-100" font-size="50" font-weight="bold" font="arial" text-anchor="middle">${atomicNumber}</text>
 <text x="0" y="50" font-size="150" font-weight="bold" font="arial" text-anchor="middle">${symbol}</text>
-<text x="0" y="125" font-size="28" font="arial" text-anchor="middle">${electronConf}</text>
+<text x="0" y="125" font-size="28" font="arial" text-anchor="middle">${electronConfiguration}</text>
 <g fill="grey" stroke="grey" stroke-width="8">
 ${buildShellsMarkup(shells)}
 </g>

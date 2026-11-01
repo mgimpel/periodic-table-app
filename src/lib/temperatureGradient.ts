@@ -12,8 +12,6 @@
 import { ELEMENTS } from "../data/elements";
 import { type Stop, interpolateStops } from "./gradient";
 
-export { MISSING_VALUE_COLOR } from "./gradient";
-
 /**
  * The red endpoint: the largest value among every element's melting AND boiling
  * point. Derived once from the dataset so the red endpoint is identical in both

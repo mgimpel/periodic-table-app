@@ -12,13 +12,6 @@
 import { useEffect, useState } from "react";
 import { isMobilePlatform } from "../lib/platform";
 
-interface OrientationLockState {
-  /** True once a lock attempt has run. */
-  attempted: boolean;
-  /** True only when the lock resolved successfully. */
-  locked: boolean;
-}
-
 // The Screen Orientation `lock` method is not in the standard lib DOM types and
 // is absent on some platforms (notably iOS WKWebView). Type it as optional so
 // the missing-API case is a plain runtime check, not a type error.
@@ -32,10 +25,9 @@ export function useOrientationLock(): {
 } {
   // Read once per mount: the platform can't change mid-session.
   const [mobile] = useState(() => isMobilePlatform());
-  const [state, setState] = useState<OrientationLockState>({
-    attempted: false,
-    locked: false,
-  });
+  // True only once a lock attempt has failed (denied or unsupported); the
+  // successful path leaves it false. This is the only signal the notice needs.
+  const [lockFailed, setLockFailed] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
@@ -48,14 +40,14 @@ export function useOrientationLock(): {
       try {
         // Missing API (undefined orientation or lock) → fallback path.
         if (!orientation?.lock) {
-          if (!cancelled) setState({ attempted: true, locked: false });
+          if (!cancelled) setLockFailed(true);
           return;
         }
+        // Success: leave lockFailed false, so no notice shows.
         await orientation.lock("landscape");
-        if (!cancelled) setState({ attempted: true, locked: true });
       } catch {
         // Rejected (denied / unsupported) → fallback path.
-        if (!cancelled) setState({ attempted: true, locked: false });
+        if (!cancelled) setLockFailed(true);
       }
     };
 
@@ -66,7 +58,7 @@ export function useOrientationLock(): {
     };
   }, [mobile]);
 
-  const showNotice = mobile && state.attempted && !state.locked && !dismissed;
+  const showNotice = mobile && lockFailed && !dismissed;
 
   // The notice asks the user to rotate; once they do, it has served its
   // purpose, so auto-dismiss it on the next rotation. Only listen while it is

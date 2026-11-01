@@ -19,6 +19,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { CATEGORY_COLORS, type Element } from "../data/element";
 import { elementImageUrl, elementSpectrumUrl } from "../data/elementImages";
+import { phaseBucket } from "../lib/cellColor";
 import { buildElectronShellDiagram } from "../lib/electronShellDiagram";
 import {
   DEFAULT_TEMPERATURE,
@@ -38,54 +39,18 @@ interface ElementDetailProps {
 const fmt = (v: number | null, unit?: string | null) =>
   v === null ? "—" : unit ? `${v} ${unit}` : String(v);
 
-// Element photo for the description tab. Rendered only when the element's
-// English name has a matching bundled image.
-function ElementImage({ element }: { element: Element }) {
-  const { t } = useTranslation(["elements", "ui"]);
-  const src = elementImageUrl(element.name);
-  if (!src) return null;
-  return (
-    <Image
-      src={src}
-      alt={t("ui:detail.imageAlt", {
-        name: t(`elements:name.${element.atomicNumber}`),
-      })}
-      w={160}
-      h="auto"
-      radius="md"
-      fit="contain"
-      flex="0 0 auto"
-    />
-  );
-}
-
-// Emission spectrum strip for the atomic tab, full width. Rendered only when
-// the element's English name has a matching bundled spectrum.
-function ElementSpectrum({ element }: { element: Element }) {
-  const { t } = useTranslation(["elements", "ui"]);
-  const src = elementSpectrumUrl(element.name);
-  if (!src) return null;
-  return (
-    <Image
-      src={src}
-      alt={t("ui:detail.spectrumAlt", {
-        name: t(`elements:name.${element.atomicNumber}`),
-      })}
-      w="100%"
-      h="auto"
-      radius="md"
-      fit="contain"
-      mt="md"
-    />
-  );
-}
-
 // Render the element's Bohr shell diagram. The pure generator returns an SVG
 // string; embedding it as a data-URI <img> keeps the markup isolated (no inline
 // DOM injection) and lets it scale responsively. Elements with no shells (none
 // in the shipped data, but the field is a plain array) render nothing.
-function ElectronShellDiagram({ element }: { element: Element }) {
-  const { t } = useTranslation(["elements", "ui"]);
+function ElectronShellDiagram({
+  element,
+  name,
+}: {
+  element: Element;
+  name: string;
+}) {
+  const { t } = useTranslation("ui");
   if (element.shells.length === 0) return null;
   const svg = buildElectronShellDiagram(
     element.atomicNumber,
@@ -99,9 +64,7 @@ function ElectronShellDiagram({ element }: { element: Element }) {
   return (
     <Image
       src={src}
-      alt={t("ui:detail.shellDiagramAlt", {
-        name: t(`elements:name.${element.atomicNumber}`),
-      })}
+      alt={t("detail.shellDiagramAlt", { name })}
       w={200}
       h={200}
       flex="0 0 auto"
@@ -136,6 +99,9 @@ function DetailBody({
   temperatureUnit: TemperatureOption;
 }) {
   const { t } = useTranslation(["elements", "ui"]);
+  const name = t(`elements:name.${element.atomicNumber}`);
+  const photo = elementImageUrl(element.name);
+  const spectrum = elementSpectrumUrl(element.name);
   return (
     <Stack gap="md">
       <Group gap="sm" align="center" wrap="nowrap">
@@ -166,7 +132,7 @@ function DetailBody({
             size="h4"
             renderRoot={(props) => <ModalBaseTitle {...props} />}
           >
-            {t(`elements:name.${element.atomicNumber}`)}
+            {name}
           </Title>
           <Badge variant="light" color="gray">
             {t(`ui:category.${element.category}`)}
@@ -232,14 +198,24 @@ function DetailBody({
               value={element.block}
             />
           </SimpleGrid>
-          <ElementSpectrum element={element} />
+          {spectrum && (
+            <Image
+              src={spectrum}
+              alt={t("ui:detail.spectrumAlt", { name })}
+              w="100%"
+              h="auto"
+              radius="md"
+              fit="contain"
+              mt="md"
+            />
+          )}
         </Tabs.Panel>
 
         <Tabs.Panel value="physical" pt="md">
           <SimpleGrid cols={2} spacing="sm">
             <DetailRow
               label={t("ui:detail.field.phase")}
-              value={t(`ui:phase.${element.phase}`, element.phase)}
+              value={t(`ui:phase.${phaseBucket(element.phase)}`)}
             />
             <DetailRow
               label={t("ui:detail.field.density")}
@@ -276,7 +252,7 @@ function DetailBody({
                 value={fmt(element.electronAffinity, "kJ/mol")}
               />
             </Stack>
-            <ElectronShellDiagram element={element} />
+            <ElectronShellDiagram element={element} name={name} />
           </Group>
         </Tabs.Panel>
 
@@ -302,11 +278,20 @@ function DetailBody({
                 />
               )}
               <Text size="sm">
-                {t(`elements:summary.${element.atomicNumber}`) ||
-                  t("ui:detail.noDescription")}
+                {t(`elements:summary.${element.atomicNumber}`)}
               </Text>
             </Stack>
-            <ElementImage element={element} />
+            {photo && (
+              <Image
+                src={photo}
+                alt={t("ui:detail.imageAlt", { name })}
+                w={160}
+                h="auto"
+                radius="md"
+                fit="contain"
+                flex="0 0 auto"
+              />
+            )}
           </Group>
         </Tabs.Panel>
       </Tabs>

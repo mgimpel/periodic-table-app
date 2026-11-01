@@ -13,7 +13,8 @@
 import { CATEGORY_COLORS, type Element } from "../data/element";
 import type { ColoringSchemeOption } from "./coloringScheme";
 import { electronegativityColor } from "./electronegativityGradient";
-import { MISSING_VALUE_COLOR, temperatureColor } from "./temperatureGradient";
+import { MISSING_VALUE_COLOR } from "./gradient";
+import { temperatureColor } from "./temperatureGradient";
 
 /** The four phase buckets, in legend display order. */
 export const PHASE_KEYS = ["solid", "liquid", "gas", "unknown"] as const;
@@ -29,7 +30,7 @@ export const PHASE_COLORS: Record<PhaseKey, string> = {
   solid: "#90caf9",
   liquid: "#80cbc4",
   gas: "#ffcc80",
-  unknown: "#cfd8dc",
+  unknown: MISSING_VALUE_COLOR,
 };
 
 /**
@@ -63,7 +64,7 @@ export const ORIGIN_COLORS: Record<OriginKey, string> = {
   primordial: "#a5d6a7",
   "from-decay": "#ce93d8",
   synthetic: "#ef9a9a",
-  unknown: "#cfd8dc",
+  unknown: MISSING_VALUE_COLOR,
 };
 
 /**
