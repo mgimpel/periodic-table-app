@@ -3,13 +3,13 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-// localStorage persistence for the language preference (mirrors
-// colorSchemeManager.ts): read-back with validation, and a write that never
-// throws but signals failure so the UI can show a non-blocking notice. No
-// module-level mutable state — readStoredLanguage re-reads storage each call,
-// which is the only state source the control needs.
+// localStorage persistence for the language preference. Delegates the read-back
+// and never-throw write to the shared src/lib/storage.ts helper; this module
+// owns only the storage key and the language normalizer. readStoredLanguage
+// re-reads storage each call, the only state source the control needs.
 
 import { normalizeStoredLanguage, type LanguageOption } from "./language";
+import { persistPref, readPref } from "./storage";
 
 const STORAGE_KEY = "app-language-option";
 
@@ -19,29 +19,17 @@ const STORAGE_KEY = "app-language-option";
  * invalid value resolves to "system".
  */
 export function readStoredLanguage(): LanguageOption {
-  try {
-    return normalizeStoredLanguage(window.localStorage.getItem(STORAGE_KEY));
-  } catch {
-    return normalizeStoredLanguage(undefined);
-  }
+  return readPref(STORAGE_KEY, normalizeStoredLanguage);
 }
 
 /**
  * Persists the chosen LanguageOption. Never throws: a failure (private mode /
  * quota) is caught and `onSaveError` fires so the UI can tell the user the
  * preference was not saved. The session keeps the chosen option regardless.
- *
- * ponytail: on write failure the preference is simply not persisted this
- * session; upgrade path is retry/alternative storage, which the product does
- * not need.
  */
 export function persistLanguage(
   option: LanguageOption,
   onSaveError?: (error: unknown) => void,
 ): void {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, option);
-  } catch (error) {
-    onSaveError?.(error);
-  }
+  persistPref(STORAGE_KEY, option, onSaveError);
 }

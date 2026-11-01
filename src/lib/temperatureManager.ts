@@ -3,18 +3,15 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-// localStorage persistence for the temperature unit (mirrors
-// languageManager.ts): read-back with validation, and a write that never throws
-// but signals failure so the UI can show a non-blocking notice.
-//
-// ponytail: three managers (color scheme, language, temperature) now duplicate
-// this small read/persist pair on purpose. Upgrade path: extract a
-// src/lib/storage.ts helper if a fourth preference arrives.
+// localStorage persistence for the temperature unit. Delegates the read-back
+// and never-throw write to the shared src/lib/storage.ts helper; this module
+// owns only the storage key and the unit normalizer.
 
 import {
   normalizeStoredTemperature,
   type TemperatureOption,
 } from "./temperature";
+import { persistPref, readPref } from "./storage";
 
 const STORAGE_KEY = "app-temperature-unit";
 
@@ -24,11 +21,7 @@ const STORAGE_KEY = "app-temperature-unit";
  * resolves to "kelvin".
  */
 export function readStoredTemperature(): TemperatureOption {
-  try {
-    return normalizeStoredTemperature(window.localStorage.getItem(STORAGE_KEY));
-  } catch {
-    return normalizeStoredTemperature(undefined);
-  }
+  return readPref(STORAGE_KEY, normalizeStoredTemperature);
 }
 
 /**
@@ -40,9 +33,5 @@ export function persistTemperature(
   option: TemperatureOption,
   onSaveError?: (error: unknown) => void,
 ): void {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, option);
-  } catch (error) {
-    onSaveError?.(error);
-  }
+  persistPref(STORAGE_KEY, option, onSaveError);
 }
