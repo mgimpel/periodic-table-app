@@ -10,6 +10,9 @@
 // display unit affects only the gradient legend's endpoint labels, not colors.
 
 import { ELEMENTS } from "../data/elements";
+import { type Stop, interpolateStops } from "./gradient";
+
+export { MISSING_VALUE_COLOR } from "./gradient";
 
 /**
  * The red endpoint: the largest value among every element's melting AND boiling
@@ -22,19 +25,16 @@ export const DATASET_MAX: number = Math.max(
   ),
 );
 
-/** Neutral grey for cells with a null value under a gradient scheme. */
-export const MISSING_VALUE_COLOR = "#cfd8dc";
-
 /**
  * Fixed interpolation stops on the absolute Kelvin scale, in ascending order.
  * RGB chosen for readability against dark cell text in both color schemes.
  */
-export const GRADIENT_STOPS = [
-  { k: 0, rgb: [33, 102, 172] }, // blue
-  { k: 373, rgb: [247, 247, 247] }, // white
-  { k: 1273, rgb: [253, 174, 97] }, // orange
-  { k: DATASET_MAX, rgb: [178, 24, 43] }, // red
-] as const;
+export const GRADIENT_STOPS: readonly Stop[] = [
+  { x: 0, rgb: [33, 102, 172] }, // blue
+  { x: 373, rgb: [247, 247, 247] }, // white
+  { x: 1273, rgb: [253, 174, 97] }, // orange
+  { x: DATASET_MAX, rgb: [178, 24, 43] }, // red
+];
 
 /**
  * Map an absolute temperature in Kelvin to a cell color via piecewise-linear
@@ -43,29 +43,5 @@ export const GRADIENT_STOPS = [
  * valid "rgb(r, g, b)" string with integer channels.
  */
 export function temperatureColor(kelvin: number): string {
-  const first = GRADIENT_STOPS[0];
-  const last = GRADIENT_STOPS[GRADIENT_STOPS.length - 1];
-  if (kelvin <= first.k) return rgb(first.rgb);
-  if (kelvin >= last.k) return rgb(last.rgb);
-
-  for (let i = 1; i < GRADIENT_STOPS.length; i++) {
-    const hi = GRADIENT_STOPS[i];
-    if (kelvin <= hi.k) {
-      const lo = GRADIENT_STOPS[i - 1];
-      // hi.k > lo.k here: kelvin > first.k on the first pass, and each later
-      // stop is strictly greater than the previous (373 < 1273 < DATASET_MAX).
-      const t = (kelvin - lo.k) / (hi.k - lo.k);
-      return rgb([
-        Math.round(lo.rgb[0] + (hi.rgb[0] - lo.rgb[0]) * t),
-        Math.round(lo.rgb[1] + (hi.rgb[1] - lo.rgb[1]) * t),
-        Math.round(lo.rgb[2] + (hi.rgb[2] - lo.rgb[2]) * t),
-      ]);
-    }
-  }
-  // Unreachable: kelvin < last.k is handled by the loop. Kept total for safety.
-  return rgb(last.rgb);
-}
-
-function rgb(channels: readonly number[]): string {
-  return `rgb(${channels[0]}, ${channels[1]}, ${channels[2]})`;
+  return interpolateStops(GRADIENT_STOPS, kelvin);
 }

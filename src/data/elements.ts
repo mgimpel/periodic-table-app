@@ -16,6 +16,7 @@
 // We expose exactly the 118 confirmed elements, so entries above 118 are dropped.
 
 import raw from "./periodic-table.json";
+import raw2 from "./periodic-table2.json";
 import type { Element, ElementCategory } from "./element";
 import { CATEGORY_COLORS } from "./element";
 
@@ -45,6 +46,42 @@ interface RawElement {
   appearance: string | null;
   discovered_by: string | null;
   named_by: string | null;
+}
+
+// Extended dataset (periodic-table2.json): a top-level array keyed by atomic
+// number Z, with string-valued fields. Only the three fields we merge are typed.
+interface RawElement2 {
+  Z: number;
+  "Electro-negativity"?: string;
+  Origin?: string;
+  "Spectral colour"?: string;
+}
+
+// Build the Z→entry lookup once at module load.
+// ponytail: O(1) per-element merge, no second typed model. Ceiling: assumes the
+// two datasets agree on Z — a Z present in one but not the other yields the
+// null/"" fallbacks below (graceful degrade, no throw).
+const extendedByZ = new Map<number, RawElement2>(
+  (raw2 as unknown as RawElement2[]).map((e) => [e.Z, e]),
+);
+
+/** Parse the en-dash-placeholder electronegativity string into a number or null. */
+function parseElectronegativity(value: string | undefined): number | null {
+  if (value === undefined || value === "–") return null;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+}
+
+/** Merge the three extended fields for a given atomic number, with fallbacks. */
+function extendedFields(
+  z: number,
+): Pick<Element, "electronegativity" | "origin" | "spectralColour"> {
+  const ext = extendedByZ.get(z);
+  return {
+    electronegativity: parseElectronegativity(ext?.["Electro-negativity"]),
+    origin: ext?.Origin ?? "",
+    spectralColour: ext?.["Spectral colour"] ?? null,
+  };
 }
 
 /** Map a raw source category string onto the fixed `ElementCategory` union. */
@@ -81,6 +118,7 @@ function adapt(entry: RawElement): Element {
     appearance: entry.appearance ?? null,
     discoveredBy: entry.discovered_by ?? null,
     namedBy: entry.named_by ?? null,
+    ...extendedFields(entry.number),
   };
 }
 

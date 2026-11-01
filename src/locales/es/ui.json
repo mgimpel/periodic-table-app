@@ -37,7 +37,10 @@
     "category": "Categoría",
     "phase": "Estado",
     "melting-point": "Punto de fusión",
-    "boiling-point": "Punto de ebullición"
+    "boiling-point": "Punto de ebullición",
+    "electronegativity": "Electronegatividad",
+    "origin": "Origen",
+    "spectral-colour": "Color espectral"
   },
   "saveError": {
     "theme": {
@@ -107,6 +110,17 @@
     "liquid": "Líquido",
     "gas": "Gas",
     "unknown": "Desconocido"
+  },
+  "origin": {
+    "primordial": "Primordial",
+    "from-decay": "Por desintegración",
+    "synthetic": "Sintético",
+    "unknown": "Desconocido"
+  },
+  "schemeLegend": {
+    "spectral": {
+      "description": "Cada celda muestra el color espectral característico propio del elemento."
+    }
   },
   "cell": {
     "ariaLabel": "{{name}}, número atómico {{number}}"

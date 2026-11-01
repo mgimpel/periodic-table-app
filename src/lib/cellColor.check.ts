@@ -8,7 +8,15 @@
 // Throws on the first failed assertion, so any runner exits non-zero on failure.
 
 import assert from "node:assert/strict";
-import { cellColor, phaseBucket, PHASE_COLORS } from "./cellColor";
+import {
+  cellColor,
+  ORIGIN_COLORS,
+  originBucket,
+  phaseBucket,
+  PHASE_COLORS,
+  spectralCellColor,
+} from "./cellColor";
+import { electronegativityColor } from "./electronegativityGradient";
 import { MISSING_VALUE_COLOR, temperatureColor } from "./temperatureGradient";
 import { CATEGORY_COLORS } from "../data/element";
 import { ELEMENTS } from "../data/elements";
@@ -62,5 +70,56 @@ assert.equal(
   cellColor("boiling-point", withBoil),
   temperatureColor(withBoil.boil as number),
 );
+
+// originBucket: known dataset values map to their bucket.
+assert.equal(originBucket("primordial"), "primordial");
+assert.equal(originBucket("from decay"), "from-decay");
+assert.equal(originBucket("synthetic"), "synthetic");
+
+// originBucket: absent/empty/unrecognized values fall back to "unknown".
+for (const bad of ["", "cosmic", "from-decay", "Synthetic?"]) {
+  assert.equal(originBucket(bad), "unknown", bad);
+}
+
+// The four origin colors are mutually distinct.
+assert.equal(new Set(Object.values(ORIGIN_COLORS)).size, 4);
+
+// spectralCellColor: a valid 6-hex (no "#") becomes "#" + raw.
+assert.equal(spectralCellColor("ff497e"), "#ff497e");
+
+// spectralCellColor: null and any malformed value fall back to the sentinel.
+for (const bad of [null, "fff", "gggggg", "#ff497e"]) {
+  assert.equal(spectralCellColor(bad), MISSING_VALUE_COLOR, String(bad));
+}
+
+// Resolver, electronegativity scheme: MISSING_VALUE_COLOR when null, else the
+// gradient color. Checked against real elements so both branches are exercised.
+const withNullEn = ELEMENTS.find((e) => e.electronegativity === null);
+const withEn = ELEMENTS.find((e) => e.electronegativity !== null);
+assert.ok(withNullEn && withEn, "dataset must have null and non-null en");
+assert.equal(cellColor("electronegativity", withNullEn), MISSING_VALUE_COLOR);
+assert.equal(
+  cellColor("electronegativity", withEn),
+  electronegativityColor(withEn.electronegativity as number),
+);
+
+// Resolver, origin scheme: every element resolves to its bucket's origin color.
+for (const element of ELEMENTS) {
+  assert.equal(
+    cellColor("origin", element),
+    ORIGIN_COLORS[originBucket(element.origin)],
+    element.name,
+  );
+}
+
+// Resolver, spectral-colour scheme: every element resolves to spectralCellColor
+// of its raw value (covering both valid-hex and missing-value branches).
+for (const element of ELEMENTS) {
+  assert.equal(
+    cellColor("spectral-colour", element),
+    spectralCellColor(element.spectralColour),
+    element.name,
+  );
+}
 
 console.log("ok: cellColor self-check passed");

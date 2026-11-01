@@ -43,6 +43,19 @@ for (const e of ELEMENTS) {
     e.ypos >= 1 && e.ypos <= 10,
     `ypos out of range for ${e.symbol}: ${e.ypos}`,
   );
+  // Extended dataset fields: present with the right type on every element.
+  assert(
+    e.electronegativity === null || typeof e.electronegativity === "number",
+    `electronegativity should be number|null for ${e.symbol}, got ${e.electronegativity}`,
+  );
+  assert(
+    typeof e.origin === "string",
+    `origin should be a string for ${e.symbol}, got ${e.origin}`,
+  );
+  assert(
+    e.spectralColour === null || typeof e.spectralColour === "string",
+    `spectralColour should be string|null for ${e.symbol}, got ${e.spectralColour}`,
+  );
 }
 
 // Spot-checks for known positions.

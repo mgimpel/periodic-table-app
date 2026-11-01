@@ -37,7 +37,10 @@
     "category": "Category",
     "phase": "Phase",
     "melting-point": "Melting point",
-    "boiling-point": "Boiling point"
+    "boiling-point": "Boiling point",
+    "electronegativity": "Electronegativity",
+    "origin": "Origin",
+    "spectral-colour": "Spectral colour"
   },
   "saveError": {
     "theme": {
@@ -107,6 +110,17 @@
     "liquid": "Liquid",
     "gas": "Gas",
     "unknown": "Unknown"
+  },
+  "origin": {
+    "primordial": "Primordial",
+    "from-decay": "From decay",
+    "synthetic": "Synthetic",
+    "unknown": "Unknown"
+  },
+  "schemeLegend": {
+    "spectral": {
+      "description": "Each cell shows that element's own characteristic spectral colour."
+    }
   },
   "cell": {
     "ariaLabel": "{{name}}, atomic number {{number}}"

@@ -38,8 +38,9 @@ const radioByValue = (value: string) =>
   screen.getByDisplayValue(value) as HTMLInputElement;
 
 describe("ColoringSchemeControl", () => {
-  it("renders exactly the four options with localized labels, in order (Req 1.1, 7.1)", () => {
+  it("renders all seven options with localized labels, in order (Req 1.1, 10.1)", () => {
     render(<Harness />);
+    expect(COLORING_SCHEME_OPTIONS).toHaveLength(7);
     const radios = screen.getAllByRole("radio") as HTMLInputElement[];
     expect(radios.map((r) => r.value)).toEqual([...COLORING_SCHEME_OPTIONS]);
     for (const option of COLORING_SCHEME_OPTIONS) {
@@ -49,7 +50,7 @@ describe("ColoringSchemeControl", () => {
     }
   });
 
-  it("exposes an accessible name from the locale (Req 1.6, 7.1)", () => {
+  it("exposes an accessible name from the locale (Req 1.6, 10.1)", () => {
     render(<Harness />);
     expect(
       screen.getByRole("radiogroup", { name: enUi.coloringScheme.label }),

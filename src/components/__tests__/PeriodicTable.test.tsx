@@ -32,6 +32,7 @@ import {
   phaseBucket,
   PHASE_COLORS,
   PHASE_KEYS,
+  ORIGIN_KEYS,
 } from "../../lib/cellColor";
 import { CATEGORY_COLORS, CATEGORY_KEYS } from "../../data/element";
 import uiStrings from "../../locales/en/ui.json";
@@ -264,5 +265,69 @@ describe("PeriodicTable coloring scheme drives cells and legend", () => {
     expect(legendSwatchCount(legend)).toBe(0);
     const bar = legend.querySelector('div[style*="linear-gradient"]');
     expect(bar).not.toBeNull();
+  });
+
+  it("recolors cells and swaps the legend to the gradient form for coloringScheme='electronegativity'", () => {
+    // Req 1.2 (recolor) + 1.3 (legend updates): electronegativity drives cell
+    // color via its gradient and renders the gradient-bar legend form.
+    renderTable({ coloringScheme: "electronegativity" });
+
+    // Cell background follows the resolver for the active scheme (compared
+    // against cellColor rather than a hardcoded rgb). Oxygen has a non-null
+    // electronegativity, so this is a gradient color, distinct from its
+    // category color — proving the recolor isn't vacuous.
+    const cell = cellFor(sample);
+    const enColor = cellColor("electronegativity", sample);
+    expect(cell).toHaveStyle({ backgroundColor: enColor });
+    expect(enColor).not.toBe(CATEGORY_COLORS[sample.category]);
+
+    // Legend swapped to the gradient-bar form: no discrete swatches, one bar
+    // painted with an inline background gradient.
+    const legend = screen.getByRole("group", { name: LEGEND_GROUP_NAME });
+    expect(legendSwatchCount(legend)).toBe(0);
+    expect(legend.querySelector('div[style*="linear-gradient"]')).not.toBeNull();
+  });
+
+  it("recolors cells and swaps the legend to the discrete form for coloringScheme='origin'", () => {
+    // Req 1.2 (recolor) + 1.3 (legend updates): origin drives cell color via
+    // its bucket color and renders the discrete four-swatch legend form.
+    renderTable({ coloringScheme: "origin" });
+
+    // Cell background follows the resolver for the active scheme.
+    const cell = cellFor(sample);
+    expect(cell).toHaveStyle({
+      backgroundColor: cellColor("origin", sample),
+    });
+
+    // Legend swapped to the discrete origin form: one swatch per origin bucket.
+    const legend = screen.getByRole("group", { name: LEGEND_GROUP_NAME });
+    expect(legendSwatchCount(legend)).toBe(ORIGIN_KEYS.length);
+    expect(
+      within(legend).getByText(uiStrings.origin.primordial),
+    ).toBeInTheDocument();
+  });
+
+  it("recolors cells and swaps the legend to the explanatory form for coloringScheme='spectral-colour'", () => {
+    // Req 1.2 (recolor) + 1.3 (legend updates): the spectral-colour scheme
+    // paints each cell its own spectral colour and renders an explanatory
+    // legend (no swatches, no gradient bar — just the localized description).
+    renderTable({ coloringScheme: "spectral-colour" });
+
+    // Cell background follows the resolver for the active scheme.
+    const cell = cellFor(sample);
+    expect(cell).toHaveStyle({
+      backgroundColor: cellColor("spectral-colour", sample),
+    });
+
+    // Legend swapped to the explanatory form: the localized description text is
+    // present, with neither discrete swatches nor a gradient bar.
+    const legend = screen.getByRole("group", { name: LEGEND_GROUP_NAME });
+    expect(legendSwatchCount(legend)).toBe(0);
+    expect(legend.querySelector('div[style*="linear-gradient"]')).toBeNull();
+    expect(
+      within(legend).getByText(
+        uiStrings.schemeLegend.spectral.description,
+      ),
+    ).toBeInTheDocument();
   });
 });

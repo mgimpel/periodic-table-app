@@ -42,3 +42,15 @@
   color: var(--mantine-color-text);
   white-space: nowrap;
 }
+
+/* Explanatory text for the spectral-colour scheme: no swatch, no bar — each
+ * cell already shows its own element's spectral colour. Spans both legend
+ * columns and matches the discrete labels' sizing so it scales with the table. */
+.description {
+  grid-column: 1 / -1;
+  align-self: center;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--mantine-color-text);
+}

@@ -36,8 +36,8 @@ describe("temperatureColor", () => {
     for (const [k, color] of ANCHORS) expect(temperatureColor(k)).toBe(color);
     // Guard the anchors against the source of truth so a stop edit is caught.
     for (let i = 0; i < GRADIENT_STOPS.length; i++) {
-      const { k, rgb } = GRADIENT_STOPS[i];
-      expect(temperatureColor(k)).toBe(`rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`);
+      const { x, rgb } = GRADIENT_STOPS[i];
+      expect(temperatureColor(x)).toBe(`rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`);
     }
   });
 

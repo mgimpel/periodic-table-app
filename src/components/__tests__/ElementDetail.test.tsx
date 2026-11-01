@@ -69,6 +69,9 @@ function makeElement(overrides: Partial<Element> = {}): Element {
     appearance: "lustrous metallic with a grayish tinge",
     discoveredBy: "Ancient civilizations",
     namedBy: "Ancient namers",
+    electronegativity: 1.83,
+    origin: "primordial",
+    spectralColour: null,
     ...overrides,
   };
 }

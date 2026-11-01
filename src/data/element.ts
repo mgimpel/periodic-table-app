@@ -48,6 +48,12 @@ export interface Element {
   appearance: string | null;
   discoveredBy: string | null;
   namedBy: string | null;
+  /** Pauling electronegativity; null when the extended dataset leaves it unset. */
+  electronegativity: number | null;
+  /** Occurrence origin (e.g. "primordial", "from decay", "synthetic"); "" when absent. */
+  origin: string;
+  /** Characteristic spectral colour as a raw 6-hex string (no leading "#"); null when absent. */
+  spectralColour: string | null;
 }
 
 // Canonical display order for the ten categories (legend order). Explicit and

@@ -37,7 +37,10 @@
     "category": "Kategorie",
     "phase": "Aggregatzustand",
     "melting-point": "Schmelzpunkt",
-    "boiling-point": "Siedepunkt"
+    "boiling-point": "Siedepunkt",
+    "electronegativity": "Elektronegativität",
+    "origin": "Herkunft",
+    "spectral-colour": "Spektralfarbe"
   },
   "saveError": {
     "theme": {
@@ -107,6 +110,17 @@
     "liquid": "Flüssig",
     "gas": "Gasförmig",
     "unknown": "Unbekannt"
+  },
+  "origin": {
+    "primordial": "Primordial",
+    "from-decay": "Aus Zerfall",
+    "synthetic": "Synthetisch",
+    "unknown": "Unbekannt"
+  },
+  "schemeLegend": {
+    "spectral": {
+      "description": "Jede Zelle zeigt die charakteristische Spektralfarbe des jeweiligen Elements."
+    }
   },
   "cell": {
     "ariaLabel": "{{name}}, Ordnungszahl {{number}}"
