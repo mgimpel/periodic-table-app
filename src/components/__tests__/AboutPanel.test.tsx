@@ -49,7 +49,8 @@ describe("AboutPanel", () => {
     renderAbout();
     const expected = enUi.about.version.replace("{{version}}", pkg.version);
     expect(screen.getByText(expected)).toBeInTheDocument();
-    // Guards against a stale literal: the displayed version is 0.1.0 today.
+    // The rendered string interpolates package.json's version; both read the
+    // same source, so this confirms the wiring rather than guarding a literal.
     expect(expected).toContain(pkg.version);
   });
 

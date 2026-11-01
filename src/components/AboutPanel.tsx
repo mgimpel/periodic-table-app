@@ -12,6 +12,9 @@ import { ResponsiveOverlay } from "./ResponsiveOverlay";
 import pkg from "../../package.json";
 
 const REPO_URL = "https://github.com/mgimpel/periodic-table-app";
+// Link straight to the license text so the "BSD 3-Clause License" link lands on
+// the actual terms rather than the repo home.
+const LICENSE_URL = `${REPO_URL}/blob/main/LICENSE`;
 
 interface AboutPanelProps {
   opened: boolean;
@@ -40,7 +43,7 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
       <Stack gap="md">
         <Text>{t("about.version", { version: pkg.version })}</Text>
         <Text>{t("about.copyright")}</Text>
-        <Anchor href={REPO_URL} target="_blank" rel="noreferrer">
+        <Anchor href={LICENSE_URL} target="_blank" rel="noreferrer">
           {t("about.license")}
         </Anchor>
         <Stack gap="xs">
