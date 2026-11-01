@@ -6,19 +6,34 @@
 import { ActionIcon, Group, Title } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { AppLogo, GearIcon } from "./Asset";
+import { ColoringSchemeControl } from "./ColoringSchemeControl";
+import type { ColoringSchemeOption } from "../lib/coloringScheme";
 import classes from "./HeaderBar.module.css";
 
 interface HeaderBarProps {
   onOpenSettings: () => void;
   settingsButtonRef: React.RefObject<HTMLButtonElement | null>;
+  // Coloring-scheme dropdown lives on the right of the header; AppLayout owns
+  // the value because PeriodicTable reads it.
+  coloringScheme: ColoringSchemeOption;
+  onColoringSchemeChange: (option: ColoringSchemeOption) => void;
+  onColoringSchemeSaveError?: (error: unknown) => void;
 }
 
-// Thin header bar: Logo left, Title centered (truncating, not wrapping), and a
-// gear Settings_Button right (Req 1.2-1.5, 1.7, 1.9). The Group pins logo and
-// button to the edges while the flex:1 centered Title truncates; the ActionIcon
-// is a >=44x44 touch target (Req 1.8, 6.3) and carries the accessible name
-// (Req 6.1). ref lets the Settings_Panel return focus here on close (Req 6.9).
-export function HeaderBar({ onOpenSettings, settingsButtonRef }: HeaderBarProps) {
+// Thin header bar: Logo left, Title centered (truncating, not wrapping), and on
+// the right the coloring-scheme dropdown then the gear Settings_Button (Req
+// 1.2-1.5, 1.7, 1.9). The dropdown sits to the LEFT of the gear so the gear
+// stays at the far right where users expect it. The Group pins the edges while
+// the flex:1 centered Title truncates; the ActionIcon is a >=44x44 touch target
+// (Req 1.8, 6.3) and carries the accessible name (Req 6.1). ref lets the
+// Settings_Panel return focus here on close (Req 6.9).
+export function HeaderBar({
+  onOpenSettings,
+  settingsButtonRef,
+  coloringScheme,
+  onColoringSchemeChange,
+  onColoringSchemeSaveError,
+}: HeaderBarProps) {
   const { t } = useTranslation("ui");
   return (
     <Group
@@ -42,6 +57,11 @@ export function HeaderBar({ onOpenSettings, settingsButtonRef }: HeaderBarProps)
       >
         {t("app.title")}
       </Title>
+      <ColoringSchemeControl
+        value={coloringScheme}
+        onChange={onColoringSchemeChange}
+        onSaveError={onColoringSchemeSaveError}
+      />
       <ActionIcon
         ref={settingsButtonRef}
         variant="subtle"

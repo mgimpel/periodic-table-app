@@ -223,7 +223,7 @@ describe("AppLayout", () => {
     vi.spyOn(window.localStorage.__proto__, "setItem").mockImplementation(() => {
       throw new Error("blocked");
     });
-    // Default (category) at startup; select Phase in settings.
+    // Default (category) at startup; select Phase in the header dropdown.
     renderLayout();
 
     const oxygenCell = () =>
@@ -232,15 +232,21 @@ describe("AppLayout", () => {
       backgroundColor: cellColor("category", oxygen),
     });
 
-    await user.click(settingsButton());
-    await screen.findByRole("dialog");
-    await user.click(screen.getByDisplayValue("phase"));
+    // The coloring-scheme dropdown now lives in the header, not the settings
+    // panel. Open it and pick Phase.
+    const schemeSelect = screen.getByRole("combobox", {
+      name: enUi.coloringScheme.label,
+    }) as HTMLInputElement;
+    await user.click(schemeSelect);
+    await user.click(
+      within(await screen.findByRole("listbox")).getByRole("option", {
+        name: enUi.coloringScheme.phase,
+      }),
+    );
 
     // Req 6.6: the scheme applies for the session despite the failed save —
     // the cell recolors to the phase color and the legend swaps form.
-    expect(
-      (screen.getByDisplayValue("phase") as HTMLInputElement).checked,
-    ).toBe(true);
+    expect(schemeSelect.value).toBe(enUi.coloringScheme.phase);
     expect(oxygenCell()).toHaveStyle({
       backgroundColor: cellColor("phase", oxygen),
     });

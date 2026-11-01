@@ -40,7 +40,13 @@ export function AppLayout() {
 
   return (
     <div className={classes.root}>
-      <HeaderBar onOpenSettings={open} settingsButtonRef={settingsButtonRef} />
+      <HeaderBar
+        onOpenSettings={open}
+        settingsButtonRef={settingsButtonRef}
+        coloringScheme={coloringScheme}
+        onColoringSchemeChange={setColoringScheme}
+        onColoringSchemeSaveError={() => setSaveError("coloringScheme")}
+      />
 
       {saveError && (
         <Alert
@@ -69,8 +75,6 @@ export function AppLayout() {
         onSaveError={setSaveError}
         temperatureUnit={temperatureUnit}
         onTemperatureUnitChange={setTemperatureUnit}
-        coloringScheme={coloringScheme}
-        onColoringSchemeChange={setColoringScheme}
       />
     </div>
   );

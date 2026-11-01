@@ -9,32 +9,44 @@
 
 import { createRef } from "react";
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen, cleanup, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
 // Initialise the shared i18next default instance so useTranslation resolves to
 // the English resources (equal to the former literals) instead of raw keys.
 import "../../i18n";
 import { HeaderBar } from "../HeaderBar";
+import {
+  COLORING_SCHEME_OPTIONS,
+  type ColoringSchemeOption,
+} from "../../lib/coloringScheme";
+import enUi from "../../locales/en/ui.json";
 
 afterEach(cleanup);
 
-// Mantine components (Group/Title/ActionIcon) read theme context from a provider.
+// Mantine components (Group/Title/ActionIcon/Select) read theme context from a
+// provider. `env="test"` disables transitions so the Select dropdown opens
+// synchronously.
 function renderHeader(
   props: Partial<Parameters<typeof HeaderBar>[0]> = {},
 ) {
   const onOpenSettings = props.onOpenSettings ?? vi.fn();
   const settingsButtonRef =
     props.settingsButtonRef ?? createRef<HTMLButtonElement>();
+  const onColoringSchemeChange = props.onColoringSchemeChange ?? vi.fn();
+  const coloringScheme: ColoringSchemeOption =
+    props.coloringScheme ?? "category";
   render(
-    <MantineProvider>
+    <MantineProvider env="test">
       <HeaderBar
         onOpenSettings={onOpenSettings}
         settingsButtonRef={settingsButtonRef}
+        coloringScheme={coloringScheme}
+        onColoringSchemeChange={onColoringSchemeChange}
       />
     </MantineProvider>,
   );
-  return { onOpenSettings, settingsButtonRef };
+  return { onOpenSettings, settingsButtonRef, onColoringSchemeChange };
 }
 
 describe("HeaderBar", () => {
@@ -107,5 +119,29 @@ describe("HeaderBar", () => {
     const button = screen.getByRole("button", { name: "Open settings" });
     const sizeVar = button.style.getPropertyValue("--ai-size");
     expect(sizeVar).toContain("2rem");
+  });
+
+  it("renders the coloring-scheme dropdown with its accessible name and current value", () => {
+    renderHeader({ coloringScheme: "phase" });
+    const select = screen.getByRole("combobox", {
+      name: enUi.coloringScheme.label,
+    }) as HTMLInputElement;
+    expect(select).toBeInTheDocument();
+    expect(select.value).toBe(enUi.coloringScheme.phase);
+  });
+
+  it("fires onColoringSchemeChange when an option is selected", async () => {
+    const user = userEvent.setup();
+    const { onColoringSchemeChange } = renderHeader();
+    expect(COLORING_SCHEME_OPTIONS).toContain("phase");
+
+    await user.click(
+      screen.getByRole("combobox", { name: enUi.coloringScheme.label }),
+    );
+    const listbox = await screen.findByRole("listbox");
+    await user.click(
+      within(listbox).getByRole("option", { name: enUi.coloringScheme.phase }),
+    );
+    expect(onColoringSchemeChange).toHaveBeenCalledWith("phase");
   });
 });

@@ -3,13 +3,13 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-// Component tests for ColoringSchemeControl against a stateful harness, the
-// same shape AppLayout uses. Expected labels are read from the en ui.json so
-// the assertions track the localized strings, not hardcoded copy.
+// Component tests for ColoringSchemeControl, now a compact Mantine Select used
+// in the header. Expected labels are read from the en ui.json so the
+// assertions track the localized strings, not hardcoded copy.
 
 import { useState } from "react";
 import { describe, it, expect, afterEach } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen, cleanup, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
 import "../../i18n";
@@ -34,41 +34,46 @@ function Harness({ initial }: { initial?: ColoringSchemeOption }) {
   );
 }
 
-const radioByValue = (value: string) =>
-  screen.getByDisplayValue(value) as HTMLInputElement;
+// The Select's input carries the aria-label and is the combobox trigger.
+const select = () =>
+  screen.getByRole("combobox", {
+    name: enUi.coloringScheme.label,
+  }) as HTMLInputElement;
 
 describe("ColoringSchemeControl", () => {
-  it("renders all seven options with localized labels, in order (Req 1.1, 10.1)", () => {
+  it("exposes an accessible name from the locale and shows the current value", () => {
+    render(<Harness initial="phase" />);
+    expect(select()).toBeInTheDocument();
+    expect(select().value).toBe(enUi.coloringScheme.phase);
+  });
+
+  it("renders all seven options with localized labels when opened", async () => {
+    const user = userEvent.setup();
     render(<Harness />);
     expect(COLORING_SCHEME_OPTIONS).toHaveLength(7);
-    const radios = screen.getAllByRole("radio") as HTMLInputElement[];
-    expect(radios.map((r) => r.value)).toEqual([...COLORING_SCHEME_OPTIONS]);
+
+    await user.click(select());
+    const listbox = await screen.findByRole("listbox");
     for (const option of COLORING_SCHEME_OPTIONS) {
       expect(
-        screen.getByRole("radio", { name: enUi.coloringScheme[option] }),
+        within(listbox).getByRole("option", {
+          name: enUi.coloringScheme[option],
+        }),
       ).toBeInTheDocument();
     }
   });
 
-  it("exposes an accessible name from the locale (Req 1.6, 10.1)", () => {
-    render(<Harness />);
-    expect(
-      screen.getByRole("radiogroup", { name: enUi.coloringScheme.label }),
-    ).toBeInTheDocument();
-  });
-
-  it("reflects the value prop as the selected option (Req 1.4)", () => {
-    render(<Harness initial="phase" />);
-    expect(radioByValue("phase").checked).toBe(true);
-    expect(radioByValue("category").checked).toBe(false);
-  });
-
-  it("calls onChange with the normalized option when another is selected (Req 1.4)", async () => {
+  it("calls onChange with the selected option (Req 1.4)", async () => {
     const user = userEvent.setup();
     render(<Harness />);
+
+    await user.click(select());
+    const listbox = await screen.findByRole("listbox");
     await user.click(
-      screen.getByRole("radio", { name: enUi.coloringScheme["boiling-point"] }),
+      within(listbox).getByRole("option", {
+        name: enUi.coloringScheme["boiling-point"],
+      }),
     );
-    expect(radioByValue("boiling-point").checked).toBe(true);
+    expect(select().value).toBe(enUi.coloringScheme["boiling-point"]);
   });
 });

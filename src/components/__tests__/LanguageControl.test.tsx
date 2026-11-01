@@ -118,8 +118,6 @@ describe("LanguageControl", () => {
               returnFocusRef={settingsRef}
               temperatureUnit="kelvin"
               onTemperatureUnitChange={noop}
-              coloringScheme="category"
-              onColoringSchemeChange={noop}
             />
             <ElementCell
               element={hydrogen}
@@ -177,8 +175,6 @@ describe("LanguageControl", () => {
             returnFocusRef={settingsRef}
             temperatureUnit="kelvin"
             onTemperatureUnitChange={noop}
-            coloringScheme="category"
-            onColoringSchemeChange={noop}
           />
           <ElementCell
             element={hydrogen}

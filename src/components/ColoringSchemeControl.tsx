@@ -3,7 +3,7 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-import { SegmentedControl } from "@mantine/core";
+import { Select } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import {
   COLORING_SCHEME_OPTIONS,
@@ -20,10 +20,12 @@ interface ColoringSchemeControlProps {
   onSaveError?: (error: unknown) => void;
 }
 
-// Category / phase / melting-point / boiling-point picker. Controlled, like
+// Coloring-scheme picker, rendered as a compact Select so it fits the header
+// bar (seven options are too wide for a SegmentedControl). Controlled, like
 // TemperatureControl: AppLayout owns the value because PeriodicTable reads it
 // to color cells and render the legend. Persistence and failure signalling are
-// explicit here, the same as the other settings controls.
+// explicit here, the same as the other preference controls. Non-clearable /
+// non-searchable so it stays a plain dropdown and always has a value.
 export function ColoringSchemeControl({
   value,
   onChange,
@@ -36,19 +38,25 @@ export function ColoringSchemeControl({
     label: t(`coloringScheme.${o}`),
   }));
 
-  const handleChange = (v: string) => {
+  const handleChange = (v: string | null) => {
+    // allowDeselect={false} keeps v non-null, but normalize guards anyway.
     const opt = normalizeStoredColoringScheme(v);
     onChange(opt); // applies for the session even if the save fails
     persistColoringScheme(opt, onSaveError); // never throws; fires onSaveError on failure
   };
 
   return (
-    <SegmentedControl
+    <Select
       value={value}
       onChange={handleChange}
       data={data}
       aria-label={t("coloringScheme.label")}
-      fullWidth
+      allowDeselect={false}
+      searchable={false}
+      comboboxProps={{ withinPortal: true }}
+      // Compact fixed width keeps the centered header title truncating rather
+      // than overflowing on narrow mobile widths (mobile-first).
+      w={140}
     />
   );
 }

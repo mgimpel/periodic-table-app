@@ -38,3 +38,15 @@ if (typeof globalThis.ResizeObserver !== "function") {
     disconnect() {}
   };
 }
+
+// 4. Polyfill Element.scrollIntoView, which jsdom does not implement. Mantine's
+//    Combobox (used by the header's coloring-scheme Select) scrolls the active
+//    option into view on a timer after the dropdown opens; without this the
+//    timer throws an uncaught TypeError after the test completes. A no-op is
+//    enough since jsdom has no scroll viewport.
+if (
+  typeof Element !== "undefined" &&
+  typeof Element.prototype.scrollIntoView !== "function"
+) {
+  Element.prototype.scrollIntoView = () => {};
+}
