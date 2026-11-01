@@ -30,6 +30,8 @@ afterEach(cleanup);
 function renderHeader(
   props: Partial<Parameters<typeof HeaderBar>[0]> = {},
 ) {
+  const onOpenAbout = props.onOpenAbout ?? vi.fn();
+  const logoButtonRef = props.logoButtonRef ?? createRef<HTMLButtonElement>();
   const onOpenSettings = props.onOpenSettings ?? vi.fn();
   const settingsButtonRef =
     props.settingsButtonRef ?? createRef<HTMLButtonElement>();
@@ -39,6 +41,8 @@ function renderHeader(
   render(
     <MantineProvider env="test">
       <HeaderBar
+        onOpenAbout={onOpenAbout}
+        logoButtonRef={logoButtonRef}
         onOpenSettings={onOpenSettings}
         settingsButtonRef={settingsButtonRef}
         coloringScheme={coloringScheme}
@@ -46,18 +50,42 @@ function renderHeader(
       />
     </MantineProvider>,
   );
-  return { onOpenSettings, settingsButtonRef, onColoringSchemeChange };
+  return {
+    onOpenAbout,
+    logoButtonRef,
+    onOpenSettings,
+    settingsButtonRef,
+    onColoringSchemeChange,
+  };
 }
 
 describe("HeaderBar", () => {
-  it("exposes the logo's accessible name identifying the app", () => {
-    // Validates: Requirements 6.2
+  it("exposes the logo as an About button, decorative image inside", () => {
+    // Validates: Requirements 6.1/6.2. The logo now opens the About panel, so
+    // it is a labelled button; the image inside is decorative (alt="") so the
+    // app title is not announced twice.
     renderHeader();
-    // The logo alt now reuses the ui:app.title string (design §2.4 inventory:
-    // "Periodic Table App" -> app.title), so its accessible name matches the title.
     expect(
-      screen.getByRole("img", { name: "Periodic Table of Elements" }),
+      screen.getByRole("button", { name: enUi.header.openAbout }),
     ).toBeInTheDocument();
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+  });
+
+  it("calls onOpenAbout when the logo button is clicked", async () => {
+    const user = userEvent.setup();
+    const { onOpenAbout } = renderHeader();
+    await user.click(
+      screen.getByRole("button", { name: enUi.header.openAbout }),
+    );
+    expect(onOpenAbout).toHaveBeenCalledTimes(1);
+  });
+
+  it("wires the provided ref to the logo button for focus return", () => {
+    const logoButtonRef = createRef<HTMLButtonElement>();
+    renderHeader({ logoButtonRef });
+    expect(logoButtonRef.current).toBe(
+      screen.getByRole("button", { name: enUi.header.openAbout }),
+    );
   });
 
   it("renders the title as the single h1 document heading", () => {

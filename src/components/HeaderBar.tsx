@@ -11,6 +11,8 @@ import type { ColoringSchemeOption } from "../lib/coloringScheme";
 import classes from "./HeaderBar.module.css";
 
 interface HeaderBarProps {
+  onOpenAbout: () => void;
+  logoButtonRef: React.RefObject<HTMLButtonElement | null>;
   onOpenSettings: () => void;
   settingsButtonRef: React.RefObject<HTMLButtonElement | null>;
   // Coloring-scheme dropdown lives on the right of the header; AppLayout owns
@@ -28,6 +30,8 @@ interface HeaderBarProps {
 // (Req 1.8, 6.3) and carries the accessible name (Req 6.1). ref lets the
 // Settings_Panel return focus here on close (Req 6.9).
 export function HeaderBar({
+  onOpenAbout,
+  logoButtonRef,
   onOpenSettings,
   settingsButtonRef,
   coloringScheme,
@@ -43,7 +47,19 @@ export function HeaderBar({
       gap="sm"
       wrap="nowrap"
     >
-      <AppLogo size={32} />
+      {/* The logo opens the About panel. It mirrors the gear ActionIcon
+          (variant="subtle", size={32}) for a consistent >=44x44 touch target,
+          and the logo is decorative so only the button's aria-label is
+          announced (not the app title twice). */}
+      <ActionIcon
+        ref={logoButtonRef}
+        variant="subtle"
+        size={32}
+        aria-label={t("header.openAbout")}
+        onClick={onOpenAbout}
+      >
+        <AppLogo size={32} decorative />
+      </ActionIcon>
       <Title
         order={1}
         size="h3"

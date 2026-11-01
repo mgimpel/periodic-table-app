@@ -3,10 +3,19 @@
     "title": "Tableau périodique des éléments"
   },
   "header": {
-    "openSettings": "Ouvrir les paramètres"
+    "openSettings": "Ouvrir les paramètres",
+    "openAbout": "À propos de cette application"
   },
   "settings": {
     "title": "Paramètres"
+  },
+  "about": {
+    "title": "À propos",
+    "version": "Version {{version}}",
+    "copyright": "Copyright © 2026 Marc Gimpel",
+    "license": "Licence BSD 3-Clause",
+    "thanksHeading": "Remerciements",
+    "thanksBody": "Données des éléments issues de Periodic-Table-JSON de Bowserinator (CC BY-SA 3.0) ; spectres d'émission publiés sous CC0. Réalisé avec Tauri, React et Mantine."
   },
   "common": {
     "close": "Fermer",

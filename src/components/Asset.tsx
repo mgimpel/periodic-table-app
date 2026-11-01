@@ -15,12 +15,26 @@ interface AssetProps {
   size?: number;
 }
 
-// Small app brand mark (the same artwork as the Tauri app icon). alt carries
-// the accessible name identifying the app (Req 6.2); an empty alt would hide
-// it from assistive tech.
-export function AppLogo({ size = 28 }: AssetProps) {
+interface AppLogoProps extends AssetProps {
+  // When the logo sits inside a labelled control (the header's About button),
+  // the button already carries the accessible name, so the image must be
+  // decorative (alt="") to avoid announcing the app title twice.
+  decorative?: boolean;
+}
+
+// Small app brand mark (the same artwork as the Tauri app icon). Standalone it
+// carries the accessible name identifying the app (Req 6.2); inside a labelled
+// button it is decorative so the name is not announced twice.
+export function AppLogo({ size = 28, decorative = false }: AppLogoProps) {
   const { t } = useTranslation("ui");
-  return <img src={logoUrl} alt={t("app.title")} width={size} height={size} />;
+  return (
+    <img
+      src={logoUrl}
+      alt={decorative ? "" : t("app.title")}
+      width={size}
+      height={size}
+    />
+  );
 }
 
 // Gear (settings) icon. Decorative: its accessible name comes from the

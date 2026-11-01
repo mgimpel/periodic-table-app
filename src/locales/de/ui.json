@@ -3,10 +3,19 @@
     "title": "Periodensystem der Elemente"
   },
   "header": {
-    "openSettings": "Einstellungen öffnen"
+    "openSettings": "Einstellungen öffnen",
+    "openAbout": "Über diese App"
   },
   "settings": {
     "title": "Einstellungen"
+  },
+  "about": {
+    "title": "Über",
+    "version": "Version {{version}}",
+    "copyright": "Copyright © 2026 Marc Gimpel",
+    "license": "BSD-3-Clause-Lizenz",
+    "thanksHeading": "Danksagung",
+    "thanksBody": "Elementdaten aus Bowserinators Periodic-Table-JSON (CC BY-SA 3.0); Emissionsspektren unter CC0 veröffentlicht. Erstellt mit Tauri, React und Mantine."
   },
   "common": {
     "close": "Schließen",

@@ -21,7 +21,7 @@
 // radios by `value` for the same reason.
 
 import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
-import { render, screen, cleanup, waitFor, within } from "@testing-library/react";
+import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
 import { I18nextProvider } from "react-i18next";

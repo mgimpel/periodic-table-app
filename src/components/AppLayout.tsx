@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { HeaderBar } from "./HeaderBar";
 import { PeriodicTable } from "./PeriodicTable";
 import { SettingsPanel, type SaveErrorKind } from "./SettingsPanel";
+import { AboutPanel } from "./AboutPanel";
 import type { TemperatureOption } from "../lib/temperature";
 import { readStoredTemperature } from "../lib/temperatureManager";
 import type { ColoringSchemeOption } from "../lib/coloringScheme";
@@ -26,11 +27,17 @@ import classes from "./AppLayout.module.css";
 export function AppLayout() {
   const { t } = useTranslation("ui");
   const [opened, { open, close }] = useDisclosure(false);
+  // About panel open/close, wired like Settings. Idempotent open() means
+  // re-activating the logo while open never spawns a second panel.
+  const [aboutOpened, { open: openAbout, close: closeAbout }] =
+    useDisclosure(false);
   // Which preference failed to persist, or null for no notice. A single active
   // kind — the latest failure wins, matching the one-Alert UI. A failed save is
   // non-blocking: the session keeps the selected value (Req 5.4).
   const [saveError, setSaveError] = useState<SaveErrorKind | null>(null);
   const settingsButtonRef = useRef<HTMLButtonElement>(null);
+  // Lets AboutPanel return focus to the logo trigger on close.
+  const logoButtonRef = useRef<HTMLButtonElement>(null);
   // Shared by the settings control and the element detail, so it lives here.
   const [temperatureUnit, setTemperatureUnit] =
     useState<TemperatureOption>(readStoredTemperature);
@@ -41,6 +48,8 @@ export function AppLayout() {
   return (
     <div className={classes.root}>
       <HeaderBar
+        onOpenAbout={openAbout}
+        logoButtonRef={logoButtonRef}
         onOpenSettings={open}
         settingsButtonRef={settingsButtonRef}
         coloringScheme={coloringScheme}
@@ -75,6 +84,12 @@ export function AppLayout() {
         onSaveError={setSaveError}
         temperatureUnit={temperatureUnit}
         onTemperatureUnitChange={setTemperatureUnit}
+      />
+
+      <AboutPanel
+        opened={aboutOpened}
+        onClose={closeAbout}
+        returnFocusRef={logoButtonRef}
       />
     </div>
   );

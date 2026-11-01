@@ -3,10 +3,19 @@
     "title": "Periodic Table of Elements"
   },
   "header": {
-    "openSettings": "Open settings"
+    "openSettings": "Open settings",
+    "openAbout": "About this app"
   },
   "settings": {
     "title": "Settings"
+  },
+  "about": {
+    "title": "About",
+    "version": "Version {{version}}",
+    "copyright": "Copyright © 2026 Marc Gimpel",
+    "license": "BSD 3-Clause License",
+    "thanksHeading": "Thanks",
+    "thanksBody": "Element data from Bowserinator's Periodic-Table-JSON (CC BY-SA 3.0); emission spectra released under CC0. Built with Tauri, React and Mantine."
   },
   "common": {
     "close": "Close",
