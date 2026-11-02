@@ -50,7 +50,8 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
         </Group>
         <Stack gap={2}>
           <Group gap="sm" wrap="nowrap">
-            <Text size="sm">{t("about.version", { version: pkg.version })}{" -"}</Text>
+            <Text size="sm">{t("about.version", { version: pkg.version })}</Text>
+            <Text size="sm">{"-"}</Text>
             {__BUILD_INFO__ && (
               <Text size="sm" c="dimmed">
                 {t("about.buildDetails", {

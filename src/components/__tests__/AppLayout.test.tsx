@@ -35,6 +35,7 @@ import { getElementByNumber } from "../../data/elements";
 import { cellColor, PHASE_KEYS } from "../../lib/cellColor";
 import { CATEGORY_COLORS } from "../../data/element";
 import enUi from "../../locales/en/ui.json";
+import frUi from "../../locales/fr/ui.json";
 
 afterEach(async () => {
   cleanup();
@@ -118,10 +119,13 @@ describe("AppLayout", () => {
     expect(within(detail).getByText("Hydrogen")).toBeInTheDocument();
   });
 
-  // Both controls share one save-failure path: a throwing setItem keeps the
+  // These controls share one save-failure path: a throwing setItem keeps the
   // choice for the session and surfaces the dismissable inline Alert (5.4).
-  // Options are located by their language-neutral value, and the Alert strings
-  // via i18n.t, because the language case switches the UI to French.
+  // Theme and temperature are SegmentedControls (hidden radios keyed by their
+  // language-neutral value, so getByDisplayValue finds them); language is a
+  // Select whose combobox shows the translated label, so it's driven by
+  // opening the listbox and picking the option. The Alert strings are read via
+  // i18n.t because the language case switches the UI to French.
   it("updates the open element detail live when the temperature unit changes", async () => {
     const user = userEvent.setup();
     const hydrogen = getElementByNumber(1)!;
@@ -164,11 +168,31 @@ describe("AppLayout", () => {
       await user.click(settingsButton());
       await screen.findByRole("dialog");
 
-      const option = () => screen.getByDisplayValue(value) as HTMLInputElement;
-      await user.click(option());
+      if (kind === "language") {
+        // LanguageControl is a Select: open the combobox (named in English,
+        // the current locale) and pick the option by its English label, then
+        // confirm the combobox reflects the choice — which also switches the
+        // UI to French, so the displayed label is now the French one.
+        const key = value as keyof typeof enUi.language;
+        const combobox = screen.getByRole("combobox", {
+          name: enUi.language.label,
+        }) as HTMLInputElement;
+        await user.click(combobox);
+        await user.click(
+          within(await screen.findByRole("listbox")).getByRole("option", {
+            name: enUi.language[key],
+          }),
+        );
+        expect(combobox.value).toBe(frUi.language[key]);
+      } else {
+        // Theme and temperature are SegmentedControls: a hidden radio carries
+        // the language-neutral value, so select it and confirm it's checked.
+        const option = () =>
+          screen.getByDisplayValue(value) as HTMLInputElement;
+        await user.click(option());
+        expect(option().checked).toBe(true);
+      }
 
-      // The choice still applies for the session.
-      expect(option().checked).toBe(true);
       const alert = await screen.findByRole("alert");
       expect(alert).toHaveTextContent(i18n.t(`ui:saveError.${kind}.title`));
 
