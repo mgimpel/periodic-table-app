@@ -3,8 +3,9 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-import { Anchor, Stack, Text, Title } from "@mantine/core";
+import { Anchor, Group, Stack, Text, Title } from "@mantine/core";
 import { useTranslation } from "react-i18next";
+import { AppLogo } from "./Asset";
 import { ResponsiveOverlay } from "./ResponsiveOverlay";
 // Single-source the version from package.json rather than a duplicated literal.
 // resolveJsonModule is enabled (tsconfig.json), so the JSON import type-checks;
@@ -41,11 +42,38 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
       title={t("about.title")}
     >
       <Stack gap="md">
-        <Text>{t("about.version", { version: pkg.version })}</Text>
-        <Text>{t("about.copyright")}</Text>
-        <Anchor href={LICENSE_URL} target="_blank" rel="noreferrer">
-          {t("about.license")}
-        </Anchor>
+        <Group gap="sm" wrap="nowrap">
+          <AppLogo size={40} decorative />
+          <Title order={2} size="h4">
+            {t("app.title")}
+          </Title>
+        </Group>
+        <Stack gap={2}>
+          <Group gap="sm" wrap="nowrap">
+            <Text size="sm">{t("about.version", { version: pkg.version })}{" -"}</Text>
+            {__BUILD_INFO__ && (
+              <Text size="sm" c="dimmed">
+                {t("about.buildDetails", {
+                  commit: __BUILD_INFO__.commit,
+                  date: __BUILD_INFO__.date,
+                })}
+              </Text>
+            )}
+          </Group>
+          <Text size="sm">{t("about.copyright")}</Text>
+          <Text size="sm">
+            {t("about.licensePrefix")}{" "}
+            <Anchor href={LICENSE_URL} target="_blank" rel="noreferrer">
+              {t("about.license")}
+            </Anchor>
+          </Text>
+          <Text size="sm">
+            {t("about.homepage")}{" "}
+            <Anchor href={REPO_URL} target="_blank" rel="noreferrer">
+              {REPO_URL}
+            </Anchor>
+          </Text>
+        </Stack>
         <Stack gap="xs">
           <Title order={2} size="h5">
             {t("about.thanksHeading")}
