@@ -20,8 +20,9 @@ for (const opt of COLORING_SCHEME_OPTIONS) {
 }
 
 // Invalid / missing values fall back to "category".
-for (const bad of ["", "colour", null, undefined, 42, {}]) {
+for (const bad of ["", "colour", null, undefined, 42]) {
   assert.equal(normalizeStoredColoringScheme(bad), "category", String(bad));
 }
+assert.equal(normalizeStoredColoringScheme({}), "category", "{}");
 
 console.log("ok: coloringScheme self-check passed");
