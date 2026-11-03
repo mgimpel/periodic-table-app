@@ -10,11 +10,9 @@
 // color for the active coloring scheme (category, phase, melting-point,
 // boiling-point, electronegativity, origin, spectral-colour).
 
+import { MISSING_VALUE_COLOR, temperatureColor, electronegativityColor } from "./gradient";
 import { CATEGORY_COLORS, type Element } from "../data/element";
 import type { ColoringSchemeOption } from "./coloringScheme";
-import { electronegativityColor } from "./electronegativityGradient";
-import { MISSING_VALUE_COLOR } from "./gradient";
-import { temperatureColor } from "./temperatureGradient";
 
 /** The four phase buckets, in legend display order. */
 export const PHASE_KEYS = ["solid", "liquid", "gas", "unknown"] as const;

@@ -36,4 +36,4 @@ for (const { col, row } of GROUP_LABELS) {
   );
 }
 
-console.log("groupLabels.check.ts OK");
+console.log("ok: group labels self-check passed");

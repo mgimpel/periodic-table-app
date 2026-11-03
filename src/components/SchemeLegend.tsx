@@ -14,19 +14,18 @@ import {
 } from "../lib/cellColor";
 import type { ColoringSchemeOption } from "../lib/coloringScheme";
 import {
-  DATASET_MAX_EN,
-  DATASET_MIN_EN,
-  EN_STOPS,
-} from "../lib/electronegativityGradient";
-import { linearGradientCss, type Stop } from "../lib/gradient";
+  linearGradientCss,
+  type Stop,
+  TEMPERATURE_MAX,
+  TEMPERATURE_GRADIENT_STOPS,
+  ELECTRONEGATIVITY_MAX,
+  ELECTRONEGATIVITY_MIN,
+  ELECTRONEGATIVITY_GRADIENT_STOPS,
+} from "../lib/gradient";
 import {
   formatTemperature,
   type TemperatureOption,
 } from "../lib/temperature";
-import {
-  DATASET_MAX,
-  GRADIENT_STOPS,
-} from "../lib/temperatureGradient";
 import classes from "./SchemeLegend.module.css";
 
 // The three discrete schemes draw one swatch per key: their i18n label prefix
@@ -97,12 +96,12 @@ export function SchemeLegend({
       <GradientLegend
         title={schemeTitle}
         groupLabel={t("legend.groupLabel")}
-        stops={GRADIENT_STOPS}
+        stops={TEMPERATURE_GRADIENT_STOPS}
         // Temperature endpoints: raw 0 K and DATASET_MAX, formatted in the
         // active unit. With first.x === 0 the generic positioning formula below
         // reduces to (x / DATASET_MAX) * 100%, matching the per-cell colors.
         minLabel={formatTemperature(0, temperatureUnit)}
-        maxLabel={formatTemperature(DATASET_MAX, temperatureUnit)}
+        maxLabel={formatTemperature(TEMPERATURE_MAX, temperatureUnit)}
       />
     );
   }
@@ -112,11 +111,11 @@ export function SchemeLegend({
       <GradientLegend
         title={schemeTitle}
         groupLabel={t("legend.groupLabel")}
-        stops={EN_STOPS}
+        stops={ELECTRONEGATIVITY_GRADIENT_STOPS}
         // Electronegativity is a unitless Pauling value: show the raw dataset
         // min/max numbers, unaffected by the temperature unit.
-        minLabel={String(DATASET_MIN_EN)}
-        maxLabel={String(DATASET_MAX_EN)}
+        minLabel={String(ELECTRONEGATIVITY_MIN)}
+        maxLabel={String(ELECTRONEGATIVITY_MAX)}
       />
     );
   }

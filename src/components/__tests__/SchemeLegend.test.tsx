@@ -33,11 +33,11 @@ import {
   formatTemperature,
   type TemperatureOption,
 } from "../../lib/temperature";
-import { DATASET_MAX } from "../../lib/temperatureGradient";
 import {
-  DATASET_MAX_EN,
-  DATASET_MIN_EN,
-} from "../../lib/electronegativityGradient";
+  TEMPERATURE_MAX,
+  ELECTRONEGATIVITY_MAX,
+  ELECTRONEGATIVITY_MIN,
+} from "../../lib/gradient";
 import enUi from "../../locales/en/ui.json";
 
 afterEach(cleanup);
@@ -173,7 +173,7 @@ describe("SchemeLegend temperature gradient schemes", () => {
         within(legend).getByText(formatTemperature(0, unit)),
       ).toBeInTheDocument();
       expect(
-        within(legend).getByText(formatTemperature(DATASET_MAX, unit)),
+        within(legend).getByText(formatTemperature(TEMPERATURE_MAX, unit)),
       ).toBeInTheDocument();
     },
   );
@@ -195,10 +195,10 @@ describe("SchemeLegend electronegativity scheme (gradient)", () => {
 
     // Endpoint labels are the raw numbers, not formatTemperature output.
     expect(
-      within(legend).getByText(String(DATASET_MIN_EN)),
+      within(legend).getByText(String(ELECTRONEGATIVITY_MIN)),
     ).toBeInTheDocument();
     expect(
-      within(legend).getByText(String(DATASET_MAX_EN)),
+      within(legend).getByText(String(ELECTRONEGATIVITY_MAX)),
     ).toBeInTheDocument();
   });
 
@@ -208,20 +208,20 @@ describe("SchemeLegend electronegativity scheme (gradient)", () => {
     renderLegend("electronegativity", "kelvin");
     const kelvinLegend = screen.getByRole("group", { name: groupName });
     expect(
-      within(kelvinLegend).getByText(String(DATASET_MIN_EN)),
+      within(kelvinLegend).getByText(String(ELECTRONEGATIVITY_MIN)),
     ).toBeInTheDocument();
     expect(
-      within(kelvinLegend).getByText(String(DATASET_MAX_EN)),
+      within(kelvinLegend).getByText(String(ELECTRONEGATIVITY_MAX)),
     ).toBeInTheDocument();
     cleanup();
 
     renderLegend("electronegativity", "celsius");
     const celsiusLegend = screen.getByRole("group", { name: groupName });
     expect(
-      within(celsiusLegend).getByText(String(DATASET_MIN_EN)),
+      within(celsiusLegend).getByText(String(ELECTRONEGATIVITY_MIN)),
     ).toBeInTheDocument();
     expect(
-      within(celsiusLegend).getByText(String(DATASET_MAX_EN)),
+      within(celsiusLegend).getByText(String(ELECTRONEGATIVITY_MAX)),
     ).toBeInTheDocument();
   });
 });

@@ -18,9 +18,7 @@ import {
   spectralCellColor,
 } from "../cellColor";
 import { CATEGORY_COLORS, CATEGORY_KEYS, type Element } from "../../data/element";
-import { MISSING_VALUE_COLOR } from "../gradient";
-import { temperatureColor } from "../temperatureGradient";
-import { electronegativityColor } from "../electronegativityGradient";
+import { MISSING_VALUE_COLOR, temperatureColor, electronegativityColor } from "../gradient";
 
 // Element arbitrary: varies the fields the resolver reads (category, phase,
 // melt, boil, electronegativity, origin, spectralColour) and fills the rest
