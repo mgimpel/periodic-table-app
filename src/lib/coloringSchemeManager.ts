@@ -13,7 +13,7 @@ import {
 } from "./coloringScheme";
 import { persistPref, readPref } from "./storage";
 
-const STORAGE_KEY = "app-coloring-scheme";
+const COLORING_SCHEME_STORAGE_KEY = "app-coloring-scheme";
 
 /**
  * Reads the persisted ColoringSchemeOption through
@@ -21,7 +21,7 @@ const STORAGE_KEY = "app-coloring-scheme";
  * value resolves to the default scheme.
  */
 export function readStoredColoringScheme(): ColoringSchemeOption {
-  return readPref(STORAGE_KEY, normalizeStoredColoringScheme);
+  return readPref(COLORING_SCHEME_STORAGE_KEY, normalizeStoredColoringScheme);
 }
 
 /**
@@ -33,5 +33,5 @@ export function persistColoringScheme(
   option: ColoringSchemeOption,
   onSaveError?: (error: unknown) => void,
 ): void {
-  persistPref(STORAGE_KEY, option, onSaveError);
+  persistPref(COLORING_SCHEME_STORAGE_KEY, option, onSaveError);
 }

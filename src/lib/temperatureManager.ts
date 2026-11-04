@@ -13,7 +13,7 @@ import {
 } from "./temperature";
 import { persistPref, readPref } from "./storage";
 
-const STORAGE_KEY = "app-temperature-unit";
+const TEMPERATURE_STORAGE_KEY = "app-temperature-unit";
 
 /**
  * Reads the persisted TemperatureOption through
@@ -21,7 +21,7 @@ const STORAGE_KEY = "app-temperature-unit";
  * resolves to "kelvin".
  */
 export function readStoredTemperature(): TemperatureOption {
-  return readPref(STORAGE_KEY, normalizeStoredTemperature);
+  return readPref(TEMPERATURE_STORAGE_KEY, normalizeStoredTemperature);
 }
 
 /**
@@ -33,5 +33,5 @@ export function persistTemperature(
   option: TemperatureOption,
   onSaveError?: (error: unknown) => void,
 ): void {
-  persistPref(STORAGE_KEY, option, onSaveError);
+  persistPref(TEMPERATURE_STORAGE_KEY, option, onSaveError);
 }

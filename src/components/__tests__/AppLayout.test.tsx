@@ -29,7 +29,7 @@ import { MantineProvider } from "@mantine/core";
 // Alert, and cell labels resolve to the English resources instead of raw keys.
 import i18n from "../../i18n";
 import { AppLayout } from "../AppLayout";
-import { createAppColorSchemeManager } from "../../lib/colorSchemeManager";
+import { createAppColorSchemeManager } from "../../lib/themeManager";
 import { formatTemperature } from "../../lib/temperature";
 import { getElementByNumber } from "../../data/elements";
 import { cellColor, PHASE_KEYS } from "../../lib/cellColor";

@@ -19,7 +19,7 @@ import { persistPref, readPref } from "./storage";
 // The localStorage key Mantine's localStorageColorSchemeManager (and
 // ColorSchemeScript) uses by default (@mantine/core 9.7.3). Keeping it means
 // the pre-hydration script and cross-tab subscribe still see our writes.
-const STORAGE_KEY = "mantine-color-scheme-value";
+const THEME_STORAGE_KEY = "mantine-color-scheme-value";
 
 /**
  * Reads the persisted ThemeOption and runs it through
@@ -27,7 +27,7 @@ const STORAGE_KEY = "mantine-color-scheme-value";
  * invalid value resolves to "auto" (Req 5.3).
  */
 export function readStoredTheme(): ThemeOption {
-  return readPref(STORAGE_KEY, normalizeStoredTheme);
+  return readPref(THEME_STORAGE_KEY, normalizeStoredTheme);
 }
 
 /**
@@ -40,7 +40,7 @@ export function persistTheme(
   option: ThemeOption,
   onSaveError?: (error: unknown) => void,
 ): void {
-  persistPref(STORAGE_KEY, option, onSaveError);
+  persistPref(THEME_STORAGE_KEY, option, onSaveError);
 }
 
 /**

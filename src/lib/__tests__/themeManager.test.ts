@@ -13,7 +13,7 @@ import {
   createAppColorSchemeManager,
   persistTheme,
   readStoredTheme,
-} from "../colorSchemeManager";
+} from "../themeManager";
 import { DEFAULT_THEME } from "../theme";
 
 // The localStorage key Mantine's manager and ColorSchemeScript use by default.

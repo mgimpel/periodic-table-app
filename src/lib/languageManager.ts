@@ -11,7 +11,7 @@
 import { normalizeStoredLanguage, type LanguageOption } from "./language";
 import { persistPref, readPref } from "./storage";
 
-const STORAGE_KEY = "app-language-option";
+const LANGUAGE_STORAGE_KEY = "app-language-option";
 
 /**
  * Reads the persisted LanguageOption and runs it through
@@ -19,7 +19,7 @@ const STORAGE_KEY = "app-language-option";
  * invalid value resolves to "system".
  */
 export function readStoredLanguage(): LanguageOption {
-  return readPref(STORAGE_KEY, normalizeStoredLanguage);
+  return readPref(LANGUAGE_STORAGE_KEY, normalizeStoredLanguage);
 }
 
 /**
@@ -31,5 +31,5 @@ export function persistLanguage(
   option: LanguageOption,
   onSaveError?: (error: unknown) => void,
 ): void {
-  persistPref(STORAGE_KEY, option, onSaveError);
+  persistPref(LANGUAGE_STORAGE_KEY, option, onSaveError);
 }

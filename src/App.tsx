@@ -6,7 +6,7 @@
 import "@mantine/core/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { AppLayout } from "./components/AppLayout";
-import { createAppColorSchemeManager } from "./lib/colorSchemeManager";
+import { createAppColorSchemeManager } from "./lib/themeManager";
 
 // Created once at module scope so its subscription identity is stable. It only
 // reads the validated stored theme; ThemeControl persists and reports failures.

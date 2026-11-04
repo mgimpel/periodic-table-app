@@ -6,7 +6,7 @@
 import { SegmentedControl, useMantineColorScheme } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { THEME_OPTIONS, normalizeStoredTheme } from "../lib/theme";
-import { persistTheme } from "../lib/colorSchemeManager";
+import { persistTheme } from "../lib/themeManager";
 
 interface ThemeControlProps {
   // Fired when persisting the choice fails, so the caller can show a

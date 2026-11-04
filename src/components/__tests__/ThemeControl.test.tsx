@@ -17,7 +17,7 @@ import { MantineProvider } from "@mantine/core";
 // returning raw keys.
 import "../../i18n";
 import { ThemeControl } from "../ThemeControl";
-import { createAppColorSchemeManager } from "../../lib/colorSchemeManager";
+import { createAppColorSchemeManager } from "../../lib/themeManager";
 
 const STORAGE_KEY = "mantine-color-scheme-value";
 
