@@ -10,7 +10,7 @@ import {
   normalizeStoredColoringScheme,
   type ColoringSchemeOption,
 } from "../lib/coloringScheme";
-import { persistColoringScheme } from "../lib/coloringSchemeManager";
+import { persistColoringScheme } from "../lib/persistenceManager";
 
 interface ColoringSchemeControlProps {
   value: ColoringSchemeOption;

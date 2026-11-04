@@ -10,7 +10,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { resources, FALLBACK_LOCALE, DEFAULT_NAMESPACE, NAMESPACES } from "./locales";
-import { readStoredLanguage } from "./lib/languageManager";
+import { readStoredLanguage } from "./lib/persistenceManager";
 import { resolveLanguage, navigatorLanguages } from "./lib/language";
 
 // The persisted LanguageOption resolved against the device languages via the

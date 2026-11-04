@@ -12,9 +12,8 @@ import { PeriodicTable } from "./PeriodicTable";
 import { SettingsPanel, type SaveErrorKind } from "./SettingsPanel";
 import { AboutPanel } from "./AboutPanel";
 import type { TemperatureOption } from "../lib/temperature";
-import { readStoredTemperature } from "../lib/temperatureManager";
 import type { ColoringSchemeOption } from "../lib/coloringScheme";
-import { readStoredColoringScheme } from "../lib/coloringSchemeManager";
+import { readStoredTemperature, readStoredColoringScheme } from "../lib/persistenceManager";
 import classes from "./AppLayout.module.css";
 
 // Owns the Settings_Panel open/close state and the full-height flex column

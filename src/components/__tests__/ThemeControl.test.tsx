@@ -19,7 +19,7 @@ import "../../i18n";
 import { ThemeControl } from "../ThemeControl";
 import { createAppColorSchemeManager } from "../../App";
 
-const STORAGE_KEY = "mantine-color-scheme-value";
+const THEME_STORAGE_KEY = "mantine-color-scheme-value";
 
 afterEach(() => {
   cleanup();
@@ -123,11 +123,11 @@ describe("ThemeControl", () => {
     const user = userEvent.setup();
     renderControl();
     await user.click(radio("Dark"));
-    expect(window.localStorage.getItem(STORAGE_KEY)).toBe("dark");
+    expect(window.localStorage.getItem(THEME_STORAGE_KEY)).toBe("dark");
   });
 
   it("falls back to Same as device for an invalid stored value", () => {
-    window.localStorage.setItem(STORAGE_KEY, "chartreuse");
+    window.localStorage.setItem(THEME_STORAGE_KEY, "chartreuse");
     renderControl();
     expect(radio("Same as device").checked).toBe(true);
   });
@@ -148,9 +148,6 @@ describe("ThemeControl", () => {
     expect(onSaveError).toHaveBeenCalledTimes(1);
   });
 });
-
-// The localStorage key Mantine's manager and ColorSchemeScript use by default.
-const THEME_STORAGE_KEY = "mantine-color-scheme-value";
 
 describe("createAppColorSchemeManager", () => {
   it("get returns the validated stored value, ignoring the caller's default", () => {

@@ -14,10 +14,10 @@ import { MantineProvider } from "@mantine/core";
 import "../../i18n";
 import { TemperatureControl } from "../TemperatureControl";
 import type { TemperatureOption } from "../../lib/temperature";
-import { readStoredTemperature } from "../../lib/temperatureManager";
+import { readStoredTemperature } from "../../lib/persistenceManager";
 import enUi from "../../locales/en/ui.json";
 
-const STORAGE_KEY = "app-temperature-unit";
+const TEMPERATURE_STORAGE_KEY = "app-temperature-unit";
 
 beforeEach(() => window.localStorage.clear());
 
@@ -61,7 +61,7 @@ describe("TemperatureControl", () => {
     render(<Harness />);
     await user.click(screen.getByRole("radio", { name: enUi.temperature.celsius }));
     expect(radioByValue("celsius").checked).toBe(true);
-    expect(window.localStorage.getItem(STORAGE_KEY)).toBe("celsius");
+    expect(window.localStorage.getItem(TEMPERATURE_STORAGE_KEY)).toBe("celsius");
   });
 
   it("supports keyboard (arrow) selection", async () => {
@@ -71,18 +71,18 @@ describe("TemperatureControl", () => {
     await user.keyboard("{ArrowRight}");
     expect(radioByValue("celsius").checked).toBe(true);
     await waitFor(() =>
-      expect(window.localStorage.getItem(STORAGE_KEY)).toBe("celsius"),
+      expect(window.localStorage.getItem(TEMPERATURE_STORAGE_KEY)).toBe("celsius"),
     );
   });
 
   it("seeds from a valid stored value", () => {
-    window.localStorage.setItem(STORAGE_KEY, "fahrenheit");
+    window.localStorage.setItem(TEMPERATURE_STORAGE_KEY, "fahrenheit");
     render(<Harness />);
     expect(radioByValue("fahrenheit").checked).toBe(true);
   });
 
   it("falls back to Kelvin for an invalid stored value", () => {
-    window.localStorage.setItem(STORAGE_KEY, "rankine");
+    window.localStorage.setItem(TEMPERATURE_STORAGE_KEY, "rankine");
     render(<Harness />);
     expect(radioByValue("kelvin").checked).toBe(true);
   });

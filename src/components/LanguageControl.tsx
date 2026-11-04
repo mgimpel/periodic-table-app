@@ -13,7 +13,7 @@ import {
   resolveLanguage,
   type LanguageOption,
 } from "../lib/language";
-import { persistLanguage, readStoredLanguage } from "../lib/languageManager";
+import { persistLanguage, readStoredLanguage } from "../lib/persistenceManager";
 
 interface LanguageControlProps {
   // Fired when persisting the choice fails, so the caller can show a

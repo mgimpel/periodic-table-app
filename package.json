@@ -13,7 +13,7 @@
     "test:watch": "vitest",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "check": "vite-node src/lib/fitScale.check.ts && vite-node src/lib/platform.check.ts && vite-node src/lib/theme.check.ts && vite-node src/lib/storage.check.ts && vite-node src/lib/language.check.ts && vite-node src/lib/temperature.check.ts && vite-node src/lib/coloringScheme.check.ts && vite-node src/lib/gradient.check.ts && vite-node src/lib/cellColor.check.ts && vite-node src/lib/electronShellDiagram.check.ts && vite-node src/lib/groupLabels.check.ts && vite-node src/data/elements.check.ts && vite-node src/locales/elements.check.ts"
+    "check": "vite-node src/lib/fitScale.check.ts && vite-node src/lib/platform.check.ts && vite-node src/lib/theme.check.ts && vite-node src/lib/persistenceManager.check.ts && vite-node src/lib/language.check.ts && vite-node src/lib/temperature.check.ts && vite-node src/lib/coloringScheme.check.ts && vite-node src/lib/gradient.check.ts && vite-node src/lib/cellColor.check.ts && vite-node src/lib/electronShellDiagram.check.ts && vite-node src/lib/groupLabels.check.ts && vite-node src/data/elements.check.ts && vite-node src/locales/elements.check.ts"
   },
   "dependencies": {
     "@mantine/core": "9.7.3",

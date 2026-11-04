@@ -10,7 +10,7 @@ import {
   TEMPERATURE_OPTIONS,
   type TemperatureOption,
 } from "../lib/temperature";
-import { persistTemperature } from "../lib/temperatureManager";
+import { persistTemperature } from "../lib/persistenceManager";
 
 interface TemperatureControlProps {
   value: TemperatureOption;

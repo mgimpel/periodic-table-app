@@ -9,7 +9,7 @@
 // read, throwing read, normal write, throwing write — all run outside a DOM.
 
 import assert from "node:assert/strict";
-import { persistPref, readPref } from "./storage";
+import { persistPref, readPref } from "./persistenceManager";
 
 // A total normalizer: echoes a string value, otherwise the default sentinel.
 const normalize = (raw: unknown): string =>

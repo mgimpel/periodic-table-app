@@ -39,7 +39,7 @@ import esElements from "../../locales/es/elements.json";
 import deUi from "../../locales/de/ui.json";
 import deElements from "../../locales/de/elements.json";
 
-const STORAGE_KEY = "app-language-option";
+const LANGUAGE_STORAGE_KEY = "app-language-option";
 
 const hydrogen = getElementByNumber(1)!;
 
@@ -165,7 +165,7 @@ describe("LanguageControl", () => {
       await selectLanguage(user, locale);
 
       await waitFor(() => expect(i18n.language).toBe(locale));
-      expect(window.localStorage.getItem(STORAGE_KEY)).toBe(locale);
+      expect(window.localStorage.getItem(LANGUAGE_STORAGE_KEY)).toBe(locale);
       await waitFor(() =>
         expect(screen.getByText(ui.settings.title)).toBeInTheDocument(),
       );
@@ -218,7 +218,7 @@ describe("LanguageControl", () => {
 
     await waitFor(() => expect(i18n.language).toBe("fr"));
     // Persisted the LanguageOption (not the resolved locale).
-    expect(window.localStorage.getItem(STORAGE_KEY)).toBe("fr");
+    expect(window.localStorage.getItem(LANGUAGE_STORAGE_KEY)).toBe("fr");
 
     // Chrome string flipped.
     await waitFor(() =>
@@ -275,7 +275,7 @@ describe("LanguageControl", () => {
     const { unmount } = renderControl();
 
     await selectLanguage(user, "fr");
-    await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("fr"));
+    await waitFor(() => expect(window.localStorage.getItem(LANGUAGE_STORAGE_KEY)).toBe("fr"));
 
     unmount();
     cleanup();
@@ -290,17 +290,17 @@ describe("LanguageControl", () => {
     renderControl();
 
     await selectLanguage(user, "fr");
-    await waitFor(() => expect(window.localStorage.getItem(STORAGE_KEY)).toBe("fr"));
+    await waitFor(() => expect(window.localStorage.getItem(LANGUAGE_STORAGE_KEY)).toBe("fr"));
 
     await selectLanguage(user, "system");
     await waitFor(() =>
-      expect(window.localStorage.getItem(STORAGE_KEY)).toBe("system"),
+      expect(window.localStorage.getItem(LANGUAGE_STORAGE_KEY)).toBe("system"),
     );
     expect(currentOption()).toBe("system");
   });
 
   it("falls back to System default for an invalid stored value", () => {
-    window.localStorage.setItem(STORAGE_KEY, "klingon");
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, "klingon");
     renderControl();
     expect(currentOption()).toBe("system");
   });

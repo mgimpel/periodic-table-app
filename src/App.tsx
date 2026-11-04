@@ -11,7 +11,7 @@ import {
   type MantineColorSchemeManager,
 } from "@mantine/core";
 import { AppLayout } from "./components/AppLayout";
-import { readStoredTheme } from "./lib/themeManager";
+import { readStoredTheme } from "./lib/persistenceManager";
 
 // Created once at module scope so its subscription identity is stable. It only
 // reads the validated stored theme; ThemeControl persists and reports failures.
