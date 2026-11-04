@@ -4,9 +4,14 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import "@mantine/core/styles.css";
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import {
+  MantineProvider,
+  ColorSchemeScript,
+  localStorageColorSchemeManager,
+  type MantineColorSchemeManager,
+} from "@mantine/core";
 import { AppLayout } from "./components/AppLayout";
-import { createAppColorSchemeManager } from "./lib/themeManager";
+import { readStoredTheme } from "./lib/themeManager";
 
 // Created once at module scope so its subscription identity is stable. It only
 // reads the validated stored theme; ThemeControl persists and reports failures.
@@ -26,6 +31,29 @@ function App() {
       </MantineProvider>
     </>
   );
+}
+
+/**
+ * Builds a {@link MantineColorSchemeManager} whose `get` returns the validated
+ * stored theme (Req 5.2, 5.3). `set` is a no-op: ThemeControl persists via
+ * {@link persistTheme} so it can surface a failure, and Mantine only calls
+ * `set` from `setColorScheme` (already applied in memory) or `subscribe` (a
+ * cross-tab storage event, value already stored). `subscribe`/`unsubscribe`/
+ * `clear` delegate directly.
+ *
+ * ponytail: the no-op `set` relies on Mantine 9.7.3 only calling `set` from
+ * `setColorScheme`/`subscribe`; re-verify on a Mantine upgrade.
+ */
+export function createAppColorSchemeManager(): MantineColorSchemeManager {
+  const delegate = localStorageColorSchemeManager();
+
+  return {
+    get: () => readStoredTheme(),
+    set: () => {},
+    subscribe: delegate.subscribe,
+    unsubscribe: delegate.unsubscribe,
+    clear: delegate.clear,
+  };
 }
 
 export default App;

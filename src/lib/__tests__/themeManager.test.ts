@@ -10,14 +10,13 @@
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import {
-  createAppColorSchemeManager,
   persistTheme,
   readStoredTheme,
 } from "../themeManager";
 import { DEFAULT_THEME } from "../theme";
 
 // The localStorage key Mantine's manager and ColorSchemeScript use by default.
-const STORAGE_KEY = "mantine-color-scheme-value";
+const THEME_STORAGE_KEY = "mantine-color-scheme-value";
 
 beforeEach(() => {
   window.localStorage.clear();
@@ -32,7 +31,7 @@ describe("persistTheme / readStoredTheme", () => {
   // Validates: Requirements 5.1, 5.2
   it("round-trips the selected theme through the expected key", () => {
     persistTheme("dark");
-    expect(window.localStorage.getItem(STORAGE_KEY)).toBe("dark");
+    expect(window.localStorage.getItem(THEME_STORAGE_KEY)).toBe("dark");
     expect(readStoredTheme()).toBe("dark");
   });
 });
@@ -40,21 +39,7 @@ describe("persistTheme / readStoredTheme", () => {
 describe("readStoredTheme", () => {
   // Validates: Requirements 5.3
   it("resolves a present-but-invalid stored value to auto", () => {
-    window.localStorage.setItem(STORAGE_KEY, "chartreuse");
+    window.localStorage.setItem(THEME_STORAGE_KEY, "chartreuse");
     expect(readStoredTheme()).toBe(DEFAULT_THEME);
-  });
-});
-
-describe("createAppColorSchemeManager", () => {
-  it("get returns the validated stored value, ignoring the caller's default", () => {
-    window.localStorage.setItem(STORAGE_KEY, "dark");
-    expect(createAppColorSchemeManager().get("light")).toBe("dark");
-    window.localStorage.setItem(STORAGE_KEY, "chartreuse");
-    expect(createAppColorSchemeManager().get("light")).toBe("auto");
-  });
-
-  it("set does not write (ThemeControl persists via persistTheme)", () => {
-    createAppColorSchemeManager().set("dark");
-    expect(window.localStorage.getItem(STORAGE_KEY)).toBeNull();
   });
 });

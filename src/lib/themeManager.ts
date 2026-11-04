@@ -9,10 +9,6 @@
 // MantineProvider starts from the validated stored value. ThemeControl persists
 // explicitly via persistTheme.
 
-import {
-  localStorageColorSchemeManager,
-  type MantineColorSchemeManager,
-} from "@mantine/core";
 import { normalizeStoredTheme, type ThemeOption } from "./theme";
 import { persistPref, readPref } from "./storage";
 
@@ -41,27 +37,4 @@ export function persistTheme(
   onSaveError?: (error: unknown) => void,
 ): void {
   persistPref(THEME_STORAGE_KEY, option, onSaveError);
-}
-
-/**
- * Builds a {@link MantineColorSchemeManager} whose `get` returns the validated
- * stored theme (Req 5.2, 5.3). `set` is a no-op: ThemeControl persists via
- * {@link persistTheme} so it can surface a failure, and Mantine only calls
- * `set` from `setColorScheme` (already applied in memory) or `subscribe` (a
- * cross-tab storage event, value already stored). `subscribe`/`unsubscribe`/
- * `clear` delegate directly.
- *
- * ponytail: the no-op `set` relies on Mantine 9.7.3 only calling `set` from
- * `setColorScheme`/`subscribe`; re-verify on a Mantine upgrade.
- */
-export function createAppColorSchemeManager(): MantineColorSchemeManager {
-  const delegate = localStorageColorSchemeManager();
-
-  return {
-    get: () => readStoredTheme(),
-    set: () => {},
-    subscribe: delegate.subscribe,
-    unsubscribe: delegate.unsubscribe,
-    clear: delegate.clear,
-  };
 }

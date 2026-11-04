@@ -17,7 +17,7 @@ import { MantineProvider } from "@mantine/core";
 // returning raw keys.
 import "../../i18n";
 import { ThemeControl } from "../ThemeControl";
-import { createAppColorSchemeManager } from "../../lib/themeManager";
+import { createAppColorSchemeManager } from "../../App";
 
 const STORAGE_KEY = "mantine-color-scheme-value";
 
@@ -146,5 +146,22 @@ describe("ThemeControl", () => {
     expect(radio("Dark").checked).toBe(true);
     await waitFor(() => expect(appliedScheme()).toBe("dark"));
     expect(onSaveError).toHaveBeenCalledTimes(1);
+  });
+});
+
+// The localStorage key Mantine's manager and ColorSchemeScript use by default.
+const THEME_STORAGE_KEY = "mantine-color-scheme-value";
+
+describe("createAppColorSchemeManager", () => {
+  it("get returns the validated stored value, ignoring the caller's default", () => {
+    window.localStorage.setItem(THEME_STORAGE_KEY, "dark");
+    expect(createAppColorSchemeManager().get("light")).toBe("dark");
+    window.localStorage.setItem(THEME_STORAGE_KEY, "chartreuse");
+    expect(createAppColorSchemeManager().get("light")).toBe("auto");
+  });
+
+  it("set does not write (ThemeControl persists via persistTheme)", () => {
+    createAppColorSchemeManager().set("dark");
+    expect(window.localStorage.getItem(THEME_STORAGE_KEY)).toBeNull();
   });
 });
