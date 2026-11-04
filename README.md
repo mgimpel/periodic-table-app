@@ -72,7 +72,7 @@ pnpm check
 
 See https://v2.tauri.app/develop/updating-dependencies/
 ```
-pnpm update @touru-apps/cli @tauri-apps/api --latest
+pnpm update @tauri-apps/cli @tauri-apps/api --latest
 cd src-tauri/
 cargo update
 ```
