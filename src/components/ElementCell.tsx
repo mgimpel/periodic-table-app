@@ -47,7 +47,9 @@ export function ElementCell({ element, onSelect, symbolOnly = false, color }: El
       {!symbolOnly && (
         <Text className={classes.number}>{element.atomicNumber}</Text>
       )}
-      <Text className={classes.symbol}>{element.symbol}</Text>
+      <Text className={`${classes.symbol}${symbolOnly ? ` ${classes.symbolOnly}` : ""}`}>
+        {element.symbol}
+      </Text>
       {!symbolOnly && (
         <Text className={classes.name} lineClamp={1}>
           {name}
