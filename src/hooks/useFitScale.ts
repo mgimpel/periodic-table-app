@@ -9,7 +9,7 @@
 // recompute budget (Req 2.3). All scaling math lives in computeFitScale — this
 // hook only measures and schedules.
 
-import { useEffect, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { computeFitScale, type FitResult } from "../lib/fitScale";
 
 /** Debounce window for recomputes; must stay within the 200 ms budget (Req 2.3). */
@@ -20,13 +20,12 @@ export function useFitScale(
   gridRef: RefObject<HTMLElement | null>,
 ): FitResult {
   const [fit, setFit] = useState<FitResult>({ scale: 1, symbolOnly: false });
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     const viewport = viewportRef.current;
     const grid = gridRef.current;
     if (!viewport || !grid) return;
-
-    let timer: ReturnType<typeof setTimeout> | undefined;
 
     const measure = () => {
       // Natural (unscaled) grid size: scrollWidth/scrollHeight ignore the CSS
@@ -41,8 +40,8 @@ export function useFitScale(
     };
 
     const scheduleMeasure = () => {
-      if (timer !== undefined) clearTimeout(timer);
-      timer = setTimeout(measure, RECOMPUTE_DEBOUNCE_MS);
+      if (timerRef.current !== undefined) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(measure, RECOMPUTE_DEBOUNCE_MS);
     };
 
     // Initial measurement once the refs are mounted.
@@ -54,7 +53,7 @@ export function useFitScale(
     window.addEventListener("orientationchange", scheduleMeasure);
 
     return () => {
-      if (timer !== undefined) clearTimeout(timer);
+      if (timerRef.current !== undefined) clearTimeout(timerRef.current);
       observer.disconnect();
       window.removeEventListener("orientationchange", scheduleMeasure);
     };
