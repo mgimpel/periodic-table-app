@@ -20,7 +20,7 @@ import { MantineProvider } from "@mantine/core";
 // Initialise the shared i18next default instance so scheme labels resolve to
 // the English ui.json resources rather than raw keys.
 import "../../i18n";
-import { SchemeLegend } from "../SchemeLegend";
+import { SchemeLegend, CATEGORY_LEGEND_ORDER } from "../SchemeLegend";
 import { CATEGORY_COLORS, CATEGORY_KEYS } from "../../data/element";
 import {
   ORIGIN_COLORS,
@@ -87,10 +87,20 @@ const label = (group: Record<string, string>, k: string) =>
 const DISCRETE_SCHEMES: ReadonlyArray<
   [Scheme, readonly string[], Record<string, string>, Record<string, string>]
 > = [
-  ["category", CATEGORY_KEYS, CATEGORY_COLORS, enUi.category],
+  ["category", CATEGORY_LEGEND_ORDER, CATEGORY_COLORS, enUi.category],
   ["phase", PHASE_KEYS, PHASE_COLORS, enUi.phase],
   ["origin", ORIGIN_KEYS, ORIGIN_COLORS, enUi.origin],
 ];
+
+// The category legend reorders the categories for readability, but must still
+// cover every category exactly once — a permutation of CATEGORY_KEYS, with no
+// dropped or duplicated category (the readonly ElementCategory[] type catches
+// typos, not omissions/dups).
+describe("SchemeLegend category legend order", () => {
+  it("is a permutation of CATEGORY_KEYS (every category exactly once)", () => {
+    expect([...CATEGORY_LEGEND_ORDER].sort()).toEqual([...CATEGORY_KEYS].sort());
+  });
+});
 
 describe("SchemeLegend discrete schemes", () => {
   // Validates: Requirements 1.3, 2.3, 2.4, 3.3, 3.4, 7.2, 7.3, 7.4

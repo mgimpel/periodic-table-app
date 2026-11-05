@@ -5,7 +5,7 @@
 
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { CATEGORY_COLORS, CATEGORY_KEYS } from "../data/element";
+import { CATEGORY_COLORS, type ElementCategory } from "../data/element";
 import {
   ORIGIN_COLORS,
   ORIGIN_KEYS,
@@ -28,11 +28,28 @@ import {
 } from "../lib/temperature";
 import classes from "./SchemeLegend.module.css";
 
+// Legend-only display order for the category swatches. Distinct from
+// CATEGORY_KEYS (the canonical set/order that derives ElementCategory): the
+// legend arranges categories for readability, not in the data's order. Typed as
+// readonly ElementCategory[] so tsc flags a typo or missing/stray category.
+export const CATEGORY_LEGEND_ORDER: readonly ElementCategory[] = [
+  "alkali-metal",
+  "metalloid",
+  "lanthanide",
+  "alkaline-earth-metal",
+  "reactive-nonmetal",
+  "actinide",
+  "transition-metal",
+  "noble-gas",
+  "unknown",
+  "post-transition-metal",
+];
+
 // The three discrete schemes draw one swatch per key: their i18n label prefix
 // equals the scheme name (t(`category.${key}`), t(`phase.${key}`),
 // t(`origin.${key}`)), so one lookup covers all three.
 const DISCRETE = {
-  category: [CATEGORY_KEYS, CATEGORY_COLORS],
+  category: [CATEGORY_LEGEND_ORDER, CATEGORY_COLORS],
   phase: [PHASE_KEYS, PHASE_COLORS],
   origin: [ORIGIN_KEYS, ORIGIN_COLORS],
 } as const;
