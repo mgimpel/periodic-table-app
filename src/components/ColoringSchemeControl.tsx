@@ -56,7 +56,7 @@ export function ColoringSchemeControl({
       comboboxProps={{ withinPortal: true }}
       // Compact fixed width keeps the centered header title truncating rather
       // than overflowing on narrow mobile widths (mobile-first).
-      w={140}
+      w={160}
     />
   );
 }
