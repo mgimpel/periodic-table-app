@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { Anchor, Group, Stack, Text, Title } from "@mantine/core";
+import { openUrl } from "@tauri-apps/plugin-opener";
 import { useTranslation } from "react-i18next";
 import { AppLogo } from "./Asset";
 import { ResponsiveOverlay } from "./ResponsiveOverlay";
@@ -35,6 +36,18 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
     returnFocusRef.current?.focus();
   };
 
+  // In the Tauri webview a plain anchor would navigate the app window away from
+  // the UI, so hand the URL to the OS default browser instead. href/target/rel
+  // stay as the fallback for browser-only dev (pnpm dev), where the plugin's
+  // invoke has no backend and openUrl rejects — let the native anchor proceed.
+  const openExternally =
+    (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      void openUrl(url).catch(() => {
+        window.open(url, "_blank", "noreferrer");
+      });
+    };
+
   return (
     <ResponsiveOverlay
       opened={opened}
@@ -64,13 +77,23 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
           <Text size="sm">{t("about.copyright")}</Text>
           <Text size="sm">
             {t("about.licensePrefix")}{" "}
-            <Anchor href={LICENSE_URL} target="_blank" rel="noreferrer">
+            <Anchor
+              href={LICENSE_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={openExternally(LICENSE_URL)}
+            >
               {t("about.license")}
             </Anchor>
           </Text>
           <Text size="sm">
             {t("about.homepage")}{" "}
-            <Anchor href={REPO_URL} target="_blank" rel="noreferrer">
+            <Anchor
+              href={REPO_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={openExternally(REPO_URL)}
+            >
               {REPO_URL}
             </Anchor>
           </Text>

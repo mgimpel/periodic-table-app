@@ -19,7 +19,15 @@ import { AboutPanel } from "../AboutPanel";
 import enUi from "../../locales/en/ui.json";
 import pkg from "../../../package.json";
 
-afterEach(cleanup);
+// Stub the Tauri opener bindings: in jsdom there's no backend, and we want to
+// assert the anchor click hands the URL to the OS instead of navigating.
+const openUrlMock = vi.hoisted(() => vi.fn(() => Promise.resolve()));
+vi.mock("@tauri-apps/plugin-opener", () => ({ openUrl: openUrlMock }));
+
+afterEach(() => {
+  cleanup();
+  openUrlMock.mockClear();
+});
 
 function renderAbout(props: Partial<Parameters<typeof AboutPanel>[0]> = {}) {
   const opened = props.opened ?? true;
@@ -52,6 +60,17 @@ describe("AboutPanel", () => {
     // The rendered string interpolates package.json's version; both read the
     // same source, so this confirms the wiring rather than guarding a literal.
     expect(expected).toContain(pkg.version);
+  });
+
+  it("opens links in the external browser instead of navigating the app", async () => {
+    const user = userEvent.setup();
+    renderAbout();
+    const licenseLink = screen.getByRole("link", { name: enUi.about.license });
+    await user.click(licenseLink);
+    expect(openUrlMock).toHaveBeenCalledTimes(1);
+    // Opens the same URL the anchor points at, rather than letting the webview
+    // navigate to it.
+    expect(openUrlMock).toHaveBeenCalledWith(licenseLink.getAttribute("href"));
   });
 
   it("does not render content when closed", () => {
