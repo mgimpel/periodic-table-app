@@ -9,7 +9,7 @@
 // as Same_As_Device).
 
 /** The three user-selectable theme options, in display order; "auto" follows the device. */
-export const THEME_OPTIONS = ["light", "dark", "auto"] as const;
+export const THEME_OPTIONS = ["auto", "light", "dark"] as const;
 
 export type ThemeOption = (typeof THEME_OPTIONS)[number];
 
