@@ -66,10 +66,6 @@
     "temperature": {
       "title": "Temperatureinheit konnte nicht gespeichert werden",
       "body": "Die gewählte Temperatureinheit gilt vorerst, konnte aber nicht gespeichert werden und wird beim nächsten Start möglicherweise nicht übernommen."
-    },
-    "coloringScheme": {
-      "title": "Farbgebungsschema konnte nicht gespeichert werden",
-      "body": "Das gewählte Farbgebungsschema gilt vorerst, konnte aber nicht gespeichert werden und wird beim nächsten Start möglicherweise nicht übernommen."
     }
   },
   "orientation": {

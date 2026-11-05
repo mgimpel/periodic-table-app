@@ -4,15 +4,8 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import fc from "fast-check";
-import {
-  persistTheme,
-  readStoredTheme,
-  persistColoringScheme,
-  readStoredColoringScheme,
-} from "../persistenceManager";
+import { persistTheme, readStoredTheme } from "../persistenceManager";
 import { DEFAULT_THEME } from "../theme";
-import { COLORING_SCHEME_OPTIONS } from "../coloringScheme";
 
 // The localStorage key Mantine's manager and ColorSchemeScript use by default.
 const THEME_STORAGE_KEY = "mantine-color-scheme-value";
@@ -45,25 +38,5 @@ describe("readStoredTheme", () => {
   it("resolves a present-but-invalid stored value to auto", () => {
     window.localStorage.setItem(THEME_STORAGE_KEY, "chartreuse");
     expect(readStoredTheme()).toBe(DEFAULT_THEME);
-  });
-});
-
-// Property test for the coloring-scheme persistence manager: persist → read
-// round-trips every option (6.1, 6.2). The read-failure fallback (6.4) and the
-// non-throwing write-failure signal (6.5) delegate to storage.ts and are
-// covered by storage.check.ts.
-
-describe("persistColoringScheme / readStoredColoringScheme", () => {
-  // Feature: element-color-schemes, Property 7: Persist → read round-trips the option
-  // Validates: Requirements 6.1, 6.2
-  it("round-trips every valid option through localStorage", () => {
-    fc.assert(
-      fc.property(fc.constantFrom(...COLORING_SCHEME_OPTIONS), (option) => {
-        // Clear between runs so a prior value can't mask a read-back bug.
-        window.localStorage.clear();
-        persistColoringScheme(option);
-        expect(readStoredColoringScheme()).toBe(option);
-      }),
-    );
   });
 });

@@ -12,8 +12,11 @@ import { PeriodicTable } from "./PeriodicTable";
 import { SettingsPanel, type SaveErrorKind } from "./SettingsPanel";
 import { AboutPanel } from "./AboutPanel";
 import type { TemperatureOption } from "../lib/temperature";
-import type { ColoringSchemeOption } from "../lib/coloringScheme";
-import { readStoredTemperature, readStoredColoringScheme } from "../lib/persistenceManager";
+import {
+  DEFAULT_COLORING_SCHEME,
+  type ColoringSchemeOption,
+} from "../lib/coloringScheme";
+import { readStoredTemperature } from "../lib/persistenceManager";
 import classes from "./AppLayout.module.css";
 
 // Owns the Settings_Panel open/close state and the full-height flex column
@@ -40,9 +43,10 @@ export function AppLayout() {
   // Shared by the settings control and the element detail, so it lives here.
   const [temperatureUnit, setTemperatureUnit] =
     useState<TemperatureOption>(readStoredTemperature);
-  // Shared by the settings control and the periodic table, so it lives here.
+  // Shared by the header control and the periodic table, so it lives here.
+  // Not persisted — it resets to the default scheme each session.
   const [coloringScheme, setColoringScheme] =
-    useState<ColoringSchemeOption>(readStoredColoringScheme);
+    useState<ColoringSchemeOption>(DEFAULT_COLORING_SCHEME);
 
   return (
     <div className={classes.root}>
@@ -53,7 +57,6 @@ export function AppLayout() {
         settingsButtonRef={settingsButtonRef}
         coloringScheme={coloringScheme}
         onColoringSchemeChange={setColoringScheme}
-        onColoringSchemeSaveError={() => setSaveError("coloringScheme")}
       />
 
       {saveError && (

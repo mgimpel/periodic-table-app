@@ -12,11 +12,7 @@ import { ResponsiveOverlay } from "./ResponsiveOverlay";
 import type { TemperatureOption } from "../lib/temperature";
 
 /** Which preference failed to persist; selects the save-error notice strings. */
-export type SaveErrorKind =
-  | "theme"
-  | "language"
-  | "temperature"
-  | "coloringScheme";
+export type SaveErrorKind = "theme" | "language" | "temperature";
 
 interface SettingsPanelProps {
   opened: boolean;

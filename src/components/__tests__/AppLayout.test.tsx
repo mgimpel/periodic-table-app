@@ -205,48 +205,44 @@ describe("AppLayout", () => {
     },
   );
 
-  // Req 1.7: on startup AppLayout resolves the stored coloring scheme through
-  // the Coloring_Scheme_Manager and both colors the cells and renders the
-  // matching legend. Seed the real STORAGE_KEY so the readStoredColoringScheme
-  // path runs for real (no mock).
-  it("colors cells and renders the legend per the stored scheme on startup (1.7)", () => {
-    // Oxygen (Gas) is a clean discriminator: its phase color differs from its
-    // category color, so a phase-colored startup is observable on one cell.
+  // The coloring scheme is intentionally session-only: a value left in storage
+  // from a prior session is ignored and startup always uses the default
+  // (category) scheme. Oxygen (Gas) is a clean discriminator — its phase color
+  // differs from its category color — so a category-colored startup is
+  // observable on one cell even with "phase" seeded in storage.
+  it("ignores any stored coloring scheme and starts from the category default", () => {
     const oxygen = getElementByNumber(8)!;
     expect(cellColor("phase", oxygen)).not.toBe(
       CATEGORY_COLORS[oxygen.category],
     );
 
+    // Seed a non-default scheme the way an older build would have persisted it.
     window.localStorage.setItem("app-coloring-scheme", "phase");
     renderLayout();
 
-    // The legend swapped to the four-swatch phase form (distinct from the ten
-    // category swatches), proving the stored scheme drives the legend.
+    // The legend shows the ten category swatches (not the four phase ones),
+    // proving the seeded value did not drive startup.
     const legend = screen.getByRole("group", {
       name: enUi.legend.groupLabel,
     });
     const swatches = legend.querySelectorAll('span[style*="background-color"]');
-    expect(swatches).toHaveLength(PHASE_KEYS.length);
-    expect(within(legend).getByText(enUi.phase.solid)).toBeInTheDocument();
+    expect(swatches).not.toHaveLength(PHASE_KEYS.length);
 
-    // And a sampled cell is colored by the phase scheme, not its category.
+    // And a sampled cell is colored by its category, not the stored phase scheme.
     const oxygenCell = screen.getByRole("button", {
       name: "Oxygen, atomic number 8",
     });
     expect(oxygenCell).toHaveStyle({
-      backgroundColor: cellColor("phase", oxygen),
+      backgroundColor: CATEGORY_COLORS[oxygen.category],
     });
   });
 
-  // Req 6.6 + 6.7: a throwing setItem keeps the chosen coloring scheme for the
-  // session (the table recolors / legend swaps) and surfaces the dismissable
-  // save-error notice, mirroring the theme/language/temperature path above.
-  it("applies the coloring scheme for the session and shows the notice when the save fails (6.6, 6.7)", async () => {
+  // Choosing a scheme in the header applies it for the session (the table
+  // recolors and the legend swaps form). It is not persisted, so there is no
+  // save step and no save-error path to exercise.
+  it("applies the chosen coloring scheme for the session", async () => {
     const user = userEvent.setup();
     const oxygen = getElementByNumber(8)!;
-    vi.spyOn(window.localStorage.__proto__, "setItem").mockImplementation(() => {
-      throw new Error("blocked");
-    });
     // Default (category) at startup; select Phase in the header dropdown.
     renderLayout();
 
@@ -256,8 +252,7 @@ describe("AppLayout", () => {
       backgroundColor: cellColor("category", oxygen),
     });
 
-    // The coloring-scheme dropdown now lives in the header, not the settings
-    // panel. Open it and pick Phase.
+    // The coloring-scheme dropdown lives in the header. Open it and pick Phase.
     const schemeSelect = screen.getByRole("combobox", {
       name: enUi.coloringScheme.label,
     }) as HTMLInputElement;
@@ -268,8 +263,7 @@ describe("AppLayout", () => {
       }),
     );
 
-    // Req 6.6: the scheme applies for the session despite the failed save —
-    // the cell recolors to the phase color and the legend swaps form.
+    // The cell recolors to the phase color and the legend swaps form.
     expect(schemeSelect.value).toBe(enUi.coloringScheme.phase);
     expect(oxygenCell()).toHaveStyle({
       backgroundColor: cellColor("phase", oxygen),
@@ -281,8 +275,7 @@ describe("AppLayout", () => {
       legend.querySelectorAll('span[style*="background-color"]'),
     ).toHaveLength(PHASE_KEYS.length);
 
-    // Req 6.7: the save-error notice appears with the coloringScheme strings.
-    const alert = await screen.findByRole("alert");
-    expect(alert).toHaveTextContent(enUi.saveError.coloringScheme.title);
+    // Nothing was written to storage for the scheme.
+    expect(window.localStorage.getItem("app-coloring-scheme")).toBeNull();
   });
 });

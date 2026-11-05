@@ -3,25 +3,20 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-// Shared localStorage read/persist pair for user preferences. Extracted once a
-// fourth preference (color scheme, language, temperature, coloring scheme)
-// arrived and the per-manager duplication paid off. Each manager still owns its
-// storage key and normalizer; the try/catch read-back and the never-throw write
-// that signals failure live here once.
+// Shared localStorage read/persist pair for user preferences (theme, language,
+// temperature).
 //
 // ponytail: no generic preference store or hook — just the two functions the
-// managers share. Upgrade path (retry / alternative storage) is not needed by
-// the product.
+// preferences share. Upgrade path (retry / alternative storage) is not needed
+// by the product.
 
 import { normalizeStoredTheme, type ThemeOption } from "./theme";
 import { normalizeStoredLanguage, type LanguageOption } from "./language";
 import { normalizeStoredTemperature, type TemperatureOption } from "./temperature";
-import { normalizeStoredColoringScheme, type ColoringSchemeOption } from "./coloringScheme";
 
 const THEME_STORAGE_KEY = "mantine-color-scheme-value";
 const LANGUAGE_STORAGE_KEY = "app-language-option";
 const TEMPERATURE_STORAGE_KEY = "app-temperature-unit";
-const COLORING_SCHEME_STORAGE_KEY = "app-coloring-scheme";
 
 /**
  * Reads the value at `key` and runs it through `normalize`, which must be total
@@ -138,29 +133,4 @@ export function persistTemperature(
   onSaveError?: (error: unknown) => void,
 ): void {
   persistPref(TEMPERATURE_STORAGE_KEY, option, onSaveError);
-}
-
-// localStorage persistence for the coloring scheme. Delegates the read-back and
-// never-throw write to the shared src/lib/storage.ts helper; this module owns
-// only the storage key and the scheme normalizer.
-
-/**
- * Reads the persisted ColoringSchemeOption through
- * {@link normalizeStoredColoringScheme}. A missing, unreadable, or invalid
- * value resolves to the default scheme.
- */
-export function readStoredColoringScheme(): ColoringSchemeOption {
-  return readPref(COLORING_SCHEME_STORAGE_KEY, normalizeStoredColoringScheme);
-}
-
-/**
- * Persists the chosen ColoringSchemeOption. Never throws: a failure (private
- * mode / quota) is caught and `onSaveError` fires. The session keeps the
- * chosen option regardless.
- */
-export function persistColoringScheme(
-  option: ColoringSchemeOption,
-  onSaveError?: (error: unknown) => void,
-): void {
-  persistPref(COLORING_SCHEME_STORAGE_KEY, option, onSaveError);
 }

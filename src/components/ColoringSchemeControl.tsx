@@ -10,26 +10,22 @@ import {
   normalizeStoredColoringScheme,
   type ColoringSchemeOption,
 } from "../lib/coloringScheme";
-import { persistColoringScheme } from "../lib/persistenceManager";
 
 interface ColoringSchemeControlProps {
   value: ColoringSchemeOption;
   onChange: (option: ColoringSchemeOption) => void;
-  // Fired when persisting the choice fails, so the caller can show a
-  // non-blocking save-error notice.
-  onSaveError?: (error: unknown) => void;
 }
 
 // Coloring-scheme picker, rendered as a compact Select so it fits the header
 // bar (seven options are too wide for a SegmentedControl). Controlled, like
 // TemperatureControl: AppLayout owns the value because PeriodicTable reads it
-// to color cells and render the legend. Persistence and failure signalling are
-// explicit here, the same as the other preference controls. Non-clearable /
-// non-searchable so it stays a plain dropdown and always has a value.
+// to color cells and render the legend. The scheme is deliberately not
+// persisted — it resets to the default each session — so there is no save step.
+// Non-clearable / non-searchable so it stays a plain dropdown and always has a
+// value.
 export function ColoringSchemeControl({
   value,
   onChange,
-  onSaveError,
 }: ColoringSchemeControlProps) {
   const { t } = useTranslation("ui");
 
@@ -40,9 +36,7 @@ export function ColoringSchemeControl({
 
   const handleChange = (v: string | null) => {
     // allowDeselect={false} keeps v non-null, but normalize guards anyway.
-    const opt = normalizeStoredColoringScheme(v);
-    onChange(opt); // applies for the session even if the save fails
-    persistColoringScheme(opt, onSaveError); // never throws; fires onSaveError on failure
+    onChange(normalizeStoredColoringScheme(v));
   };
 
   return (

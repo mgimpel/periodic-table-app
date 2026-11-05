@@ -19,7 +19,6 @@ interface HeaderBarProps {
   // the value because PeriodicTable reads it.
   coloringScheme: ColoringSchemeOption;
   onColoringSchemeChange: (option: ColoringSchemeOption) => void;
-  onColoringSchemeSaveError?: (error: unknown) => void;
 }
 
 // Thin header bar: Logo left, Title centered (truncating, not wrapping), and on
@@ -36,7 +35,6 @@ export function HeaderBar({
   settingsButtonRef,
   coloringScheme,
   onColoringSchemeChange,
-  onColoringSchemeSaveError,
 }: HeaderBarProps) {
   const { t } = useTranslation("ui");
   return (
@@ -76,7 +74,6 @@ export function HeaderBar({
       <ColoringSchemeControl
         value={coloringScheme}
         onChange={onColoringSchemeChange}
-        onSaveError={onColoringSchemeSaveError}
       />
       <ActionIcon
         ref={settingsButtonRef}
