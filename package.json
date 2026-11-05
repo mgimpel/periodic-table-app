@@ -16,8 +16,8 @@
     "check": "vite-node src/lib/fitScale.check.ts && vite-node src/lib/platform.check.ts && vite-node src/lib/theme.check.ts && vite-node src/lib/persistenceManager.check.ts && vite-node src/lib/language.check.ts && vite-node src/lib/temperature.check.ts && vite-node src/lib/coloringScheme.check.ts && vite-node src/lib/gradient.check.ts && vite-node src/lib/cellColor.check.ts && vite-node src/lib/electronShellDiagram.check.ts && vite-node src/lib/groupLabels.check.ts && vite-node src/data/elements.check.ts && vite-node src/locales/elements.check.ts"
   },
   "dependencies": {
-    "@mantine/core": "9.7.4",
-    "@mantine/hooks": "9.7.4",
+    "@mantine/core": "9.7.5",
+    "@mantine/hooks": "9.7.5",
     "@tauri-apps/api": "2.12.4",
     "@tauri-apps/plugin-os": "2.4.0",
     "i18next": "26.7.1",
