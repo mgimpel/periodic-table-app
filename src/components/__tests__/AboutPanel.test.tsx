@@ -21,8 +21,11 @@ import pkg from "../../../package.json";
 
 // Stub the Tauri opener bindings: in jsdom there's no backend, and we want to
 // assert the anchor click hands the URL to the OS instead of navigating.
+// isTauri() is mocked true so the handler takes the webview branch (it returns
+// false in plain jsdom, which is the browser-dev path).
 const openUrlMock = vi.hoisted(() => vi.fn(() => Promise.resolve()));
 vi.mock("@tauri-apps/plugin-opener", () => ({ openUrl: openUrlMock }));
+vi.mock("@tauri-apps/api/core", () => ({ isTauri: () => true }));
 
 afterEach(() => {
   cleanup();

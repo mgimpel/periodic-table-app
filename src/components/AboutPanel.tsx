@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { Anchor, Group, Stack, Text, Title } from "@mantine/core";
+import { isTauri } from "@tauri-apps/api/core";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { useTranslation } from "react-i18next";
 import { AppLogo } from "./Asset";
@@ -36,15 +37,20 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
     returnFocusRef.current?.focus();
   };
 
-  // In the Tauri webview a plain anchor would navigate the app window away from
-  // the UI, so hand the URL to the OS default browser instead. href/target/rel
-  // stay as the fallback for browser-only dev (pnpm dev), where the plugin's
-  // invoke has no backend and openUrl rejects — let the native anchor proceed.
+  // In the Tauri webview a plain anchor navigates the app window away from the
+  // UI (and window.open to an external URL is a no-op there), so hand the URL
+  // to the OS default browser via the opener plugin. Only intercept under
+  // Tauri; in plain browser dev (pnpm dev) there's no backend, so let the
+  // native anchor (target="_blank" rel=noreferrer) open a tab as usual.
   const openExternally =
     (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (!isTauri()) return;
       event.preventDefault();
-      void openUrl(url).catch(() => {
-        window.open(url, "_blank", "noreferrer");
+      // Surface a rejection instead of failing silently — if the plugin isn't
+      // reachable (e.g. the Rust binary wasn't rebuilt), nothing opens and the
+      // error is the only clue.
+      openUrl(url).catch((error: unknown) => {
+        console.error(`Failed to open ${url} externally`, error);
       });
     };
 
