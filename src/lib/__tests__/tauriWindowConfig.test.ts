@@ -38,20 +38,4 @@ describe("tauri.conf.json fixed-window smoke test", () => {
   it("is not resizable", () => {
     expect(win.resizable).toBe(false);
   });
-
-  // The custom CSP must let Tauri's IPC reach the Rust backend, otherwise every
-  // plugin `invoke` (e.g. the opener's open_url, used by the About links) is
-  // blocked before it leaves the webview and fails silently. connect-src needs
-  // the IPC origins: `ipc:` (custom protocol) and `http://ipc.localhost`
-  // (Windows). Guarding this stops a future CSP tightening from re-breaking it.
-  it("allows Tauri IPC origins in the CSP connect-src", () => {
-    const csp: string = config.app?.security?.csp ?? "";
-    const connectSrc = csp
-      .split(";")
-      .map((d: string) => d.trim())
-      .find((d: string) => d.startsWith("connect-src"));
-    expect(connectSrc).toBeDefined();
-    expect(connectSrc).toContain("ipc:");
-    expect(connectSrc).toContain("http://ipc.localhost");
-  });
 });

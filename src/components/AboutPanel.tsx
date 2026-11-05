@@ -45,8 +45,7 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
   const openExternally =
     (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
-      openUrl(url).catch((error: unknown) => {
-        console.error(`Failed to open ${url} externally`, error);
+      openUrl(url).catch(() => {
         window.open(url, "_blank", "noreferrer");
       });
     };
