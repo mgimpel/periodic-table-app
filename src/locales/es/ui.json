@@ -13,12 +13,12 @@
     "title": "Acerca de",
     "version": "Versión {{version}}",
     "buildDetails": "Build {{commit}} ({{date}})",
-    "copyright": "Copyright © 2026 Marc Gimpel",
+    "copyright": "Copyright © 2026 Marc Gimpel. Todos los derechos reservados.",
     "licensePrefix": "Licencia:",
     "license": "Licencia BSD de 3 cláusulas",
     "homepage": "Página del proyecto:",
     "thanksHeading": "Agradecimientos",
-    "thanksBody": "Datos de los elementos de Periodic-Table-JSON de Bowserinator (CC BY-SA 3.0); espectros de emisión publicados bajo CC0. Creado con Tauri, React y Mantine."
+    "thanksBody": "Datos de los elementos de Periodic-Table-JSON de Bowserinator (CC BY-SA 3.0).\nEspectros de emisión publicados bajo CC0.\nCreado con Tauri, React y Mantine."
   },
   "common": {
     "close": "Cerrar",

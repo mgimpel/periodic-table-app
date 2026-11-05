@@ -76,8 +76,8 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
               </Text>
             )}
           </Group>
-          <Text size="sm">{t("about.copyright")}</Text>
-          <Text size="sm">
+          <Text size="sm" lh={1.2}>{t("about.copyright")}</Text>
+          <Text size="sm" lh={1.2}>
             {t("about.licensePrefix")}{" "}
             <Anchor
               href={LICENSE_URL}
@@ -88,7 +88,7 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
               {t("about.license")}
             </Anchor>
           </Text>
-          <Text size="sm">
+          <Text size="sm" lh={1.2}>
             {t("about.homepage")}{" "}
             <Anchor
               href={REPO_URL}
@@ -99,12 +99,12 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
               {REPO_URL}
             </Anchor>
           </Text>
-        </Stack>
-        <Stack gap="xs">
           <Title order={2} size="h5">
             {t("about.thanksHeading")}
           </Title>
-          <Text size="sm">{t("about.thanksBody")}</Text>
+          <Text size="sm" lh={1.2} style={{ whiteSpace: "pre-line" }}>
+            {t("about.thanksBody")}
+          </Text>
         </Stack>
       </Stack>
     </ResponsiveOverlay>
