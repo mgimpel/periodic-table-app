@@ -26,6 +26,7 @@ import {
   formatTemperature,
   type TemperatureOption,
 } from "../lib/temperature";
+import { TemperatureSlider } from "./TemperatureSlider";
 import classes from "./SchemeLegend.module.css";
 
 // Legend-only display order for the category swatches. Distinct from
@@ -85,13 +86,20 @@ function LegendFrame({
 // schemes render discrete swatches with labels; the melting-point, boiling-point
 // and electronegativity schemes render a gradient bar with endpoint labels; and
 // the spectral-colour scheme renders an explanatory note (each cell already
-// shows its own element's spectral colour).
+// shows its own element's spectral colour). The phase legend also hosts the
+// temperature slider that drives the phase-at-temperature coloring.
 export function SchemeLegend({
   scheme,
   temperatureUnit,
+  // Default to the Selected_Temperature default (298.15 K) so callers that do
+  // not drive the phase slider (non-phase schemes, isolated tests) still render.
+  selectedTempK = 298.15,
+  onSelectedTempChange = () => {},
 }: {
   scheme: ColoringSchemeOption;
   temperatureUnit: TemperatureOption;
+  selectedTempK?: number;
+  onSelectedTempChange?: (kelvin: number) => void;
 }) {
   const { t } = useTranslation("ui");
 
@@ -176,6 +184,20 @@ export function SchemeLegend({
           </div>
         );
       })}
+      {scheme === "phase" && (
+        <div className={classes.sliderRow}>
+          <TemperatureSlider
+            valueK={selectedTempK}
+            onChange={onSelectedTempChange}
+            unit={temperatureUnit}
+          />
+          <p className={classes.readout}>
+            {t("temperatureSlider.legendReadout", {
+              temp: formatTemperature(selectedTempK, temperatureUnit),
+            })}
+          </p>
+        </div>
+      )}
     </LegendFrame>
   );
 }

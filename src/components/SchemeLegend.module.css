@@ -117,3 +117,21 @@
   line-height: 1.2;
   color: var(--mantine-color-text);
 }
+
+/* The phase legend hosts the temperature slider that drives phase-at-temperature
+ * coloring, below the four phase swatches. Spans both legend columns so the
+ * gradient-decorated track fills the region width, matching the gradient bar. */
+.sliderRow {
+  grid-column: 1 / -1;
+  align-self: center;
+}
+
+/* "At <formatted temperature>" readout under the slider. Matches the discrete
+ * labels'' sizing so it scales with the table. */
+.readout {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  line-height: 1.1;
+  color: var(--mantine-color-text);
+  text-align: center;
+}

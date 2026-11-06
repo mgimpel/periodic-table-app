@@ -30,6 +30,7 @@ import { getElementByNumber } from "../../data/elements";
 import {
   cellColor,
   phaseBucket,
+  phaseAtTemperature,
   PHASE_COLORS,
   PHASE_KEYS,
 } from "../../lib/cellColor";
@@ -260,5 +261,104 @@ describe("PeriodicTable coloring scheme drives cells and legend", () => {
     legend = screen.getByRole("group", { name: LEGEND_GROUP_NAME });
     expect(legendSwatchCount(legend)).toBe(PHASE_KEYS.length);
     expect(PHASE_KEYS.length).not.toBe(CATEGORY_KEYS.length);
+  });
+});
+
+describe("PeriodicTable temperature slider gating", () => {
+  // Validates: Requirements 1.1, 1.2, 1.3, 1.4
+
+  // Mantine renders the slider thumb with role="slider" and carries the
+  // aria-label on its .mantine-Slider-root ancestor (see TemperatureSlider.test
+  // for the pattern). Presence of that role is the clean present/absent probe.
+  const SLIDER_NAME = uiStrings.temperatureSlider.label;
+
+  it("renders the slider present and focusable on initial render for scheme='phase'", () => {
+    // Req 1.1, 1.3: launching with the phase scheme shows an operable slider.
+    renderTable({ coloringScheme: "phase" });
+
+    const thumb = screen.getByRole("slider");
+    expect(thumb).toBeInTheDocument();
+
+    // Operable: the accessible name comes from the i18n key (on the root), and
+    // the thumb is focusable.
+    const root = thumb.closest(".mantine-Slider-root") as HTMLElement;
+    expect(root).toHaveAttribute("aria-label", SLIDER_NAME);
+    thumb.focus();
+    expect(document.activeElement).toBe(thumb);
+  });
+
+  it.each(["category", "electronegativity", "origin", "spectral-colour"] as const)(
+    "omits the slider on initial render for scheme='%s'",
+    (scheme) => {
+      // Req 1.2, 1.4: every non-phase scheme leaves the slider out of the DOM.
+      renderTable({ coloringScheme: scheme });
+      expect(screen.queryByRole("slider")).toBeNull();
+    },
+  );
+
+  it("omits the slider when coloringScheme is the default (non-phase)", () => {
+    // Req 1.2, 1.4: the omitted prop falls back to the category default, so no
+    // slider renders.
+    renderTable();
+    expect(screen.queryByRole("slider")).toBeNull();
+  });
+
+  it("mounts the slider when switching to phase and unmounts it when switching away", () => {
+    // Req 1.1, 1.2: the slider tracks the active scheme across rerenders.
+    const { rerender } = renderTable({ coloringScheme: "category" });
+    expect(screen.queryByRole("slider")).toBeNull();
+
+    rerender(
+      <MantineProvider>
+        <PeriodicTable coloringScheme="phase" />
+      </MantineProvider>,
+    );
+    expect(screen.getByRole("slider")).toBeInTheDocument();
+
+    rerender(
+      <MantineProvider>
+        <PeriodicTable coloringScheme="origin" />
+      </MantineProvider>,
+    );
+    expect(screen.queryByRole("slider")).toBeNull();
+  });
+});
+
+describe("PeriodicTable recolors cells across a phase transition", () => {
+  // Validates: Requirements 3.5
+
+  // Oxygen has clean, known transition points in the dataset (melt 54.36 K,
+  // boil 90.188 K). A temperature below melt lands it in the solid bucket; one
+  // above boil lands it in the gas bucket. Both temperatures sit inside the
+  // slider range [0, TEMPERATURE_MAX]. Colors are read from the real
+  // cellColor/phaseAtTemperature, never hardcoded.
+  const sample = oxygen;
+  const belowMelt = 10; // < 54.36 → solid
+  const aboveBoil = 200; // > 90.188 → gas
+
+  it("recolors the element's cell to the bucket for the selected temperature", () => {
+    const solidColor = PHASE_COLORS[phaseAtTemperature(belowMelt, sample)];
+    const gasColor = PHASE_COLORS[phaseAtTemperature(aboveBoil, sample)];
+
+    const { rerender } = renderTable({
+      coloringScheme: "phase",
+      selectedTempK: belowMelt,
+    });
+    expect(cellFor(sample)).toHaveStyle({ backgroundColor: solidColor });
+
+    // Moving the slider's value across the melt→boil span recolors the cell to
+    // the new bucket (Req 3.5).
+    rerender(
+      <MantineProvider>
+        <PeriodicTable coloringScheme="phase" selectedTempK={aboveBoil} />
+      </MantineProvider>,
+    );
+    expect(cellFor(sample)).toHaveStyle({ backgroundColor: gasColor });
+
+    // The two bucket colors really differ, so the recolor assertion is not
+    // vacuously true (and matches the real resolver's solid/gas mapping).
+    expect(solidColor).toBe(PHASE_COLORS.solid);
+    expect(gasColor).toBe(PHASE_COLORS.gas);
+    expect(solidColor).not.toBe(gasColor);
   });
 });

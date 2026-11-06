@@ -59,11 +59,26 @@ function normalizeColor(color: string): string {
 function renderLegend(
   scheme: Scheme,
   unit: TemperatureOption = "kelvin",
+  selectedTempK?: number,
 ) {
   return render(
     <MantineProvider>
-      <SchemeLegend scheme={scheme} temperatureUnit={unit} />
+      <SchemeLegend
+        scheme={scheme}
+        temperatureUnit={unit}
+        selectedTempK={selectedTempK}
+      />
     </MantineProvider>,
+  );
+}
+
+// The phase legend's readout is the "At {{temp}}" template from en ui.json with
+// {{temp}} filled by the lib formatter — built from the locale JSON rather than
+// hardcoded, so a copy change in either place is caught.
+function expectedReadout(tempK: number, unit: TemperatureOption): string {
+  return enUi.temperatureSlider.legendReadout.replace(
+    "{{temp}}",
+    formatTemperature(tempK, unit),
   );
 }
 
@@ -144,6 +159,72 @@ describe("SchemeLegend discrete schemes", () => {
       });
     },
   );
+});
+
+// --- Phase legend: four swatches + temperature readout --------------------
+// Req 6.1: the phase scheme shows exactly four PHASE_COLORS swatches labeled
+// with their translated phase labels. Req 6.2-6.4: a readout equal to the
+// lib-formatted Selected_Temperature, which tracks both the value and the unit.
+describe("SchemeLegend phase scheme temperature readout", () => {
+  // Validates: Requirements 6.1
+  it("renders exactly four phase swatches with their translated labels and colors", () => {
+    renderLegend("phase", "kelvin", 350);
+    const legend = screen.getByRole("group", { name: groupName });
+    const entries = Array.from(
+      legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
+    );
+
+    expect(entries).toHaveLength(PHASE_KEYS.length);
+    expect(PHASE_KEYS).toHaveLength(4);
+    expect(entries.map((e) => e.getAttribute("aria-label"))).toEqual(
+      PHASE_KEYS.map((k) => label(enUi.phase, k)),
+    );
+    entries.forEach((entry, i) => {
+      const key = PHASE_KEYS[i];
+      const swatch = entry.querySelector("span[style]") as HTMLElement | null;
+      expect(swatch).not.toBeNull();
+      expect(normalizeColor(swatch!.style.backgroundColor)).toBe(
+        normalizeColor(PHASE_COLORS[key]),
+      );
+    });
+  });
+
+  // Validates: Requirements 6.2
+  it("renders the readout equal to the lib-formatted Selected_Temperature", () => {
+    renderLegend("phase", "kelvin", 350);
+    const legend = screen.getByRole("group", { name: groupName });
+    expect(
+      within(legend).getByText(expectedReadout(350, "kelvin")),
+    ).toBeInTheDocument();
+  });
+
+  // Validates: Requirements 6.3
+  it("updates the readout when the Selected_Temperature changes", () => {
+    renderLegend("phase", "kelvin", 300);
+    let legend = screen.getByRole("group", { name: groupName });
+    expect(
+      within(legend).getByText(expectedReadout(300, "kelvin")),
+    ).toBeInTheDocument();
+    cleanup();
+
+    renderLegend("phase", "kelvin", 500);
+    legend = screen.getByRole("group", { name: groupName });
+    expect(
+      within(legend).getByText(expectedReadout(500, "kelvin")),
+    ).toBeInTheDocument();
+  });
+
+  // Validates: Requirements 6.4
+  it("displays the same stored Kelvin value formatted in each temperature unit", () => {
+    for (const unit of TEMPERATURE_OPTIONS) {
+      renderLegend("phase", unit, 400);
+      const legend = screen.getByRole("group", { name: groupName });
+      expect(
+        within(legend).getByText(expectedReadout(400, unit)),
+      ).toBeInTheDocument();
+      cleanup();
+    }
+  });
 });
 
 // --- Gradient legends: melting-point / boiling-point ----------------------

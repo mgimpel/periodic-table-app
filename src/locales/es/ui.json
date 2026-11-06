@@ -44,6 +44,10 @@
     "celsius": "Celsius",
     "fahrenheit": "Fahrenheit"
   },
+  "temperatureSlider": {
+    "label": "Temperatura",
+    "legendReadout": "A {{temp}}"
+  },
   "coloringScheme": {
     "label": "Esquema de color",
     "category": "Categoría",

@@ -31,12 +31,23 @@ import classes from "./PeriodicTable.module.css";
 // that against the viewport wrapper and returns a scale (<= 1) that we apply as
 // a CSS transform, so the whole table shrinks to fit. symbolOnly drops the
 // number/name when cells get too small to read.
+//
+// The temperature slider for the phase scheme lives inside SchemeLegend (the
+// in-grid legend), so it scales with the table and sits with the phase swatches
+// it drives; PeriodicTable only threads the Selected_Temperature value and its
+// change handler through to the legend.
 export function PeriodicTable({
   coloringScheme = DEFAULT_COLORING_SCHEME,
   temperatureUnit = DEFAULT_TEMPERATURE,
+  // Default to the Selected_Temperature default (298.15 K) so existing callers
+  // and tests compile; AppLayout supplies the live value.
+  selectedTempK = 298.15,
+  onSelectedTempChange = () => {},
 }: {
   coloringScheme?: ColoringSchemeOption;
   temperatureUnit?: TemperatureOption;
+  selectedTempK?: number;
+  onSelectedTempChange?: (kelvin: number) => void;
 }) {
   const { t } = useTranslation("ui");
   const [selected, setSelected] = useState<Element | null>(null);
@@ -76,7 +87,12 @@ export function PeriodicTable({
             } as React.CSSProperties
           }
         >
-          <SchemeLegend scheme={coloringScheme} temperatureUnit={temperatureUnit} />
+          <SchemeLegend
+            scheme={coloringScheme}
+            temperatureUnit={temperatureUnit}
+            selectedTempK={selectedTempK}
+            onSelectedTempChange={onSelectedTempChange}
+          />
           <GroupLabels />
           {ELEMENTS.map((element) => (
             <ElementCell
@@ -84,7 +100,11 @@ export function PeriodicTable({
               element={element}
               onSelect={setSelected}
               symbolOnly={symbolOnly}
-              color={cellColor(coloringScheme, element)}
+              color={cellColor(
+                coloringScheme,
+                element,
+                coloringScheme === "phase" ? selectedTempK : undefined,
+              )}
             />
           ))}
         </Box>

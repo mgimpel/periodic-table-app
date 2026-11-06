@@ -279,3 +279,119 @@ describe("AppLayout", () => {
     expect(window.localStorage.getItem("app-coloring-scheme")).toBeNull();
   });
 });
+
+// Integration coverage for the Selected_Temperature that AppLayout owns and
+// threads down to PeriodicTable (the slider + legend) and the per-cell color.
+// The slider is present only for the phase scheme, so every case first drives
+// the header ColoringSchemeControl to "phase" the way the existing
+// "applies the chosen coloring scheme" test does. The displayed temperature is
+// read from the legend readout ("At <formatted>"), since it tracks
+// selectedTempK regardless of the slider thumb's rounding.
+describe("AppLayout — Selected_Temperature (phase scheme)", () => {
+  // Validates: Requirements 1.5, 1.6, 5.4, 5.5, 7.1, 7.3, 7.4
+
+  const schemeSelect = () =>
+    screen.getByRole("combobox", {
+      name: enUi.coloringScheme.label,
+    }) as HTMLInputElement;
+
+  // Pick a scheme from the header dropdown by its English option label.
+  async function chooseScheme(user: ReturnType<typeof userEvent.setup>, label: string) {
+    await user.click(schemeSelect());
+    await user.click(
+      within(await screen.findByRole("listbox")).getByRole("option", {
+        name: label,
+      }),
+    );
+  }
+
+  const readout = () => enUi.temperatureSlider.legendReadout;
+  // The legend readout text "At <formatted>" for a Kelvin value in a unit.
+  const readoutText = (k: number, unit: Parameters<typeof formatTemperature>[1]) =>
+    readout().replace("{{temp}}", formatTemperature(k, unit));
+
+  it("defaults to 298.15 K and writes no temperature state to localStorage (7.1)", async () => {
+    const user = userEvent.setup();
+    const setItem = vi.spyOn(window.localStorage.__proto__, "setItem");
+    renderLayout();
+
+    await chooseScheme(user, enUi.coloringScheme.phase);
+
+    // The legend readout shows the session default, 298.15 K.
+    expect(
+      screen.getByText(readoutText(298.15, "kelvin")),
+    ).toBeInTheDocument();
+
+    // The default Selected_Temperature is session-only: no storage key is
+    // written for it. There is deliberately no persistenceManager pair for the
+    // slider, so no key mentioning the temperature/slider state should appear
+    // (the persisted temperature *unit* key is untouched too, since settings
+    // was never opened).
+    const writtenKeys = setItem.mock.calls.map((call) => String(call[0]));
+    expect(
+      writtenKeys.filter((key) => /temp|slider/i.test(key)),
+    ).toEqual([]);
+  });
+
+  it("restores the adjusted value after switching scheme away and back (1.5, 1.6, 7.3, 7.4)", async () => {
+    const user = userEvent.setup();
+    renderLayout();
+
+    await chooseScheme(user, enUi.coloringScheme.phase);
+
+    // Move the slider up a few steps via the keyboard and capture the value it
+    // now reports through the legend readout (robust to the thumb's rounding).
+    const thumb = screen.getByRole("slider");
+    thumb.focus();
+    await user.keyboard("{ArrowRight}{ArrowRight}{ArrowRight}");
+
+    // The readout prefix ("At ") is the literal part of the legendReadout
+    // template; find the single paragraph that carries it and read its text.
+    const prefix = readout().replace("{{temp}}", "");
+    const readoutNode = () =>
+      within(screen.getByRole("group", { name: enUi.legend.groupLabel })).getByText(
+        (content) => content.startsWith(prefix),
+      );
+    const adjusted = readoutNode().textContent;
+    // The value actually moved off the 298.15 K default.
+    expect(adjusted).not.toBe(readoutText(298.15, "kelvin"));
+
+    // Switch away from phase: the slider unmounts (retention is in AppLayout).
+    await chooseScheme(user, enUi.coloringScheme.category);
+    expect(screen.queryByRole("slider")).not.toBeInTheDocument();
+
+    // Switch back to phase: the retained Kelvin value is restored unchanged.
+    await chooseScheme(user, enUi.coloringScheme.phase);
+    expect(screen.getByRole("slider")).toBeInTheDocument();
+    expect(readoutNode().textContent).toBe(adjusted);
+  });
+
+  it("changes the displayed value but not cell buckets when the unit changes (5.4, 5.5)", async () => {
+    const user = userEvent.setup();
+    const oxygen = getElementByNumber(8)!;
+    renderLayout();
+
+    await chooseScheme(user, enUi.coloringScheme.phase);
+
+    // Kelvin: the legend reads the default and Oxygen is colored by its phase
+    // bucket at 298.15 K (gas) — the same color the pure resolver computes.
+    expect(screen.getByText(readoutText(298.15, "kelvin"))).toBeInTheDocument();
+    const oxygenCell = () =>
+      screen.getByRole("button", { name: "Oxygen, atomic number 8" });
+    const bucketColor = cellColor("phase", oxygen, 298.15);
+    expect(oxygenCell()).toHaveStyle({ backgroundColor: bucketColor });
+
+    // Switch the unit to Celsius in settings (a SegmentedControl radio).
+    act(() => settingsButton().click());
+    await screen.findByText(enUi.settings.title);
+    await user.click(screen.getByDisplayValue("celsius"));
+
+    // The displayed temperature follows the unit…
+    expect(
+      screen.getByText(readoutText(298.15, "celsius")),
+    ).toBeInTheDocument();
+    // …while the stored Kelvin — and so every cell's phase bucket color — is
+    // unchanged (Req 5.5). Same color before and after the unit change.
+    expect(oxygenCell()).toHaveStyle({ backgroundColor: bucketColor });
+  });
+});

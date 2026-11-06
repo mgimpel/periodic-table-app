@@ -10,6 +10,8 @@ import fc from "fast-check";
 import {
   cellColor,
   phaseBucket,
+  phaseAtTemperature,
+  clampSelectedTemperature,
   PHASE_KEYS,
   PHASE_COLORS,
   originBucket,
@@ -18,7 +20,12 @@ import {
   spectralCellColor,
 } from "../cellColor";
 import { CATEGORY_COLORS, CATEGORY_KEYS, type Element } from "../../data/element";
-import { MISSING_VALUE_COLOR, temperatureColor, electronegativityColor } from "../gradient";
+import {
+  MISSING_VALUE_COLOR,
+  temperatureColor,
+  electronegativityColor,
+  TEMPERATURE_MAX,
+} from "../gradient";
 
 // Element arbitrary: varies the fields the resolver reads (category, phase,
 // melt, boil, electronegativity, origin, spectralColour) and fills the rest
@@ -266,6 +273,226 @@ describe("cellColor — spectral-colour scheme", () => {
           );
         },
       ),
+    );
+  });
+});
+
+// ---------------------------------------------------------------------------
+// phase-at-temperature-coloring: property tests for the temperature-driven
+// phase core (phaseAtTemperature / cellColor phase branch / clampSelectedTemperature).
+// ---------------------------------------------------------------------------
+
+// A single melt/boil generator that spans every "knownness" and ordering case
+// the classifier must handle: null, 0, negatives, NaN, ±Infinity, ordinary
+// positives, and both melt<boil and melt>=boil once combined on an element.
+const meltBoilValue: fc.Arbitrary<number | null> = fc.oneof(
+  fc.constant(null),
+  fc.constant(0),
+  fc.constant(Number.NaN),
+  fc.constant(Number.POSITIVE_INFINITY),
+  fc.constant(Number.NEGATIVE_INFINITY),
+  fc.double({ min: -1000, max: -0.0001, noNaN: true }), // negatives
+  fc.double({ min: 0.0001, max: 10000, noNaN: true }), // ordinary positives
+);
+
+// Element arbitrary for the phase-at-temperature core: melt and boil each draw
+// from meltBoilValue independently, so the full matrix of null / 0 / negative /
+// non-finite / ordered / inverted combinations is exercised. All other fields
+// are irrelevant to phaseAtTemperature and fixed by the base element() helper.
+const phaseElement = (): fc.Arbitrary<Element> =>
+  fc
+    .record({ melt: meltBoilValue, boil: meltBoilValue })
+    .chain(({ melt, boil }) =>
+      element().map((el) => ({ ...el, melt, boil })),
+    );
+
+// Finite temperatures across and beyond the slider range, including edges.
+const finiteTempK: fc.Arbitrary<number> = fc.oneof(
+  fc.double({ min: -1000, max: 20000, noNaN: true }),
+  fc.constantFrom(0, TEMPERATURE_MAX, 273.15, 373.15, 298.15),
+);
+
+// A known, finite, positive melt/boil value (for consistent-data properties).
+const knownTempK: fc.Arbitrary<number> = fc.double({
+  min: 0.0001,
+  max: 10000,
+  noNaN: true,
+});
+
+// An element whose melt/boil are both known and consistent (melt < boil).
+const consistentElement = (): fc.Arbitrary<Element> =>
+  fc
+    .tuple(knownTempK, knownTempK)
+    .filter(([a, b]) => a !== b)
+    .chain(([a, b]) => {
+      const melt = Math.min(a, b);
+      const boil = Math.max(a, b);
+      return element().map((el) => ({ ...el, melt, boil }));
+    });
+
+// True when the melt/boil value counts as "known" per Requirement 4.1:
+// present, finite, and strictly above absolute zero.
+const isKnown = (v: number | null): v is number =>
+  v !== null && Number.isFinite(v) && v > 0;
+
+// Feature: phase-at-temperature-coloring, Property 1: phaseAtTemperature is
+// total — returns a PHASE_KEYS member for any finite tempK and any element.
+describe("phaseAtTemperature — totality", () => {
+  it("returns a PHASE_KEYS member for any finite temperature and any element", () => {
+    fc.assert(
+      fc.property(finiteTempK, phaseElement(), (tempK, el) => {
+        expect(PHASE_KEYS).toContain(phaseAtTemperature(tempK, el));
+      }),
+      { numRuns: 100 },
+    );
+  });
+});
+
+// Feature: phase-at-temperature-coloring, Property 2: Consistent-data
+// classification by region — both known & melt < boil: solid for T < melt,
+// liquid for melt <= T < boil, gas for T >= boil.
+describe("phaseAtTemperature — consistent-data classification by region", () => {
+  it("classifies solid/liquid/gas by the temperature region", () => {
+    fc.assert(
+      fc.property(finiteTempK, consistentElement(), (tempK, el) => {
+        const melt = el.melt as number;
+        const boil = el.boil as number;
+        const bucket = phaseAtTemperature(tempK, el);
+        if (tempK < melt) {
+          expect(bucket).toBe("solid");
+        } else if (tempK < boil) {
+          expect(bucket).toBe("liquid");
+        } else {
+          expect(bucket).toBe("gas");
+        }
+      }),
+      { numRuns: 100 },
+    );
+  });
+});
+
+// Feature: phase-at-temperature-coloring, Property 3: Phase is monotonic in
+// temperature for consistent data — T1 <= T2 ⇒ phase never moves backward
+// under solid < liquid < gas.
+describe("phaseAtTemperature — monotonic in temperature", () => {
+  const RANK: Record<string, number> = { solid: 0, liquid: 1, gas: 2 };
+
+  it("never moves backward through solid < liquid < gas as temperature rises", () => {
+    fc.assert(
+      fc.property(
+        finiteTempK,
+        finiteTempK,
+        consistentElement(),
+        (a, b, el) => {
+          const t1 = Math.min(a, b);
+          const t2 = Math.max(a, b);
+          const p1 = phaseAtTemperature(t1, el);
+          const p2 = phaseAtTemperature(t2, el);
+          // Consistent data never yields "unknown", so both ranks are defined.
+          expect(RANK[p2]).toBeGreaterThanOrEqual(RANK[p1]);
+        },
+      ),
+      { numRuns: 100 },
+    );
+  });
+});
+
+// Feature: phase-at-temperature-coloring, Property 4: Partial and inconsistent
+// data classification — both-unknown, melt-only, boil-only, and melt >= boil
+// branches resolve exactly as specified.
+describe("phaseAtTemperature — partial and inconsistent data", () => {
+  it("resolves each missing/inconsistent branch exactly", () => {
+    fc.assert(
+      fc.property(finiteTempK, phaseElement(), (tempK, el) => {
+        const meltKnown = isKnown(el.melt);
+        const boilKnown = isKnown(el.boil);
+        const bucket = phaseAtTemperature(tempK, el);
+
+        if (meltKnown && boilKnown) {
+          // Only assert the inconsistent branch here; the consistent branch is
+          // Property 2's job.
+          if ((el.melt as number) >= (el.boil as number)) {
+            expect(bucket).toBe("unknown");
+          }
+        } else if (!meltKnown && !boilKnown) {
+          expect(bucket).toBe("unknown");
+        } else if (!meltKnown && boilKnown) {
+          const boil = el.boil as number;
+          expect(bucket).toBe(tempK >= boil ? "gas" : "unknown");
+        } else {
+          // meltKnown && !boilKnown
+          const melt = el.melt as number;
+          expect(bucket).toBe(tempK < melt ? "solid" : "unknown");
+        }
+      }),
+      { numRuns: 100 },
+    );
+  });
+});
+
+// Feature: phase-at-temperature-coloring, Property 5: Phase resolver maps bucket
+// to its PHASE_COLORS color — cellColor("phase", el, T) === PHASE_COLORS[phaseAtTemperature(T, el)].
+describe("cellColor — phase branch at a temperature", () => {
+  it("equals PHASE_COLORS[phaseAtTemperature(T, el)]", () => {
+    fc.assert(
+      fc.property(finiteTempK, phaseElement(), (tempK, el) => {
+        expect(cellColor("phase", el, tempK)).toBe(
+          PHASE_COLORS[phaseAtTemperature(tempK, el)],
+        );
+      }),
+      { numRuns: 100 },
+    );
+  });
+});
+
+// Feature: phase-at-temperature-coloring, Property 6: Phase classification is
+// independent of the Temperature_Unit — the bucket is a function of
+// (T, melt, boil) alone; the unit is never an argument to phaseAtTemperature.
+describe("phaseAtTemperature — independent of the temperature unit", () => {
+  it("depends only on (T, melt, boil), not on any display unit", () => {
+    fc.assert(
+      fc.property(finiteTempK, phaseElement(), (tempK, el) => {
+        // Same Kelvin inputs ⇒ same bucket, regardless of how the value might
+        // be displayed. Re-deriving from a clone with identical melt/boil must
+        // match; varying unrelated display fields must not change the bucket.
+        const clone: Element = { ...el };
+        expect(phaseAtTemperature(tempK, clone)).toBe(
+          phaseAtTemperature(tempK, el),
+        );
+        // The bucket is determined solely by (T, melt, boil): an element with
+        // the same melt/boil but a different raw `phase` string buckets alike.
+        const relabeled: Element = { ...el, phase: `${el.phase}-xyz` };
+        expect(phaseAtTemperature(tempK, relabeled)).toBe(
+          phaseAtTemperature(tempK, el),
+        );
+      }),
+      { numRuns: 100 },
+    );
+  });
+});
+
+// Feature: phase-at-temperature-coloring, Property 7: Requested
+// Selected_Temperature is clamped into range — clampSelectedTemperature(k)
+// lies in [0, TEMPERATURE_MAX] with the documented edges.
+describe("clampSelectedTemperature — clamps into [0, TEMPERATURE_MAX]", () => {
+  it("returns 0 below, TEMPERATURE_MAX above, and k within range", () => {
+    fc.assert(
+      fc.property(
+        fc.double({ min: -5000, max: 20000, noNaN: true }),
+        (k) => {
+          const clamped = clampSelectedTemperature(k);
+          expect(clamped).toBeGreaterThanOrEqual(0);
+          expect(clamped).toBeLessThanOrEqual(TEMPERATURE_MAX);
+          if (k < 0) {
+            expect(clamped).toBe(0);
+          } else if (k > TEMPERATURE_MAX) {
+            expect(clamped).toBe(TEMPERATURE_MAX);
+          } else {
+            expect(clamped).toBe(k);
+          }
+        },
+      ),
+      { numRuns: 100 },
     );
   });
 });

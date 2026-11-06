@@ -10,7 +10,12 @@
 // color for the active coloring scheme (category, phase, melting-point,
 // boiling-point, electronegativity, origin, spectral-colour).
 
-import { MISSING_VALUE_COLOR, temperatureColor, electronegativityColor } from "./gradient";
+import {
+  MISSING_VALUE_COLOR,
+  temperatureColor,
+  electronegativityColor,
+  TEMPERATURE_MAX,
+} from "./gradient";
 import { CATEGORY_COLORS, type Element } from "../data/element";
 import type { ColoringSchemeOption } from "./coloringScheme";
 
@@ -41,6 +46,50 @@ export function phaseBucket(phase: string): PhaseKey {
   return (PHASE_KEYS as readonly string[]).includes(key)
     ? (key as PhaseKey)
     : "unknown";
+}
+
+/**
+ * A melt/boil value is usable only when present, finite, and strictly above
+ * absolute zero. null, NaN, ±Infinity, 0 and negatives are all "unknown".
+ */
+function isKnownTemperature(v: number | null): v is number {
+  return v !== null && Number.isFinite(v) && v > 0;
+}
+
+/**
+ * Phase bucket for `element` at `tempK` (Kelvin), from its melt/boil points.
+ *   both unknown                          → unknown
+ *   both known but melt >= boil           → unknown (inconsistent data)
+ *   melt known, boil unknown: T<melt solid, else unknown
+ *   boil known, melt unknown: T>=boil gas, else unknown
+ *   both known & consistent: T<melt solid, melt<=T<boil liquid, T>=boil gas
+ * Total: always returns a PHASE_KEYS member.
+ */
+export function phaseAtTemperature(tempK: number, element: Element): PhaseKey {
+  const melt = isKnownTemperature(element.melt) ? element.melt : null;
+  const boil = isKnownTemperature(element.boil) ? element.boil : null;
+
+  if (melt !== null && boil !== null) {
+    if (melt >= boil) return "unknown"; // inconsistent data
+    if (tempK < melt) return "solid";
+    if (tempK < boil) return "liquid";
+    return "gas";
+  }
+  if (melt !== null) return tempK < melt ? "solid" : "unknown";
+  if (boil !== null) return tempK >= boil ? "gas" : "unknown";
+  return "unknown";
+}
+
+/**
+ * Clamp a requested Selected_Temperature into the valid slider range:
+ * below `0` K → `0`, above `TEMPERATURE_MAX` → `TEMPERATURE_MAX`, else `k`.
+ * `TEMPERATURE_MAX` is well under the hard `(0, 10000]` K guard, so the slider
+ * range is the binding constraint this enforces.
+ */
+export function clampSelectedTemperature(k: number): number {
+  if (k < 0) return 0;
+  if (k > TEMPERATURE_MAX) return TEMPERATURE_MAX;
+  return k;
 }
 
 /** The four origin buckets, in legend display order. */
@@ -97,7 +146,9 @@ export function spectralCellColor(raw: string | null): string {
 /**
  * Resolve the cell background color for `element` under the active `scheme`:
  *   category          → CATEGORY_COLORS[element.category]
- *   phase             → PHASE_COLORS[phaseBucket(element.phase)]
+ *   phase             → PHASE_COLORS[phaseBucket(element.phase)], or
+ *                       PHASE_COLORS[phaseAtTemperature(tempK, element)] when
+ *                       the optional `tempK` (Kelvin) is supplied
  *   melting-point     → MISSING_VALUE_COLOR when melt is null, else gradient
  *   boiling-point     → MISSING_VALUE_COLOR when boil is null, else gradient
  *   electronegativity → MISSING_VALUE_COLOR when null, else gradient color
@@ -107,10 +158,15 @@ export function spectralCellColor(raw: string | null): string {
 export function cellColor(
   scheme: ColoringSchemeOption,
   element: Element,
+  tempK?: number,
 ): string {
   switch (scheme) {
     case "phase":
-      return PHASE_COLORS[phaseBucket(element.phase)];
+      return PHASE_COLORS[
+        tempK === undefined
+          ? phaseBucket(element.phase)
+          : phaseAtTemperature(tempK, element)
+      ];
     case "melting-point":
       return element.melt === null
         ? MISSING_VALUE_COLOR

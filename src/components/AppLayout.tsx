@@ -16,6 +16,7 @@ import {
   DEFAULT_COLORING_SCHEME,
   type ColoringSchemeOption,
 } from "../lib/coloringScheme";
+import { clampSelectedTemperature } from "../lib/cellColor";
 import { readStoredTemperature } from "../lib/persistenceManager";
 import classes from "./AppLayout.module.css";
 
@@ -47,6 +48,11 @@ export function AppLayout() {
   // Not persisted — it resets to the default scheme each session.
   const [coloringScheme, setColoringScheme] =
     useState<ColoringSchemeOption>(DEFAULT_COLORING_SCHEME);
+  // Selected_Temperature driving the phase scheme (Req 7.1). Session-only — not
+  // persisted, so no persistenceManager pair. Never reset on a scheme change, so
+  // switching away from "phase" and back restores the same Kelvin value for free
+  // (Req 1.5, 1.6, 7.3, 7.4). Default 298.15 K (Req 2.5, 7.5).
+  const [selectedTempK, setSelectedTempK] = useState(298.15);
 
   return (
     <div className={classes.root}>
@@ -76,6 +82,8 @@ export function AppLayout() {
         <PeriodicTable
           temperatureUnit={temperatureUnit}
           coloringScheme={coloringScheme}
+          selectedTempK={selectedTempK}
+          onSelectedTempChange={(k) => setSelectedTempK(clampSelectedTemperature(k))}
         />
       </div>
 

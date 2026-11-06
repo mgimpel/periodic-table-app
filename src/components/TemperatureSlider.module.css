@@ -1,0 +1,24 @@
+/* Copyright (C) 2026 Marc Gimpel.
+ * This file is part of the Periodic Table App project
+ * (https://github.com/mgimpel/periodic-table-app).
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+
+/* Paint the temperature color gradient onto the slider track. Mantine renders
+ * the track's visible fill as a ::before pseudo-element (background-color:
+ * var(--track-bg, --slider-track-bg)) that sits above the track element's own
+ * box, so an inline background-image on `track` is never seen. We instead carry
+ * the gradient as a CSS custom property set inline on the track element
+ * (--track-gradient) and consume it from the ::before via background-image,
+ * which overrides Mantine's solid background-color.
+ *
+ * The filled `bar` segment is made transparent (also via Styles API) so the
+ * full blue->white->orange->red gradient stays visible on both sides of the
+ * thumb — the bar otherwise paints a solid --slider-color over the left part.
+ *
+ * ponytail: couples to Mantine 9.7.x Slider internals (the ::before track fill
+ * and the --track-bg variable). Re-verify this and the slider test when Mantine
+ * is upgraded; the shared Slider.css could rename the part or move the fill. */
+.track::before {
+  background-image: var(--track-gradient);
+}
