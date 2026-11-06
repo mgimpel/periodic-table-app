@@ -36,7 +36,7 @@ describe("temperatureColor", () => {
   // anchored, clamped, deterministic, and total.
   // Validates: Requirements 4.1, 5.1
 
-  it("returns the exact stop color at each anchor (0 / 373 / 1273 / DATASET_MAX)", () => {
+  it("returns the exact stop color at each anchor (0 / 373 / 2273 / DATASET_MAX)", () => {
     for (const [k, color] of TEMPERATURE_ANCHORS) expect(temperatureColor(k)).toBe(color);
     // Guard the anchors against the source of truth so a stop edit is caught.
     for (let i = 0; i < TEMPERATURE_GRADIENT_STOPS.length; i++) {
