@@ -94,7 +94,7 @@ export const TEMPERATURE_MAX: number = Math.max(
 export const TEMPERATURE_GRADIENT_STOPS: readonly Stop[] = [
   { x: 0, rgb: [33, 102, 172] }, // blue
   { x: 373, rgb: [247, 247, 247] }, // white
-  { x: 1273, rgb: [253, 174, 97] }, // orange
+  { x: 2273, rgb: [253, 174, 97] }, // orange
   { x: TEMPERATURE_MAX, rgb: [178, 24, 43] }, // red
 ];
 
