@@ -56,7 +56,8 @@
     "boiling-point": "Siedepunkt",
     "electronegativity": "Elektronegativität",
     "origin": "Herkunft",
-    "spectral-colour": "Spektralfarbe"
+    "spectral-colour": "Spektralfarbe",
+    "block": "Block"
   },
   "saveError": {
     "theme": {
@@ -123,6 +124,13 @@
     "primordial": "Primordial",
     "from-decay": "Aus Zerfall",
     "synthetic": "Synthetisch",
+    "unknown": "Unbekannt"
+  },
+  "block": {
+    "s": "s-Block",
+    "p": "p-Block",
+    "d": "d-Block",
+    "f": "f-Block",
     "unknown": "Unbekannt"
   },
   "schemeLegend": {

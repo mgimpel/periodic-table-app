@@ -47,10 +47,10 @@ describe("ColoringSchemeControl", () => {
     expect(select().value).toBe(enUi.coloringScheme.phase);
   });
 
-  it("renders all seven options with localized labels when opened", async () => {
+  it("renders all eight options with localized labels when opened", async () => {
     const user = userEvent.setup();
     render(<Harness />);
-    expect(COLORING_SCHEME_OPTIONS).toHaveLength(7);
+    expect(COLORING_SCHEME_OPTIONS).toHaveLength(8);
 
     await user.click(select());
     const listbox = await screen.findByRole("listbox");

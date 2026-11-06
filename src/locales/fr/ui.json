@@ -56,7 +56,8 @@
     "boiling-point": "Point d'ébullition",
     "electronegativity": "Électronégativité",
     "origin": "Origine",
-    "spectral-colour": "Couleur spectrale"
+    "spectral-colour": "Couleur spectrale",
+    "block": "Bloc"
   },
   "saveError": {
     "theme": {
@@ -123,6 +124,13 @@
     "primordial": "Primordial",
     "from-decay": "Issu de désintégration",
     "synthetic": "Synthétique",
+    "unknown": "Inconnu"
+  },
+  "block": {
+    "s": "Bloc s",
+    "p": "Bloc p",
+    "d": "Bloc d",
+    "f": "Bloc f",
     "unknown": "Inconnu"
   },
   "schemeLegend": {

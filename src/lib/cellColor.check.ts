@@ -9,6 +9,8 @@
 
 import assert from "node:assert/strict";
 import {
+  BLOCK_COLORS,
+  blockBucket,
   cellColor,
   clampSelectedTemperature,
   ORIGIN_COLORS,
@@ -126,6 +128,30 @@ for (const element of ELEMENTS) {
     spectralCellColor(element.spectralColour),
     element.name,
   );
+}
+
+// blockBucket: s/p/d/f (any case) map to their bucket; else "unknown".
+assert.equal(blockBucket("s"), "s");
+assert.equal(blockBucket("P"), "p");
+assert.equal(blockBucket("d"), "d");
+assert.equal(blockBucket("F"), "f");
+for (const bad of ["", "g", "sp", "unknown"]) {
+  assert.equal(blockBucket(bad), "unknown", bad);
+}
+
+// The five block colors are mutually distinct.
+assert.equal(new Set(Object.values(BLOCK_COLORS)).size, 5);
+
+// Resolver, block scheme: every element resolves to its bucket's block color.
+// The real dataset only carries s/p/d/f, so assert every element lands in a
+// known (non-"unknown") bucket, exercising all four real branches.
+for (const element of ELEMENTS) {
+  assert.equal(
+    cellColor("block", element),
+    BLOCK_COLORS[blockBucket(element.block)],
+    element.name,
+  );
+  assert.notEqual(blockBucket(element.block), "unknown", element.name);
 }
 
 // phaseAtTemperature: only melt/boil matter, so build a minimal element with the

@@ -132,6 +132,36 @@ export function originBucket(raw: string): OriginKey {
   }
 }
 
+/** The five block buckets (s/p/d/f plus unknown), in legend display order. */
+export const BLOCK_KEYS = ["s", "p", "d", "f", "unknown"] as const;
+
+export type BlockKey = (typeof BLOCK_KEYS)[number];
+
+/**
+ * Fixed, mutually distinct CSS colors for the block scheme, readable against
+ * dark cell text (unknown reuses the neutral grey shared with the other
+ * discrete schemes' unknown bucket and the missing-value gradient sentinel).
+ */
+export const BLOCK_COLORS: Record<BlockKey, string> = {
+  s: "#90caf9",
+  p: "#ff8a80",
+  d: "#ffcc80",
+  f: "#c5e1a5",
+  unknown: MISSING_VALUE_COLOR,
+};
+
+/**
+ * Total classifier for the dataset's raw block string: "s"/"p"/"d"/"f" (any
+ * case) map to their bucket; anything else (absent, empty, unrecognized)
+ * buckets to "unknown".
+ */
+export function blockBucket(raw: string): BlockKey {
+  const key = raw.toLowerCase();
+  return (BLOCK_KEYS as readonly string[]).includes(key)
+    ? (key as BlockKey)
+    : "unknown";
+}
+
 /**
  * Resolve a cell color from a raw spectral-colour value: a valid 6-digit hex
  * string (no `#`) becomes `"#" + raw`; `null` or any malformed value falls back
@@ -154,6 +184,7 @@ export function spectralCellColor(raw: string | null): string {
  *   electronegativity → MISSING_VALUE_COLOR when null, else gradient color
  *   origin            → ORIGIN_COLORS[originBucket(element.origin)]
  *   spectral-colour   → spectralCellColor(element.spectralColour)
+ *   block             → BLOCK_COLORS[blockBucket(element.block)]
  */
 export function cellColor(
   scheme: ColoringSchemeOption,
@@ -183,6 +214,8 @@ export function cellColor(
       return ORIGIN_COLORS[originBucket(element.origin)];
     case "spectral-colour":
       return spectralCellColor(element.spectralColour);
+    case "block":
+      return BLOCK_COLORS[blockBucket(element.block)];
     case "category":
       return CATEGORY_COLORS[element.category];
   }

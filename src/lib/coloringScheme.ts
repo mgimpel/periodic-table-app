@@ -7,9 +7,9 @@
 // scheme options and the safe fallback used when the persisted preference is
 // missing or invalid. The scheme decides how each Element_Cell is colored:
 // by category, phase, melting point, boiling point, electronegativity, origin,
-// or spectral colour.
+// spectral colour, or block (s/p/d/f).
 
-/** The seven user-selectable coloring schemes, in display order. */
+/** The eight user-selectable coloring schemes, in display order. */
 export const COLORING_SCHEME_OPTIONS = [
   "category",
   "phase",
@@ -18,6 +18,7 @@ export const COLORING_SCHEME_OPTIONS = [
   "electronegativity",
   "origin",
   "spectral-colour",
+  "block",
 ] as const;
 
 export type ColoringSchemeOption = (typeof COLORING_SCHEME_OPTIONS)[number];
@@ -27,7 +28,7 @@ export const DEFAULT_COLORING_SCHEME: ColoringSchemeOption = "category";
 
 /**
  * Total, safe normalizer for a persisted scheme value: returns `raw` when it is
- * one of the seven valid options, otherwise `DEFAULT_COLORING_SCHEME`.
+ * one of the valid options, otherwise `DEFAULT_COLORING_SCHEME`.
  */
 export function normalizeStoredColoringScheme(
   raw: unknown,

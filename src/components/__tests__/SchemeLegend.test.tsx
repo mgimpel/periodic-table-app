@@ -23,6 +23,8 @@ import "../../i18n";
 import { SchemeLegend, CATEGORY_LEGEND_ORDER } from "../SchemeLegend";
 import { CATEGORY_COLORS, CATEGORY_KEYS } from "../../data/element";
 import {
+  BLOCK_COLORS,
+  BLOCK_KEYS,
   ORIGIN_COLORS,
   ORIGIN_KEYS,
   PHASE_COLORS,
@@ -91,7 +93,7 @@ function gradientBars(container: HTMLElement): HTMLElement[] {
   );
 }
 
-// --- Discrete legends: category / phase / origin --------------------------
+// --- Discrete legends: category / phase / origin / block ------------------
 // One labeled swatch per key, in the scheme's canonical key order, with the
 // localized label (not the raw key) and the scheme's color for that key.
 //   Req 1.3 (legend reflects the scheme), 2.3/3.3/7.3 (one swatch per key in
@@ -105,6 +107,7 @@ const DISCRETE_SCHEMES: ReadonlyArray<
   ["category", CATEGORY_LEGEND_ORDER, CATEGORY_COLORS, enUi.category],
   ["phase", PHASE_KEYS, PHASE_COLORS, enUi.phase],
   ["origin", ORIGIN_KEYS, ORIGIN_COLORS, enUi.origin],
+  ["block", BLOCK_KEYS, BLOCK_COLORS, enUi.block],
 ];
 
 // The category legend reorders the categories for readability, but must still

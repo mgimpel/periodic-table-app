@@ -13,8 +13,8 @@ import {
   normalizeStoredColoringScheme,
 } from "./coloringScheme";
 
-// All seven valid options pass through unchanged.
-assert.equal(COLORING_SCHEME_OPTIONS.length, 7);
+// All valid options pass through unchanged.
+assert.equal(COLORING_SCHEME_OPTIONS.length, 8);
 for (const opt of COLORING_SCHEME_OPTIONS) {
   assert.equal(normalizeStoredColoringScheme(opt), opt);
 }

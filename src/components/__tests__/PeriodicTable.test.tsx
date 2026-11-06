@@ -232,6 +232,7 @@ describe("PeriodicTable coloring scheme drives cells and legend", () => {
     ["electronegativity", cellColor("electronegativity", sample)] as const,
     ["origin", cellColor("origin", sample)] as const,
     ["spectral-colour", cellColor("spectral-colour", sample)] as const,
+    ["block", cellColor("block", sample)] as const,
   ])("recolors the sampled cell for coloringScheme='%s'", (scheme, color) => {
     renderTable({ coloringScheme: scheme });
 
@@ -287,7 +288,7 @@ describe("PeriodicTable temperature slider gating", () => {
     expect(document.activeElement).toBe(thumb);
   });
 
-  it.each(["category", "electronegativity", "origin", "spectral-colour"] as const)(
+  it.each(["category", "electronegativity", "origin", "spectral-colour", "block"] as const)(
     "omits the slider on initial render for scheme='%s'",
     (scheme) => {
       // Req 1.2, 1.4: every non-phase scheme leaves the slider out of the DOM.

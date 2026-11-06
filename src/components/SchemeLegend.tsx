@@ -7,6 +7,8 @@ import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { CATEGORY_COLORS, type ElementCategory } from "../data/element";
 import {
+  BLOCK_COLORS,
+  BLOCK_KEYS,
   ORIGIN_COLORS,
   ORIGIN_KEYS,
   PHASE_COLORS,
@@ -46,13 +48,14 @@ export const CATEGORY_LEGEND_ORDER: readonly ElementCategory[] = [
   "post-transition-metal",
 ];
 
-// The three discrete schemes draw one swatch per key: their i18n label prefix
+// The four discrete schemes draw one swatch per key: their i18n label prefix
 // equals the scheme name (t(`category.${key}`), t(`phase.${key}`),
-// t(`origin.${key}`)), so one lookup covers all three.
+// t(`origin.${key}`), t(`block.${key}`)), so one lookup covers all four.
 const DISCRETE = {
   category: [CATEGORY_LEGEND_ORDER, CATEGORY_COLORS],
   phase: [PHASE_KEYS, PHASE_COLORS],
   origin: [ORIGIN_KEYS, ORIGIN_COLORS],
+  block: [BLOCK_KEYS, BLOCK_COLORS],
 } as const;
 
 // The repeated legend frame: a labelled group with the scheme title and the
@@ -162,7 +165,7 @@ export function SchemeLegend({
   // keys and colors are paired per scheme, so every key indexes its colors;
   // the cast bridges the three distinct Record types the lookup unions into.
   const [keys, colors] = DISCRETE[
-    scheme as "category" | "phase" | "origin"
+    scheme as "category" | "phase" | "origin" | "block"
   ] as readonly [readonly string[], Record<string, string>];
 
   return (
