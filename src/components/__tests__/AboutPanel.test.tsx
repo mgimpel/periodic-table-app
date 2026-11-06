@@ -51,7 +51,11 @@ describe("AboutPanel", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(enUi.about.copyright)).toBeInTheDocument();
     expect(screen.getByText(enUi.about.license)).toBeInTheDocument();
-    expect(screen.getByText(enUi.about.thanksBody)).toBeInTheDocument();
+    // thanksBody is multi-line (rendered with white-space: pre-line); Testing
+    // Library's default matcher collapses the node's whitespace, so match the
+    // expected string under the same normalization rather than its raw \n form.
+    const normalizedThanks = enUi.about.thanksBody.replace(/\s+/g, " ").trim();
+    expect(screen.getByText(normalizedThanks)).toBeInTheDocument();
   });
 
   it("shows the version single-sourced from package.json", () => {
