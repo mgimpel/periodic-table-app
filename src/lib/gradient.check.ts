@@ -22,7 +22,7 @@ import {
 // Exact colors at the four interpolation anchors.
 assert.equal(temperatureColor(0), "rgb(33, 102, 172)"); // blue
 assert.equal(temperatureColor(373), "rgb(247, 247, 247)"); // white
-assert.equal(temperatureColor(1273), "rgb(253, 174, 97)"); // orange
+assert.equal(temperatureColor(2273), "rgb(253, 174, 97)"); // orange
 assert.equal(temperatureColor(TEMPERATURE_MAX), "rgb(178, 24, 43)"); // red
 
 // Clamped below the first stop → blue, above the last stop → red.
@@ -30,7 +30,7 @@ assert.equal(temperatureColor(-100), "rgb(33, 102, 172)");
 assert.equal(temperatureColor(TEMPERATURE_MAX + 100), "rgb(178, 24, 43)");
 
 // Output is always an "rgb(r, g, b)" string with integer channels in [0, 255].
-for (const k of [-100, 0, 186.5, 373, 823, 1273, TEMPERATURE_MAX, TEMPERATURE_MAX + 100]) {
+for (const k of [-100, 0, 186.5, 373, 1323, 2273, TEMPERATURE_MAX, TEMPERATURE_MAX + 100]) {
   const out = temperatureColor(k);
   const match = /^rgb\((\d+), (\d+), (\d+)\)$/.exec(out);
   assert.ok(match, `not rgb(...) format: ${out} (k=${k})`);
