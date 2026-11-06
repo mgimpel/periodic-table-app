@@ -27,7 +27,7 @@ function parseRgb(s: string): [number, number, number] | null {
 const TEMPERATURE_ANCHORS: ReadonlyArray<readonly [number, string]> = [
   [0, "rgb(33, 102, 172)"],
   [373, "rgb(247, 247, 247)"],
-  [1273, "rgb(253, 174, 97)"],
+  [2273, "rgb(253, 174, 97)"],
   [TEMPERATURE_MAX, "rgb(178, 24, 43)"],
 ];
 
