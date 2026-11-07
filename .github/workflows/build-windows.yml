@@ -3,13 +3,15 @@ on: workflow_dispatch
 permissions:
   contents: read
 jobs:
-  build-linux:
+  build-windows:
     runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Download Rust
+        run: Invoke-WebRequest -Uri "https://rustup.rs" -OutFile "rustup-init.exe"
       - name: Install Rust
-        run: winget install -h --accept-package-agreements --disable-interactivity --id Rustlang.Rustup
+        run: rustup-init.exe -y
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
         with:
