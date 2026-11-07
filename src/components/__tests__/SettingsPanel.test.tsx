@@ -37,6 +37,7 @@ import { ElementCell } from "../ElementCell";
 import { ElementDetail } from "../ElementDetail";
 import { getElementByNumber } from "../../data/elements";
 import { LANGUAGE_OPTIONS } from "../../lib/language";
+import type { TemperatureOption } from "../../lib/temperature";
 import { readStoredTemperature } from "../../lib/persistenceManager";
 
 // The i18next instance is a shared singleton; reset storage and locale around
