@@ -34,6 +34,13 @@ cd periodic-table-app
 pnpm tauri build
 ```
 
+To preview in your web browser (works because the rust backend doesn't actually do anything, it's all React frontend):
+```bash
+cd periodic-table-app
+pnpm build
+pnpm preview
+```
+
 ### Mobile (Android and iOS) build and run
 
 To initialise environment:
