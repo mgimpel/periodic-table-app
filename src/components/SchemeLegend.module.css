@@ -35,6 +35,10 @@
   border-radius: var(--mantine-radius-default);
 }
 
+.fourColumnLegend {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .legendEntry {
   display: flex;
   align-items: center;

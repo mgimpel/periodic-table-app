@@ -48,14 +48,24 @@ export const CATEGORY_LEGEND_ORDER: readonly ElementCategory[] = [
   "post-transition-metal",
 ];
 
+// Every element has a known block, so the "unknown" bucket is omitted.
+export const ORIGIN_LEGEND_ORDER = ORIGIN_KEYS.filter(
+  (key) => key !== "unknown",
+);
+
+// Every element has a known block, so the "unknown" bucket is omitted.
+export const BLOCK_LEGEND_ORDER = BLOCK_KEYS.filter(
+  (key) => key !== "unknown",
+);
+
 // The four discrete schemes draw one swatch per key: their i18n label prefix
 // equals the scheme name (t(`category.${key}`), t(`phase.${key}`),
 // t(`origin.${key}`), t(`block.${key}`)), so one lookup covers all four.
 const DISCRETE = {
   category: [CATEGORY_LEGEND_ORDER, CATEGORY_COLORS],
   phase: [PHASE_KEYS, PHASE_COLORS],
-  origin: [ORIGIN_KEYS, ORIGIN_COLORS],
-  block: [BLOCK_KEYS, BLOCK_COLORS],
+  origin: [ORIGIN_LEGEND_ORDER, ORIGIN_COLORS],
+  block: [BLOCK_LEGEND_ORDER, BLOCK_COLORS],
 } as const;
 
 // The repeated legend frame: a labelled group with the scheme title and the
@@ -63,14 +73,20 @@ const DISCRETE = {
 function LegendFrame({
   title,
   groupLabel,
+  className,
   children,
 }: {
   title: string;
   groupLabel: string;
+  className?: string;
   children: ReactNode;
 }) {
   return (
-    <div className={classes.legend} role="group" aria-label={groupLabel}>
+    <div
+      className={className ? `${classes.legend} ${className}` : classes.legend}
+      role="group"
+      aria-label={groupLabel}
+    >
       <h3 className={classes.legendTitle}>{title}</h3>
       {children}
     </div>
@@ -169,7 +185,11 @@ export function SchemeLegend({
   ] as readonly [readonly string[], Record<string, string>];
 
   return (
-    <LegendFrame title={schemeTitle} groupLabel={t("legend.groupLabel")}>
+    <LegendFrame
+      title={schemeTitle}
+      groupLabel={t("legend.groupLabel")}
+      className={scheme === "block" || scheme === "phase" ? classes.fourColumnLegend : undefined}
+    >
       {keys.map((key) => {
         const label = t(`${scheme}.${key}`);
         return (

@@ -20,13 +20,16 @@ import { MantineProvider } from "@mantine/core";
 // Initialise the shared i18next default instance so scheme labels resolve to
 // the English ui.json resources rather than raw keys.
 import "../../i18n";
-import { SchemeLegend, CATEGORY_LEGEND_ORDER } from "../SchemeLegend";
+import {
+  SchemeLegend,
+  ORIGIN_LEGEND_ORDER,
+  BLOCK_LEGEND_ORDER,
+  CATEGORY_LEGEND_ORDER,
+} from "../SchemeLegend";
 import { CATEGORY_COLORS, CATEGORY_KEYS } from "../../data/element";
 import {
   BLOCK_COLORS,
-  BLOCK_KEYS,
   ORIGIN_COLORS,
-  ORIGIN_KEYS,
   PHASE_COLORS,
   PHASE_KEYS,
 } from "../../lib/cellColor";
@@ -106,8 +109,8 @@ const DISCRETE_SCHEMES: ReadonlyArray<
 > = [
   ["category", CATEGORY_LEGEND_ORDER, CATEGORY_COLORS, enUi.category],
   ["phase", PHASE_KEYS, PHASE_COLORS, enUi.phase],
-  ["origin", ORIGIN_KEYS, ORIGIN_COLORS, enUi.origin],
-  ["block", BLOCK_KEYS, BLOCK_COLORS, enUi.block],
+  ["origin", ORIGIN_LEGEND_ORDER, ORIGIN_COLORS, enUi.origin],
+  ["block", BLOCK_LEGEND_ORDER, BLOCK_COLORS, enUi.block],
 ];
 
 // The category legend reorders the categories for readability, but must still
