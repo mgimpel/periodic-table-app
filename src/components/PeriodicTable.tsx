@@ -63,7 +63,7 @@ export function PeriodicTable({
   // That makes useFitScale's measured clientHeight already exclude the header
   // height — no pixel constant to keep in sync (see design: Vertical layout).
   return (
-    <Stack gap="md" p="md" h="100%" mih={0}>
+    <Stack gap="xs" p="xs" h="100%" mih={0}>
       {showNotice && (
         <Alert
           color="yellow"
