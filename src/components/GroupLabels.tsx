@@ -18,7 +18,9 @@ export function GroupLabels() {
         <span
           key={col}
           className={classes.groupLabel}
-          style={{ gridColumnStart: col, gridRowStart: row }}
+          // +1: grid column 1 is the period-label column, so group column N
+          // sits on grid column N+1 (see PeriodicTable.module.css).
+          style={{ gridColumnStart: col + 1, gridRowStart: row }}
         >
           {text}
         </span>

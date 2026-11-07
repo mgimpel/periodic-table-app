@@ -40,8 +40,11 @@
    * directly above column 1 (H) and column 18 (He). Labels for the other
    * columns live in the empty element-rows above their first element. */
   --group-label-row: 12px;
+  /* Thin leftmost column carrying the period numbers (1-7). Element and
+   * group-label columns are shifted right by one (xpos + 1 / col + 1). */
+  --period-label-col: 8px;
   display: grid;
-  grid-template-columns: repeat(18, var(--cell-size));
+  grid-template-columns: var(--period-label-col) repeat(18, var(--cell-size));
   /* Row 1 is the thin group-label row; rows 2-8 are periods 1-7 (full cell
    * height); row 9 is the empty spacer; rows 10-11 are the lanthanide/
    * actinide f-block. Element ypos (1-based period) maps to ypos + 1. */
@@ -125,6 +128,19 @@
 .groupLabel {
   align-self: end;
   justify-self: center;
+  font-size: 9px;
+  line-height: 1;
+  color: var(--mantine-color-dimmed);
+  pointer-events: none;
+}
+
+/* Period number (1-7) in the leftmost label column, vertically centered on its
+ * row and nudged to the right so it sits just left of the row's first element.
+ * As a grid item of .grid it inherits the fit-scale transform. */
+.periodLabel {
+  align-self: center;
+  justify-self: end;
+  padding-right: 2px;
   font-size: 9px;
   line-height: 1;
   color: var(--mantine-color-dimmed);

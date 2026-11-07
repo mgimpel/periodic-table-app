@@ -11,12 +11,14 @@
  * fit-scale transform and scales with the table. */
 
 /* Scheme-aware legend frame placed in the empty top-center region of the grid
- * (columns 3-12, spanning 2 rows). As a grid item of .grid it inherits the
- * fit-scale transform for free, so it scales with the table. overflow:hidden +
+ * (element columns 3-12, spanning 2 rows). The grid prepends a thin
+ * period-label column, so element column N is grid column N+1: the region
+ * starts at grid column 4. As a grid item of .grid it inherits the fit-scale
+ * transform for free, so it scales with the table. overflow:hidden +
  * min-width/height:0 keep it clipped to its cell span — it can never resize the
  * fixed tracks or displace an element cell. */
 .legend {
-  grid-column: 3 / span 10;
+  grid-column: 4 / span 10;
   grid-row: 2 / span 2;
   overflow: hidden;
   min-width: 0;

@@ -36,7 +36,9 @@ export function ElementCell({ element, onSelect, symbolOnly = false, color }: El
         number: element.atomicNumber,
       })}
       style={{
-        gridColumnStart: element.xpos,
+        // +1: grid column 1 is the period-label column, so column N sits on
+        // grid column N+1 (see PeriodicTable.module.css grid-template-columns).
+        gridColumnStart: element.xpos + 1,
         // +1: grid row 1 is the group-label row, so period N sits on row N+1
         // (see PeriodicTable.module.css grid-template-rows).
         gridRowStart: element.ypos + 1,

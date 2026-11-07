@@ -191,9 +191,11 @@ describe("PeriodicTable in-grid scheme legend", () => {
     expect(cell).toBeInTheDocument();
 
     // The sampled cell keeps its dataset-defined grid position: ElementCell
-    // applies xpos as gridColumnStart and ypos + 1 as gridRowStart (grid row 1
-    // is the group-label row, so period N sits on row N + 1) (Req 1.5).
-    expect(cell.style.gridColumnStart).toBe(String(carbon.xpos));
+    // applies xpos + 1 as gridColumnStart (grid column 1 is the period-label
+    // column, so column N sits on grid column N + 1) and ypos + 1 as
+    // gridRowStart (grid row 1 is the group-label row, so period N sits on row
+    // N + 1) (Req 1.5).
+    expect(cell.style.gridColumnStart).toBe(String(carbon.xpos + 1));
     expect(cell.style.gridRowStart).toBe(String(carbon.ypos + 1));
 
     // It remains keyboard-reachable and activatable: focusable, and a click

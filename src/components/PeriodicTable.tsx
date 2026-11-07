@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { ELEMENTS, type Element } from "../data/elements";
 import { ElementCell } from "./ElementCell";
 import { GroupLabels } from "./GroupLabels";
+import { PeriodLabels } from "./PeriodLabels";
 import { SchemeLegend } from "./SchemeLegend";
 import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
@@ -94,6 +95,7 @@ export function PeriodicTable({
             onSelectedTempChange={onSelectedTempChange}
           />
           <GroupLabels />
+          <PeriodLabels />
           {ELEMENTS.map((element) => (
             <ElementCell
               key={element.atomicNumber}
