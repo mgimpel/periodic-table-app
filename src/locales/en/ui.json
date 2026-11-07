@@ -18,7 +18,7 @@
     "license": "BSD 3-Clause License",
     "homepage": "Project homepage:",
     "thanksHeading": "Thanks",
-    "thanksBody": "Built with Tauri, React and Mantine.\nElement data from Bowserinator's Periodic-Table-JSON (CC BY-SA 3.0).\nEmission spectra from atomic-spectra.net (CC0).\nIsotope data from Grigory Starkov (MIT License)."
+    "thanksBody": "Built with Tauri, React and Mantine.\nElement data from Bowserinator's Periodic-Table-JSON (CC BY-SA 3.0).\nElement images from Wikimedia Commons and images-of-elements.com (CC BY 3.0).\nEmission spectra from atomic-spectra.net (CC0).\nIsotope data from Grigory Starkov (MIT License)."
   },
   "common": {
     "close": "Close",
