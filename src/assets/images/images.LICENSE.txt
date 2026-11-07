@@ -1,0 +1,312 @@
+Hydrogen:
+    source: https://upload.wikimedia.org/wikipedia/commons/d/d9/Hydrogenglow.jpg
+    attribution: User:Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/hydrogen.php
+Helium:
+    source: https://upload.wikimedia.org/wikipedia/commons/0/00/Helium-glow.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/helium.php
+Lithium:
+    source: https://upload.wikimedia.org/wikipedia/commons/e/e2/0.5_grams_lithium_under_argon.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/lithium.php
+Beryllium:
+    source: https://upload.wikimedia.org/wikipedia/commons/e/e2/Beryllium_%28Be%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/beryllium.php
+Boron:
+    source: https://upload.wikimedia.org/wikipedia/commons/a/a2/Boron.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/boron.php
+Carbon:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/68/Pure_Carbon.png
+    attribution: Texas Lane, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons
+Nitrogen:
+    source: https://upload.wikimedia.org/wikipedia/commons/2/2d/Nitrogen-glow.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/nitrogen.php
+Oxygen:
+    source: https://upload.wikimedia.org/wikipedia/commons/a/a0/Liquid_oxygen_in_a_beaker_%28cropped_and_retouched%29.jpg
+    attribution: Staff Sgt. Nika Glover, U.S. Air Force, Public domain, via Wikimedia Commons
+Fluorine:
+    source: https://upload.wikimedia.org/wikipedia/commons/2/2c/Fluoro_liquido_a_-196%C2%B0C_1.jpg
+    attribution: Fulvio314, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Neon:
+    source: https://upload.wikimedia.org/wikipedia/commons/f/f8/Neon-glow.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/neon.php
+Sodium:
+    source: https://upload.wikimedia.org/wikipedia/commons/2/27/Na_%28Sodium%29.jpg
+    attribution: The original uploader was Dnn87 at English Wikipedia., CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Magnesium:
+    source: https://upload.wikimedia.org/wikipedia/commons/3/3f/Magnesium_crystals.jpg
+    attribution: Warut Roonguthai, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Aluminium:
+    source: https://upload.wikimedia.org/wikipedia/commons/3/3e/Aluminium.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/aluminium.php 
+Silicon:
+    source: https://upload.wikimedia.org/wikipedia/commons/2/2c/Silicon.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/silicon.php
+Phosphorus:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/6d/Phosphorus-purple.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/phosphorus.php
+Sulfur:
+    source: https://upload.wikimedia.org/wikipedia/commons/2/23/Native_sulfur_%28Vodinskoe_Deposit%3B_quarry_near_Samara%2C_Russia%29_9.jpg
+    attribution: James St. John, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons
+Chlorine:
+    source: https://upload.wikimedia.org/wikipedia/commons/9/9a/Chlorine-sample-flip.jpg
+    attribution: Benjah-bmm27, Public domain, via Wikimedia Commons
+Argon:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/53/Argon-glow.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/argon.php
+Potassium:
+    source: https://upload.wikimedia.org/wikipedia/commons/b/b3/Potassium.JPG
+    attribution: Dnn87, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons
+Calcium:
+    source: https://upload.wikimedia.org/wikipedia/commons/7/72/Calcium.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/calcium.php
+Scandium:
+    source: https://upload.wikimedia.org/wikipedia/commons/f/f5/Scandium%2C_Sc.jpg
+    attribution: JanDerChemiker, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Titanium:
+    source: https://upload.wikimedia.org/wikipedia/commons/e/ec/Titanium.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/titanium.php
+Vanadium:
+    source: https://upload.wikimedia.org/wikipedia/commons/0/0a/Vanadium-pieces.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/vanadium.php
+Chromium:
+    source: https://upload.wikimedia.org/wikipedia/commons/a/a1/Chromium.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/chromium.php
+Manganese:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/64/Manganese_element.jpg
+    attribution: W. Oelen, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Iron:
+    source: https://images-of-elements.com/iron-2.jpg
+    attribution: Chemical ELements A Virtual Museum, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0> source: https://images-of-elements.com/iron.php
+Cobalt:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/62/Cobalt_ore_2.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/cobalt.php
+Nickel:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/57/Nickel_chunk.jpg
+    attribution: Materialscientist at English Wikipedia, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Copper:
+    source: https://upload.wikimedia.org/wikipedia/commons/f/f0/NatCopper.jpg
+    attribution: Native_Copper_Macro_Digon3.jpg: 'Jonathan Zander (Digon3)' derivative work: Materialscientist, CC BY-SA 2.5 <https://creativecommons.org/licenses/by-sa/2.5>, via Wikimedia Commons
+Zinc:
+    source: https://upload.wikimedia.org/wikipedia/commons/b/ba/Zinc_%2830_Zn%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/zinc.php
+Gallium:
+    source: https://upload.wikimedia.org/wikipedia/commons/b/b1/Solid_gallium_%28Ga%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/gallium.php
+Germanium:
+    source: https://upload.wikimedia.org/wikipedia/commons/0/08/Polycrystalline-germanium.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/germanium.php
+Arsenic:
+    source: https://upload.wikimedia.org/wikipedia/commons/3/3b/Arsenic_%2833_As%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/arsenic.php
+Selenium:
+    source: https://upload.wikimedia.org/wikipedia/commons/7/7f/Selenium.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/selenium.php
+Bromine:
+    source: https://upload.wikimedia.org/wikipedia/commons/8/87/Bromine-ampoule.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/bromine.php
+Krypton:
+    source: https://upload.wikimedia.org/wikipedia/commons/9/9c/Krypton-glow.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/krypton.php
+Rubidium:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/c9/Rb5.JPG
+    attribution: Dnn87, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons
+Strontium:
+    source: https://upload.wikimedia.org/wikipedia/commons/8/84/Strontium-1.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/strontium.php
+Yttrium:
+    source: https://upload.wikimedia.org/wikipedia/commons/9/90/Piece_of_Yttrium.jpg
+    attribution: Jan Anskeit, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons
+Zirconium:
+    source: https://upload.wikimedia.org/wikipedia/commons/1/1d/Zirconium-pieces.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/zirconium.php
+Niobium:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/c2/Niobium_strips.JPG
+    attribution: Mauro Cateb, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Molybdenum:
+    source: https://upload.wikimedia.org/wikipedia/commons/f/f0/Molybdenum.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/molybdenum.php
+Technetium:
+    source: https://upload.wikimedia.org/wikipedia/commons/a/ab/Technetium-sample-cropped.jpg
+    attribution: GFDL, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons
+Ruthenium:
+    source: https://upload.wikimedia.org/wikipedia/commons/a/a8/Ruthenium_crystal.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/ruthenium.php
+Rhodium:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/54/Rhodium_%28Rh%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/rhodium.php
+Palladium:
+    source: https://upload.wikimedia.org/wikipedia/commons/d/d7/Palladium_%2846_Pd%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/palladium.php
+Silver:
+    source: https://upload.wikimedia.org/wikipedia/commons/e/e4/Silver-nugget.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: http://images-of-elements.com/silver.php
+Cadmium:
+    source: https://images-of-elements.com/cadmium-4.jpg
+    attribution: Chemical Elements A Virtual Museum under a Creative Commons Attribution 3.0 Unported License, source: https://images-of-elements.com/cadmium.php
+Indium:
+    source: https://images-of-elements.com/indium-2.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: http://images-of-elements.com/indium.php
+Tin:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/6a/Tin-2.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: http://images-of-elements.com/tin.php
+Antimony:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/5c/Antimony-4.jpg
+    attribution: Unknown authorUnknown author, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/antimony.php
+Tellurium:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/c1/Tellurium2.jpg
+    attribution: Unknown authorUnknown author, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/tellurium.php
+Iodine:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/c2/Iodine-sample.jpg
+    attribution: Benjah-bmm27, Public domain, via Wikimedia Commons
+Xenon:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/5d/Xenon-glow.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/xenon.php
+Cesium:
+    source: https://upload.wikimedia.org/wikipedia/commons/3/3d/Cesium.jpg
+    attribution: Dnn87 Contact email: Dnn87yahoo.dk, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Barium:
+    source: https://upload.wikimedia.org/wikipedia/commons/f/f5/Barium_%2856_Ba%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/barium.php
+Lanthanum:
+    source: https://upload.wikimedia.org/wikipedia/commons/f/f7/Lanthanum.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/lanthanum.php
+Cerium:
+    source: https://upload.wikimedia.org/wikipedia/commons/0/0d/Cerium2.jpg
+    attribution: Jurii, CC BY 1.0 <https://creativecommons.org/licenses/by/1.0>, via Wikimedia Commons, source: https://images-of-elements.com/cerium.php
+Praseodymium:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/c7/Praseodymium.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/praseodymium.php
+Neodymium:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/c9/Neodymium_%2860_Nd%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/neodymium.php
+Promethium:
+    source: https://images-of-elements.com/s/promethium.jpg
+    attribution: Chemical Elements A Virtual Museum under a Creative Commons Attribution 3.0 Unported License, source: https://images-of-elements.com/promethium.jpg
+Samarium:
+    source: https://upload.wikimedia.org/wikipedia/commons/8/88/Samarium-2.jpg
+    attribution: Unknown authorUnknown author, CC BY 1.0 <https://creativecommons.org/licenses/by/1.0>, via Wikimedia Commons, source: https://images-of-elements.com/samarium.php
+Europium:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/6a/Europium.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/europium.php
+Gadolinium:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/c2/Gadolinium-2.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/gadolinium.php
+Terbium:
+    source: https://upload.wikimedia.org/wikipedia/commons/9/9a/Terbium-2.jpg
+    attribution: Unknown authorUnknown author, CC BY 1.0 <https://creativecommons.org/licenses/by/1.0>, via Wikimedia Commons, source: https://images-of-elements.com/terbium.php
+Dysprosium:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/55/Dysprosium-2.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/dysprosium.php
+Holmium:
+    source: https://upload.wikimedia.org/wikipedia/commons/0/0a/Holmium2.jpg
+    attribution: Unknown authorUnknown author, CC BY 1.0 <https://creativecommons.org/licenses/by/1.0>, via Wikimedia Commons, source: https://images-of-elements.com/holmium.php
+Erbium:
+    source: https://upload.wikimedia.org/wikipedia/commons/2/2a/Erbium-2.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/erbium.php
+Thulium:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/6b/Thulium-2.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/thulium.php
+Ytterbium:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/ce/Ytterbium-3.jpg
+    attribution: Jurii, CC BY 1.0 <https://creativecommons.org/licenses/by/1.0>, via Wikimedia Commons, source: https://images-of-elements.com/ytterbium.php
+Lutetium:
+    source: https://upload.wikimedia.org/wikipedia/commons/e/e8/Lutetium.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/lutetium.php
+Hafnium:
+    source: https://upload.wikimedia.org/wikipedia/commons/1/17/Hafnium_%2872_Hf%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/hafnium.php
+Tantalum:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/61/Tantalum.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/tantalum.php
+Tungsten:
+    source: https://upload.wikimedia.org/wikipedia/commons/c/c8/Tungsten_rod_with_oxidised_surface.jpg
+    attribution: Jurii, CC BY 1.0 <https://creativecommons.org/licenses/by/1.0>, via Wikimedia Commons, source: https://images-of-elements.com/tungsten.php
+Rhenium:
+    source: https://upload.wikimedia.org/wikipedia/commons/d/d9/Pure_rhenium_bead%2C_arc_melted%2C_21_grams._Original_size_in_cm_-_1.5_x_1.7.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/rhenium.php
+Osmium:
+    source: https://upload.wikimedia.org/wikipedia/commons/3/3c/Osmium-bead.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/osmium.php
+Iridium:
+    source: https://upload.wikimedia.org/wikipedia/commons/a/a8/Iridium-2.jpg
+    attribution: Unknown authorUnknown author, CC BY 1.0 <https://creativecommons.org/licenses/by/1.0>, via Wikimedia Commons, source: https://images-of-elements.com/iridium.php
+Platinum:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/68/Platinum_crystals.jpg
+    attribution: Periodictableru, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons
+Gold:
+    source: https://upload.wikimedia.org/wikipedia/commons/8/8a/Gold_%2879_Au%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/gold.php
+Mercury:
+    source: https://upload.wikimedia.org/wikipedia/commons/b/be/Hydrargyrum_%2880_Hg%29.jpg
+    attribution: Hi-Res Images of Chemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/mercury.php
+Thallium:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/55/Thallium_%2881_Tl%29.jpg
+    attribution: Hi-Res Images ofChemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/thallium.php
+Lead:
+    source: https://upload.wikimedia.org/wikipedia/commons/6/63/Lead-2.jpg
+    attribution: Chemical Elements, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/lead.php
+Bismuth:
+    source: https://upload.wikimedia.org/wikipedia/commons/a/a5/Bismuth-2.jpg
+    attribution: Jurii, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons, source: https://images-of-elements.com/bismuth.php
+Polonium:
+    source: https://images-of-elements.com/polonium.jpg
+    attribution: Chemical ELements A Virtual Museum, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0> source: https://images-of-elements.com/polonium.php
+Astatine:
+    source: https://images-of-elements.com/astatine.jpg
+    attribution: Chemical ELements A Virtual Museum, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0> source: https://images-of-elements.com/astatine.php
+Radon:
+    source: https://images-of-elements.com/radon.jpg
+    attribution: Chemical ELements A Virtual Museum, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0> source: https://images-of-elements.com/radon.php
+Francium:
+    source: https://images-of-elements.com/francium.jpg
+    attribution: Chemical ELements A Virtual Museum, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0> source: https://images-of-elements.com/francium.jpg
+Radium:
+    source: https://upload.wikimedia.org/wikipedia/commons/b/bb/Radium226.jpg
+    attribution: grenadier, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons
+Actinium:
+    source: https://upload.wikimedia.org/wikipedia/commons/2/27/Actinium_sample_%2831481701837%29.png
+    attribution: Oak Ridge National Laboratory, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons, source: https://www.flickr.com/photos/oakridgelab/31481701837/
+Thorium:
+    source: https://upload.wikimedia.org/wikipedia/commons/f/f7/Thorium-1.jpg
+    attribution: W. Oelen, CC BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0>, via Wikimedia Commons
+Protactinium:
+    source: https://upload.wikimedia.org/wikipedia/commons/a/af/Protactinium-233.jpg
+    attribution: ENERGY.GOV, Public domain, via Wikimedia Commons
+Uranium:
+    source: https://upload.wikimedia.org/wikipedia/commons/b/b2/Ames_Process_uranium_biscuit.jpg
+    attribution: Unknown authorUnknown author, Public domain, via Wikimedia Commons
+Neptunium:
+    source: https://upload.wikimedia.org/wikipedia/commons/e/e5/Neptunium2.jpg
+    attribution: Los Alamos National Laboratory,, Public domain, via Wikimedia Commons
+Plutonium:
+    source: https://upload.wikimedia.org/wikipedia/commons/0/0f/Plutonium_ring.jpg
+    attribution: Los Alamos National Laboratory, Attribution, via Wikimedia Commons
+Americium:
+    source: https://upload.wikimedia.org/wikipedia/commons/e/ee/Americium_microscope.jpg
+    attribution: Bionerd, CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>, via Wikimedia Commons
+Curium:
+    source: https://images-of-elements.com/s/curium-glow.jpg
+    attribution: European Union, The Actinide Group, Institute for Transuranium Elements (JRC-ITU), source: https://images-of-elements.com/curium.php
+Berkelium:
+    source: https://upload.wikimedia.org/wikipedia/commons/f/fc/Berkelium.jpg
+    attribution: ORNL, Department of Energy, Public domain, via Wikimedia Commons
+Californium:
+    source: https://upload.wikimedia.org/wikipedia/commons/9/93/Californium.jpg
+    attribution: United States Department of Energy (see File:Einsteinium.jpg), Public domain, via Wikimedia Commons
+Einsteinium:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/55/Einsteinium.jpg
+    attribution: Haire, R. G., US Department of Energy.Touched up by Materialscientist at en.wikipedia., Public domain, via Wikimedia Commons
+Fermium:
+    source: https://upload.wikimedia.org/wikipedia/commons/5/58/Ivy_Mike_-_mushroom_cloud.jpg
+    attribution: U.S. Department of Energy, Public domain, via Wikimedia Commons
+Mendelevium:
+    source: https://images-of-elements.com/s/mendelevium.jpg
+    attribution: Chemical Elements A Virtual Museum under a Creative Commons Attribution 3.0 Unported License, source: https://images-of-elements.com/mendelevium.php
+Nobelium:
+    source: https://images-of-elements.com/nobelium.jpg
+    attribution: Chemical Elements A Virtual Museum under a Creative Commons Attribution 3.0 Unported License, source: https://images-of-elements.com/nobelium.php
+Lawrencium:
+    source: https://images-of-elements.com/lawrencium.jpg
+    attribution: Chemical Elements A Virtual Museum under a Creative Commons Attribution 3.0 Unported License, source: https://images-of-elements.com/lawrencium.php
+Rutherfordium:
+    source: https://images-of-elements.com/s/rutherfordium.jpg
+    attribution: Image © CERN, Chemical Elements A Virtual Museum under a Creative Commons Attribution 3.0 Unported License, source: https://images-of-elements.com/rutherfordium.php
