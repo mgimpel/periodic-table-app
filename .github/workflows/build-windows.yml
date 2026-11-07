@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Install Rust
-        run: winget install --id Rustlang.Rustup
+        run: winget install -h --accept-package-agreements --disable-interactivity --id Rustlang.Rustup
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
         with:
