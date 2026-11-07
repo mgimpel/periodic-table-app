@@ -8,10 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Download Rust
-        run: Invoke-WebRequest -Uri "https://rustup.rs" -OutFile "rustup-init.exe"
       - name: Install Rust
-        run: rustup-init.exe -y
+        run: Invoke-WebRequest -Uri "https://rustup.rs" -OutFile "rustup-init.exe" && rustup-init.exe -y
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
         with:
