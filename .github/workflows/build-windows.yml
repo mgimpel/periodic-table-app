@@ -1,5 +1,25 @@
 name: Build Windows Artifacts
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      pnpm_version:
+        required: true
+        type: number
+        default: 12
+      node_version:
+        required: true
+        type: number
+        default: 26
+  workflow_call:
+    inputs:
+      pnpm_version:
+        required: true
+        type: number
+        default: 12
+      node_version:
+        required: true
+        type: number
+        default: 26
 permissions:
   contents: read
 jobs:
@@ -13,11 +33,11 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 12
+          version: ${{ inputs.pnpm_version }}
       - name: Set up Node
         uses: actions/setup-node@v7
         with:
-          node-version: 26
+          node-version: ${{ inputs.node_version }}
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
