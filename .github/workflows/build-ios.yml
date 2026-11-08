@@ -1,0 +1,45 @@
+name: Build MacOS Artifacts
+on:
+  workflow_dispatch:
+    inputs:
+      pnpm_version:
+        required: true
+        type: number
+        default: 12
+      node_version:
+        required: true
+        type: number
+        default: 26
+  workflow_call:
+    inputs:
+      pnpm_version:
+        required: true
+        type: number
+        default: 12
+      node_version:
+        required: true
+        type: number
+        default: 26
+permissions:
+  contents: read
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Install Rust
+        run: curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > rustup.sh && chmod +x ./rustup.sh && ./rustup.sh -y
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ inputs.pnpm_version }}
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm ios install
+      - name: Build
+        run: pnpm tauri ios build
