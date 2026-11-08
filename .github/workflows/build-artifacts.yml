@@ -1,5 +1,5 @@
 # Simple Workflow to build Artifacts
-name: Build Artifacts
+name: Build All Artifacts
 on:
   workflow_dispatch:
     inputs:

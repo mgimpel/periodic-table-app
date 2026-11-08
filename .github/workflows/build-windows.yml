@@ -41,12 +41,6 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      # If network problems to install wixtools
-      - name: Install Tauri Bundling ressources (WIX)
-        run: Invoke-WebRequest -Uri "https://github.com/wixtoolset/wix3/releases/download/wix3141rtm/wix314-binaries.zip" -OutFile "wix314-binaries.zip" && New-Item -ItemType Directory -Force -Path "$Env:localappdata\tauri\WixTools314" | Out-Null && Expand-Archive ".\wix314-binaries.zip" -DestinationPath "$Env:localappdata\tauri\WixTools314"
-      # If network problems to install NSIS
-      - name: Install Tauri Bundling ressources (NSIS)
-        run: Invoke-WebRequest -Uri "https://github.com/tauri-apps/binary-releases/releases/download/nsis-3/nsis-3.zip" -OutFile "nsis-3.zip" && Expand-Archive ".\nsis-3.zip" -DestinationPath "$Env:localappdata\tauri" && Move-Item -Path "$Env:localappdata\tauri\nsis-3.08" -Destination "$Env:localappdata\tauri\NSIS" && Invoke-WebRequest -Uri "https://github.com/tauri-apps/nsis-tauri-utils/releases/download/nsis_tauri_utils-v0.4.1/nsis_tauri_utils.dll" -OutFile "$Env:localappdata\tauri\NSIS\Plugins\x86-unicode\nsis_tauri_utils.dll"
       - name: Build
         run: pnpm tauri build
       - name: Upload MSI Artifact
