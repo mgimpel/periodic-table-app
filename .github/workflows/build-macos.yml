@@ -23,8 +23,13 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm tauri build
-      - name: Upload MSI Artifact
+      - name: Upload DMG Artifact
         uses: actions/upload-artifact@v7
         with:
           path: src-tauri/target/release/bundle/dmg/*.dmg
+          archive: false
+      - name: Upload App Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/macos/*.app
           archive: false
