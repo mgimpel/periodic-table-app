@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Install Rust
-        run: curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > rustup.sh && ./rustup.sh -y
+        run: curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > rustup.sh && chmod +x ./rustup.sh && ./rustup.sh -y
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
         with:
