@@ -105,4 +105,3 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           path: src-tauri/target/release/bundle/macos/*.app
-          archive: false
