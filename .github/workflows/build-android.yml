@@ -1,16 +1,6 @@
-name: Build MacOS Artifacts
+name: Build Android Artifacts
 on:
   workflow_dispatch:
-    inputs:
-      pnpm_version:
-        required: true
-        type: number
-        default: 12
-      node_version:
-        required: true
-        type: number
-        default: 26
-  workflow_call:
     inputs:
       pnpm_version:
         required: true
@@ -23,13 +13,17 @@ on:
 permissions:
   contents: read
 jobs:
-  build-macos:
-    runs-on: macos-latest
+  build-android:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Update repositories
+        run: sudo apt update && sudo apt upgrade
       - name: Install Rust
-        run: curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > rustup.sh && chmod +x ./rustup.sh && ./rustup.sh -y
+        run: sudo apt install -y rustup
+      - name: Install Tauri prerequisits
+        run: sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
       - name: Set up pnpm
         uses: pnpm/action-setup@v6
         with:
@@ -39,16 +33,10 @@ jobs:
         with:
           node-version: ${{ inputs.node_version }}
           cache: "pnpm"
+      # TODO: install Android SDK & NDK
       - name: Install dependencies
         run: pnpm install
+      - name: Initialise Tauri Android
+        run: pnpm tauri android init
       - name: Build
         run: pnpm tauri build
-      - name: Upload DMG Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          path: src-tauri/target/release/bundle/dmg/*.dmg
-          archive: false
-      - name: Upload App Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          path: src-tauri/target/release/bundle/macos/*.app

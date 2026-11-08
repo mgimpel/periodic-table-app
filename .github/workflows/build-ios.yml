@@ -10,16 +10,6 @@ on:
         required: true
         type: number
         default: 26
-  workflow_call:
-    inputs:
-      pnpm_version:
-        required: true
-        type: number
-        default: 12
-      node_version:
-        required: true
-        type: number
-        default: 26
 permissions:
   contents: read
 jobs:
@@ -39,6 +29,7 @@ jobs:
         with:
           node-version: ${{ inputs.node_version }}
           cache: "pnpm"
+      # TODO: configure signing
       - name: Install dependencies
         run: pnpm install
       - name: Initialise Tauri iOS
