@@ -15,13 +15,17 @@ permissions:
 jobs:
   build-android:
     runs-on: ubuntu-latest
+    env:
+      ANDROID_SDK_ROOT: /opt/android-sdk
+      ANDROID_HOME: /opt/android-sdk
+      NDK_HOME: /opt/android-sdk/android-ndk-r30
     steps:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Update repositories
         run: sudo apt update && sudo apt upgrade
       - name: Install Rust
-        run: sudo apt install -y rustup
+        run: sudo apt install -y rustup && rustup default stable
       - name: Install Tauri prerequisits
         run: sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
       - name: Set up pnpm
@@ -33,10 +37,29 @@ jobs:
         with:
           node-version: ${{ inputs.node_version }}
           cache: "pnpm"
-      # TODO: install Android SDK & NDK
+      - name: Install Java
+        run: sudo apt install -y openjdk-17-jdk-headless
+      - name: Install Android Command Line Tools
+        run: wget -q https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip && sudo mkdir -p $ANDROID_SDK_ROOT/cmdline-tools && sudo unzip commandlinetools-linux-15859902_latest.zip -d $ANDROID_SDK_ROOT/cmdline-tools && sudo mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
+      - name: Install Android NDK
+        run: wget -q https://dl.google.com/android/repository/android-ndk-r30-linux.zip && sudo unzip android-ndk-r30-linux.zip -d $ANDROID_SDK_ROOT
+      - name: Install Android tools and platforms with sdkmanager
+        run: yes | sudo $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses && sudo $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platform-tools" "extras;google;instantapps" "build-tools;36.0.0" "platforms;android-37.0" "platforms;android-36"
+      - name: Configure Rust to compile Android
+        run: rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
       - name: Install dependencies
         run: pnpm install
       - name: Initialise Tauri Android
         run: pnpm tauri android init
       - name: Build
-        run: pnpm tauri build
+        run: pnpm tauri android build
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/gen/android/app/build/outputs/apk/universal/release/*.apk
+          archive: false
+      - name: Upload AAB Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/gen/android/app/build/outputs/bundle/universalRelease/*.aab
+          archive: false
