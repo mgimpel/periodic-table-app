@@ -1,0 +1,184 @@
+# Simple Workflow to build Artifacts
+name: Build All Artifacts
+on:
+  workflow_dispatch:
+    inputs:
+      pnpm_version:
+        required: true
+        type: number
+        default: 12
+      node_version:
+        required: true
+        type: number
+        default: 26
+      build-linux:
+        required: true
+        type: boolean
+        default: true
+      build-windows:
+        required: true
+        type: boolean
+        default: true
+      build-macos:
+        required: true
+        type: boolean
+        default: true
+      build-android:
+        required: true
+        type: boolean
+        default: true
+permissions:
+  contents: read
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.build-linux }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Update repositories
+        run: sudo apt update && sudo apt upgrade
+      - name: Install Rust
+        run: sudo apt install -y rustup
+      - name: Install Tauri prerequisits
+        run: sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ inputs.pnpm_version }}
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm tauri build
+      - name: Upload Deb Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/deb/*.deb
+          archive: false
+      - name: Upload RPM Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/rpm/*.rpm
+          archive: false
+      - name: Upload AppImage Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/appimage/*.AppImage
+          archive: false
+  build-windows:
+    runs-on: windows-latest
+    if: ${{ inputs.build-windows }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Install Rust
+        run: Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile "rustup-init.exe" && .\rustup-init.exe -y
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ inputs.pnpm_version }}
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm tauri build
+      - name: Upload MSI Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/msi/*.msi
+          archive: false
+      - name: Upload NSIS Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/nsis/*.exe
+          archive: false
+  build-macos:
+    runs-on: macos-latest
+    if: ${{ inputs.build-macos }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Install Rust
+        run: curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > rustup.sh && chmod +x ./rustup.sh && ./rustup.sh -y
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ inputs.pnpm_version }}
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm tauri build
+      - name: Upload DMG Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/dmg/*.dmg
+          archive: false
+      - name: Upload App Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/macos/*.app
+  build-android:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.build-android }}
+    env:
+      ANDROID_SDK_ROOT: /opt/android-sdk
+      ANDROID_HOME: /opt/android-sdk
+      NDK_HOME: /opt/android-sdk/android-ndk-r30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Update repositories
+        run: sudo apt update && sudo apt upgrade
+      - name: Install Rust
+        run: sudo apt install -y rustup && rustup default stable
+      - name: Install Tauri prerequisits
+        run: sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ inputs.pnpm_version }}
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: "pnpm"
+      - name: Install Java
+        run: sudo apt install -y openjdk-17-jdk-headless
+      - name: Install Android Command Line Tools
+        run: wget -q https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip && sudo mkdir -p $ANDROID_SDK_ROOT/cmdline-tools && sudo unzip commandlinetools-linux-15859902_latest.zip -d $ANDROID_SDK_ROOT/cmdline-tools && sudo mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
+      - name: Install Android NDK
+        run: wget -q https://dl.google.com/android/repository/android-ndk-r30-linux.zip && sudo unzip android-ndk-r30-linux.zip -d $ANDROID_SDK_ROOT
+      - name: Install Android tools and platforms with sdkmanager
+        run: yes | sudo $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses && sudo $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platform-tools" "extras;google;instantapps" "build-tools;36.0.0" "platforms;android-37.0" "platforms;android-36"
+      - name: Configure Rust to compile Android
+        run: rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
+      - name: Install dependencies
+        run: pnpm install
+      - name: Initialise Tauri Android
+        run: pnpm tauri android init
+      - name: Build
+        run: pnpm tauri android build
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/gen/android/app/build/outputs/apk/universal/release/*.apk
+          archive: false
+      - name: Upload AAB Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/gen/android/app/build/outputs/bundle/universalRelease/*.aab
+          archive: false
