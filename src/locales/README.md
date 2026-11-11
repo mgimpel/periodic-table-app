@@ -37,13 +37,14 @@ No component, control, lib, or bootstrap code changes.
 ## English-fallback ceiling
 
 Element `name`, `appearance`, and `summary` are translated through the
-`periodicTable` namespace. The shipped `fr` / `es` / `de` files currently carry
-full translations of all three, but any value a locale leaves as (or omits
-relative to) English still resolves to the English string per-key via i18next
-`fallbackLng: "en"` with `returnNull: false` — never a blank or a raw key. The
-free-text `discoveredBy` / `namedBy` detail fields are **not** in this namespace;
-they render the raw dataset (English) value. This is an intentional, documented
-ceiling — filling translations in later needs no code change.
+`periodicTable` namespace. The shipped `fr` / `es` / `de` / `it` / `pt` files
+currently carry full translations of all three, but any value a locale leaves
+as (or omits relative to) English still resolves to the English string per-key
+via i18next `fallbackLng: "en"` with `returnNull: false` — never a blank or a
+raw key. The free-text `discoveredBy` / `namedBy` detail fields are **not** in
+this namespace; they render the raw dataset (English) value. This is an
+intentional, documented ceiling — filling translations in later needs no code
+change.
 
 ## `periodic-table.en.json` provenance
 

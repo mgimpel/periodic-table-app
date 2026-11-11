@@ -36,7 +36,9 @@
     "en": "Englisch",
     "fr": "Französisch",
     "es": "Spanisch",
-    "de": "Deutsch"
+    "de": "Deutsch",
+    "it": "Italienisch",
+    "pt": "Portugiesisch"
   },
   "temperature": {
     "label": "Temperatureinheit",

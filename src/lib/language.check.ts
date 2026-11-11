@@ -11,7 +11,7 @@ import assert from "node:assert/strict";
 import { normalizeStoredLanguage, resolveLanguage } from "./language";
 
 // Valid options pass through unchanged.
-for (const opt of ["system", "en", "fr", "es", "de"] as const) {
+for (const opt of ["system", "en", "fr", "es", "de", "it", "pt"] as const) {
   const r = normalizeStoredLanguage(opt);
   assert(r === opt, `valid option ${opt} should pass through, got ${r}`);
 }
@@ -41,6 +41,14 @@ assert(
 assert(
   resolveLanguage("system", ["de-AT", "en"]) === "de",
   "system with [de-AT, en] should resolve to de",
+);
+assert(
+  resolveLanguage("system", ["it-IT", "en"]) === "it",
+  "system with [it-IT, en] should resolve to it",
+);
+assert(
+  resolveLanguage("system", ["pt-BR", "en"]) === "pt",
+  "system with [pt-BR, en] should resolve to pt",
 );
 assert(
   resolveLanguage("system", ["ja", "DE-CH", "fr"]) === "de",

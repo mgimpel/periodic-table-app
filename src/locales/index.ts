@@ -24,15 +24,17 @@ import esUi from "./ui.es.json";
 import esPeriodicTable from "./periodic-table.es.json";
 import deUi from "./ui.de.json";
 import dePeriodicTable from "./periodic-table.de.json";
+import itUi from "./ui.it.json";
+import itPeriodicTable from "./periodic-table.it.json";
+import ptUi from "./ui.pt.json";
+import ptPeriodicTable from "./periodic-table.pt.json";
 
-// Shape of one entry in a periodic-table.<xx>.json file (same layout as the
-// source dataset; only name/appearance/summary carry translated text).
+// Locale entries may omit English-fallback fields such as appearance/summary.
 interface LocaleElement {
   number: number;
-  symbol: string;
   name: string;
-  appearance: string | null;
-  summary: string;
+  appearance?: string | null;
+  summary?: string;
 }
 interface PeriodicTableLocale {
   elements: LocaleElement[];
@@ -43,8 +45,7 @@ interface PeriodicTableLocale {
 // a single element's field. The locale files ship an array (mirroring the
 // dataset) for readability and diff-friendliness; this adapter keys it. Entries
 // above 118 (the source's hypothetical element 119) are dropped to match the
-// 118 elements the app exposes. A null appearance is omitted so the key falls
-// back to English, then to nothing — the detail view gates on the dataset value.
+// 118 elements the app exposes. Missing/null fields fall back to English.
 function toNamespace(locale: PeriodicTableLocale) {
   const name: Record<string, string> = {};
   const appearance: Record<string, string> = {};
@@ -53,8 +54,10 @@ function toNamespace(locale: PeriodicTableLocale) {
     if (e.number > 118) continue;
     const key = String(e.number);
     name[key] = e.name;
-    summary[key] = e.summary;
-    if (e.appearance !== null) appearance[key] = e.appearance;
+    if (e.summary !== undefined) summary[key] = e.summary;
+    if (e.appearance !== undefined && e.appearance !== null) {
+      appearance[key] = e.appearance;
+    }
   }
   return { name, appearance, summary };
 }
@@ -64,9 +67,11 @@ export const resources = {
   fr: { ui: frUi, periodicTable: toNamespace(frPeriodicTable) },
   es: { ui: esUi, periodicTable: toNamespace(esPeriodicTable) },
   de: { ui: deUi, periodicTable: toNamespace(dePeriodicTable) },
+  it: { ui: itUi, periodicTable: toNamespace(itPeriodicTable) },
+  pt: { ui: ptUi, periodicTable: toNamespace(ptPeriodicTable) },
 } as const;
 
-export type SupportedLocale = keyof typeof resources; // "en" | "fr" | "es" | "de"
+export type SupportedLocale = keyof typeof resources; // "en" | "fr" | "es" | "de" | "it" | "pt"
 export const SUPPORTED_LOCALES = Object.keys(resources) as SupportedLocale[];
 export const FALLBACK_LOCALE: SupportedLocale = "en";
 export const NAMESPACES = ["ui", "periodicTable"] as const;

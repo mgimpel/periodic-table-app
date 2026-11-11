@@ -1,0 +1,158 @@
+{
+  "app": {
+    "title": "Tavola periodica degli elementi"
+  },
+  "header": {
+    "openSettings": "Apri impostazioni",
+    "openAbout": "Informazioni su questa app"
+  },
+  "settings": {
+    "title": "Impostazioni"
+  },
+  "about": {
+    "title": "Informazioni",
+    "version": "Versione {{version}}",
+    "buildDetails": "Build {{commit}} ({{date}})",
+    "copyright": "Copyright © 2026 Marc Gimpel. Tutti i diritti riservati.",
+    "licensePrefix": "Licenza:",
+    "license": "Licenza BSD 3-Clause",
+    "homepage": "Pagina del progetto:",
+    "thanksHeading": "Ringraziamenti",
+    "thanksBody": "Realizzato con Tauri, React e Mantine.\nDati degli elementi da Periodic-Table-JSON di Bowserinator (CC BY-SA 3.0).\nImmagini degli elementi da Wikimedia Commons e images-of-elements.com (CC BY 3.0).\nSpettri di emissione da atomic-spectra.net (CC0).\nDati isotopici di Grigory Starkov (licenza MIT)."
+  },
+  "common": {
+    "close": "Chiudi",
+    "dismiss": "Ignora"
+  },
+  "theme": {
+    "label": "Tema colori",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "auto": "Come il dispositivo"
+  },
+  "language": {
+    "label": "Lingua",
+    "system": "Predefinita del sistema",
+    "en": "Inglese",
+    "fr": "Francese",
+    "es": "Spagnolo",
+    "de": "Tedesco",
+    "it": "Italiano",
+    "pt": "Portoghese"
+  },
+  "temperature": {
+    "label": "Unità di temperatura",
+    "kelvin": "Kelvin",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit"
+  },
+  "temperatureSlider": {
+    "label": "Temperatura",
+    "legendReadout": "A {{temp}}"
+  },
+  "coloringScheme": {
+    "label": "Schema di colorazione",
+    "category": "Categoria",
+    "phase": "Stato",
+    "melting-point": "Punto di fusione",
+    "boiling-point": "Punto di ebollizione",
+    "electronegativity": "Elettronegatività",
+    "origin": "Origine",
+    "spectral-colour": "Colore spettrale",
+    "block": "Blocco"
+  },
+  "saveError": {
+    "theme": {
+      "title": "Impossibile salvare la preferenza del tema",
+      "body": "Il tema scelto è applicato per ora, ma non è stato possibile salvarlo e potrebbe non essere ricordato la prossima volta."
+    },
+    "language": {
+      "title": "Impossibile salvare la preferenza della lingua",
+      "body": "La lingua scelta è applicata per ora, ma non è stato possibile salvarla e potrebbe non essere ricordata la prossima volta."
+    },
+    "temperature": {
+      "title": "Impossibile salvare l'unità di temperatura",
+      "body": "L'unità di temperatura scelta è applicata per ora, ma non è stato possibile salvarla e potrebbe non essere ricordata la prossima volta."
+    }
+  },
+  "orientation": {
+    "title": "Ruota per una visualizzazione più ampia",
+    "body": "Questo dispositivo non può bloccare l'orientamento orizzontale. Ruotalo in orizzontale per visualizzare una tavola più grande e leggibile."
+  },
+  "legend": {
+    "groupLabel": "Legenda delle categorie degli elementi",
+    "categoryTitle": "Categoria",
+    "phaseTitle": "Stato",
+    "meltingPointTitle": "Punto di fusione",
+    "boilingPointTitle": "Punto di ebollizione"
+  },
+  "detail": {
+    "sections": "Sezioni dei dettagli dell'elemento",
+    "shellDiagramAlt": "Diagramma dei gusci elettronici di {{name}}",
+    "imageAlt": "Fotografia di {{name}}",
+    "spectrumAlt": "Spettro di emissione di {{name}}",
+    "tab": {
+      "atomic": "Dettagli atomici",
+      "physical": "Proprietà fisiche",
+      "electron": "Configurazione elettronica",
+      "description": "Descrizione"
+    },
+    "field": {
+      "atomicNumber": "Numero atomico",
+      "atomicMass": "Massa atomica",
+      "group": "Gruppo",
+      "period": "Periodo",
+      "block": "Blocco",
+      "phase": "Stato",
+      "density": "Densità",
+      "boil": "Punto di ebollizione",
+      "melt": "Punto di fusione",
+      "electronConfiguration": "Configurazione elettronica",
+      "electronConfigurationSemantic": "Configurazione elettronica (semantica)",
+      "shells": "Gusci elettronici",
+      "electronAffinity": "Affinità elettronica",
+      "appearance": "Aspetto",
+      "discoveredBy": "Scoperto da",
+      "namedBy": "Nome attribuito da"
+    }
+  },
+  "phase": {
+    "solid": "Solido",
+    "liquid": "Liquido",
+    "gas": "Gas",
+    "unknown": "Sconosciuto"
+  },
+  "origin": {
+    "primordial": "Primordiale",
+    "from-decay": "Da decadimento",
+    "synthetic": "Sintetico",
+    "unknown": "Sconosciuto"
+  },
+  "block": {
+    "s": "Blocco s",
+    "p": "Blocco p",
+    "d": "Blocco d",
+    "f": "Blocco f",
+    "unknown": "Sconosciuto"
+  },
+  "schemeLegend": {
+    "spectral": {
+      "description": "Ogni cella mostra il colore spettrale caratteristico dell'elemento."
+    }
+  },
+  "cell": {
+    "ariaLabel": "{{name}}, numero atomico {{number}}"
+  },
+  "category": {
+    "alkali-metal": "Metalli alcalini",
+    "alkaline-earth-metal": "Metalli alcalino-terrosi",
+    "transition-metal": "Metalli di transizione",
+    "post-transition-metal": "Metalli post-transizione",
+    "metalloid": "Metalloidi",
+    "reactive-nonmetal": "Non metalli reattivi",
+    "noble-gas": "Gas nobili",
+    "lanthanide": "Lantanidi",
+    "actinide": "Attinidi",
+    "unknown": "Sconosciuto"
+  }
+}
