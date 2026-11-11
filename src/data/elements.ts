@@ -16,8 +16,8 @@
 // We expose exactly the 118 confirmed elements, so entries above 118 are dropped.
 
 import raw from "./periodic-table.json";
-import raw2 from "./periodic-table-wikipedia.json";
-import addendum from "./periodic-table-addendum.json";
+import raw_wikipedia from "./periodic-table-wikipedia.json";
+import raw_addendum from "./periodic-table-addendum.json";
 import type { Element, ElementCategory } from "./element";
 import { CATEGORY_KEYS } from "./element";
 
@@ -52,10 +52,10 @@ interface RawElement {
 // Extended dataset (periodic-table-wikipedia.json): element records identified by
 // number and symbol. Only the fields we merge are typed.
 interface RawElementWikipedia {
-  number: number;
-  symbol: string;
+  "number": number;
+  "symbol": string;
   "Electro-negativity"?: string;
-  Origin?: string;
+  "Origin"?: string;
 }
 
 interface RawDatasetWikipedia {
@@ -63,9 +63,10 @@ interface RawDatasetWikipedia {
 }
 
 interface RawElementAddendum {
-  number: number;
-  symbol: string;
-  "Spectral colour": string;
+  "number": number;
+  "symbol": string;
+  "is_radioactive"?: boolean;
+  "spectral_colour"?: string;
 }
 
 interface RawDatasetAddendum {
@@ -76,15 +77,12 @@ interface RawDatasetAddendum {
 // ponytail: O(1) per-element merge, no second typed model. Ceiling: assumes the
 // source datasets agree on element identifiers; missing entries use the
 // null/"" fallbacks below (graceful degrade, no throw).
-const extendedByZ = new Map<number, RawElementWikipedia>(
-  (raw2 as unknown as RawDatasetWikipedia).elements.map((e) => [e.number, e]),
+const wikipediaByElement = new Map<number, RawElementWikipedia>(
+  (raw_wikipedia as unknown as RawDatasetWikipedia).elements.map((e) => [e.number, e]),
 );
 
-const spectralColourByElement = new Map<string, string>(
-  (addendum as unknown as RawDatasetAddendum).elements.map((e) => [
-    `${e.number}:${e.symbol}`,
-    e["Spectral colour"],
-  ]),
+const addendumByElement = new Map<number, RawElementAddendum>(
+  (raw_addendum as unknown as RawDatasetAddendum).elements.map((e) => [e.number, e]),
 );
 
 /** Parse the en-dash-placeholder electronegativity string into a number or null. */
@@ -94,16 +92,27 @@ function parseElectronegativity(value: string | undefined): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
-/** Merge the three extended fields for a given atomic number, with fallbacks. */
+/** Merge extended fields for an element from the source datasets. */
 function extendedFields(
   z: number,
   symbol: string,
-): Pick<Element, "electronegativity" | "origin" | "spectralColour"> {
-  const ext = extendedByZ.get(z);
+): Pick<
+  Element,
+  "electronegativity" | "origin" | "spectralColour" | "isRadioactive"
+> {
+  const wikipediaEntry = wikipediaByElement.get(z);
+  const addendumEntry = addendumByElement.get(z);
+  if (!wikipediaEntry) {
+    throw new Error(`Missing wikipedia entry for element ${z} (${symbol})`);
+  }
+  if (!addendumEntry) {
+    throw new Error(`Missing addendum entry for element ${z} (${symbol})`);
+  }
   return {
-    electronegativity: parseElectronegativity(ext?.["Electro-negativity"]),
-    origin: ext?.Origin ?? "",
-    spectralColour: spectralColourByElement.get(`${z}:${symbol}`) ?? null,
+    electronegativity: parseElectronegativity(wikipediaEntry?.["Electro-negativity"]),
+    origin: wikipediaEntry?.Origin ?? "",
+    spectralColour: addendumEntry?.spectral_colour ?? null,
+    isRadioactive: addendumEntry?.is_radioactive ?? false,
   };
 }
 

@@ -42,6 +42,8 @@ export interface Element {
   origin: string;
   /** Characteristic spectral colour as a raw 6-hex string (no leading "#"); null when absent. */
   spectralColour: string | null;
+  /** Whether the element is radioactive. */
+  isRadioactive: boolean;
 }
 
 // Canonical display order for the ten categories (legend order), and the single

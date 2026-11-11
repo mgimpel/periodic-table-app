@@ -78,6 +78,7 @@ function makeElement(overrides: Partial<Element> = {}): Element {
     electronegativity: 1.83,
     origin: "primordial",
     spectralColour: null,
+    isRadioactive: false,
     ...overrides,
   };
 }

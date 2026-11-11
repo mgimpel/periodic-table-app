@@ -60,6 +60,10 @@ for (const e of ELEMENTS) {
     e.spectralColour !== null,
     `spectralColour addendum entry missing for ${e.symbol}`,
   );
+  assert(
+    typeof e.isRadioactive === "boolean",
+    `isRadioactive should be boolean for ${e.symbol}, got ${e.isRadioactive}`,
+  );
 }
 
 // Spot-checks for known positions.
@@ -93,5 +97,6 @@ assert(
   h?.namedBy === "Antoine Lavoisier",
   `H namedBy should map, got ${h?.namedBy}`,
 );
+assert(h?.isRadioactive === false, "H isRadioactive should map from the addendum");
 
 console.log(`ok: ${ELEMENTS.length} elements validated`);

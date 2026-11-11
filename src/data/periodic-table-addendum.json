@@ -4,709 +4,709 @@
       "number": 1,
       "symbol": "H",
       "is_radioactive": false,
-      "Spectral colour": "FF497E"
+      "spectral_colour": "FF497E"
     },
     {
       "number": 2,
       "symbol": "He",
       "is_radioactive": false,
-      "Spectral colour": "FFEC8E"
+      "spectral_colour": "FFEC8E"
     },
     {
       "number": 3,
       "symbol": "Li",
       "is_radioactive": false,
-      "Spectral colour": "FF4B61"
+      "spectral_colour": "FF4B61"
     },
     {
       "number": 4,
       "symbol": "Be",
       "is_radioactive": false,
-      "Spectral colour": "44FFFF"
+      "spectral_colour": "44FFFF"
     },
     {
       "number": 5,
       "symbol": "B",
       "is_radioactive": false,
-      "Spectral colour": "F8FFE1"
+      "spectral_colour": "F8FFE1"
     },
     {
       "number": 6,
       "symbol": "C",
       "is_radioactive": false,
-      "Spectral colour": "FFFFB3"
+      "spectral_colour": "FFFFB3"
     },
     {
       "number": 7,
       "symbol": "N",
       "is_radioactive": false,
-      "Spectral colour": "FFFFF0"
+      "spectral_colour": "FFFFF0"
     },
     {
       "number": 8,
       "symbol": "O",
       "is_radioactive": false,
-      "Spectral colour": "C4AEFF"
+      "spectral_colour": "C4AEFF"
     },
     {
       "number": 9,
       "symbol": "F",
       "is_radioactive": false,
-      "Spectral colour": "FF4466"
+      "spectral_colour": "FF4466"
     },
     {
       "number": 10,
       "symbol": "Ne",
       "is_radioactive": false,
-      "Spectral colour": "FF6532"
+      "spectral_colour": "FF6532"
     },
     {
       "number": 11,
       "symbol": "Na",
       "is_radioactive": false,
-      "Spectral colour": "FFD122"
+      "spectral_colour": "FFD122"
     },
     {
       "number": 12,
       "symbol": "Mg",
       "is_radioactive": false,
-      "Spectral colour": "64FFFF"
+      "spectral_colour": "64FFFF"
     },
     {
       "number": 13,
       "symbol": "Al",
       "is_radioactive": false,
-      "Spectral colour": "80E0FF"
+      "spectral_colour": "80E0FF"
     },
     {
       "number": 14,
       "symbol": "Si",
       "is_radioactive": false,
-      "Spectral colour": "FFF5AC"
+      "spectral_colour": "FFF5AC"
     },
     {
       "number": 15,
       "symbol": "P",
       "is_radioactive": false,
-      "Spectral colour": "5CFFD9"
+      "spectral_colour": "5CFFD9"
     },
     {
       "number": 16,
       "symbol": "S",
       "is_radioactive": false,
-      "Spectral colour": "4F86FF"
+      "spectral_colour": "4F86FF"
     },
     {
       "number": 17,
       "symbol": "Cl",
       "is_radioactive": false,
-      "Spectral colour": "8DC0FF"
+      "spectral_colour": "8DC0FF"
     },
     {
       "number": 18,
       "symbol": "Ar",
       "is_radioactive": false,
-      "Spectral colour": "CEB0FF"
+      "spectral_colour": "CEB0FF"
     },
     {
       "number": 19,
       "symbol": "K",
       "is_radioactive": false,
-      "Spectral colour": "B196FF"
+      "spectral_colour": "B196FF"
     },
     {
       "number": 20,
       "symbol": "Ca",
       "is_radioactive": false,
-      "Spectral colour": "FF9C8A"
+      "spectral_colour": "FF9C8A"
     },
     {
       "number": 21,
       "symbol": "Sc",
       "is_radioactive": false,
-      "Spectral colour": "FFFCFF"
+      "spectral_colour": "FFFCFF"
     },
     {
       "number": 22,
       "symbol": "Ti",
       "is_radioactive": false,
-      "Spectral colour": "76D3FF"
+      "spectral_colour": "76D3FF"
     },
     {
       "number": 23,
       "symbol": "V",
       "is_radioactive": false,
-      "Spectral colour": "EDFFFF"
+      "spectral_colour": "EDFFFF"
     },
     {
       "number": 24,
       "symbol": "Cr",
       "is_radioactive": false,
-      "Spectral colour": "AAFFFF"
+      "spectral_colour": "AAFFFF"
     },
     {
       "number": 25,
       "symbol": "Mn",
       "is_radioactive": false,
-      "Spectral colour": "5594FF"
+      "spectral_colour": "5594FF"
     },
     {
       "number": 26,
       "symbol": "Fe",
       "is_radioactive": false,
-      "Spectral colour": "52D9FF"
+      "spectral_colour": "52D9FF"
     },
     {
       "number": 27,
       "symbol": "Co",
       "is_radioactive": false,
-      "Spectral colour": "5CFFD1"
+      "spectral_colour": "5CFFD1"
     },
     {
       "number": 28,
       "symbol": "Ni",
       "is_radioactive": false,
-      "Spectral colour": "5FFFFF"
+      "spectral_colour": "5FFFFF"
     },
     {
       "number": 29,
       "symbol": "Cu",
       "is_radioactive": false,
-      "Spectral colour": "A8FFFF"
+      "spectral_colour": "A8FFFF"
     },
     {
       "number": 30,
       "symbol": "Zn",
       "is_radioactive": false,
-      "Spectral colour": "426AFF"
+      "spectral_colour": "426AFF"
     },
     {
       "number": 31,
       "symbol": "Ga",
       "is_radioactive": false,
-      "Spectral colour": "6D3EFF"
+      "spectral_colour": "6D3EFF"
     },
     {
       "number": 32,
       "symbol": "Ge",
       "is_radioactive": false,
-      "Spectral colour": "FFFFF6"
+      "spectral_colour": "FFFFF6"
     },
     {
       "number": 33,
       "symbol": "As",
       "is_radioactive": false,
-      "Spectral colour": "4EADFF"
+      "spectral_colour": "4EADFF"
     },
     {
       "number": 34,
       "symbol": "Se",
       "is_radioactive": false,
-      "Spectral colour": "4CADFF"
+      "spectral_colour": "4CADFF"
     },
     {
       "number": 35,
       "symbol": "Br",
       "is_radioactive": false,
-      "Spectral colour": "99F0FF"
+      "spectral_colour": "99F0FF"
     },
     {
       "number": 36,
       "symbol": "Kr",
       "is_radioactive": false,
-      "Spectral colour": "FFF8FC"
+      "spectral_colour": "FFF8FC"
     },
     {
       "number": 37,
       "symbol": "Rb",
       "is_radioactive": false,
-      "Spectral colour": "FF7D7D"
+      "spectral_colour": "FF7D7D"
     },
     {
       "number": 38,
       "symbol": "Sr",
       "is_radioactive": false,
-      "Spectral colour": "FF9AA9"
+      "spectral_colour": "FF9AA9"
     },
     {
       "number": 39,
       "symbol": "Y",
       "is_radioactive": false,
-      "Spectral colour": "FFFFE9"
+      "spectral_colour": "FFFFE9"
     },
     {
       "number": 40,
       "symbol": "Zr",
       "is_radioactive": false,
-      "Spectral colour": "84D4FF"
+      "spectral_colour": "84D4FF"
     },
     {
       "number": 41,
       "symbol": "Nb",
       "is_radioactive": false,
-      "Spectral colour": "A7FFFF"
+      "spectral_colour": "A7FFFF"
     },
     {
       "number": 42,
       "symbol": "Mo",
       "is_radioactive": false,
-      "Spectral colour": "92FFFF"
+      "spectral_colour": "92FFFF"
     },
     {
       "number": 43,
       "symbol": "Tc",
       "is_radioactive": true,
-      "Spectral colour": "5A9CFF"
+      "spectral_colour": "5A9CFF"
     },
     {
       "number": 44,
       "symbol": "Ru",
       "is_radioactive": false,
-      "Spectral colour": "5DC1FF"
+      "spectral_colour": "5DC1FF"
     },
     {
       "number": 45,
       "symbol": "Rh",
       "is_radioactive": false,
-      "Spectral colour": "EEFFFC"
+      "spectral_colour": "EEFFFC"
     },
     {
       "number": 46,
       "symbol": "Pd",
       "is_radioactive": false,
-      "Spectral colour": "82FFFF"
+      "spectral_colour": "82FFFF"
     },
     {
       "number": 47,
       "symbol": "Ag",
       "is_radioactive": false,
-      "Spectral colour": "59FFA0"
+      "spectral_colour": "59FFA0"
     },
     {
       "number": 48,
       "symbol": "Cd",
       "is_radioactive": false,
-      "Spectral colour": "76B8FF"
+      "spectral_colour": "76B8FF"
     },
     {
       "number": 49,
       "symbol": "In",
       "is_radioactive": false,
-      "Spectral colour": "7C4EFF"
+      "spectral_colour": "7C4EFF"
     },
     {
       "number": 50,
       "symbol": "Sn",
       "is_radioactive": false,
-      "Spectral colour": "FFF4FF"
+      "spectral_colour": "FFF4FF"
     },
     {
       "number": 51,
       "symbol": "Sb",
       "is_radioactive": false,
-      "Spectral colour": "FFFFF1"
+      "spectral_colour": "FFFFF1"
     },
     {
       "number": 52,
       "symbol": "Te",
       "is_radioactive": false,
-      "Spectral colour": "65F0FF"
+      "spectral_colour": "65F0FF"
     },
     {
       "number": 53,
       "symbol": "I",
       "is_radioactive": false,
-      "Spectral colour": "E3FFC9"
+      "spectral_colour": "E3FFC9"
     },
     {
       "number": 54,
       "symbol": "Xe",
       "is_radioactive": false,
-      "Spectral colour": "C0B9FF"
+      "spectral_colour": "C0B9FF"
     },
     {
       "number": 55,
       "symbol": "Cs",
       "is_radioactive": false,
-      "Spectral colour": "A18FFF"
+      "spectral_colour": "A18FFF"
     },
     {
       "number": 56,
       "symbol": "Ba",
       "is_radioactive": false,
-      "Spectral colour": "FFD9AD"
+      "spectral_colour": "FFD9AD"
     },
     {
       "number": 57,
       "symbol": "La",
       "is_radioactive": false,
-      "Spectral colour": "AAFFFF"
+      "spectral_colour": "AAFFFF"
     },
     {
       "number": 58,
       "symbol": "Ce",
       "is_radioactive": false,
-      "Spectral colour": "D2FFFF"
+      "spectral_colour": "D2FFFF"
     },
     {
       "number": 59,
       "symbol": "Pr",
       "is_radioactive": false,
-      "Spectral colour": "72B7FF"
+      "spectral_colour": "72B7FF"
     },
     {
       "number": 60,
       "symbol": "Nd",
       "is_radioactive": false,
-      "Spectral colour": "ACEEFF"
+      "spectral_colour": "ACEEFF"
     },
     {
       "number": 61,
       "symbol": "Pm",
       "is_radioactive": true,
-      "Spectral colour": "93AAFF"
+      "spectral_colour": "93AAFF"
     },
     {
       "number": 62,
       "symbol": "Sm",
       "is_radioactive": false,
-      "Spectral colour": "A7E0FF"
+      "spectral_colour": "A7E0FF"
     },
     {
       "number": 63,
       "symbol": "Eu",
       "is_radioactive": false,
-      "Spectral colour": "FFFFE5"
+      "spectral_colour": "FFFFE5"
     },
     {
       "number": 64,
       "symbol": "Gd",
       "is_radioactive": false,
-      "Spectral colour": "D4D4FF"
+      "spectral_colour": "D4D4FF"
     },
     {
       "number": 65,
       "symbol": "Tb",
       "is_radioactive": false,
-      "Spectral colour": "A5FFFF"
+      "spectral_colour": "A5FFFF"
     },
     {
       "number": 66,
       "symbol": "Dy",
       "is_radioactive": false,
-      "Spectral colour": "76CAFF"
+      "spectral_colour": "76CAFF"
     },
     {
       "number": 67,
       "symbol": "Ho",
       "is_radioactive": false,
-      "Spectral colour": "E9FFF1"
+      "spectral_colour": "E9FFF1"
     },
     {
       "number": 68,
       "symbol": "Er",
       "is_radioactive": false,
-      "Spectral colour": "99FFCD"
+      "spectral_colour": "99FFCD"
     },
     {
       "number": 69,
       "symbol": "Tm",
       "is_radioactive": false,
-      "Spectral colour": "7AE2FF"
+      "spectral_colour": "7AE2FF"
     },
     {
       "number": 70,
       "symbol": "Yb",
       "is_radioactive": false,
-      "Spectral colour": "C3F0FF"
+      "spectral_colour": "C3F0FF"
     },
     {
       "number": 71,
       "symbol": "Lu",
       "is_radioactive": false,
-      "Spectral colour": "CCFFFF"
+      "spectral_colour": "CCFFFF"
     },
     {
       "number": 72,
       "symbol": "Hf",
       "is_radioactive": false,
-      "Spectral colour": "6FCAFF"
+      "spectral_colour": "6FCAFF"
     },
     {
       "number": 73,
       "symbol": "Ta",
       "is_radioactive": false,
-      "Spectral colour": "A1CBFF"
+      "spectral_colour": "A1CBFF"
     },
     {
       "number": 74,
       "symbol": "W",
       "is_radioactive": false,
-      "Spectral colour": "78FFFF"
+      "spectral_colour": "78FFFF"
     },
     {
       "number": 75,
       "symbol": "Re",
       "is_radioactive": false,
-      "Spectral colour": "7CF9FF"
+      "spectral_colour": "7CF9FF"
     },
     {
       "number": 76,
       "symbol": "Os",
       "is_radioactive": false,
-      "Spectral colour": "48BFFF"
+      "spectral_colour": "48BFFF"
     },
     {
       "number": 77,
       "symbol": "Ir",
       "is_radioactive": false,
-      "Spectral colour": "4F9FFF"
+      "spectral_colour": "4F9FFF"
     },
     {
       "number": 78,
       "symbol": "Pt",
       "is_radioactive": false,
-      "Spectral colour": "A1FFFF"
+      "spectral_colour": "A1FFFF"
     },
     {
       "number": 79,
       "symbol": "Au",
       "is_radioactive": false,
-      "Spectral colour": "CFD8FF"
+      "spectral_colour": "CFD8FF"
     },
     {
       "number": 80,
       "symbol": "Hg",
       "is_radioactive": false,
-      "Spectral colour": "8AFFFF"
+      "spectral_colour": "8AFFFF"
     },
     {
       "number": 81,
       "symbol": "Tl",
       "is_radioactive": false,
-      "Spectral colour": "52FF63"
+      "spectral_colour": "52FF63"
     },
     {
       "number": 82,
       "symbol": "Pb",
       "is_radioactive": false,
-      "Spectral colour": "F2FFFF"
+      "spectral_colour": "F2FFFF"
     },
     {
       "number": 83,
       "symbol": "Bi",
       "is_radioactive": false,
-      "Spectral colour": "6092FF"
+      "spectral_colour": "6092FF"
     },
     {
       "number": 84,
       "symbol": "Po",
       "is_radioactive": true,
-      "Spectral colour": "5FA9FF"
+      "spectral_colour": "5FA9FF"
     },
     {
       "number": 85,
       "symbol": "At",
       "is_radioactive": true,
-      "Spectral colour": "000000"
+      "spectral_colour": "000000"
     },
     {
       "number": 86,
       "symbol": "Rn",
       "is_radioactive": true,
-      "Spectral colour": "FF4AA2"
+      "spectral_colour": "FF4AA2"
     },
     {
       "number": 87,
       "symbol": "Fr",
       "is_radioactive": true,
-      "Spectral colour": "FF7EF7"
+      "spectral_colour": "FF7EF7"
     },
     {
       "number": 88,
       "symbol": "Ra",
       "is_radioactive": true,
-      "Spectral colour": "FF876A"
+      "spectral_colour": "FF876A"
     },
     {
       "number": 89,
       "symbol": "Ac",
       "is_radioactive": true,
-      "Spectral colour": "E3FFFF"
+      "spectral_colour": "E3FFFF"
     },
     {
       "number": 90,
       "symbol": "Th",
       "is_radioactive": true,
-      "Spectral colour": "9FFFFF"
+      "spectral_colour": "9FFFFF"
     },
     {
       "number": 91,
       "symbol": "Pa",
       "is_radioactive": true,
-      "Spectral colour": "E93EFF"
+      "spectral_colour": "E93EFF"
     },
     {
       "number": 92,
       "symbol": "U",
       "is_radioactive": true,
-      "Spectral colour": "90CAFF"
+      "spectral_colour": "90CAFF"
     },
     {
       "number": 93,
       "symbol": "Np",
       "is_radioactive": true,
-      "Spectral colour": "FFE836"
+      "spectral_colour": "FFE836"
     },
     {
       "number": 94,
       "symbol": "Pu",
       "is_radioactive": true,
-      "Spectral colour": "FF75DB"
+      "spectral_colour": "FF75DB"
     },
     {
       "number": 95,
       "symbol": "Am",
       "is_radioactive": true,
-      "Spectral colour": "A997FF"
+      "spectral_colour": "A997FF"
     },
     {
       "number": 96,
       "symbol": "Cm",
       "is_radioactive": true,
-      "Spectral colour": "FF64C6"
+      "spectral_colour": "FF64C6"
     },
     {
       "number": 97,
       "symbol": "Bk",
       "is_radioactive": true,
-      "Spectral colour": "6EFF6F"
+      "spectral_colour": "6EFF6F"
     },
     {
       "number": 98,
       "symbol": "Cf",
       "is_radioactive": true,
-      "Spectral colour": "BAFFD2"
+      "spectral_colour": "BAFFD2"
     },
     {
       "number": 99,
       "symbol": "Es",
       "is_radioactive": true,
-      "Spectral colour": "39FFC8"
+      "spectral_colour": "39FFC8"
     },
     {
       "number": 100,
       "symbol": "Fm",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 101,
       "symbol": "Md",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 102,
       "symbol": "No",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 103,
       "symbol": "Lr",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 104,
       "symbol": "Rf",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 105,
       "symbol": "Db",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 106,
       "symbol": "Sg",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 107,
       "symbol": "Bh",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 108,
       "symbol": "Hs",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 109,
       "symbol": "Mt",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 110,
       "symbol": "Ds",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 111,
       "symbol": "Rg",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 112,
       "symbol": "Cn",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 113,
       "symbol": "Nh",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 114,
       "symbol": "Fl",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 115,
       "symbol": "Mc",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 116,
       "symbol": "Lv",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 117,
       "symbol": "Ts",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     },
     {
       "number": 118,
       "symbol": "Og",
       "is_radioactive": true,
-      "Spectral colour": ""
+      "spectral_colour": ""
     }
   ]
 }
