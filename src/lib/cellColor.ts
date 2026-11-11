@@ -8,7 +8,7 @@
 // that classify the dataset's raw strings, a spectral-colour helper, and a
 // single cellColor(scheme, element) resolver that returns the CSS background
 // color for the active coloring scheme (category, phase, melting-point,
-// boiling-point, electronegativity, origin, spectral-colour).
+// boiling-point, electronegativity, origin, spectral-colour, block, radioactive).
 
 import {
   MISSING_VALUE_COLOR,
@@ -150,6 +150,22 @@ export const BLOCK_COLORS: Record<BlockKey, string> = {
   unknown: MISSING_VALUE_COLOR,
 };
 
+/** Radioactivity buckets, in legend display order. */
+export const RADIOACTIVE_KEYS = ["radioactive", "stable"] as const;
+
+export type RadioactiveKey = (typeof RADIOACTIVE_KEYS)[number];
+
+/** Fixed colors for radioactive and stable elements. */
+export const RADIOACTIVE_COLORS: Record<RadioactiveKey, string> = {
+  radioactive: "#ef9a9a",
+  stable: "#a5d6a7",
+};
+
+/** Map the element's radioactivity flag to its legend bucket. */
+export function radioactiveBucket(isRadioactive: boolean): RadioactiveKey {
+  return isRadioactive ? "radioactive" : "stable";
+}
+
 /**
  * Total classifier for the dataset's raw block string: "s"/"p"/"d"/"f" (any
  * case) map to their bucket; anything else (absent, empty, unrecognized)
@@ -185,6 +201,7 @@ export function spectralCellColor(raw: string | null): string {
  *   origin            → ORIGIN_COLORS[originBucket(element.origin)]
  *   spectral-colour   → spectralCellColor(element.spectralColour)
  *   block             → BLOCK_COLORS[blockBucket(element.block)]
+ *   radioactive       → RADIOACTIVE_COLORS[radioactiveBucket(element.isRadioactive)]
  */
 export function cellColor(
   scheme: ColoringSchemeOption,
@@ -216,6 +233,8 @@ export function cellColor(
       return spectralCellColor(element.spectralColour);
     case "block":
       return BLOCK_COLORS[blockBucket(element.block)];
+    case "radioactive":
+      return RADIOACTIVE_COLORS[radioactiveBucket(element.isRadioactive)];
     case "category":
       return CATEGORY_COLORS[element.category];
   }

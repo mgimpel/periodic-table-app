@@ -59,7 +59,8 @@
     "electronegativity": "Electronegatividad",
     "origin": "Origen",
     "spectral-colour": "Color espectral",
-    "block": "Bloque"
+    "block": "Bloque",
+    "radioactive": "Radioactividad"
   },
   "saveError": {
     "theme": {
@@ -134,6 +135,10 @@
     "d": "Bloque d",
     "f": "Bloque f",
     "unknown": "Desconocido"
+  },
+  "radioactive": {
+    "radioactive": "Radiactivo",
+    "stable": "Estable"
   },
   "schemeLegend": {
     "spectral": {

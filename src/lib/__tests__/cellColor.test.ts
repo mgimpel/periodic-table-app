@@ -18,6 +18,9 @@ import {
   ORIGIN_KEYS,
   ORIGIN_COLORS,
   spectralCellColor,
+  radioactiveBucket,
+  RADIOACTIVE_KEYS,
+  RADIOACTIVE_COLORS,
 } from "../cellColor";
 import { CATEGORY_COLORS, CATEGORY_KEYS, type Element } from "../../data/element";
 import {
@@ -28,10 +31,10 @@ import {
 } from "../gradient";
 
 // Element arbitrary: varies the fields the resolver reads (category, phase,
-// melt, boil, electronegativity, origin, spectralColour) and fills the rest
-// with plausible fixed values. phase/origin mix the known dataset strings with
-// arbitrary strings so the unknown buckets are exercised; the gradient fields
-// are nullable to exercise the missing-value path.
+// melt, boil, electronegativity, origin, spectralColour, isRadioactive) and
+// fills the rest with plausible fixed values. phase/origin mix known dataset
+// strings with arbitrary strings so unknown buckets are exercised; gradient
+// fields are nullable to exercise the missing-value path.
 const element = (
   phaseArb: fc.Arbitrary<string> = fc.oneof(
     fc.constantFrom("Solid", "Liquid", "Gas"),
@@ -40,6 +43,7 @@ const element = (
   electronegativityArb: fc.Arbitrary<number | null> = fc.constant(null),
   originArb: fc.Arbitrary<string> = fc.constant(""),
   spectralColourArb: fc.Arbitrary<string | null> = fc.constant(null),
+  isRadioactiveArb: fc.Arbitrary<boolean> = fc.boolean(),
 ): fc.Arbitrary<Element> =>
   fc.record({
     category: fc.constantFrom(...CATEGORY_KEYS),
@@ -49,6 +53,7 @@ const element = (
     electronegativity: electronegativityArb,
     origin: originArb,
     spectralColour: spectralColourArb,
+    isRadioactive: isRadioactiveArb,
   }).map((v) => ({
     atomicNumber: 1,
     symbol: "X",
@@ -75,7 +80,36 @@ const element = (
     electronegativity: v.electronegativity,
     origin: v.origin,
     spectralColour: v.spectralColour,
+    isRadioactive: v.isRadioactive,
   }));
+
+describe("cellColor — radioactive scheme", () => {
+  it("maps the boolean to the matching bucket and color", () => {
+    const cases = [
+      [false, "stable"],
+      [true, "radioactive"],
+    ] as const;
+
+    for (const [isRadioactive, key] of cases) {
+      expect(RADIOACTIVE_KEYS).toContain(key);
+      expect(radioactiveBucket(isRadioactive)).toBe(key);
+      fc.assert(
+        fc.property(
+          element(
+            fc.string(),
+            fc.constant(null),
+            fc.constant(""),
+            fc.constant(null),
+            fc.constant(isRadioactive),
+          ),
+          (el) => {
+            expect(cellColor("radioactive", el)).toBe(RADIOACTIVE_COLORS[key]);
+          },
+        ),
+      );
+    }
+  });
+});
 
 // Feature: element-color-schemes, Property 3: Category scheme resolves to the
 // category color — cellColor("category", el) === CATEGORY_COLORS[el.category]

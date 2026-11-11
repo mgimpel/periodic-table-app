@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Tests for SchemeLegend: the legend's form follows the active coloring scheme.
-// The three discrete schemes (category, phase, origin) render one labeled
+// The discrete schemes (category, phase, origin, block, radioactive) render one labeled
 // swatch per key in canonical order; the gradient schemes (melting-point,
 // boiling-point, electronegativity) render a gradient bar with endpoint labels;
 // the spectral-colour scheme renders an explanatory note with no swatches.
@@ -32,6 +32,8 @@ import {
   ORIGIN_COLORS,
   PHASE_COLORS,
   PHASE_KEYS,
+  RADIOACTIVE_COLORS,
+  RADIOACTIVE_KEYS,
 } from "../../lib/cellColor";
 import {
   TEMPERATURE_OPTIONS,
@@ -96,7 +98,7 @@ function gradientBars(container: HTMLElement): HTMLElement[] {
   );
 }
 
-// --- Discrete legends: category / phase / origin / block ------------------
+// --- Discrete legends: category / phase / origin / block / radioactive -----
 // One labeled swatch per key, in the scheme's canonical key order, with the
 // localized label (not the raw key) and the scheme's color for that key.
 //   Req 1.3 (legend reflects the scheme), 2.3/3.3/7.3 (one swatch per key in
@@ -111,6 +113,7 @@ const DISCRETE_SCHEMES: ReadonlyArray<
   ["phase", PHASE_KEYS, PHASE_COLORS, enUi.phase],
   ["origin", ORIGIN_LEGEND_ORDER, ORIGIN_COLORS, enUi.origin],
   ["block", BLOCK_LEGEND_ORDER, BLOCK_COLORS, enUi.block],
+  ["radioactive", RADIOACTIVE_KEYS, RADIOACTIVE_COLORS, enUi.radioactive],
 ];
 
 // The category legend reorders the categories for readability, but must still

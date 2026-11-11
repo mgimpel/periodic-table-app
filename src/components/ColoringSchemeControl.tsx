@@ -17,7 +17,7 @@ interface ColoringSchemeControlProps {
 }
 
 // Coloring-scheme picker, rendered as a compact Select so it fits the header
-// bar (seven options are too wide for a SegmentedControl). Controlled, like
+// bar (the full option list is too wide for a SegmentedControl). Controlled, like
 // TemperatureControl: AppLayout owns the value because PeriodicTable reads it
 // to color cells and render the legend. The scheme is deliberately not
 // persisted — it resets to the default each session — so there is no save step.

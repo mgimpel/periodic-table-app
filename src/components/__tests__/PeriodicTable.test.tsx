@@ -235,6 +235,7 @@ describe("PeriodicTable coloring scheme drives cells and legend", () => {
     ["origin", cellColor("origin", sample)] as const,
     ["spectral-colour", cellColor("spectral-colour", sample)] as const,
     ["block", cellColor("block", sample)] as const,
+    ["radioactive", cellColor("radioactive", sample)] as const,
   ])("recolors the sampled cell for coloringScheme='%s'", (scheme, color) => {
     renderTable({ coloringScheme: scheme });
 

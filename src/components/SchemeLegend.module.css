@@ -3,8 +3,8 @@
  * (https://github.com/mgimpel/periodic-table-app).
  * SPDX-License-Identifier: BSD-3-Clause
 */
-/* All SchemeLegend styles: the discrete (category / phase / origin) swatch
- * legend, the gradient-bar legend (melting-point, boiling-point,
+/* All SchemeLegend styles: discrete swatches (category / phase / origin /
+ * block / radioactive), the gradient-bar legend (melting-point, boiling-point,
  * electronegativity) and the spectral-colour note. The .legend frame is a grid
  * item of .grid (PeriodicTable.module.css) — placed in the empty top-center
  * region (columns 3-12, spanning 2 rows) — so it inherits the table's

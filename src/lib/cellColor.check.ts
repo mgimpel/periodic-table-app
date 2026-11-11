@@ -19,6 +19,8 @@ import {
   phaseBucket,
   PHASE_COLORS,
   spectralCellColor,
+  RADIOACTIVE_COLORS,
+  radioactiveBucket,
 } from "./cellColor";
 import {
   MISSING_VALUE_COLOR,
@@ -152,6 +154,18 @@ for (const element of ELEMENTS) {
     element.name,
   );
   assert.notEqual(blockBucket(element.block), "unknown", element.name);
+}
+
+// Resolver, radioactive scheme: the boolean maps to its matching color bucket.
+assert.equal(radioactiveBucket(false), "stable");
+assert.equal(radioactiveBucket(true), "radioactive");
+assert.equal(new Set(Object.values(RADIOACTIVE_COLORS)).size, 2);
+for (const element of ELEMENTS) {
+  assert.equal(
+    cellColor("radioactive", element),
+    RADIOACTIVE_COLORS[radioactiveBucket(element.isRadioactive)],
+    element.name,
+  );
 }
 
 // phaseAtTemperature: only melt/boil matter, so build a minimal element with the

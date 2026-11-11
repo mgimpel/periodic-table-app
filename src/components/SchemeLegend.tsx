@@ -13,6 +13,8 @@ import {
   ORIGIN_KEYS,
   PHASE_COLORS,
   PHASE_KEYS,
+  RADIOACTIVE_COLORS,
+  RADIOACTIVE_KEYS,
 } from "../lib/cellColor";
 import type { ColoringSchemeOption } from "../lib/coloringScheme";
 import {
@@ -58,14 +60,15 @@ export const BLOCK_LEGEND_ORDER = BLOCK_KEYS.filter(
   (key) => key !== "unknown",
 );
 
-// The four discrete schemes draw one swatch per key: their i18n label prefix
+// The discrete schemes draw one swatch per key: their i18n label prefix
 // equals the scheme name (t(`category.${key}`), t(`phase.${key}`),
-// t(`origin.${key}`), t(`block.${key}`)), so one lookup covers all four.
+// t(`origin.${key}`), t(`block.${key}`), t(`radioactive.${key}`)).
 const DISCRETE = {
   category: [CATEGORY_LEGEND_ORDER, CATEGORY_COLORS],
   phase: [PHASE_KEYS, PHASE_COLORS],
   origin: [ORIGIN_LEGEND_ORDER, ORIGIN_COLORS],
   block: [BLOCK_LEGEND_ORDER, BLOCK_COLORS],
+  radioactive: [RADIOACTIVE_KEYS, RADIOACTIVE_COLORS],
 } as const;
 
 // The repeated legend frame: a labelled group with the scheme title and the
@@ -101,11 +104,11 @@ function LegendFrame({
 // with the table rather than being dropped when cells fall back to symbol-only,
 // so the key stays legible at every scale.
 //
-// The legend adapts to the active scheme: the category, phase and origin
-// schemes render discrete swatches with labels; the melting-point, boiling-point
-// and electronegativity schemes render a gradient bar with endpoint labels; and
-// the spectral-colour scheme renders an explanatory note (each cell already
-// shows its own element's spectral colour). The phase legend also hosts the
+// The legend adapts to the active scheme: category, phase, origin, block and
+// radioactive schemes render discrete swatches with labels; melting-point,
+// boiling-point and electronegativity render a gradient bar with endpoint
+// labels; spectral-colour renders an explanatory note (each cell already shows
+// its own element's spectral colour). The phase legend also hosts the
 // temperature slider that drives the phase-at-temperature coloring.
 export function SchemeLegend({
   scheme,
@@ -176,12 +179,12 @@ export function SchemeLegend({
     );
   }
 
-  // Discrete legend: one swatch per key for the category / phase / origin
-  // schemes. Keys, colors and the i18n label prefix all key off the scheme.
-  // keys and colors are paired per scheme, so every key indexes its colors;
-  // the cast bridges the three distinct Record types the lookup unions into.
+  // Discrete legend: one swatch per key for each discrete scheme. Keys, colors
+  // and the i18n label prefix all key off the scheme.
+  // Keys and colors are paired per scheme, so every key indexes its colors;
+  // the cast bridges the distinct Record types the lookup unions into.
   const [keys, colors] = DISCRETE[
-    scheme as "category" | "phase" | "origin" | "block"
+    scheme as "category" | "phase" | "origin" | "block" | "radioactive"
   ] as readonly [readonly string[], Record<string, string>];
 
   return (
