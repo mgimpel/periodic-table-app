@@ -53,6 +53,7 @@ export function HeaderBar({
         ref={logoButtonRef}
         variant="subtle"
         size={32}
+        radius="sm"
         aria-label={t("header.openAbout")}
         onClick={onOpenAbout}
       >
@@ -79,6 +80,7 @@ export function HeaderBar({
         ref={settingsButtonRef}
         variant="subtle"
         size={32}
+        radius="sm"
         aria-label={t("header.openSettings")}
         onClick={onOpenSettings}
       >

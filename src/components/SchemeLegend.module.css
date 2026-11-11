@@ -32,7 +32,7 @@
   padding: 2px 24px;
   align-content: start;
   border: 1px solid var(--mantine-color-gray-4);
-  border-radius: var(--mantine-radius-default);
+  border-radius: 4px;
 }
 
 .fourColumnLegend {
