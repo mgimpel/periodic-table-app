@@ -16,7 +16,7 @@
 // We expose exactly the 118 confirmed elements, so entries above 118 are dropped.
 
 import raw from "./periodic-table.json";
-import raw2 from "./periodic-table2.json";
+import raw2 from "./periodic-table-wikipedia.json";
 import type { Element, ElementCategory } from "./element";
 import { CATEGORY_KEYS } from "./element";
 
@@ -48,21 +48,25 @@ interface RawElement {
   named_by: string | null;
 }
 
-// Extended dataset (periodic-table2.json): a top-level array keyed by atomic
-// number Z, with string-valued fields. Only the three fields we merge are typed.
-interface RawElement2 {
+// Extended dataset (periodic-table-wikipedia.json): an elements array keyed by
+// atomic number Z, with string-valued fields. Only the three fields we merge are typed.
+interface RawElementWikipedia {
   Z: number;
   "Electro-negativity"?: string;
   Origin?: string;
   "Spectral colour"?: string;
 }
 
+interface RawDatasetWikipedia {
+  elements: RawElementWikipedia[];
+}
+
 // Build the Z→entry lookup once at module load.
 // ponytail: O(1) per-element merge, no second typed model. Ceiling: assumes the
 // two datasets agree on Z — a Z present in one but not the other yields the
 // null/"" fallbacks below (graceful degrade, no throw).
-const extendedByZ = new Map<number, RawElement2>(
-  (raw2 as unknown as RawElement2[]).map((e) => [e.Z, e]),
+const extendedByZ = new Map<number, RawElementWikipedia>(
+  (raw2 as unknown as RawDatasetWikipedia).elements.map((e) => [e.Z, e]),
 );
 
 /** Parse the en-dash-placeholder electronegativity string into a number or null. */
