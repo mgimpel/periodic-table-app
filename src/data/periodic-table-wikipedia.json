@@ -1,8 +1,8 @@
 {
   "elements": [
     {
-      "Z": 1,
-      "Sym.": "H",
+      "number": 1,
+      "symbol": "H",
       "Name": "Hydrogen",
       "Name origin": "Greek roots hydro- + -gen, 'water-forming'",
       "Group": "1",
@@ -16,12 +16,11 @@
       "Electro-negativity": "2.20",
       "Abundance in Earth's crust (mg/kg)": "1400",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "FF497E"
+      "Phase": "gas"
     },
     {
-      "Z": 2,
-      "Sym.": "He",
+      "number": 2,
+      "symbol": "He",
       "Name": "Helium",
       "Name origin": "Greek hḗlios 'sun'",
       "Group": "18",
@@ -35,12 +34,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "0.008",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "FFEC8E"
+      "Phase": "gas"
     },
     {
-      "Z": 3,
-      "Sym.": "Li",
+      "number": 3,
+      "symbol": "Li",
       "Name": "Lithium",
       "Name origin": "Greek líthos 'stone'",
       "Group": "1",
@@ -54,12 +52,11 @@
       "Electro-negativity": "0.98",
       "Abundance in Earth's crust (mg/kg)": "20",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FF4B61"
+      "Phase": "solid"
     },
     {
-      "Z": 4,
-      "Sym.": "Be",
+      "number": 4,
+      "symbol": "Be",
       "Name": "Beryllium",
       "Name origin": "Beryl, mineral (ultimately after Belur, Karnataka, India)",
       "Group": "2",
@@ -73,12 +70,11 @@
       "Electro-negativity": "1.57",
       "Abundance in Earth's crust (mg/kg)": "2.8",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "44FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 5,
-      "Sym.": "B",
+      "number": 5,
+      "symbol": "B",
       "Name": "Boron",
       "Name origin": "Borax, mineral (from Arabic: bawraq, Middle Persian: *bōrag)",
       "Group": "13",
@@ -92,12 +88,11 @@
       "Electro-negativity": "2.04",
       "Abundance in Earth's crust (mg/kg)": "10",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "F8FFE1"
+      "Phase": "solid"
     },
     {
-      "Z": 6,
-      "Sym.": "C",
+      "number": 6,
+      "symbol": "C",
       "Name": "Carbon",
       "Name origin": "Latin carbo 'coal'",
       "Group": "14",
@@ -111,12 +106,11 @@
       "Electro-negativity": "2.55",
       "Abundance in Earth's crust (mg/kg)": "200",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFFFB3"
+      "Phase": "solid"
     },
     {
-      "Z": 7,
-      "Sym.": "N",
+      "number": 7,
+      "symbol": "N",
       "Name": "Nitrogen",
       "Name origin": "Greek nítron + -gen, 'niter-forming'",
       "Group": "15",
@@ -130,12 +124,11 @@
       "Electro-negativity": "3.04",
       "Abundance in Earth's crust (mg/kg)": "19",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "FFFFF0"
+      "Phase": "gas"
     },
     {
-      "Z": 8,
-      "Sym.": "O",
+      "number": 8,
+      "symbol": "O",
       "Name": "Oxygen",
       "Name origin": "Greek oxy- + -gen, 'acid-forming'",
       "Group": "16",
@@ -149,12 +142,11 @@
       "Electro-negativity": "3.44",
       "Abundance in Earth's crust (mg/kg)": "461000",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "C4AEFF"
+      "Phase": "gas"
     },
     {
-      "Z": 9,
-      "Sym.": "F",
+      "number": 9,
+      "symbol": "F",
       "Name": "Fluorine",
       "Name origin": "Latin fluo 'to flow'",
       "Group": "17",
@@ -168,12 +160,11 @@
       "Electro-negativity": "3.98",
       "Abundance in Earth's crust (mg/kg)": "585",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "FF4466"
+      "Phase": "gas"
     },
     {
-      "Z": 10,
-      "Sym.": "Ne",
+      "number": 10,
+      "symbol": "Ne",
       "Name": "Neon",
       "Name origin": "Greek néon 'new'",
       "Group": "18",
@@ -187,12 +178,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "0.005",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "FF6532"
+      "Phase": "gas"
     },
     {
-      "Z": 11,
-      "Sym.": "Na",
+      "number": 11,
+      "symbol": "Na",
       "Name": "Sodium",
       "Name origin": "Coined by Humphry Davy who first isolated it, from English soda (specifically caustic soda), via Italian from Arabic ṣudāʕ 'headache'",
       "Group": "1",
@@ -206,12 +196,11 @@
       "Electro-negativity": "0.93",
       "Abundance in Earth's crust (mg/kg)": "23600",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFD122"
+      "Phase": "solid"
     },
     {
-      "Z": 12,
-      "Sym.": "Mg",
+      "number": 12,
+      "symbol": "Mg",
       "Name": "Magnesium",
       "Name origin": "Magnesia region, eastern Thessaly, Greece",
       "Group": "2",
@@ -225,12 +214,11 @@
       "Electro-negativity": "1.31",
       "Abundance in Earth's crust (mg/kg)": "23300",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "64FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 13,
-      "Sym.": "Al",
+      "number": 13,
+      "symbol": "Al",
       "Name": "Aluminium",
       "Name origin": "Alumina, from Latin alumen (gen. aluminis) 'bitter salt, alum'",
       "Group": "13",
@@ -244,12 +232,11 @@
       "Electro-negativity": "1.61",
       "Abundance in Earth's crust (mg/kg)": "82300",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "80E0FF"
+      "Phase": "solid"
     },
     {
-      "Z": 14,
-      "Sym.": "Si",
+      "number": 14,
+      "symbol": "Si",
       "Name": "Silicon",
       "Name origin": "Latin silex 'flint' (originally silicium)",
       "Group": "14",
@@ -263,12 +250,11 @@
       "Electro-negativity": "1.9",
       "Abundance in Earth's crust (mg/kg)": "282000",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFF5AC"
+      "Phase": "solid"
     },
     {
-      "Z": 15,
-      "Sym.": "P",
+      "number": 15,
+      "symbol": "P",
       "Name": "Phosphorus",
       "Name origin": "Greek phōsphóros 'light-bearing'",
       "Group": "15",
@@ -282,12 +268,11 @@
       "Electro-negativity": "2.19",
       "Abundance in Earth's crust (mg/kg)": "1050",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "5CFFD9"
+      "Phase": "solid"
     },
     {
-      "Z": 16,
-      "Sym.": "S",
+      "number": 16,
+      "symbol": "S",
       "Name": "Sulfur",
       "Name origin": "Latin",
       "Group": "16",
@@ -301,12 +286,11 @@
       "Electro-negativity": "2.58",
       "Abundance in Earth's crust (mg/kg)": "350",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "4F86FF"
+      "Phase": "solid"
     },
     {
-      "Z": 17,
-      "Sym.": "Cl",
+      "number": 17,
+      "symbol": "Cl",
       "Name": "Chlorine",
       "Name origin": "Greek chlōrós 'greenish yellow'",
       "Group": "17",
@@ -320,12 +304,11 @@
       "Electro-negativity": "3.16",
       "Abundance in Earth's crust (mg/kg)": "145",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "8DC0FF"
+      "Phase": "gas"
     },
     {
-      "Z": 18,
-      "Sym.": "Ar",
+      "number": 18,
+      "symbol": "Ar",
       "Name": "Argon",
       "Name origin": "Greek argós 'idle' (it is inert)",
       "Group": "18",
@@ -339,12 +322,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "3.5",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "CEB0FF"
+      "Phase": "gas"
     },
     {
-      "Z": 19,
-      "Sym.": "K",
+      "number": 19,
+      "symbol": "K",
       "Name": "Potassium",
       "Name origin": "Neo-Latin potassa 'potash', from pot + ash",
       "Group": "1",
@@ -358,12 +340,11 @@
       "Electro-negativity": "0.82",
       "Abundance in Earth's crust (mg/kg)": "20900",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "B196FF"
+      "Phase": "solid"
     },
     {
-      "Z": 20,
-      "Sym.": "Ca",
+      "number": 20,
+      "symbol": "Ca",
       "Name": "Calcium",
       "Name origin": "Latin calx 'lime'",
       "Group": "2",
@@ -377,12 +358,11 @@
       "Electro-negativity": "1.00",
       "Abundance in Earth's crust (mg/kg)": "41500",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FF9C8A"
+      "Phase": "solid"
     },
     {
-      "Z": 21,
-      "Sym.": "Sc",
+      "number": 21,
+      "symbol": "Sc",
       "Name": "Scandium",
       "Name origin": "Latin Scandia 'Scandinavia'",
       "Group": "3",
@@ -396,12 +376,11 @@
       "Electro-negativity": "1.36",
       "Abundance in Earth's crust (mg/kg)": "22",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFFCFF"
+      "Phase": "solid"
     },
     {
-      "Z": 22,
-      "Sym.": "Ti",
+      "number": 22,
+      "symbol": "Ti",
       "Name": "Titanium",
       "Name origin": "Titans, children of Gaia and Ouranos",
       "Group": "4",
@@ -415,12 +394,11 @@
       "Electro-negativity": "1.54",
       "Abundance in Earth's crust (mg/kg)": "5650",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "76D3FF"
+      "Phase": "solid"
     },
     {
-      "Z": 23,
-      "Sym.": "V",
+      "number": 23,
+      "symbol": "V",
       "Name": "Vanadium",
       "Name origin": "Vanadis, a name for Norse goddess Freyja",
       "Group": "5",
@@ -434,12 +412,11 @@
       "Electro-negativity": "1.63",
       "Abundance in Earth's crust (mg/kg)": "120",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "EDFFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 24,
-      "Sym.": "Cr",
+      "number": 24,
+      "symbol": "Cr",
       "Name": "Chromium",
       "Name origin": "Greek chróma 'colour'",
       "Group": "6",
@@ -453,12 +430,11 @@
       "Electro-negativity": "1.66",
       "Abundance in Earth's crust (mg/kg)": "102",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "AAFFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 25,
-      "Sym.": "Mn",
+      "number": 25,
+      "symbol": "Mn",
       "Name": "Manganese",
       "Name origin": "Corrupted from magnesia negra; see magnesium",
       "Group": "7",
@@ -472,12 +448,11 @@
       "Electro-negativity": "1.55",
       "Abundance in Earth's crust (mg/kg)": "950",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "5594FF"
+      "Phase": "solid"
     },
     {
-      "Z": 26,
-      "Sym.": "Fe",
+      "number": 26,
+      "symbol": "Fe",
       "Name": "Iron",
       "Name origin": "English, from Proto-Celtic *īsarnom 'iron', from a root meaning 'blood'",
       "Group": "8",
@@ -491,12 +466,11 @@
       "Electro-negativity": "1.83",
       "Abundance in Earth's crust (mg/kg)": "56300",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "52D9FF"
+      "Phase": "solid"
     },
     {
-      "Z": 27,
-      "Sym.": "Co",
+      "number": 27,
+      "symbol": "Co",
       "Name": "Cobalt",
       "Name origin": "German Kobold, 'goblin'",
       "Group": "9",
@@ -510,12 +484,11 @@
       "Electro-negativity": "1.88",
       "Abundance in Earth's crust (mg/kg)": "25",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "5CFFD1"
+      "Phase": "solid"
     },
     {
-      "Z": 28,
-      "Sym.": "Ni",
+      "number": 28,
+      "symbol": "Ni",
       "Name": "Nickel",
       "Name origin": "Nickel, a mischievous sprite in German miner mythology",
       "Group": "10",
@@ -529,12 +502,11 @@
       "Electro-negativity": "1.91",
       "Abundance in Earth's crust (mg/kg)": "84",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "5FFFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 29,
-      "Sym.": "Cu",
+      "number": 29,
+      "symbol": "Cu",
       "Name": "Copper",
       "Name origin": "English, from Latin cuprum, after Cyprus",
       "Group": "11",
@@ -548,12 +520,11 @@
       "Electro-negativity": "1.90",
       "Abundance in Earth's crust (mg/kg)": "60",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "A8FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 30,
-      "Sym.": "Zn",
+      "number": 30,
+      "symbol": "Zn",
       "Name": "Zinc",
       "Name origin": "Most likely German Zinke, 'prong, tooth', but some suggest Persian sang 'stone'",
       "Group": "12",
@@ -567,12 +538,11 @@
       "Electro-negativity": "1.65",
       "Abundance in Earth's crust (mg/kg)": "70",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "426AFF"
+      "Phase": "solid"
     },
     {
-      "Z": 31,
-      "Sym.": "Ga",
+      "number": 31,
+      "symbol": "Ga",
       "Name": "Gallium",
       "Name origin": "Latin Gallia 'France'",
       "Group": "13",
@@ -586,12 +556,11 @@
       "Electro-negativity": "1.81",
       "Abundance in Earth's crust (mg/kg)": "19",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "6D3EFF"
+      "Phase": "solid"
     },
     {
-      "Z": 32,
-      "Sym.": "Ge",
+      "number": 32,
+      "symbol": "Ge",
       "Name": "Germanium",
       "Name origin": "Latin Germania 'Germany'",
       "Group": "14",
@@ -605,12 +574,11 @@
       "Electro-negativity": "2.01",
       "Abundance in Earth's crust (mg/kg)": "1.5",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFFFF6"
+      "Phase": "solid"
     },
     {
-      "Z": 33,
-      "Sym.": "As",
+      "number": 33,
+      "symbol": "As",
       "Name": "Arsenic",
       "Name origin": "Middle English, from Middle French arsenic, from Greek arsenikón 'yellow arsenic' (influenced by arsenikós 'masculine, virile'), from a West Asian wanderword ultimately from Old Persian: *zarniya-ka, lit. 'golden'",
       "Group": "15",
@@ -624,12 +592,11 @@
       "Electro-negativity": "2.18",
       "Abundance in Earth's crust (mg/kg)": "1.8",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "4EADFF"
+      "Phase": "solid"
     },
     {
-      "Z": 34,
-      "Sym.": "Se",
+      "number": 34,
+      "symbol": "Se",
       "Name": "Selenium",
       "Name origin": "Greek selḗnē 'moon'",
       "Group": "16",
@@ -643,12 +610,11 @@
       "Electro-negativity": "2.55",
       "Abundance in Earth's crust (mg/kg)": "0.05",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "4CADFF"
+      "Phase": "solid"
     },
     {
-      "Z": 35,
-      "Sym.": "Br",
+      "number": 35,
+      "symbol": "Br",
       "Name": "Bromine",
       "Name origin": "Greek brômos 'stench'",
       "Group": "17",
@@ -662,12 +628,11 @@
       "Electro-negativity": "2.96",
       "Abundance in Earth's crust (mg/kg)": "2.4",
       "Origin": "primordial",
-      "Phase": "liquid",
-      "Spectral colour": "99F0FF"
+      "Phase": "liquid"
     },
     {
-      "Z": 36,
-      "Sym.": "Kr",
+      "number": 36,
+      "symbol": "Kr",
       "Name": "Krypton",
       "Name origin": "Greek kryptós 'hidden'",
       "Group": "18",
@@ -681,12 +646,11 @@
       "Electro-negativity": "3.00",
       "Abundance in Earth's crust (mg/kg)": "1×10−4",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "FFF8FC"
+      "Phase": "gas"
     },
     {
-      "Z": 37,
-      "Sym.": "Rb",
+      "number": 37,
+      "symbol": "Rb",
       "Name": "Rubidium",
       "Name origin": "Latin rubidus 'deep red'",
       "Group": "1",
@@ -700,12 +664,11 @@
       "Electro-negativity": "0.82",
       "Abundance in Earth's crust (mg/kg)": "90",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FF7D7D"
+      "Phase": "solid"
     },
     {
-      "Z": 38,
-      "Sym.": "Sr",
+      "number": 38,
+      "symbol": "Sr",
       "Name": "Strontium",
       "Name origin": "Strontian, a village in Scotland, where it was found",
       "Group": "2",
@@ -719,12 +682,11 @@
       "Electro-negativity": "0.95",
       "Abundance in Earth's crust (mg/kg)": "370",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FF9AA9"
+      "Phase": "solid"
     },
     {
-      "Z": 39,
-      "Sym.": "Y",
+      "number": 39,
+      "symbol": "Y",
       "Name": "Yttrium",
       "Name origin": "Ytterby, Sweden, where it was found; see terbium, erbium, ytterbium",
       "Group": "3",
@@ -738,12 +700,11 @@
       "Electro-negativity": "1.22",
       "Abundance in Earth's crust (mg/kg)": "33",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFFFE9"
+      "Phase": "solid"
     },
     {
-      "Z": 40,
-      "Sym.": "Zr",
+      "number": 40,
+      "symbol": "Zr",
       "Name": "Zirconium",
       "Name origin": "Zircon, mineral, from Persian zargun 'gold-hued'",
       "Group": "4",
@@ -757,12 +718,11 @@
       "Electro-negativity": "1.33",
       "Abundance in Earth's crust (mg/kg)": "165",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "84D4FF"
+      "Phase": "solid"
     },
     {
-      "Z": 41,
-      "Sym.": "Nb",
+      "number": 41,
+      "symbol": "Nb",
       "Name": "Niobium",
       "Name origin": "Niobe, daughter of king Tantalus in Greek myth; see tantalum",
       "Group": "5",
@@ -776,12 +736,11 @@
       "Electro-negativity": "1.6",
       "Abundance in Earth's crust (mg/kg)": "20",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "A7FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 42,
-      "Sym.": "Mo",
+      "number": 42,
+      "symbol": "Mo",
       "Name": "Molybdenum",
       "Name origin": "Greek molýbdaina 'piece of lead', from mólybdos 'lead', due to confusion with lead ore galena (PbS)",
       "Group": "6",
@@ -795,12 +754,11 @@
       "Electro-negativity": "2.16",
       "Abundance in Earth's crust (mg/kg)": "1.2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "92FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 43,
-      "Sym.": "Tc",
+      "number": 43,
+      "symbol": "Tc",
       "Name": "Technetium",
       "Name origin": "Greek tekhnētós 'artificial'",
       "Group": "7",
@@ -814,12 +772,11 @@
       "Electro-negativity": "1.9",
       "Abundance in Earth's crust (mg/kg)": "~ 3×10−9",
       "Origin": "from decay",
-      "Phase": "solid",
-      "Spectral colour": "5A9CFF"
+      "Phase": "solid"
     },
     {
-      "Z": 44,
-      "Sym.": "Ru",
+      "number": 44,
+      "symbol": "Ru",
       "Name": "Ruthenium",
       "Name origin": "Neo-Latin Ruthenia 'Russia'",
       "Group": "8",
@@ -833,12 +790,11 @@
       "Electro-negativity": "2.2",
       "Abundance in Earth's crust (mg/kg)": "0.001",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "5DC1FF"
+      "Phase": "solid"
     },
     {
-      "Z": 45,
-      "Sym.": "Rh",
+      "number": 45,
+      "symbol": "Rh",
       "Name": "Rhodium",
       "Name origin": "Greek rhodóeis 'rose-coloured', from rhódon 'rose'",
       "Group": "9",
@@ -852,12 +808,11 @@
       "Electro-negativity": "2.28",
       "Abundance in Earth's crust (mg/kg)": "0.001",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "EEFFFC"
+      "Phase": "solid"
     },
     {
-      "Z": 46,
-      "Sym.": "Pd",
+      "number": 46,
+      "symbol": "Pd",
       "Name": "Palladium",
       "Name origin": "Pallas, asteroid, then considered a planet",
       "Group": "10",
@@ -871,12 +826,11 @@
       "Electro-negativity": "2.20",
       "Abundance in Earth's crust (mg/kg)": "0.015",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "82FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 47,
-      "Sym.": "Ag",
+      "number": 47,
+      "symbol": "Ag",
       "Name": "Silver",
       "Name origin": "English, from Proto-Germanic",
       "Group": "11",
@@ -890,12 +844,11 @@
       "Electro-negativity": "1.93",
       "Abundance in Earth's crust (mg/kg)": "0.075",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "59FFA0"
+      "Phase": "solid"
     },
     {
-      "Z": 48,
-      "Sym.": "Cd",
+      "number": 48,
+      "symbol": "Cd",
       "Name": "Cadmium",
       "Name origin": "Neo-Latin cadmia 'calamine', from King Cadmus, mythic founder of Thebes",
       "Group": "12",
@@ -909,12 +862,11 @@
       "Electro-negativity": "1.69",
       "Abundance in Earth's crust (mg/kg)": "0.159",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "76B8FF"
+      "Phase": "solid"
     },
     {
-      "Z": 49,
-      "Sym.": "In",
+      "number": 49,
+      "symbol": "In",
       "Name": "Indium",
       "Name origin": "Latin indicum 'indigo', the blue dye named after India and its color observed in indium's spectral lines",
       "Group": "13",
@@ -928,12 +880,11 @@
       "Electro-negativity": "1.78",
       "Abundance in Earth's crust (mg/kg)": "0.25",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "7C4EFF"
+      "Phase": "solid"
     },
     {
-      "Z": 50,
-      "Sym.": "Sn",
+      "number": 50,
+      "symbol": "Sn",
       "Name": "Tin",
       "Name origin": "English, from Proto-Germanic",
       "Group": "14",
@@ -947,12 +898,11 @@
       "Electro-negativity": "1.96",
       "Abundance in Earth's crust (mg/kg)": "2.3",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFF4FF"
+      "Phase": "solid"
     },
     {
-      "Z": 51,
-      "Sym.": "Sb",
+      "number": 51,
+      "symbol": "Sb",
       "Name": "Antimony",
       "Name origin": "Latin antimonium, of unclear origin: folk etymologies suggest Greek antí 'against' + mónos 'alone', or Old French anti-moine 'monk's bane', but could be from or related to Arabic ʾiṯmid 'antimony'",
       "Group": "15",
@@ -966,12 +916,11 @@
       "Electro-negativity": "2.05",
       "Abundance in Earth's crust (mg/kg)": "0.2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFFFF1"
+      "Phase": "solid"
     },
     {
-      "Z": 52,
-      "Sym.": "Te",
+      "number": 52,
+      "symbol": "Te",
       "Name": "Tellurium",
       "Name origin": "Latin tellus 'ground, earth'",
       "Group": "16",
@@ -985,12 +934,11 @@
       "Electro-negativity": "2.1",
       "Abundance in Earth's crust (mg/kg)": "0.001",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "65F0FF"
+      "Phase": "solid"
     },
     {
-      "Z": 53,
-      "Sym.": "I",
+      "number": 53,
+      "symbol": "I",
       "Name": "Iodine",
       "Name origin": "French iode, from Greek ioeidḗs 'violet'",
       "Group": "17",
@@ -1004,12 +952,11 @@
       "Electro-negativity": "2.66",
       "Abundance in Earth's crust (mg/kg)": "0.45",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "E3FFC9"
+      "Phase": "solid"
     },
     {
-      "Z": 54,
-      "Sym.": "Xe",
+      "number": 54,
+      "symbol": "Xe",
       "Name": "Xenon",
       "Name origin": "Greek xénon, neuter of xénos 'strange, foreign'",
       "Group": "18",
@@ -1023,12 +970,11 @@
       "Electro-negativity": "2.60",
       "Abundance in Earth's crust (mg/kg)": "3×10−5",
       "Origin": "primordial",
-      "Phase": "gas",
-      "Spectral colour": "C0B9FF"
+      "Phase": "gas"
     },
     {
-      "Z": 55,
-      "Sym.": "Cs",
+      "number": 55,
+      "symbol": "Cs",
       "Name": "Caesium",
       "Name origin": "Latin caesius 'sky-blue'",
       "Group": "1",
@@ -1042,12 +988,11 @@
       "Electro-negativity": "0.79",
       "Abundance in Earth's crust (mg/kg)": "3",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "A18FFF"
+      "Phase": "solid"
     },
     {
-      "Z": 56,
-      "Sym.": "Ba",
+      "number": 56,
+      "symbol": "Ba",
       "Name": "Barium",
       "Name origin": "Greek barýs 'heavy'",
       "Group": "2",
@@ -1061,12 +1006,11 @@
       "Electro-negativity": "0.89",
       "Abundance in Earth's crust (mg/kg)": "425",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFD9AD"
+      "Phase": "solid"
     },
     {
-      "Z": 57,
-      "Sym.": "La",
+      "number": 57,
+      "symbol": "La",
       "Name": "Lanthanum",
       "Name origin": "Greek lanthánein 'to lie hidden'",
       "Group": "f-block groups",
@@ -1080,12 +1024,11 @@
       "Electro-negativity": "1.1",
       "Abundance in Earth's crust (mg/kg)": "39",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "AAFFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 58,
-      "Sym.": "Ce",
+      "number": 58,
+      "symbol": "Ce",
       "Name": "Cerium",
       "Name origin": "Ceres (dwarf planet), then considered a planet",
       "Group": "f-block groups",
@@ -1099,12 +1042,11 @@
       "Electro-negativity": "1.12",
       "Abundance in Earth's crust (mg/kg)": "66.5",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "D2FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 59,
-      "Sym.": "Pr",
+      "number": 59,
+      "symbol": "Pr",
       "Name": "Praseodymium",
       "Name origin": "Greek prásios dídymos 'green twin'",
       "Group": "f-block groups",
@@ -1118,12 +1060,11 @@
       "Electro-negativity": "1.13",
       "Abundance in Earth's crust (mg/kg)": "9.2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "72B7FF"
+      "Phase": "solid"
     },
     {
-      "Z": 60,
-      "Sym.": "Nd",
+      "number": 60,
+      "symbol": "Nd",
       "Name": "Neodymium",
       "Name origin": "Greek néos dídymos 'new twin'",
       "Group": "f-block groups",
@@ -1137,12 +1078,11 @@
       "Electro-negativity": "1.14",
       "Abundance in Earth's crust (mg/kg)": "41.5",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "ACEEFF"
+      "Phase": "solid"
     },
     {
-      "Z": 61,
-      "Sym.": "Pm",
+      "number": 61,
+      "symbol": "Pm",
       "Name": "Promethium",
       "Name origin": "Prometheus, a Titan",
       "Group": "f-block groups",
@@ -1156,12 +1096,11 @@
       "Electro-negativity": "1.13",
       "Abundance in Earth's crust (mg/kg)": "2×10−19",
       "Origin": "from decay",
-      "Phase": "solid",
-      "Spectral colour": "93AAFF"
+      "Phase": "solid"
     },
     {
-      "Z": 62,
-      "Sym.": "Sm",
+      "number": 62,
+      "symbol": "Sm",
       "Name": "Samarium",
       "Name origin": "Samarskite, a mineral named after V. Samarsky-Bykhovets, Russian mine official",
       "Group": "f-block groups",
@@ -1175,12 +1114,11 @@
       "Electro-negativity": "1.17",
       "Abundance in Earth's crust (mg/kg)": "7.05",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "A7E0FF"
+      "Phase": "solid"
     },
     {
-      "Z": 63,
-      "Sym.": "Eu",
+      "number": 63,
+      "symbol": "Eu",
       "Name": "Europium",
       "Name origin": "Europe",
       "Group": "f-block groups",
@@ -1194,12 +1132,11 @@
       "Electro-negativity": "1.2",
       "Abundance in Earth's crust (mg/kg)": "2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "FFFFE5"
+      "Phase": "solid"
     },
     {
-      "Z": 64,
-      "Sym.": "Gd",
+      "number": 64,
+      "symbol": "Gd",
       "Name": "Gadolinium",
       "Name origin": "Gadolinite, a mineral named after Johan Gadolin, Finnish chemist, physicist and mineralogist",
       "Group": "f-block groups",
@@ -1213,12 +1150,11 @@
       "Electro-negativity": "1.2",
       "Abundance in Earth's crust (mg/kg)": "6.2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "D4D4FF"
+      "Phase": "solid"
     },
     {
-      "Z": 65,
-      "Sym.": "Tb",
+      "number": 65,
+      "symbol": "Tb",
       "Name": "Terbium",
       "Name origin": "Ytterby, Sweden, where it was found; see yttrium, erbium, ytterbium",
       "Group": "f-block groups",
@@ -1232,12 +1168,11 @@
       "Electro-negativity": "1.2",
       "Abundance in Earth's crust (mg/kg)": "1.2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "A5FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 66,
-      "Sym.": "Dy",
+      "number": 66,
+      "symbol": "Dy",
       "Name": "Dysprosium",
       "Name origin": "Greek dysprósitos 'hard to get'",
       "Group": "f-block groups",
@@ -1251,12 +1186,11 @@
       "Electro-negativity": "1.22",
       "Abundance in Earth's crust (mg/kg)": "5.2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "76CAFF"
+      "Phase": "solid"
     },
     {
-      "Z": 67,
-      "Sym.": "Ho",
+      "number": 67,
+      "symbol": "Ho",
       "Name": "Holmium",
       "Name origin": "Neo-Latin Holmia 'Stockholm'",
       "Group": "f-block groups",
@@ -1270,12 +1204,11 @@
       "Electro-negativity": "1.23",
       "Abundance in Earth's crust (mg/kg)": "1.3",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "E9FFF1"
+      "Phase": "solid"
     },
     {
-      "Z": 68,
-      "Sym.": "Er",
+      "number": 68,
+      "symbol": "Er",
       "Name": "Erbium",
       "Name origin": "Ytterby, where it was found; see yttrium, terbium, ytterbium",
       "Group": "f-block groups",
@@ -1289,12 +1222,11 @@
       "Electro-negativity": "1.24",
       "Abundance in Earth's crust (mg/kg)": "3.5",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "99FFCD"
+      "Phase": "solid"
     },
     {
-      "Z": 69,
-      "Sym.": "Tm",
+      "number": 69,
+      "symbol": "Tm",
       "Name": "Thulium",
       "Name origin": "Thule, the ancient name for an unclear northern location",
       "Group": "f-block groups",
@@ -1308,12 +1240,11 @@
       "Electro-negativity": "1.25",
       "Abundance in Earth's crust (mg/kg)": "0.52",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "7AE2FF"
+      "Phase": "solid"
     },
     {
-      "Z": 70,
-      "Sym.": "Yb",
+      "number": 70,
+      "symbol": "Yb",
       "Name": "Ytterbium",
       "Name origin": "Ytterby, where it was found; see yttrium, terbium, erbium",
       "Group": "f-block groups",
@@ -1327,12 +1258,11 @@
       "Electro-negativity": "1.1",
       "Abundance in Earth's crust (mg/kg)": "3.2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "C3F0FF"
+      "Phase": "solid"
     },
     {
-      "Z": 71,
-      "Sym.": "Lu",
+      "number": 71,
+      "symbol": "Lu",
       "Name": "Lutetium",
       "Name origin": "Latin Lutetia 'Paris'",
       "Group": "3",
@@ -1346,12 +1276,11 @@
       "Electro-negativity": "1.27",
       "Abundance in Earth's crust (mg/kg)": "0.8",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "CCFFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 72,
-      "Sym.": "Hf",
+      "number": 72,
+      "symbol": "Hf",
       "Name": "Hafnium",
       "Name origin": "Neo-Latin Hafnia 'Copenhagen' (from Danish havn, harbor)",
       "Group": "4",
@@ -1365,12 +1294,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "3",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "6FCAFF"
+      "Phase": "solid"
     },
     {
-      "Z": 73,
-      "Sym.": "Ta",
+      "number": 73,
+      "symbol": "Ta",
       "Name": "Tantalum",
       "Name origin": "King Tantalus, father of Niobe in Greek myth; see niobium",
       "Group": "5",
@@ -1384,12 +1312,11 @@
       "Electro-negativity": "1.5",
       "Abundance in Earth's crust (mg/kg)": "2",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "A1CBFF"
+      "Phase": "solid"
     },
     {
-      "Z": 74,
-      "Sym.": "W",
+      "number": 74,
+      "symbol": "W",
       "Name": "Tungsten",
       "Name origin": "Swedish tung sten 'heavy stone'",
       "Group": "6",
@@ -1403,12 +1330,11 @@
       "Electro-negativity": "2.36",
       "Abundance in Earth's crust (mg/kg)": "1.3",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "78FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 75,
-      "Sym.": "Re",
+      "number": 75,
+      "symbol": "Re",
       "Name": "Rhenium",
       "Name origin": "Latin Rhenus 'Rhine'",
       "Group": "7",
@@ -1422,12 +1348,11 @@
       "Electro-negativity": "1.9",
       "Abundance in Earth's crust (mg/kg)": "7×10−4",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "7CF9FF"
+      "Phase": "solid"
     },
     {
-      "Z": 76,
-      "Sym.": "Os",
+      "number": 76,
+      "symbol": "Os",
       "Name": "Osmium",
       "Name origin": "Greek osmḗ 'smell'",
       "Group": "8",
@@ -1441,12 +1366,11 @@
       "Electro-negativity": "2.2",
       "Abundance in Earth's crust (mg/kg)": "0.002",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "48BFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 77,
-      "Sym.": "Ir",
+      "number": 77,
+      "symbol": "Ir",
       "Name": "Iridium",
       "Name origin": "Iris, Greek goddess of rainbow",
       "Group": "9",
@@ -1460,12 +1384,11 @@
       "Electro-negativity": "2.20",
       "Abundance in Earth's crust (mg/kg)": "0.001",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "4F9FFF"
+      "Phase": "solid"
     },
     {
-      "Z": 78,
-      "Sym.": "Pt",
+      "number": 78,
+      "symbol": "Pt",
       "Name": "Platinum",
       "Name origin": "Spanish platina 'little silver', from plata 'silver'",
       "Group": "10",
@@ -1479,12 +1402,11 @@
       "Electro-negativity": "2.28",
       "Abundance in Earth's crust (mg/kg)": "0.005",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "A1FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 79,
-      "Sym.": "Au",
+      "number": 79,
+      "symbol": "Au",
       "Name": "Gold",
       "Name origin": "English, from same Proto-Indo-European root as 'yellow'",
       "Group": "11",
@@ -1498,12 +1420,11 @@
       "Electro-negativity": "2.54",
       "Abundance in Earth's crust (mg/kg)": "0.004",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "CFD8FF"
+      "Phase": "solid"
     },
     {
-      "Z": 80,
-      "Sym.": "Hg",
+      "number": 80,
+      "symbol": "Hg",
       "Name": "Mercury",
       "Name origin": "Mercury, Roman god of commerce, communication, and luck, known for his speed and mobility",
       "Group": "12",
@@ -1517,12 +1438,11 @@
       "Electro-negativity": "2.00",
       "Abundance in Earth's crust (mg/kg)": "0.085",
       "Origin": "primordial",
-      "Phase": "liquid",
-      "Spectral colour": "8AFFFF"
+      "Phase": "liquid"
     },
     {
-      "Z": 81,
-      "Sym.": "Tl",
+      "number": 81,
+      "symbol": "Tl",
       "Name": "Thallium",
       "Name origin": "Greek thallós 'green shoot / twig'",
       "Group": "13",
@@ -1536,12 +1456,11 @@
       "Electro-negativity": "1.62",
       "Abundance in Earth's crust (mg/kg)": "0.85",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "52FF63"
+      "Phase": "solid"
     },
     {
-      "Z": 82,
-      "Sym.": "Pb",
+      "number": 82,
+      "symbol": "Pb",
       "Name": "Lead",
       "Name origin": "English, from Proto-Celtic *ɸloudom, from a root meaning 'flow'",
       "Group": "14",
@@ -1555,12 +1474,11 @@
       "Electro-negativity": "1.87 (2+) 2.33 (4+)",
       "Abundance in Earth's crust (mg/kg)": "14",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "F2FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 83,
-      "Sym.": "Bi",
+      "number": 83,
+      "symbol": "Bi",
       "Name": "Bismuth",
       "Name origin": "German Wismut, via Latin and Arabic from Greek psimúthion 'white lead'",
       "Group": "15",
@@ -1574,12 +1492,11 @@
       "Electro-negativity": "2.02",
       "Abundance in Earth's crust (mg/kg)": "0.009",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "6092FF"
+      "Phase": "solid"
     },
     {
-      "Z": 84,
-      "Sym.": "Po",
+      "number": 84,
+      "symbol": "Po",
       "Name": "Polonium",
       "Name origin": "Latin Polonia 'Poland', home country of discoverer Marie Curie",
       "Group": "16",
@@ -1593,12 +1510,11 @@
       "Electro-negativity": "2.0",
       "Abundance in Earth's crust (mg/kg)": "2×10−10",
       "Origin": "from decay",
-      "Phase": "solid",
-      "Spectral colour": "5FA9FF"
+      "Phase": "solid"
     },
     {
-      "Z": 85,
-      "Sym.": "At",
+      "number": 85,
+      "symbol": "At",
       "Name": "Astatine",
       "Name origin": "Greek ástatos 'unstable'; it has no stable isotopes",
       "Group": "17",
@@ -1612,12 +1528,11 @@
       "Electro-negativity": "2.2",
       "Abundance in Earth's crust (mg/kg)": "3×10−20",
       "Origin": "from decay",
-      "Phase": "unknown phase",
-      "Spectral colour": "000000"
+      "Phase": "unknown phase"
     },
     {
-      "Z": 86,
-      "Sym.": "Rn",
+      "number": 86,
+      "symbol": "Rn",
       "Name": "Radon",
       "Name origin": "Radium emanation, originally the name of 222Rn",
       "Group": "18",
@@ -1631,12 +1546,11 @@
       "Electro-negativity": "2.2",
       "Abundance in Earth's crust (mg/kg)": "4×10−13",
       "Origin": "from decay",
-      "Phase": "gas",
-      "Spectral colour": "FF4AA2"
+      "Phase": "gas"
     },
     {
-      "Z": 87,
-      "Sym.": "Fr",
+      "number": 87,
+      "symbol": "Fr",
       "Name": "Francium",
       "Name origin": "France, home country of discoverer Marguerite Perey",
       "Group": "1",
@@ -1650,12 +1564,11 @@
       "Electro-negativity": ">0.79[5]",
       "Abundance in Earth's crust (mg/kg)": "~ 1×10−18",
       "Origin": "from decay",
-      "Phase": "unknown phase",
-      "Spectral colour": "FF7EF7"
+      "Phase": "unknown phase"
     },
     {
-      "Z": 88,
-      "Sym.": "Ra",
+      "number": 88,
+      "symbol": "Ra",
       "Name": "Radium",
       "Name origin": "Coined in French by discoverer Marie Curie, from Latin radius 'ray'",
       "Group": "2",
@@ -1669,12 +1582,11 @@
       "Electro-negativity": "0.9",
       "Abundance in Earth's crust (mg/kg)": "9×10−7",
       "Origin": "from decay",
-      "Phase": "solid",
-      "Spectral colour": "FF876A"
+      "Phase": "solid"
     },
     {
-      "Z": 89,
-      "Sym.": "Ac",
+      "number": 89,
+      "symbol": "Ac",
       "Name": "Actinium",
       "Name origin": "Greek aktís 'ray'",
       "Group": "f-block groups",
@@ -1688,12 +1600,11 @@
       "Electro-negativity": "1.1",
       "Abundance in Earth's crust (mg/kg)": "5.5×10−10",
       "Origin": "from decay",
-      "Phase": "solid",
-      "Spectral colour": "E3FFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 90,
-      "Sym.": "Th",
+      "number": 90,
+      "symbol": "Th",
       "Name": "Thorium",
       "Name origin": "Thor, the Norse god of thunder",
       "Group": "f-block groups",
@@ -1707,12 +1618,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "9.6",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "9FFFFF"
+      "Phase": "solid"
     },
     {
-      "Z": 91,
-      "Sym.": "Pa",
+      "number": 91,
+      "symbol": "Pa",
       "Name": "Protactinium",
       "Name origin": "English prefix proto- (from Greek prôtos 'first, before') + actinium; protactinium decays into actinium.",
       "Group": "f-block groups",
@@ -1726,12 +1636,11 @@
       "Electro-negativity": "1.5",
       "Abundance in Earth's crust (mg/kg)": "1.4×10−6",
       "Origin": "from decay",
-      "Phase": "solid",
-      "Spectral colour": "E93EFF"
+      "Phase": "solid"
     },
     {
-      "Z": 92,
-      "Sym.": "U",
+      "number": 92,
+      "symbol": "U",
       "Name": "Uranium",
       "Name origin": "Uranus, the seventh planet",
       "Group": "f-block groups",
@@ -1745,12 +1654,11 @@
       "Electro-negativity": "1.38",
       "Abundance in Earth's crust (mg/kg)": "2.7",
       "Origin": "primordial",
-      "Phase": "solid",
-      "Spectral colour": "90CAFF"
+      "Phase": "solid"
     },
     {
-      "Z": 93,
-      "Sym.": "Np",
+      "number": 93,
+      "symbol": "Np",
       "Name": "Neptunium",
       "Name origin": "Neptune, the eighth planet",
       "Group": "f-block groups",
@@ -1764,12 +1672,11 @@
       "Electro-negativity": "1.36",
       "Abundance in Earth's crust (mg/kg)": "≤ 3×10−12",
       "Origin": "from decay",
-      "Phase": "solid",
-      "Spectral colour": "FFE836"
+      "Phase": "solid"
     },
     {
-      "Z": 94,
-      "Sym.": "Pu",
+      "number": 94,
+      "symbol": "Pu",
       "Name": "Plutonium",
       "Name origin": "Pluto, dwarf planet, then considered a planet",
       "Group": "f-block groups",
@@ -1783,12 +1690,11 @@
       "Electro-negativity": "1.28",
       "Abundance in Earth's crust (mg/kg)": "≤ 3×10−11",
       "Origin": "from decay",
-      "Phase": "solid",
-      "Spectral colour": "FF75DB"
+      "Phase": "solid"
     },
     {
-      "Z": 95,
-      "Sym.": "Am",
+      "number": 95,
+      "symbol": "Am",
       "Name": "Americium",
       "Name origin": "Americas, where the element was first synthesized, by analogy with its homolog europium",
       "Group": "f-block groups",
@@ -1802,12 +1708,11 @@
       "Electro-negativity": "1.13",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "solid",
-      "Spectral colour": "A997FF"
+      "Phase": "solid"
     },
     {
-      "Z": 96,
-      "Sym.": "Cm",
+      "number": 96,
+      "symbol": "Cm",
       "Name": "Curium",
       "Name origin": "Pierre and Marie Curie, physicists and chemists",
       "Group": "f-block groups",
@@ -1821,12 +1726,11 @@
       "Electro-negativity": "1.28",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "solid",
-      "Spectral colour": "FF64C6"
+      "Phase": "solid"
     },
     {
-      "Z": 97,
-      "Sym.": "Bk",
+      "number": 97,
+      "symbol": "Bk",
       "Name": "Berkelium",
       "Name origin": "Berkeley, California, where it was first synthesized",
       "Group": "f-block groups",
@@ -1840,12 +1744,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "solid",
-      "Spectral colour": "6EFF6F"
+      "Phase": "solid"
     },
     {
-      "Z": 98,
-      "Sym.": "Cf",
+      "number": 98,
+      "symbol": "Cf",
       "Name": "Californium",
       "Name origin": "California, where it was first synthesized in LBNL",
       "Group": "f-block groups",
@@ -1859,12 +1762,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "solid",
-      "Spectral colour": "BAFFD2"
+      "Phase": "solid"
     },
     {
-      "Z": 99,
-      "Sym.": "Es",
+      "number": 99,
+      "symbol": "Es",
       "Name": "Einsteinium",
       "Name origin": "Albert Einstein, German physicist",
       "Group": "f-block groups",
@@ -1878,12 +1780,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "solid",
-      "Spectral colour": "39FFC8"
+      "Phase": "solid"
     },
     {
-      "Z": 100,
-      "Sym.": "Fm",
+      "number": 100,
+      "symbol": "Fm",
       "Name": "Fermium",
       "Name origin": "Enrico Fermi, Italian physicist",
       "Group": "f-block groups",
@@ -1897,12 +1798,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 101,
-      "Sym.": "Md",
+      "number": 101,
+      "symbol": "Md",
       "Name": "Mendelevium",
       "Name origin": "Dmitri Mendeleev, Russian chemist who proposed the periodic table",
       "Group": "f-block groups",
@@ -1916,12 +1816,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 102,
-      "Sym.": "No",
+      "number": 102,
+      "symbol": "No",
       "Name": "Nobelium",
       "Name origin": "Alfred Nobel, Swedish chemist and engineer",
       "Group": "f-block groups",
@@ -1935,12 +1834,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 103,
-      "Sym.": "Lr",
+      "number": 103,
+      "symbol": "Lr",
       "Name": "Lawrencium",
       "Name origin": "Ernest Lawrence, American physicist",
       "Group": "3",
@@ -1954,12 +1852,11 @@
       "Electro-negativity": "1.3",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 104,
-      "Sym.": "Rf",
+      "number": 104,
+      "symbol": "Rf",
       "Name": "Rutherfordium",
       "Name origin": "Ernest Rutherford, chemist and physicist from New Zealand",
       "Group": "4",
@@ -1973,12 +1870,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 105,
-      "Sym.": "Db",
+      "number": 105,
+      "symbol": "Db",
       "Name": "Dubnium",
       "Name origin": "Dubna, Russia, where it was discovered in JINR",
       "Group": "5",
@@ -1992,12 +1888,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 106,
-      "Sym.": "Sg",
+      "number": 106,
+      "symbol": "Sg",
       "Name": "Seaborgium",
       "Name origin": "Glenn Seaborg, American chemist",
       "Group": "6",
@@ -2011,12 +1906,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 107,
-      "Sym.": "Bh",
+      "number": 107,
+      "symbol": "Bh",
       "Name": "Bohrium",
       "Name origin": "Niels Bohr, Danish physicist",
       "Group": "7",
@@ -2030,12 +1924,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 108,
-      "Sym.": "Hs",
+      "number": 108,
+      "symbol": "Hs",
       "Name": "Hassium",
       "Name origin": "Neo-Latin Hassia 'Hesse', a state in Germany",
       "Group": "8",
@@ -2049,12 +1942,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 109,
-      "Sym.": "Mt",
+      "number": 109,
+      "symbol": "Mt",
       "Name": "Meitnerium",
       "Name origin": "Lise Meitner, Austrian physicist",
       "Group": "9",
@@ -2068,12 +1960,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 110,
-      "Sym.": "Ds",
+      "number": 110,
+      "symbol": "Ds",
       "Name": "Darmstadtium",
       "Name origin": "Darmstadt, Germany, where it was first synthesized in the GSI labs",
       "Group": "10",
@@ -2087,12 +1978,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 111,
-      "Sym.": "Rg",
+      "number": 111,
+      "symbol": "Rg",
       "Name": "Roentgenium",
       "Name origin": "Wilhelm Röntgen, German physicist",
       "Group": "11",
@@ -2106,12 +1996,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 112,
-      "Sym.": "Cn",
+      "number": 112,
+      "symbol": "Cn",
       "Name": "Copernicium",
       "Name origin": "Nicolaus Copernicus, Polish astronomer",
       "Group": "12",
@@ -2125,12 +2014,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 113,
-      "Sym.": "Nh",
+      "number": 113,
+      "symbol": "Nh",
       "Name": "Nihonium",
       "Name origin": "Japanese Nihon 'Japan', where it was first synthesized in Riken",
       "Group": "13",
@@ -2144,12 +2032,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 114,
-      "Sym.": "Fl",
+      "number": 114,
+      "symbol": "Fl",
       "Name": "Flerovium",
       "Name origin": "Flerov Laboratory of Nuclear Reactions, part of JINR, where it was synthesized; itself named after Georgy Flyorov, Russian physicist",
       "Group": "14",
@@ -2163,12 +2050,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 115,
-      "Sym.": "Mc",
+      "number": 115,
+      "symbol": "Mc",
       "Name": "Moscovium",
       "Name origin": "Moscow, Russia, where it was first synthesized in JINR",
       "Group": "15",
@@ -2182,12 +2068,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 116,
-      "Sym.": "Lv",
+      "number": 116,
+      "symbol": "Lv",
       "Name": "Livermorium",
       "Name origin": "Lawrence Livermore National Laboratory in Livermore, California",
       "Group": "16",
@@ -2201,12 +2086,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 117,
-      "Sym.": "Ts",
+      "number": 117,
+      "symbol": "Ts",
       "Name": "Tennessine",
       "Name origin": "Tennessee, US, home to ORNL",
       "Group": "17",
@@ -2220,12 +2104,11 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     },
     {
-      "Z": 118,
-      "Sym.": "Og",
+      "number": 118,
+      "symbol": "Og",
       "Name": "Oganesson",
       "Name origin": "Yuri Oganessian, Russian physicist",
       "Group": "18",
@@ -2239,8 +2122,7 @@
       "Electro-negativity": "–",
       "Abundance in Earth's crust (mg/kg)": "–",
       "Origin": "synthetic",
-      "Phase": "unknown phase",
-      "Spectral colour": ""
+      "Phase": "unknown phase"
     }
   ]
 }

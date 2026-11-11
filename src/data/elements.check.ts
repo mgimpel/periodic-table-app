@@ -56,6 +56,10 @@ for (const e of ELEMENTS) {
     e.spectralColour === null || typeof e.spectralColour === "string",
     `spectralColour should be string|null for ${e.symbol}, got ${e.spectralColour}`,
   );
+  assert(
+    e.spectralColour !== null,
+    `spectralColour addendum entry missing for ${e.symbol}`,
+  );
 }
 
 // Spot-checks for known positions.

@@ -17,6 +17,7 @@
 
 import raw from "./periodic-table.json";
 import raw2 from "./periodic-table-wikipedia.json";
+import addendum from "./periodic-table-addendum.json";
 import type { Element, ElementCategory } from "./element";
 import { CATEGORY_KEYS } from "./element";
 
@@ -48,25 +49,42 @@ interface RawElement {
   named_by: string | null;
 }
 
-// Extended dataset (periodic-table-wikipedia.json): an elements array keyed by
-// atomic number Z, with string-valued fields. Only the three fields we merge are typed.
+// Extended dataset (periodic-table-wikipedia.json): element records identified by
+// number and symbol. Only the fields we merge are typed.
 interface RawElementWikipedia {
-  Z: number;
+  number: number;
+  symbol: string;
   "Electro-negativity"?: string;
   Origin?: string;
-  "Spectral colour"?: string;
 }
 
 interface RawDatasetWikipedia {
   elements: RawElementWikipedia[];
 }
 
+interface RawElementAddendum {
+  number: number;
+  symbol: string;
+  "Spectral colour": string;
+}
+
+interface RawDatasetAddendum {
+  elements: RawElementAddendum[];
+}
+
 // Build the Z→entry lookup once at module load.
 // ponytail: O(1) per-element merge, no second typed model. Ceiling: assumes the
-// two datasets agree on Z — a Z present in one but not the other yields the
+// source datasets agree on element identifiers; missing entries use the
 // null/"" fallbacks below (graceful degrade, no throw).
 const extendedByZ = new Map<number, RawElementWikipedia>(
-  (raw2 as unknown as RawDatasetWikipedia).elements.map((e) => [e.Z, e]),
+  (raw2 as unknown as RawDatasetWikipedia).elements.map((e) => [e.number, e]),
+);
+
+const spectralColourByElement = new Map<string, string>(
+  (addendum as unknown as RawDatasetAddendum).elements.map((e) => [
+    `${e.number}:${e.symbol}`,
+    e["Spectral colour"],
+  ]),
 );
 
 /** Parse the en-dash-placeholder electronegativity string into a number or null. */
@@ -79,12 +97,13 @@ function parseElectronegativity(value: string | undefined): number | null {
 /** Merge the three extended fields for a given atomic number, with fallbacks. */
 function extendedFields(
   z: number,
+  symbol: string,
 ): Pick<Element, "electronegativity" | "origin" | "spectralColour"> {
   const ext = extendedByZ.get(z);
   return {
     electronegativity: parseElectronegativity(ext?.["Electro-negativity"]),
     origin: ext?.Origin ?? "",
-    spectralColour: ext?.["Spectral colour"] ?? null,
+    spectralColour: spectralColourByElement.get(`${z}:${symbol}`) ?? null,
   };
 }
 
@@ -122,7 +141,7 @@ function adapt(entry: RawElement): Element {
     appearance: entry.appearance ?? null,
     discoveredBy: entry.discovered_by ?? null,
     namedBy: entry.named_by ?? null,
-    ...extendedFields(entry.number),
+    ...extendedFields(entry.number, entry.symbol),
   };
 }
 
