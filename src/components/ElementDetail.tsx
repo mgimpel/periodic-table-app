@@ -72,6 +72,25 @@ function ElectronShellDiagram({
   );
 }
 
+// Standard radiation trefoil, drawn with currentColor so it follows the theme.
+// Inline (no asset file) since it's the only use and it's a handful of paths.
+// Three 60°-wide blades at 120° apart around a central disc.
+function RadioactiveIcon({ label, size = 18 }: { label: string; size?: number }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label={label}
+      width={size} height={size} viewBox="-50 -50 100 100" fill="black">
+      <title>{label}</title>
+      <circle r="48" fill="yellow" stroke="black" stroke-width="4" />
+      <circle r="12" />
+      {[0, 120, 240].map((deg) => (
+        <path transform={`rotate(${deg})`}
+          // Annular sector from 16→42 radius spanning -30°..30°.
+          d="M -8 -14 a 16 16 0 0 1 16 0 l 13 -22 a 42 42 0 0 0 -42 0 z"/>
+      ))}
+    </svg>
+  );
+}
+
 function DetailRow({
   label,
   value,
@@ -137,6 +156,9 @@ function DetailBody({
           <Badge variant="light" color="gray">
             {t(`ui:category.${element.category}`)}
           </Badge>
+          {element.isRadioactive && (
+            <RadioactiveIcon label={t("ui:radioactive.radioactive")} />
+          )}
         </Group>
         <CloseButton
           onClick={onClose}
