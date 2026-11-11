@@ -11,10 +11,6 @@ on:
         required: true
         type: number
         default: 26
-      build-linux:
-        required: true
-        type: boolean
-        default: true
       build-windows:
         required: true
         type: boolean
@@ -23,53 +19,13 @@ on:
         required: true
         type: boolean
         default: true
-      build-android:
+      build-linux-and-android:
         required: true
         type: boolean
         default: true
 permissions:
   contents: read
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
-    if: ${{ inputs.build-linux }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-      - name: Update repositories
-        run: sudo apt update && sudo apt upgrade
-      - name: Install Rust
-        run: sudo apt install -y rustup
-      - name: Install Tauri prerequisits
-        run: sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: ${{ inputs.pnpm_version }}
-      - name: Set up Node
-        uses: actions/setup-node@v7
-        with:
-          node-version: ${{ inputs.node_version }}
-          cache: "pnpm"
-      - name: Install dependencies
-        run: pnpm install
-      - name: Build
-        run: pnpm tauri build
-      - name: Upload Deb Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          path: src-tauri/target/release/bundle/deb/*.deb
-          archive: false
-      - name: Upload RPM Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          path: src-tauri/target/release/bundle/rpm/*.rpm
-          archive: false
-      - name: Upload AppImage Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          path: src-tauri/target/release/bundle/appimage/*.AppImage
-          archive: false
   build-windows:
     runs-on: windows-latest
     if: ${{ inputs.build-windows }}
@@ -131,9 +87,9 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           path: src-tauri/target/release/bundle/macos/*.app
-  build-android:
+  build-linux-and-android:
     runs-on: ubuntu-latest
-    if: ${{ inputs.build-android }}
+    if: ${{ inputs.build-linux-and-android }}
     env:
       ANDROID_SDK_ROOT: /opt/android-sdk
       ANDROID_HOME: /opt/android-sdk
@@ -170,7 +126,7 @@ jobs:
         run: pnpm install
       - name: Initialise Tauri Android
         run: pnpm tauri android init
-      - name: Build
+      - name: Build Android
         run: pnpm tauri android build
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v7
@@ -181,4 +137,21 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           path: src-tauri/gen/android/app/build/outputs/bundle/universalRelease/*.aab
+          archive: false
+      - name: Build
+        run: pnpm tauri build
+      - name: Upload Deb Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/deb/*.deb
+          archive: false
+      - name: Upload RPM Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/rpm/*.rpm
+          archive: false
+      - name: Upload AppImage Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/appimage/*.AppImage
           archive: false
