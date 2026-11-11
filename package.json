@@ -16,31 +16,31 @@
     "check": "vite-node src/lib/fitScale.check.ts && vite-node src/lib/platform.check.ts && vite-node src/lib/theme.check.ts && vite-node src/lib/persistenceManager.check.ts && vite-node src/lib/language.check.ts && vite-node src/lib/temperature.check.ts && vite-node src/lib/coloringScheme.check.ts && vite-node src/lib/gradient.check.ts && vite-node src/lib/cellColor.check.ts && vite-node src/lib/electronShellDiagram.check.ts && vite-node src/data/elements.check.ts && vite-node src/locales/periodicTable.check.ts"
   },
   "dependencies": {
-    "@mantine/core": "9.7.5",
-    "@mantine/hooks": "9.7.5",
+    "@mantine/core": "9.8.0",
+    "@mantine/hooks": "9.8.0",
     "@tauri-apps/api": "2.12.4",
-    "@tauri-apps/plugin-opener": "2.7.2",
+    "@tauri-apps/plugin-opener": "2.7.3",
     "@tauri-apps/plugin-os": "2.4.0",
-    "i18next": "26.7.2",
+    "i18next": "27.1.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "react-i18next": "17.1.13"
+    "react-i18next": "18.0.1"
   },
   "devDependencies": {
     "@tauri-apps/cli": "2.12.4",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
-    "@testing-library/user-event": "14.6.8",
+    "@testing-library/user-event": "14.6.9",
     "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "@vitejs/plugin-react": "6.2.1",
+    "@vitejs/plugin-react": "6.3.0",
     "fast-check": "4.10.2",
     "jsdom": "31.0.0",
-    "oxlint": "1.91.0",
+    "oxlint": "1.93.0",
     "oxlint-tsgolint": "7.0.2006",
     "typescript": "7.0.2",
-    "vite": "8.3.6",
+    "vite": "8.3.7",
     "vite-node": "6.0.0",
     "vitest": "5.1.0"
   }
