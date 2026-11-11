@@ -16,7 +16,7 @@ import { MantineProvider } from "@mantine/core";
 // Initialise the shared i18next instance so useTranslation resolves English.
 import "../../i18n";
 import { AboutPanel } from "../AboutPanel";
-import enUi from "../../locales/en/ui.json";
+import enUi from "../../locales/ui.en.json";
 import pkg from "../../../package.json";
 
 // Stub the Tauri opener bindings: in jsdom there's no backend, and we want to

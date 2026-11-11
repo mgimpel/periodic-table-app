@@ -1,0 +1,837 @@
+{
+  "elements": [
+    {
+      "number": 1,
+      "symbol": "H",
+      "name": "Hydrogène",
+      "appearance": "gaz incolore",
+      "summary": "L'hydrogène est un élément chimique de symbole H et de numéro atomique 1. Avec une masse atomique de 1,00794 u, l'hydrogène est l'élément le plus léger du tableau périodique. Sa forme monoatomique (H) est la substance chimique la plus abondante de l'Univers, représentant environ 75 % de toute la masse baryonique."
+    },
+    {
+      "number": 2,
+      "symbol": "He",
+      "name": "Hélium",
+      "appearance": "gaz incolore, émettant une lueur rouge-orangé lorsqu'il est placé dans un champ électrique à haute tension",
+      "summary": "L'hélium est un élément chimique de symbole He et de numéro atomique 2. C'est un gaz monoatomique incolore, inodore, insipide, non toxique et inerte, qui est en tête du groupe des gaz nobles dans le tableau périodique. Ses points d'ébullition et de fusion sont les plus bas de tous les éléments."
+    },
+    {
+      "number": 3,
+      "symbol": "Li",
+      "name": "Lithium",
+      "appearance": "blanc argenté",
+      "summary": "Le lithium (du grec λίθος lithos, « pierre ») est un élément chimique de symbole Li et de numéro atomique 3. C'est un métal mou, blanc argenté, appartenant au groupe des métaux alcalins. Dans les conditions normales, c'est le métal le plus léger et l'élément solide le moins dense."
+    },
+    {
+      "number": 4,
+      "symbol": "Be",
+      "name": "Béryllium",
+      "appearance": "métallique gris-blanc",
+      "summary": "Le béryllium est un élément chimique de symbole Be et de numéro atomique 4. Il est créé par nucléosynthèse stellaire et est un élément relativement rare dans l'univers. C'est un élément divalent qui n'existe naturellement qu'en combinaison avec d'autres éléments dans des minéraux."
+    },
+    {
+      "number": 5,
+      "symbol": "B",
+      "name": "Bore",
+      "appearance": "noir-brun",
+      "summary": "Le bore est un élément chimique métalloïde de symbole B et de numéro atomique 5. Produit entièrement par spallation due aux rayons cosmiques et par les supernovae, et non par nucléosynthèse stellaire, c'est un élément peu abondant aussi bien dans le Système solaire que dans la croûte terrestre. Le bore est concentré sur Terre grâce à la solubilité dans l'eau de ses composés naturels les plus courants, les minéraux boratés."
+    },
+    {
+      "number": 6,
+      "symbol": "C",
+      "name": "Carbone",
+      "appearance": null,
+      "summary": "Le carbone (du latin carbo, « charbon ») est un élément chimique de symbole C et de numéro atomique 6. Dans le tableau périodique, c'est le premier (ligne 2) des six éléments de la colonne (groupe) 14, qui ont en commun la composition de leur couche électronique externe. Il est non métallique et tétravalent, mettant quatre électrons à disposition pour former des liaisons chimiques covalentes."
+    },
+    {
+      "number": 7,
+      "symbol": "N",
+      "name": "Azote",
+      "appearance": "gaz, liquide ou solide incolore",
+      "summary": "L'azote est un élément chimique de symbole N et de numéro atomique 7. C'est le plus léger des pnictogènes et, à température ambiante, c'est un gaz diatomique transparent et inodore. L'azote est un élément courant dans l'univers, estimé au septième rang environ en abondance totale dans la Voie lactée et le Système solaire."
+    },
+    {
+      "number": 8,
+      "symbol": "O",
+      "name": "Oxygène",
+      "appearance": null,
+      "summary": "L'oxygène est un élément chimique de symbole O et de numéro atomique 8. Il appartient au groupe des chalcogènes du tableau périodique ; c'est un non-métal très réactif et un agent oxydant qui forme facilement des composés (notamment des oxydes) avec la plupart des éléments. En masse, l'oxygène est le troisième élément le plus abondant de l'univers, après l'hydrogène et l'hélium."
+    },
+    {
+      "number": 9,
+      "symbol": "F",
+      "name": "Fluor",
+      "appearance": null,
+      "summary": "Le fluor est un élément chimique de symbole F et de numéro atomique 9. C'est le plus léger des halogènes et il existe, dans les conditions normales, sous forme d'un gaz diatomique jaune pâle très toxique. Élément le plus électronégatif, il est extrêmement réactif : presque tous les autres éléments, y compris certains gaz nobles, forment des composés avec le fluor."
+    },
+    {
+      "number": 10,
+      "symbol": "Ne",
+      "name": "Néon",
+      "appearance": "gaz incolore émettant une lueur rouge-orangé lorsqu'il est placé dans un champ électrique à haute tension",
+      "summary": "Le néon est un élément chimique de symbole Ne et de numéro atomique 10. Il fait partie du groupe 18 (gaz nobles) du tableau périodique. Dans les conditions normales, le néon est un gaz monoatomique incolore, inodore et inerte, d'une densité d'environ deux tiers de celle de l'air."
+    },
+    {
+      "number": 11,
+      "symbol": "Na",
+      "name": "Sodium",
+      "appearance": "métallique blanc argenté",
+      "summary": "Le sodium /ˈsoʊdiəm/ est un élément chimique de symbole Na (du grec ancien Νάτριο) et de numéro atomique 11. C'est un métal mou, blanc argenté et très réactif. Dans le tableau périodique, il se trouve dans la colonne 1 (métaux alcalins) et partage avec les six autres éléments de cette colonne la particularité de posséder un seul électron sur sa couche externe, qu'il cède facilement pour former un atome chargé positivement : un cation."
+    },
+    {
+      "number": 12,
+      "symbol": "Mg",
+      "name": "Magnésium",
+      "appearance": "solide gris brillant",
+      "summary": "Le magnésium est un élément chimique de symbole Mg et de numéro atomique 12. C'est un solide gris brillant qui ressemble physiquement de près aux cinq autres éléments de la deuxième colonne (groupe 2, ou métaux alcalino-terreux) du tableau périodique : ils ont tous la même configuration électronique sur leur couche externe, ce qui produit une structure cristalline similaire. Le magnésium est le neuvième élément le plus abondant de l'univers."
+    },
+    {
+      "number": 13,
+      "symbol": "Al",
+      "name": "Aluminium",
+      "appearance": "métallique gris argenté",
+      "summary": "L'aluminium (ou « aluminum » en anglais américain) est un élément chimique du groupe du bore, de symbole Al et de numéro atomique 13. C'est un métal blanc argenté, mou, non magnétique et ductile. L'aluminium est le troisième élément le plus abondant (après l'oxygène et le silicium) et le métal le plus abondant de la croûte terrestre."
+    },
+    {
+      "number": 14,
+      "symbol": "Si",
+      "name": "Silicium",
+      "appearance": "cristallin, réfléchissant, aux faces teintées de bleu",
+      "summary": "Le silicium est un élément chimique de symbole Si et de numéro atomique 14. C'est un métalloïde tétravalent, plus réactif que le germanium, le métalloïde situé juste en dessous de lui dans le tableau. La controverse sur la nature du silicium remonte à sa découverte."
+    },
+    {
+      "number": 15,
+      "symbol": "P",
+      "name": "Phosphore",
+      "appearance": "incolore, blanc cireux, jaune, écarlate, rouge, violet, noir",
+      "summary": "Le phosphore est un élément chimique de symbole P et de numéro atomique 15. En tant qu'élément, le phosphore existe sous deux formes principales, le phosphore blanc et le phosphore rouge, mais en raison de sa grande réactivité, on ne le trouve jamais à l'état libre sur Terre. Les minéraux contenant du phosphore sont presque toujours présents dans leur état d'oxydation maximal, sous forme de roches phosphatées inorganiques."
+    },
+    {
+      "number": 16,
+      "symbol": "S",
+      "name": "Soufre",
+      "appearance": "microcristaux frittés jaune citron",
+      "summary": "Le soufre (« sulfur » ou « sulphur » en anglais) est un élément chimique de symbole S et de numéro atomique 16. C'est un non-métal abondant et multivalent. Dans les conditions normales, les atomes de soufre forment des molécules cycliques octoatomiques de formule chimique S8."
+    },
+    {
+      "number": 17,
+      "symbol": "Cl",
+      "name": "Chlore",
+      "appearance": "gaz jaune-vert pâle",
+      "summary": "Le chlore est un élément chimique de symbole Cl et de numéro atomique 17. Sa masse atomique relative est de 35,5. Le chlore appartient au groupe des halogènes (17) et est le deuxième halogène le plus léger, après le fluor."
+    },
+    {
+      "number": 18,
+      "symbol": "Ar",
+      "name": "Argon",
+      "appearance": "gaz incolore émettant une lueur lilas/violette lorsqu'il est placé dans un champ électrique à haute tension",
+      "summary": "L'argon est un élément chimique de symbole Ar et de numéro atomique 18. Il fait partie du groupe 18 du tableau périodique et c'est un gaz noble. L'argon est le troisième gaz le plus répandu dans l'atmosphère terrestre, à 0,934 % (9 340 ppmv), ce qui le rend plus de deux fois plus abondant que le gaz atmosphérique suivant, la vapeur d'eau (environ 4 000 ppmv en moyenne, mais très variable), 23 fois plus abondant que le gaz atmosphérique non condensable suivant, le dioxyde de carbone (400 ppmv), et plus de 500 fois plus abondant que le gaz noble suivant, le néon (18 ppmv)."
+    },
+    {
+      "number": 19,
+      "symbol": "K",
+      "name": "Potassium",
+      "appearance": "gris argenté",
+      "summary": "Le potassium est un élément chimique de symbole K (dérivé du néo-latin kalium) et de numéro atomique 19. Il a d'abord été isolé à partir de la potasse, les cendres de plantes, dont il tire son nom. Dans le tableau périodique, le potassium est l'un des sept éléments de la colonne (groupe) 1 (métaux alcalins) : ils possèdent tous un seul électron de valence sur leur couche externe, qu'ils cèdent facilement pour former un atome chargé positivement, un cation, et se combinent avec des anions pour former des sels."
+    },
+    {
+      "number": 20,
+      "symbol": "Ca",
+      "name": "Calcium",
+      "appearance": null,
+      "summary": "Le calcium est un élément chimique de symbole Ca et de numéro atomique 20. C'est un métal alcalino-terreux gris et mou, cinquième élément le plus abondant en masse dans la croûte terrestre. L'ion Ca2+ est aussi le cinquième ion dissous le plus abondant dans l'eau de mer, en molarité comme en masse, après le sodium, le chlorure, le magnésium et le sulfate."
+    },
+    {
+      "number": 21,
+      "symbol": "Sc",
+      "name": "Scandium",
+      "appearance": "blanc argenté",
+      "summary": "Le scandium est un élément chimique de symbole Sc et de numéro atomique 21. Élément métallique blanc argenté du bloc d, il a parfois été classé historiquement parmi les terres rares, avec l'yttrium et les lanthanides. Il a été découvert en 1879 par analyse spectrale des minéraux euxénite et gadolinite provenant de Scandinavie."
+    },
+    {
+      "number": 22,
+      "symbol": "Ti",
+      "name": "Titane",
+      "appearance": "métallique gris-blanc argenté",
+      "summary": "Le titane est un élément chimique de symbole Ti et de numéro atomique 22. C'est un métal de transition brillant, de couleur argentée, de faible densité et de grande résistance mécanique. Il résiste très bien à la corrosion par l'eau de mer, l'eau régale et le chlore."
+    },
+    {
+      "number": 23,
+      "symbol": "V",
+      "name": "Vanadium",
+      "appearance": "métal gris argenté bleuté",
+      "summary": "Le vanadium est un élément chimique de symbole V et de numéro atomique 23. C'est un métal de transition dur, gris argenté, ductile et malléable. Dans la nature, on ne le trouve que sous forme chimiquement combinée, mais une fois isolé artificiellement, la formation d'une couche d'oxyde stabilise quelque peu le métal libre contre une oxydation ultérieure."
+    },
+    {
+      "number": 24,
+      "symbol": "Cr",
+      "name": "Chrome",
+      "appearance": "métallique argenté",
+      "summary": "Le chrome est un élément chimique de symbole Cr et de numéro atomique 24. C'est le premier élément du groupe 6. C'est un métal gris acier, brillant, dur et cassant, qui se polit très bien, résiste au ternissement et possède un point de fusion élevé."
+    },
+    {
+      "number": 25,
+      "symbol": "Mn",
+      "name": "Manganèse",
+      "appearance": "métallique argenté",
+      "summary": "Le manganèse est un élément chimique de symbole Mn et de numéro atomique 25. On ne le trouve pas à l'état libre dans la nature ; il est souvent associé au fer et présent dans de nombreux minéraux. Le manganèse est un métal aux importantes applications industrielles dans les alliages, en particulier dans les aciers inoxydables."
+    },
+    {
+      "number": 26,
+      "symbol": "Fe",
+      "name": "Fer",
+      "appearance": "métallique brillant avec une teinte grisâtre",
+      "summary": "Le fer est un élément chimique de symbole Fe (du latin ferrum) et de numéro atomique 26. C'est un métal de la première série de transition. C'est, en masse, l'élément le plus répandu sur Terre, constituant une grande partie du noyau externe et interne de la Terre."
+    },
+    {
+      "number": 27,
+      "symbol": "Co",
+      "name": "Cobalt",
+      "appearance": "métal gris dur et brillant",
+      "summary": "Le cobalt est un élément chimique de symbole Co et de numéro atomique 27. Comme le nickel, le cobalt de la croûte terrestre ne se trouve que sous forme chimiquement combinée, à l'exception de petits gisements présents dans des alliages de fer météorique naturel. L'élément libre, obtenu par fusion réductrice, est un métal dur, brillant, gris argenté."
+    },
+    {
+      "number": 28,
+      "symbol": "Ni",
+      "name": "Nickel",
+      "appearance": "brillant, métallique, argenté avec une teinte dorée",
+      "summary": "Le nickel est un élément chimique de symbole Ni et de numéro atomique 28. C'est un métal blanc argenté brillant avec une légère teinte dorée. Le nickel fait partie des métaux de transition ; il est dur et ductile."
+    },
+    {
+      "number": 29,
+      "symbol": "Cu",
+      "name": "Cuivre",
+      "appearance": "éclat métallique rouge-orangé",
+      "summary": "Le cuivre est un élément chimique de symbole Cu (du latin cuprum) et de numéro atomique 29. C'est un métal mou, malléable et ductile, doté d'une conductivité thermique et électrique très élevée. Une surface de cuivre pur fraîchement exposée a une couleur rouge-orangé."
+    },
+    {
+      "number": 30,
+      "symbol": "Zn",
+      "name": "Zinc",
+      "appearance": "gris argenté",
+      "summary": "Le zinc, aussi appelé « spelter » dans le commerce, est un élément chimique de symbole Zn et de numéro atomique 30. C'est le premier élément du groupe 12 du tableau périodique. À certains égards, le zinc est chimiquement semblable au magnésium : son ion a une taille similaire et son seul état d'oxydation courant est +2."
+    },
+    {
+      "number": 31,
+      "symbol": "Ga",
+      "name": "Gallium",
+      "appearance": "blanc argenté",
+      "summary": "Le gallium est un élément chimique de symbole Ga et de numéro atomique 31. Le gallium élémentaire n'existe pas à l'état libre dans la nature, mais sous forme de composés de gallium(III) présents à l'état de traces dans les minerais de zinc et dans la bauxite. Le gallium est un métal mou et argenté ; le gallium élémentaire est un solide cassant à basse température et fond à 29,76 °C (85,57 °F), légèrement au-dessus de la température ambiante."
+    },
+    {
+      "number": 32,
+      "symbol": "Ge",
+      "name": "Germanium",
+      "appearance": "blanc grisâtre",
+      "summary": "Le germanium est un élément chimique de symbole Ge et de numéro atomique 32. C'est un métalloïde brillant, dur, blanc grisâtre du groupe du carbone, chimiquement semblable à ses voisins de groupe, l'étain et le silicium. Le germanium purifié est un semi-conducteur dont l'apparence ressemble beaucoup à celle du silicium élémentaire."
+    },
+    {
+      "number": 33,
+      "symbol": "As",
+      "name": "Arsenic",
+      "appearance": "gris métallique",
+      "summary": "L'arsenic est un élément chimique de symbole As et de numéro atomique 33. L'arsenic est présent dans de nombreux minéraux, généralement associé au soufre et à des métaux, ainsi que sous forme de cristal élémentaire pur. L'arsenic est un métalloïde."
+    },
+    {
+      "number": 34,
+      "symbol": "Se",
+      "name": "Sélénium",
+      "appearance": "allotropes noir, rouge et gris (non illustré)",
+      "summary": "Le sélénium est un élément chimique de symbole Se et de numéro atomique 34. C'est un non-métal dont les propriétés sont intermédiaires entre celles de ses voisins chalcogènes de colonne dans le tableau périodique, le soufre et le tellure. On le trouve rarement à l'état élémentaire dans la nature, ou sous forme de minerais purs."
+    },
+    {
+      "number": 35,
+      "symbol": "Br",
+      "name": "Brome",
+      "appearance": null,
+      "summary": "Le brome (du grec ancien βρῶμος, brómos, « puanteur ») est un élément chimique de symbole Br et de numéro atomique 35. C'est un halogène. L'élément a été isolé indépendamment par deux chimistes, Carl Jacob Löwig et Antoine Jérôme Balard, en 1825–1826."
+    },
+    {
+      "number": 36,
+      "symbol": "Kr",
+      "name": "Krypton",
+      "appearance": "gaz incolore, émettant une lueur blanchâtre dans un champ électrique intense",
+      "summary": "Le krypton (du grec κρυπτός kryptos, « le caché ») est un élément chimique de symbole Kr et de numéro atomique 36. Il fait partie des éléments du groupe 18 (gaz nobles). Gaz noble incolore, inodore et insipide, le krypton est présent à l'état de traces dans l'atmosphère ; il est isolé par distillation fractionnée de l'air liquéfié et est souvent utilisé avec d'autres gaz rares dans les lampes fluorescentes."
+    },
+    {
+      "number": 37,
+      "symbol": "Rb",
+      "name": "Rubidium",
+      "appearance": "blanc grisâtre",
+      "summary": "Le rubidium est un élément chimique de symbole Rb et de numéro atomique 37. Le rubidium est un élément métallique mou, blanc argenté, du groupe des métaux alcalins, de masse atomique 85,4678. Le rubidium élémentaire est très réactif, avec des propriétés semblables à celles des autres métaux alcalins, comme une oxydation très rapide à l'air."
+    },
+    {
+      "number": 38,
+      "symbol": "Sr",
+      "name": "Strontium",
+      "appearance": null,
+      "summary": "Le strontium est un élément chimique de symbole Sr et de numéro atomique 38. Métal alcalino-terreux, le strontium est un élément métallique mou, blanc argenté ou jaunâtre, très réactif chimiquement. Le métal jaunit lorsqu'il est exposé à l'air."
+    },
+    {
+      "number": 39,
+      "symbol": "Y",
+      "name": "Yttrium",
+      "appearance": "blanc argenté",
+      "summary": "L'yttrium est un élément chimique de symbole Y et de numéro atomique 39. C'est un métal de transition argenté, chimiquement semblable aux lanthanides, et il a souvent été classé parmi les « terres rares ». L'yttrium est presque toujours associé aux lanthanides dans les minéraux de terres rares et n'est jamais présent dans la nature à l'état libre."
+    },
+    {
+      "number": 40,
+      "symbol": "Zr",
+      "name": "Zirconium",
+      "appearance": "blanc argenté",
+      "summary": "Le zirconium est un élément chimique de symbole Zr et de numéro atomique 40. Le nom de zirconium vient de celui du minéral zircon, la principale source de zirconium. Le mot zircon vient du persan zargun زرگون, qui signifie « couleur d'or »."
+    },
+    {
+      "number": 41,
+      "symbol": "Nb",
+      "name": "Niobium",
+      "appearance": "gris métallique, bleuté une fois oxydé",
+      "summary": "Le niobium, autrefois appelé columbium, est un élément chimique de symbole Nb (anciennement Cb) et de numéro atomique 41. C'est un métal de transition mou, gris et ductile, que l'on trouve souvent dans le pyrochlore, principale source commerciale de niobium, et dans la columbite. Son nom vient de la mythologie grecque : Niobé, fille de Tantale, en raison de sa grande ressemblance avec le tantale."
+    },
+    {
+      "number": 42,
+      "symbol": "Mo",
+      "name": "Molybdène",
+      "appearance": "gris métallique",
+      "summary": "Le molybdène est un élément chimique de symbole Mo et de numéro atomique 42. Son nom vient du néo-latin molybdaenum, lui-même issu du grec ancien Μόλυβδος molybdos, qui signifie plomb, car ses minerais étaient confondus avec ceux du plomb. Les minéraux de molybdène sont connus depuis l'Antiquité, mais l'élément a été découvert (au sens de sa distinction en tant qu'entité nouvelle par rapport aux sels minéraux d'autres métaux) en 1778 par Carl Wilhelm Scheele."
+    },
+    {
+      "number": 43,
+      "symbol": "Tc",
+      "name": "Technétium",
+      "appearance": "métal gris brillant",
+      "summary": "Le technétium (/tɛkˈniːʃiəm/) est un élément chimique de symbole Tc et de numéro atomique 43. C'est l'élément de plus petit numéro atomique du tableau périodique à ne posséder aucun isotope stable : toutes ses formes sont radioactives. Presque tout le technétium est produit de manière synthétique, et seules des quantités infimes sont présentes dans la nature."
+    },
+    {
+      "number": 44,
+      "symbol": "Ru",
+      "name": "Ruthénium",
+      "appearance": "métallique blanc argenté",
+      "summary": "Le ruthénium est un élément chimique de symbole Ru et de numéro atomique 44. C'est un métal de transition rare appartenant au groupe du platine du tableau périodique. Comme les autres métaux du groupe du platine, le ruthénium est inerte vis-à-vis de la plupart des autres produits chimiques."
+    },
+    {
+      "number": 45,
+      "symbol": "Rh",
+      "name": "Rhodium",
+      "appearance": "métallique blanc argenté",
+      "summary": "Le rhodium est un élément chimique de symbole Rh et de numéro atomique 45. C'est un métal de transition rare, blanc argenté, dur et chimiquement inerte. Il fait partie du groupe du platine."
+    },
+    {
+      "number": 46,
+      "symbol": "Pd",
+      "name": "Palladium",
+      "appearance": "blanc argenté",
+      "summary": "Le palladium est un élément chimique de symbole Pd et de numéro atomique 46. C'est un métal rare et brillant, blanc argenté, découvert en 1803 par William Hyde Wollaston. Il l'a nommé d'après l'astéroïde Pallas, lui-même nommé d'après l'épithète de la déesse grecque Athéna, acquise lorsqu'elle tua Pallas."
+    },
+    {
+      "number": 47,
+      "symbol": "Ag",
+      "name": "Argent",
+      "appearance": "métal blanc brillant",
+      "summary": "L'argent est un élément chimique de symbole Ag (grec ἄργυρος árguros, latin argentum, tous deux issus de la racine indo-européenne *h₂erǵ- signifiant « gris » ou « brillant ») et de numéro atomique 47. Métal de transition mou, blanc et brillant, il possède la conductivité électrique, la conductivité thermique et la réflectivité les plus élevées de tous les métaux. Le métal existe dans la nature sous forme pure et libre (argent natif), en alliage avec l'or et d'autres métaux, et dans des minéraux tels que l'argentite et la chlorargyrite."
+    },
+    {
+      "number": 48,
+      "symbol": "Cd",
+      "name": "Cadmium",
+      "appearance": "métallique gris bleuté argenté",
+      "summary": "Le cadmium est un élément chimique de symbole Cd et de numéro atomique 48. Ce métal mou, blanc bleuté, est chimiquement semblable aux deux autres métaux stables du groupe 12, le zinc et le mercure. Comme le zinc, il privilégie l'état d'oxydation +2 dans la plupart de ses composés et, comme le mercure, il présente un point de fusion bas par rapport aux métaux de transition."
+    },
+    {
+      "number": 49,
+      "symbol": "In",
+      "name": "Indium",
+      "appearance": "gris argenté brillant",
+      "summary": "L'indium est un élément chimique de symbole In et de numéro atomique 49. C'est un élément métallique pauvre, rare dans la croûte terrestre. Le métal est très mou, malléable et facilement fusible, avec un point de fusion supérieur à celui du sodium mais inférieur à ceux du lithium et de l'étain."
+    },
+    {
+      "number": 50,
+      "symbol": "Sn",
+      "name": "Étain",
+      "appearance": "blanc argenté (bêta, β) ou gris (alpha, α)",
+      "summary": "L'étain est un élément chimique de symbole Sn (du latin stannum) et de numéro atomique 50. C'est un métal du groupe principal, dans le groupe 14 du tableau périodique. L'étain présente une similitude chimique avec ses deux voisins du groupe 14, le germanium et le plomb, et possède deux états d'oxydation possibles, +2 et +4, ce dernier étant légèrement plus stable."
+    },
+    {
+      "number": 51,
+      "symbol": "Sb",
+      "name": "Antimoine",
+      "appearance": "gris argenté brillant",
+      "summary": "L'antimoine est un élément chimique de symbole Sb (du latin stibium) et de numéro atomique 51. Métalloïde gris brillant, on le trouve dans la nature principalement sous forme du sulfure minéral stibine (Sb2S3). Les composés d'antimoine sont connus depuis l'Antiquité et étaient utilisés en cosmétique ; l'antimoine métallique était également connu, mais il fut identifié à tort comme du plomb lors de sa découverte."
+    },
+    {
+      "number": 52,
+      "symbol": "Te",
+      "name": "Tellure",
+      "appearance": null,
+      "summary": "Le tellure est un élément chimique de symbole Te et de numéro atomique 52. C'est un métalloïde cassant, légèrement toxique, rare et blanc argenté. Le tellure est chimiquement apparenté au sélénium et au soufre."
+    },
+    {
+      "number": 53,
+      "symbol": "I",
+      "name": "Iode",
+      "appearance": "gris métallique brillant, violet à l'état gazeux",
+      "summary": "L'iode est un élément chimique de symbole I et de numéro atomique 53. Son nom vient du grec ἰοειδής ioeidēs, qui signifie violet ou pourpre, en raison de la couleur de la vapeur d'iode. L'iode et ses composés sont principalement utilisés en nutrition et, dans l'industrie, pour la production d'acide acétique et de certains polymères."
+    },
+    {
+      "number": 54,
+      "symbol": "Xe",
+      "name": "Xénon",
+      "appearance": "gaz incolore, émettant une lueur bleue lorsqu'il est placé dans un champ électrique à haute tension",
+      "summary": "Le xénon est un élément chimique de symbole Xe et de numéro atomique 54. C'est un gaz noble incolore, dense et inodore, présent à l'état de traces dans l'atmosphère terrestre. Bien que généralement peu réactif, le xénon peut participer à quelques réactions chimiques, comme la formation de l'hexafluoroplatinate de xénon, le premier composé de gaz noble à avoir été synthétisé."
+    },
+    {
+      "number": 55,
+      "symbol": "Cs",
+      "name": "Césium",
+      "appearance": "doré argenté",
+      "summary": "Le césium est un élément chimique de symbole Cs et de numéro atomique 55. C'est un métal alcalin mou, d'un doré argenté, dont le point de fusion est de 28 °C (82 °F), ce qui en fait l'un des cinq seuls métaux élémentaires liquides à température ambiante ou à une température proche. Le césium est un métal alcalin dont les propriétés physiques et chimiques sont semblables à celles du rubidium et du potassium."
+    },
+    {
+      "number": 56,
+      "symbol": "Ba",
+      "name": "Baryum",
+      "appearance": null,
+      "summary": "Le baryum est un élément chimique de symbole Ba et de numéro atomique 56. C'est le cinquième élément du groupe 2, un métal alcalino-terreux mou, argenté et métallique. En raison de sa grande réactivité chimique, le baryum n'est jamais présent dans la nature à l'état libre."
+    },
+    {
+      "number": 57,
+      "symbol": "La",
+      "name": "Lanthane",
+      "appearance": "blanc argenté",
+      "summary": "Le lanthane est un élément chimique métallique mou, ductile et blanc argenté, de symbole La et de numéro atomique 57. Il ternit rapidement au contact de l'air et est assez mou pour être coupé au couteau. Il a donné son nom à la série des lanthanides, un groupe de 15 éléments similaires compris entre le lanthane et le lutécium dans le tableau périodique ; il est aussi parfois considéré comme le premier élément des métaux de transition de la 6e période."
+    },
+    {
+      "number": 58,
+      "symbol": "Ce",
+      "name": "Cérium",
+      "appearance": "blanc argenté",
+      "summary": "Le cérium est un élément chimique de symbole Ce et de numéro atomique 58. C'est un métal mou, argenté et ductile qui s'oxyde facilement à l'air. Le cérium a été nommé d'après la planète naine Cérès (elle-même nommée d'après la déesse romaine de l'agriculture)."
+    },
+    {
+      "number": 59,
+      "symbol": "Pr",
+      "name": "Praséodyme",
+      "appearance": "blanc grisâtre",
+      "summary": "Le praséodyme est un élément chimique de symbole Pr et de numéro atomique 59. Le praséodyme est un métal mou, argenté, malléable et ductile du groupe des lanthanides. Il est apprécié pour ses propriétés magnétiques, électriques, chimiques et optiques."
+    },
+    {
+      "number": 60,
+      "symbol": "Nd",
+      "name": "Néodyme",
+      "appearance": "blanc argenté",
+      "summary": "Le néodyme est un élément chimique de symbole Nd et de numéro atomique 60. C'est un métal mou et argenté qui ternit à l'air. Le néodyme a été découvert en 1885 par le chimiste autrichien Carl Auer von Welsbach."
+    },
+    {
+      "number": 61,
+      "symbol": "Pm",
+      "name": "Prométhium",
+      "appearance": "métallique",
+      "summary": "Le prométhium, à l'origine « prométhéum », est un élément chimique de symbole Pm et de numéro atomique 61. Tous ses isotopes sont radioactifs ; c'est l'un des deux seuls éléments dans ce cas qui sont suivis dans le tableau périodique par des éléments possédant des formes stables, une particularité partagée avec le technétium. Chimiquement, le prométhium est un lanthanide, qui forme des sels lorsqu'il est combiné à d'autres éléments."
+    },
+    {
+      "number": 62,
+      "symbol": "Sm",
+      "name": "Samarium",
+      "appearance": "blanc argenté",
+      "summary": "Le samarium est un élément chimique de symbole Sm et de numéro atomique 62. C'est un métal argenté moyennement dur qui s'oxyde facilement à l'air. Membre typique de la série des lanthanides, le samarium adopte généralement l'état d'oxydation +3."
+    },
+    {
+      "number": 63,
+      "symbol": "Eu",
+      "name": "Europium",
+      "appearance": null,
+      "summary": "L'europium est un élément chimique de symbole Eu et de numéro atomique 63. Il a été isolé en 1901 et doit son nom au continent européen. C'est un métal argenté moyennement dur qui s'oxyde facilement à l'air et dans l'eau."
+    },
+    {
+      "number": 64,
+      "symbol": "Gd",
+      "name": "Gadolinium",
+      "appearance": "blanc argenté",
+      "summary": "Le gadolinium est un élément chimique de symbole Gd et de numéro atomique 64. C'est un métal des terres rares blanc argenté, malléable et ductile. On ne le trouve dans la nature que sous forme combinée (sels)."
+    },
+    {
+      "number": 65,
+      "symbol": "Tb",
+      "name": "Terbium",
+      "appearance": "blanc argenté",
+      "summary": "Le terbium est un élément chimique de symbole Tb et de numéro atomique 65. C'est un métal des terres rares blanc argenté, malléable, ductile et assez mou pour être coupé au couteau. Le terbium n'est jamais présent dans la nature à l'état libre, mais il est contenu dans de nombreux minéraux, dont la cérite, la gadolinite, la monazite, le xénotime et l'euxénite."
+    },
+    {
+      "number": 66,
+      "symbol": "Dy",
+      "name": "Dysprosium",
+      "appearance": "blanc argenté",
+      "summary": "Le dysprosium est un élément chimique de symbole Dy et de numéro atomique 66. C'est un élément des terres rares à l'éclat métallique argenté. Le dysprosium n'est jamais présent dans la nature à l'état libre, bien qu'on le trouve dans divers minéraux, comme le xénotime."
+    },
+    {
+      "number": 67,
+      "symbol": "Ho",
+      "name": "Holmium",
+      "appearance": "blanc argenté",
+      "summary": "L'holmium est un élément chimique de symbole Ho et de numéro atomique 67. Membre de la série des lanthanides, l'holmium est un élément des terres rares. L'holmium a été découvert par le chimiste suédois Per Teodor Cleve."
+    },
+    {
+      "number": 68,
+      "symbol": "Er",
+      "name": "Erbium",
+      "appearance": "blanc argenté",
+      "summary": "L'erbium est un élément chimique de la série des lanthanides, de symbole Er et de numéro atomique 68. Métal solide blanc argenté lorsqu'il est isolé artificiellement, l'erbium naturel se trouve toujours combiné chimiquement à d'autres éléments sur Terre. C'est donc un élément des terres rares, associé à plusieurs autres éléments rares dans le minéral gadolinite d'Ytterby, en Suède, où l'yttrium, l'ytterbium et le terbium ont été découverts."
+    },
+    {
+      "number": 69,
+      "symbol": "Tm",
+      "name": "Thulium",
+      "appearance": "gris argenté",
+      "summary": "Le thulium est un élément chimique de symbole Tm et de numéro atomique 69. C'est le treizième et antépénultième (avant-avant-dernier) élément de la série des lanthanides. Comme les autres lanthanides, son état d'oxydation le plus courant est +3, que l'on observe dans son oxyde, ses halogénures et ses autres composés."
+    },
+    {
+      "number": 70,
+      "symbol": "Yb",
+      "name": "Ytterbium",
+      "appearance": null,
+      "summary": "L'ytterbium est un élément chimique de symbole Yb et de numéro atomique 70. C'est le quatorzième et avant-dernier élément de la série des lanthanides, ce qui explique la stabilité relative de son état d'oxydation +2. Cependant, comme les autres lanthanides, son état d'oxydation le plus courant est +3, que l'on observe dans son oxyde, ses halogénures et ses autres composés."
+    },
+    {
+      "number": 71,
+      "symbol": "Lu",
+      "name": "Lutécium",
+      "appearance": "blanc argenté",
+      "summary": "Le lutécium est un élément chimique de symbole Lu et de numéro atomique 71. C'est un métal blanc argenté qui résiste à la corrosion dans l'air sec, mais pas dans l'air humide. Il est considéré comme le premier élément des métaux de transition de la 6e période et le dernier élément de la série des lanthanides, et il est traditionnellement compté parmi les terres rares."
+    },
+    {
+      "number": 72,
+      "symbol": "Hf",
+      "name": "Hafnium",
+      "appearance": "gris acier",
+      "summary": "Le hafnium est un élément chimique de symbole Hf et de numéro atomique 72. Métal de transition tétravalent, brillant et gris argenté, le hafnium ressemble chimiquement au zirconium et se trouve dans les minéraux de zirconium. Son existence a été prédite par Dmitri Mendeleïev en 1869, mais il n'a été identifié qu'en 1923, ce qui en fait l'avant-dernier élément stable à avoir été découvert (le rhénium a été identifié deux ans plus tard)."
+    },
+    {
+      "number": 73,
+      "symbol": "Ta",
+      "name": "Tantale",
+      "appearance": "gris bleu",
+      "summary": "Le tantale est un élément chimique de symbole Ta et de numéro atomique 73. Autrefois appelé tantalium, son nom vient de Tantale, un antihéros de la mythologie grecque. Le tantale est un métal de transition rare, dur, gris-bleu et brillant, très résistant à la corrosion."
+    },
+    {
+      "number": 74,
+      "symbol": "W",
+      "name": "Tungstène",
+      "appearance": "blanc grisâtre, brillant",
+      "summary": "Le tungstène, aussi appelé wolfram, est un élément chimique de symbole W et de numéro atomique 74. Le mot tungstène vient du suédois tung sten, qui se traduit littéralement par « pierre lourde ». Son nom en suédois est cependant volfram, afin de le distinguer de la scheelite, appelée aussi tungsten en suédois."
+    },
+    {
+      "number": 75,
+      "symbol": "Re",
+      "name": "Rhénium",
+      "appearance": "gris argenté",
+      "summary": "Le rhénium est un élément chimique de symbole Re et de numéro atomique 75. C'est un métal de transition lourd, blanc argenté, de la troisième ligne, dans le groupe 7 du tableau périodique. Avec une concentration moyenne estimée à 1 partie par milliard (ppb), le rhénium est l'un des éléments les plus rares de la croûte terrestre."
+    },
+    {
+      "number": 76,
+      "symbol": "Os",
+      "name": "Osmium",
+      "appearance": "argenté, reflets bleus",
+      "summary": "L'osmium (du grec osme (ὀσμή), « odeur ») est un élément chimique de symbole Os et de numéro atomique 76. C'est un métal de transition dur, cassant et blanc bleuté du groupe du platine, présent à l'état de traces dans des alliages, principalement dans les minerais de platine. L'osmium est l'élément naturel le plus dense, avec une masse volumique de 22,59 g/cm3."
+    },
+    {
+      "number": 77,
+      "symbol": "Ir",
+      "name": "Iridium",
+      "appearance": "blanc argenté",
+      "summary": "L'iridium est un élément chimique de symbole Ir et de numéro atomique 77. Métal de transition très dur, cassant et blanc argenté du groupe du platine, l'iridium est généralement considéré comme le deuxième élément le plus dense (après l'osmium) d'après les mesures de masse volumique, bien que des calculs fondés sur les réseaux cristallins des éléments montrent que l'iridium est plus dense. C'est aussi le métal le plus résistant à la corrosion, même à des températures atteignant 2 000 °C. Bien que seuls certains sels fondus et halogènes soient corrosifs pour l'iridium solide, la poussière d'iridium finement divisée est beaucoup plus réactive et peut être inflammable."
+    },
+    {
+      "number": 78,
+      "symbol": "Pt",
+      "name": "Platine",
+      "appearance": "blanc argenté",
+      "summary": "Le platine est un élément chimique de symbole Pt et de numéro atomique 78. C'est un métal de transition précieux, dense, malléable, ductile, très peu réactif et gris-blanc. Son nom dérive du terme espagnol platina, qui se traduit littéralement par « petit argent »."
+    },
+    {
+      "number": 79,
+      "symbol": "Au",
+      "name": "Or",
+      "appearance": "jaune métallique",
+      "summary": "L'or est un élément chimique de symbole Au (du latin aurum) et de numéro atomique 79. Sous sa forme la plus pure, c'est un métal jaune vif légèrement rougeâtre, dense, mou, malléable et ductile. Chimiquement, l'or est un métal de transition et un élément du groupe 11."
+    },
+    {
+      "number": 80,
+      "symbol": "Hg",
+      "name": "Mercure",
+      "appearance": "argenté",
+      "summary": "Le mercure est un élément chimique de symbole Hg et de numéro atomique 80. Il est communément appelé vif-argent et portait autrefois le nom d'hydrargyrum (/haɪˈdrɑːrdʒərəm/). Élément lourd et argenté du bloc d, le mercure est le seul élément métallique liquide dans les conditions normales de température et de pression ; le seul autre élément liquide dans ces conditions est le brome, bien que des métaux comme le césium, le gallium et le rubidium fondent juste au-dessus de la température ambiante."
+    },
+    {
+      "number": 81,
+      "symbol": "Tl",
+      "name": "Thallium",
+      "appearance": "blanc argenté",
+      "summary": "Le thallium est un élément chimique de symbole Tl et de numéro atomique 81. Ce métal pauvre, mou et gris, ne se trouve pas à l'état libre dans la nature. Une fois isolé, il ressemble à l'étain, mais se décolore au contact de l'air."
+    },
+    {
+      "number": 82,
+      "symbol": "Pb",
+      "name": "Plomb",
+      "appearance": "gris métallique",
+      "summary": "Le plomb est un élément chimique du groupe du carbone, de symbole Pb (du latin plumbum) et de numéro atomique 82. Le plomb est un métal pauvre mou, malléable et lourd. Le plomb métallique a une couleur blanc bleuté lorsqu'il vient d'être coupé, mais il ternit rapidement en prenant une teinte grisâtre terne au contact de l'air."
+    },
+    {
+      "number": 83,
+      "symbol": "Bi",
+      "name": "Bismuth",
+      "appearance": "argent brillant",
+      "summary": "Le bismuth est un élément chimique de symbole Bi et de numéro atomique 83. Le bismuth, un métal pauvre pentavalent, ressemble chimiquement à l'arsenic et à l'antimoine. Le bismuth élémentaire peut exister à l'état naturel, bien que son sulfure et son oxyde constituent d'importants minerais commerciaux."
+    },
+    {
+      "number": 84,
+      "symbol": "Po",
+      "name": "Polonium",
+      "appearance": "argenté",
+      "summary": "Le polonium est un élément chimique de symbole Po et de numéro atomique 84, découvert en 1898 par Marie Curie et Pierre Curie. Élément rare et hautement radioactif sans isotope stable, le polonium est chimiquement semblable au bismuth et au tellure, et il est présent dans les minerais d'uranium. Les applications du polonium sont peu nombreuses."
+    },
+    {
+      "number": 85,
+      "symbol": "At",
+      "name": "Astate",
+      "appearance": "inconnue, probablement métallique",
+      "summary": "L'astate est un élément chimique radioactif très rare de symbole At et de numéro atomique 85. Il est présent sur Terre en tant que produit de désintégration de divers éléments plus lourds. Tous ses isotopes ont une durée de vie courte ; le plus stable est l'astate 210, dont la demi-vie est de 8,1 heures."
+    },
+    {
+      "number": 86,
+      "symbol": "Rn",
+      "name": "Radon",
+      "appearance": "gaz incolore, émettant parfois une lueur verte ou rouge dans les tubes à décharge",
+      "summary": "Le radon est un élément chimique de symbole Rn et de numéro atomique 86. C'est un gaz noble radioactif, incolore, inodore et insipide, présent naturellement en tant que produit de désintégration du radium. Son isotope le plus stable, le 222Rn, a une demi-vie de 3,8 jours."
+    },
+    {
+      "number": 87,
+      "symbol": "Fr",
+      "name": "Francium",
+      "appearance": null,
+      "summary": "Le francium est un élément chimique de symbole Fr et de numéro atomique 87. Il était autrefois connu sous les noms d'eka-césium et d'actinium K. C'est le deuxième élément le moins électronégatif, juste derrière le césium. Le francium est un métal hautement radioactif qui se désintègre en astate, en radium et en radon."
+    },
+    {
+      "number": 88,
+      "symbol": "Ra",
+      "name": "Radium",
+      "appearance": "métallique blanc argenté",
+      "summary": "Le radium est un élément chimique de symbole Ra et de numéro atomique 88. C'est le sixième élément du groupe 2 du tableau périodique, aussi appelé groupe des métaux alcalino-terreux. Le radium pur est presque incolore, mais il se combine facilement avec l'azote (plutôt qu'avec l'oxygène) au contact de l'air, formant une couche superficielle noire de nitrure de radium (Ra3N2)."
+    },
+    {
+      "number": 89,
+      "symbol": "Ac",
+      "name": "Actinium",
+      "appearance": null,
+      "summary": "L'actinium est un élément chimique radioactif de symbole Ac (à ne pas confondre avec l'abréviation du groupe acétyle) et de numéro atomique 89, découvert en 1899. Ce fut le premier élément radioactif non primordial à être isolé. Le polonium, le radium et le radon ont été observés avant l'actinium, mais ils n'ont été isolés qu'en 1902."
+    },
+    {
+      "number": 90,
+      "symbol": "Th",
+      "name": "Thorium",
+      "appearance": "argenté, souvent avec un ternissement noir",
+      "summary": "Le thorium est un élément chimique de symbole Th et de numéro atomique 90. Métal radioactif de la famille des actinides, le thorium est l'un des deux seuls éléments significativement radioactifs encore présents naturellement en grandes quantités en tant qu'élément primordial (l'autre étant l'uranium). Il a été découvert en 1828 par le pasteur norvégien et minéralogiste amateur Morten Thrane Esmark, puis identifié par le chimiste suédois Jöns Jacob Berzelius, qui l'a nommé d'après Thor, le dieu nordique du tonnerre."
+    },
+    {
+      "number": 91,
+      "symbol": "Pa",
+      "name": "Protactinium",
+      "appearance": "éclat métallique argenté et brillant",
+      "summary": "Le protactinium est un élément chimique de symbole Pa et de numéro atomique 91. C'est un métal dense, gris argenté, qui réagit facilement avec l'oxygène, la vapeur d'eau et les acides inorganiques. Il forme divers composés chimiques dans lesquels le protactinium est généralement à l'état d'oxydation +5, mais il peut aussi adopter les états +4, voire +2 ou +3."
+    },
+    {
+      "number": 92,
+      "symbol": "U",
+      "name": "Uranium",
+      "appearance": null,
+      "summary": "L'uranium est un élément chimique de symbole U et de numéro atomique 92. C'est un métal blanc argenté de la série des actinides du tableau périodique. Un atome d'uranium possède 92 protons et 92 électrons, dont 6 sont des électrons de valence."
+    },
+    {
+      "number": 93,
+      "symbol": "Np",
+      "name": "Neptunium",
+      "appearance": "métallique argenté",
+      "summary": "Le neptunium est un élément chimique de symbole Np et de numéro atomique 93. Métal radioactif de la famille des actinides, le neptunium est le premier élément transuranien. Sa position dans le tableau périodique, juste après l'uranium, nommé d'après la planète Uranus, lui a valu d'être nommé d'après Neptune, la planète suivante après Uranus."
+    },
+    {
+      "number": 94,
+      "symbol": "Pu",
+      "name": "Plutonium",
+      "appearance": "blanc argenté, ternissant en gris foncé à l'air",
+      "summary": "Le plutonium est un élément chimique radioactif transuranien de symbole Pu et de numéro atomique 94. C'est un actinide métallique d'aspect gris argenté qui ternit au contact de l'air et forme un revêtement terne lorsqu'il s'oxyde. L'élément présente normalement six allotropes et quatre états d'oxydation."
+    },
+    {
+      "number": 95,
+      "symbol": "Am",
+      "name": "Américium",
+      "appearance": "blanc argenté",
+      "summary": "L'américium est un élément chimique radioactif transuranien de symbole Am et de numéro atomique 95. Ce membre de la série des actinides est situé dans le tableau périodique sous le lanthanide europium, et a donc été nommé par analogie d'après les Amériques. L'américium a été produit pour la première fois en 1944 par l'équipe de Glenn T. Seaborg, de Berkeley (Californie), au laboratoire métallurgique de l'université de Chicago."
+    },
+    {
+      "number": 96,
+      "symbol": "Cm",
+      "name": "Curium",
+      "appearance": "métallique argenté, luit en violet dans l'obscurité",
+      "summary": "Le curium est un élément chimique radioactif transuranien de symbole Cm et de numéro atomique 96. Cet élément de la série des actinides a été nommé d'après Marie et Pierre Curie, tous deux connus pour leurs recherches sur la radioactivité. Le curium a été produit intentionnellement et identifié pour la première fois en juillet 1944 par l'équipe de Glenn T. Seaborg à l'université de Californie à Berkeley."
+    },
+    {
+      "number": 97,
+      "symbol": "Bk",
+      "name": "Berkélium",
+      "appearance": "argenté",
+      "summary": "Le berkélium est un élément chimique radioactif transuranien de symbole Bk et de numéro atomique 97. Il fait partie des séries des actinides et des éléments transuraniens. Il doit son nom à la ville de Berkeley, en Californie, où se trouve le laboratoire de radiation de l'université de Californie dans lequel il a été découvert en décembre 1949."
+    },
+    {
+      "number": 98,
+      "symbol": "Cf",
+      "name": "Californium",
+      "appearance": "argenté",
+      "summary": "Le californium est un élément chimique métallique radioactif de symbole Cf et de numéro atomique 98. L'élément a été produit pour la première fois en 1950 au laboratoire de radiation de l'université de Californie à Berkeley, en bombardant du curium avec des particules alpha (ions hélium 4). C'est un actinide, le sixième élément transuranien à avoir été synthétisé, et il possède la deuxième masse atomique la plus élevée de tous les éléments produits en quantités suffisantes pour être vus à l'œil nu (après l'einsteinium)."
+    },
+    {
+      "number": 99,
+      "symbol": "Es",
+      "name": "Einsteinium",
+      "appearance": "de couleur argentée",
+      "summary": "L'einsteinium est un élément synthétique de symbole Es et de numéro atomique 99. C'est le septième élément transuranien et un actinide. L'einsteinium a été découvert parmi les débris de l'explosion de la première bombe à hydrogène en 1952 et a été nommé d'après Albert Einstein."
+    },
+    {
+      "number": 100,
+      "symbol": "Fm",
+      "name": "Fermium",
+      "appearance": null,
+      "summary": "Le fermium est un élément synthétique de symbole Fm et de numéro atomique 100. Il fait partie de la série des actinides. C'est l'élément le plus lourd pouvant être formé par bombardement neutronique d'éléments plus légers, et donc le dernier élément pouvant être préparé en quantités macroscopiques, bien que le fermium métallique pur n'ait pas encore été préparé."
+    },
+    {
+      "number": 101,
+      "symbol": "Md",
+      "name": "Mendélévium",
+      "appearance": null,
+      "summary": "Le mendélévium est un élément synthétique de symbole chimique Md (anciennement Mv) et de numéro atomique 101. Élément transuranien métallique et radioactif de la série des actinides, c'est le premier élément qui ne peut actuellement pas être produit en quantités macroscopiques par bombardement neutronique d'éléments plus légers. C'est l'antépénultième actinide et le neuvième élément transuranien."
+    },
+    {
+      "number": 102,
+      "symbol": "No",
+      "name": "Nobélium",
+      "appearance": null,
+      "summary": "Le nobélium est un élément chimique synthétique de symbole No et de numéro atomique 102. Il a été nommé en l'honneur d'Alfred Nobel, inventeur de la dynamite et mécène de la science. Métal radioactif, c'est le dixième élément transuranien et l'avant-dernier membre de la série des actinides."
+    },
+    {
+      "number": 103,
+      "symbol": "Lr",
+      "name": "Lawrencium",
+      "appearance": null,
+      "summary": "Le lawrencium est un élément chimique synthétique de symbole chimique Lr (anciennement Lw) et de numéro atomique 103. Il a été nommé en l'honneur d'Ernest Lawrence, inventeur du cyclotron, un appareil qui a permis de découvrir de nombreux éléments radioactifs artificiels. Métal radioactif, le lawrencium est le onzième élément transuranien et aussi le dernier membre de la série des actinides."
+    },
+    {
+      "number": 104,
+      "symbol": "Rf",
+      "name": "Rutherfordium",
+      "appearance": null,
+      "summary": "Le rutherfordium est un élément chimique de symbole Rf et de numéro atomique 104, nommé en l'honneur du physicien Ernest Rutherford. C'est un élément synthétique (un élément qui peut être créé en laboratoire mais qui n'existe pas dans la nature) et radioactif ; l'isotope connu le plus stable, le 267Rf, a une demi-vie d'environ 1,3 heure. Dans le tableau périodique des éléments, c'est un élément du bloc d et le deuxième des éléments de transition de la quatrième ligne."
+    },
+    {
+      "number": 105,
+      "symbol": "Db",
+      "name": "Dubnium",
+      "appearance": null,
+      "summary": "Le dubnium est un élément chimique de symbole Db et de numéro atomique 105. Il doit son nom à la ville de Doubna, en Russie (au nord de Moscou), où il a été produit pour la première fois. C'est un élément synthétique (un élément qui peut être créé en laboratoire mais qui n'existe pas dans la nature) et radioactif ; l'isotope connu le plus stable, le dubnium 268, a une demi-vie d'environ 28 heures."
+    },
+    {
+      "number": 106,
+      "symbol": "Sg",
+      "name": "Seaborgium",
+      "appearance": null,
+      "summary": "Le seaborgium est un élément synthétique de symbole Sg et de numéro atomique 106. Son isotope le plus stable, le 271Sg, a une demi-vie de 1,9 minute. Un isotope découvert plus récemment, le 269Sg, a une demi-vie potentiellement un peu plus longue (env."
+    },
+    {
+      "number": 107,
+      "symbol": "Bh",
+      "name": "Bohrium",
+      "appearance": null,
+      "summary": "Le bohrium est un élément chimique de symbole Bh et de numéro atomique 107. Il a été nommé d'après le physicien danois Niels Bohr. C'est un élément synthétique (un élément qui peut être créé en laboratoire mais qui n'existe pas dans la nature) et radioactif ; l'isotope connu le plus stable, le 270Bh, a une demi-vie d'environ 61 secondes."
+    },
+    {
+      "number": 108,
+      "symbol": "Hs",
+      "name": "Hassium",
+      "appearance": null,
+      "summary": "Le hassium est un élément chimique de symbole Hs et de numéro atomique 108, nommé d'après le Land allemand de Hesse. C'est un élément synthétique (un élément qui peut être créé en laboratoire mais qui n'existe pas dans la nature) et radioactif ; l'isotope connu le plus stable, le 269Hs, a une demi-vie d'environ 9,7 secondes, bien qu'un état métastable non confirmé, le 277mHs, puisse avoir une demi-vie plus longue, d'environ 130 secondes. Plus de 100 atomes de hassium ont été synthétisés à ce jour."
+    },
+    {
+      "number": 109,
+      "symbol": "Mt",
+      "name": "Meitnérium",
+      "appearance": null,
+      "summary": "Le meitnérium est un élément chimique de symbole Mt et de numéro atomique 109. C'est un élément synthétique extrêmement radioactif (un élément qui n'existe pas dans la nature mais qui peut être créé en laboratoire). L'isotope connu le plus stable, le meitnérium 278, a une demi-vie de 7,6 secondes."
+    },
+    {
+      "number": 110,
+      "symbol": "Ds",
+      "name": "Darmstadtium",
+      "appearance": null,
+      "summary": "Le darmstadtium est un élément chimique de symbole Ds et de numéro atomique 110. C'est un élément synthétique extrêmement radioactif. L'isotope connu le plus stable, le darmstadtium 281, a une demi-vie d'environ 10 secondes."
+    },
+    {
+      "number": 111,
+      "symbol": "Rg",
+      "name": "Roentgenium",
+      "appearance": null,
+      "summary": "Le roentgenium est un élément chimique de symbole Rg et de numéro atomique 111. C'est un élément synthétique extrêmement radioactif (un élément qui peut être créé en laboratoire mais qui n'existe pas dans la nature) ; l'isotope connu le plus stable, le roentgenium 282, a une demi-vie de 2,1 minutes. Le roentgenium a été créé pour la première fois en 1994 par le GSI Helmholtz Centre for Heavy Ion Research, près de Darmstadt, en Allemagne."
+    },
+    {
+      "number": 112,
+      "symbol": "Cn",
+      "name": "Copernicium",
+      "appearance": null,
+      "summary": "Le copernicium est un élément chimique de symbole Cn et de numéro atomique 112. C'est un élément synthétique extrêmement radioactif qui ne peut être créé qu'en laboratoire. L'isotope connu le plus stable, le copernicium 285, a une demi-vie d'environ 29 secondes, mais il est possible que cet isotope possède un isomère nucléaire de demi-vie plus longue, 8,9 minutes."
+    },
+    {
+      "number": 113,
+      "symbol": "Nh",
+      "name": "Nihonium",
+      "appearance": null,
+      "summary": "Le nihonium est un élément chimique de numéro atomique 113. Son symbole est Nh. C'est un élément synthétique (un élément qui peut être créé en laboratoire mais qui n'existe pas dans la nature) et extrêmement radioactif ; son isotope connu le plus stable, le nihonium 286, a une demi-vie de 20 secondes."
+    },
+    {
+      "number": 114,
+      "symbol": "Fl",
+      "name": "Flérovium",
+      "appearance": null,
+      "summary": "Le flérovium est un élément chimique artificiel superlourd de symbole Fl et de numéro atomique 114. C'est un élément synthétique extrêmement radioactif. L'élément doit son nom au laboratoire Flerov de réactions nucléaires de l'Institut unifié de recherches nucléaires de Doubna, en Russie, où il a été découvert en 1998."
+    },
+    {
+      "number": 115,
+      "symbol": "Mc",
+      "name": "Moscovium",
+      "appearance": null,
+      "summary": "Le moscovium est le nom d'un élément superlourd synthétique du tableau périodique, de symbole Mc et de numéro atomique 115. C'est un élément extrêmement radioactif ; son isotope connu le plus stable, le moscovium 289, a une demi-vie de seulement 220 millisecondes. Il est aussi connu sous le nom d'eka-bismuth ou simplement d'élément 115."
+    },
+    {
+      "number": 116,
+      "symbol": "Lv",
+      "name": "Livermorium",
+      "appearance": null,
+      "summary": "Le livermorium est un élément superlourd synthétique de symbole Lv et de numéro atomique 116. C'est un élément extrêmement radioactif qui n'a été créé qu'en laboratoire et n'a jamais été observé dans la nature. L'élément doit son nom au Lawrence Livermore National Laboratory, aux États-Unis, qui a collaboré avec l'Institut unifié de recherches nucléaires de Doubna, en Russie, pour découvrir le livermorium en 2000."
+    },
+    {
+      "number": 117,
+      "symbol": "Ts",
+      "name": "Tennesse",
+      "appearance": null,
+      "summary": "Le tennesse est un élément chimique artificiel superlourd de numéro atomique 117 et de symbole Ts. Aussi connu sous le nom d'eka-astate ou d'élément 117, c'est le deuxième élément connu le plus lourd et l'avant-dernier élément de la 7e période du tableau périodique. En 2016, quinze atomes de tennesse avaient été observés : six lors de sa première synthèse en 2010, sept en 2012 et deux en 2014."
+    },
+    {
+      "number": 118,
+      "symbol": "Og",
+      "name": "Oganesson",
+      "appearance": null,
+      "summary": "L'oganesson est le nom attribué par l'UICPA à l'élément transactinide de numéro atomique 118 et de symbole Og. Il est aussi connu sous le nom d'eka-radon ou d'élément 118 ; dans le tableau périodique des éléments, c'est un élément du bloc p et le dernier de la 7e période. L'oganesson est actuellement le seul membre synthétique du groupe 18."
+    },
+    {
+      "number": 119,
+      "symbol": "Uue",
+      "name": "Ununennium",
+      "appearance": null,
+      "summary": "L'ununennium, aussi appelé eka-francium ou simplement élément 119, est l'élément chimique hypothétique de symbole Uue et de numéro atomique 119. Ununennium et Uue sont respectivement le nom et le symbole systématiques temporaires de l'UICPA, en attendant qu'un nom définitif soit choisi. Dans le tableau périodique des éléments, il devrait être un élément du bloc s, un métal alcalin, et le premier élément de la huitième période."
+    }
+  ]
+}

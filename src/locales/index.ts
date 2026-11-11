@@ -5,32 +5,69 @@
 
 // THE locale registry — the single source of truth for which locales exist.
 //
-// ADD A LOCALE: create src/locales/<xx>/ui.json and src/locales/<xx>/elements.json
-// (copy the en files and translate; elements.json needs at least every name.*
-// entry — category labels live in ui.json, and summaries fall back to English
-// automatically). Then add one import pair below, one entry to `resources`, and
-// the human language name under ui:language.<xx> in each ui.json. Nothing else:
-// SUPPORTED_LOCALES, SupportedLocale, the LanguageControl option list, and
-// resolveLanguage's accepted set all derive from `resources`. See README.md.
+// ADD A LOCALE: create src/locales/ui.<xx>.json and src/locales/periodic-table.<xx>.json
+// (copy the en files and translate). periodic-table.<xx>.json mirrors the source
+// dataset (src/data/periodic-table.json) — an `elements` array of
+// { number, symbol, name, appearance, summary } — but carries only the three
+// translatable fields' values; name/appearance/summary fall back to English
+// per-key automatically. Category labels live in ui.json. Then add one import
+// pair below, one entry to `resources`, and the human language name under
+// ui:language.<xx> in each ui.json. Nothing else: SUPPORTED_LOCALES,
+// SupportedLocale, the LanguageControl option list, and resolveLanguage's
+// accepted set all derive from `resources`. See README.md.
 
-import enUi from "./en/ui.json";
-import enElements from "./en/elements.json";
-import frUi from "./fr/ui.json";
-import frElements from "./fr/elements.json";
-import esUi from "./es/ui.json";
-import esElements from "./es/elements.json";
-import deUi from "./de/ui.json";
-import deElements from "./de/elements.json";
+import enUi from "./ui.en.json";
+import enPeriodicTable from "./periodic-table.en.json";
+import frUi from "./ui.fr.json";
+import frPeriodicTable from "./periodic-table.fr.json";
+import esUi from "./ui.es.json";
+import esPeriodicTable from "./periodic-table.es.json";
+import deUi from "./ui.de.json";
+import dePeriodicTable from "./periodic-table.de.json";
+
+// Shape of one entry in a periodic-table.<xx>.json file (same layout as the
+// source dataset; only name/appearance/summary carry translated text).
+interface LocaleElement {
+  number: number;
+  symbol: string;
+  name: string;
+  appearance: string | null;
+  summary: string;
+}
+interface PeriodicTableLocale {
+  elements: LocaleElement[];
+}
+
+// The `periodicTable` i18next namespace is a keyed resource (name/appearance/
+// summary maps keyed by atomic number), so t(`periodicTable:name.<n>`) resolves
+// a single element's field. The locale files ship an array (mirroring the
+// dataset) for readability and diff-friendliness; this adapter keys it. Entries
+// above 118 (the source's hypothetical element 119) are dropped to match the
+// 118 elements the app exposes. A null appearance is omitted so the key falls
+// back to English, then to nothing — the detail view gates on the dataset value.
+function toNamespace(locale: PeriodicTableLocale) {
+  const name: Record<string, string> = {};
+  const appearance: Record<string, string> = {};
+  const summary: Record<string, string> = {};
+  for (const e of locale.elements) {
+    if (e.number > 118) continue;
+    const key = String(e.number);
+    name[key] = e.name;
+    summary[key] = e.summary;
+    if (e.appearance !== null) appearance[key] = e.appearance;
+  }
+  return { name, appearance, summary };
+}
 
 export const resources = {
-  en: { ui: enUi, elements: enElements },
-  fr: { ui: frUi, elements: frElements },
-  es: { ui: esUi, elements: esElements },
-  de: { ui: deUi, elements: deElements },
+  en: { ui: enUi, periodicTable: toNamespace(enPeriodicTable) },
+  fr: { ui: frUi, periodicTable: toNamespace(frPeriodicTable) },
+  es: { ui: esUi, periodicTable: toNamespace(esPeriodicTable) },
+  de: { ui: deUi, periodicTable: toNamespace(dePeriodicTable) },
 } as const;
 
 export type SupportedLocale = keyof typeof resources; // "en" | "fr" | "es" | "de"
 export const SUPPORTED_LOCALES = Object.keys(resources) as SupportedLocale[];
 export const FALLBACK_LOCALE: SupportedLocale = "en";
-export const NAMESPACES = ["ui", "elements"] as const;
+export const NAMESPACES = ["ui", "periodicTable"] as const;
 export const DEFAULT_NAMESPACE = "ui";

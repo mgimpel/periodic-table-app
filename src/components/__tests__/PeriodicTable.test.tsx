@@ -35,7 +35,7 @@ import {
   PHASE_KEYS,
 } from "../../lib/cellColor";
 import { CATEGORY_COLORS, CATEGORY_KEYS } from "../../data/element";
-import uiStrings from "../../locales/en/ui.json";
+import uiStrings from "../../locales/ui.en.json";
 
 // ResizeObserver and matchMedia ("not wide", so the detail is the bottom
 // Drawer) come from the shared polyfills in src/test-setup.ts.

@@ -1,0 +1,837 @@
+{
+  "elements": [
+    {
+      "number": 1,
+      "symbol": "H",
+      "name": "Wasserstoff",
+      "appearance": "farbloses Gas",
+      "summary": "Wasserstoff ist ein chemisches Element mit dem chemischen Symbol H und der Ordnungszahl 1. Mit einer Atommasse von 1,00794 u ist Wasserstoff das leichteste Element des Periodensystems. Seine einatomige Form (H) ist die häufigste chemische Substanz im Universum und macht etwa 75 % der gesamten baryonischen Masse aus."
+    },
+    {
+      "number": 2,
+      "symbol": "He",
+      "name": "Helium",
+      "appearance": "farbloses Gas, das in einem elektrischen Hochspannungsfeld rot-orange leuchtet",
+      "summary": "Helium ist ein chemisches Element mit dem Symbol He und der Ordnungszahl 2. Es ist ein farbloses, geruchloses, geschmackloses, ungiftiges, inertes, einatomiges Gas, das die Gruppe der Edelgase im Periodensystem anführt. Sein Siede- und Schmelzpunkt sind die niedrigsten aller Elemente."
+    },
+    {
+      "number": 3,
+      "symbol": "Li",
+      "name": "Lithium",
+      "appearance": "silbrig-weiß",
+      "summary": "Lithium (von griechisch λίθος lithos, „Stein“) ist ein chemisches Element mit dem Symbol Li und der Ordnungszahl 3. Es ist ein weiches, silberweißes Metall aus der Gruppe der Alkalimetalle. Unter Standardbedingungen ist es das leichteste Metall und das Element mit der geringsten Dichte im festen Zustand."
+    },
+    {
+      "number": 4,
+      "symbol": "Be",
+      "name": "Beryllium",
+      "appearance": "weißgrau metallisch",
+      "summary": "Beryllium ist ein chemisches Element mit dem Symbol Be und der Ordnungszahl 4. Es entsteht durch stellare Nukleosynthese und ist im Universum ein relativ seltenes Element. Es ist ein zweiwertiges Element, das in der Natur nur in Verbindung mit anderen Elementen in Mineralen vorkommt."
+    },
+    {
+      "number": 5,
+      "symbol": "B",
+      "name": "Bor",
+      "appearance": "schwarzbraun",
+      "summary": "Bor ist ein halbmetallisches chemisches Element mit dem Symbol B und der Ordnungszahl 5. Da es ausschließlich durch Spallation durch kosmische Strahlung und in Supernovae und nicht durch stellare Nukleosynthese entsteht, ist es sowohl im Sonnensystem als auch in der Erdkruste ein seltenes Element. Auf der Erde wird Bor durch die Wasserlöslichkeit seiner häufigsten natürlichen Verbindungen, der Boratminerale, angereichert."
+    },
+    {
+      "number": 6,
+      "symbol": "C",
+      "name": "Kohlenstoff",
+      "appearance": null,
+      "summary": "Kohlenstoff (von lateinisch carbo, „Kohle“) ist ein chemisches Element mit dem Symbol C und der Ordnungszahl 6. Im Periodensystem ist er das erste (Periode 2) von sechs Elementen der Spalte (Gruppe) 14, die eine gemeinsame Zusammensetzung ihrer äußeren Elektronenschale aufweisen. Er ist ein Nichtmetall und vierwertig, das heißt, er stellt vier Elektronen zur Bildung kovalenter chemischer Bindungen zur Verfügung."
+    },
+    {
+      "number": 7,
+      "symbol": "N",
+      "name": "Stickstoff",
+      "appearance": "farbloses Gas, farblose Flüssigkeit oder farbloser Feststoff",
+      "summary": "Stickstoff ist ein chemisches Element mit dem Symbol N und der Ordnungszahl 7. Er ist das leichteste Pniktogen und bei Raumtemperatur ein durchsichtiges, geruchloses, zweiatomiges Gas. Stickstoff ist ein häufiges Element im Universum und steht in der Milchstraße und im Sonnensystem schätzungsweise an etwa siebter Stelle der Gesamthäufigkeit."
+    },
+    {
+      "number": 8,
+      "symbol": "O",
+      "name": "Sauerstoff",
+      "appearance": null,
+      "summary": "Sauerstoff ist ein chemisches Element mit dem Symbol O und der Ordnungszahl 8. Er gehört zur Gruppe der Chalkogene im Periodensystem und ist ein hochreaktives Nichtmetall und Oxidationsmittel, das mit den meisten Elementen leicht Verbindungen (vor allem Oxide) bildet. Nach der Masse ist Sauerstoff nach Wasserstoff und Helium das dritthäufigste Element im Universum."
+    },
+    {
+      "number": 9,
+      "symbol": "F",
+      "name": "Fluor",
+      "appearance": null,
+      "summary": "Fluor ist ein chemisches Element mit dem Symbol F und der Ordnungszahl 9. Es ist das leichteste Halogen und liegt unter Standardbedingungen als hochgiftiges, blassgelbes, zweiatomiges Gas vor. Als elektronegativstes Element ist es äußerst reaktiv: Fast alle anderen Elemente, einschließlich einiger Edelgase, bilden Verbindungen mit Fluor."
+    },
+    {
+      "number": 10,
+      "symbol": "Ne",
+      "name": "Neon",
+      "appearance": "farbloses Gas, das in einem elektrischen Hochspannungsfeld orange-rot leuchtet",
+      "summary": "Neon ist ein chemisches Element mit dem Symbol Ne und der Ordnungszahl 10. Es gehört zur Gruppe 18 (Edelgase) des Periodensystems. Neon ist unter Standardbedingungen ein farbloses, geruchloses, inertes, einatomiges Gas mit etwa zwei Dritteln der Dichte von Luft."
+    },
+    {
+      "number": 11,
+      "symbol": "Na",
+      "name": "Natrium",
+      "appearance": "silbrig-weiß metallisch",
+      "summary": "Natrium /ˈsoʊdiəm/ ist ein chemisches Element mit dem Symbol Na (von altgriechisch Νάτριο) und der Ordnungszahl 11. Es ist ein weiches, silberweißes, hochreaktives Metall. Im Periodensystem steht es in Spalte 1 (Alkalimetalle) und hat mit den anderen sechs Elementen dieser Spalte gemeinsam, dass es ein einzelnes Elektron in seiner äußeren Schale besitzt, das es leicht abgibt, wodurch ein positiv geladenes Atom entsteht – ein Kation."
+    },
+    {
+      "number": 12,
+      "symbol": "Mg",
+      "name": "Magnesium",
+      "appearance": "glänzender grauer Feststoff",
+      "summary": "Magnesium ist ein chemisches Element mit dem Symbol Mg und der Ordnungszahl 12. Es ist ein glänzender grauer Feststoff, der den anderen fünf Elementen der zweiten Spalte (Gruppe 2 oder Erdalkalimetalle) des Periodensystems physikalisch sehr ähnlich ist: Sie alle haben dieselbe Elektronenkonfiguration in ihrer äußeren Elektronenschale, was zu einer ähnlichen Kristallstruktur führt. Magnesium ist das neunthäufigste Element im Universum."
+    },
+    {
+      "number": 13,
+      "symbol": "Al",
+      "name": "Aluminium",
+      "appearance": "silbergrau metallisch",
+      "summary": "Aluminium (im amerikanischen Englisch „aluminum“) ist ein chemisches Element der Borgruppe mit dem Symbol Al und der Ordnungszahl 13. Es ist ein silberweißes, weiches, nicht magnetisches, duktiles Metall. Aluminium ist das dritthäufigste Element (nach Sauerstoff und Silicium) und das häufigste Metall der Erdkruste."
+    },
+    {
+      "number": 14,
+      "symbol": "Si",
+      "name": "Silicium",
+      "appearance": "kristallin, reflektierend mit bläulich schimmernden Flächen",
+      "summary": "Silicium ist ein chemisches Element mit dem Symbol Si und der Ordnungszahl 14. Es ist ein vierwertiges Halbmetall und reaktiver als Germanium, das Halbmetall direkt unter ihm im Periodensystem. Die Kontroverse über die Natur des Siliciums reicht bis zu seiner Entdeckung zurück."
+    },
+    {
+      "number": 15,
+      "symbol": "P",
+      "name": "Phosphor",
+      "appearance": "farblos, wachsartig weiß, gelb, scharlachrot, rot, violett, schwarz",
+      "summary": "Phosphor ist ein chemisches Element mit dem Symbol P und der Ordnungszahl 15. Als Element kommt Phosphor in zwei Hauptformen vor – weißer und roter Phosphor –, wegen seiner hohen Reaktivität findet man ihn auf der Erde jedoch nie als freies Element. Stattdessen liegen phosphorhaltige Minerale fast immer in ihrem höchsten Oxidationszustand als anorganische Phosphatgesteine vor."
+    },
+    {
+      "number": 16,
+      "symbol": "S",
+      "name": "Schwefel",
+      "appearance": "zitronengelbe gesinterte Mikrokristalle",
+      "summary": "Schwefel (englisch „sulfur“ oder „sulphur“) ist ein chemisches Element mit dem Symbol S und der Ordnungszahl 16. Er ist ein häufiges, mehrwertiges Nichtmetall. Unter Normalbedingungen bilden Schwefelatome ringförmige achtatomige Moleküle mit der chemischen Formel S8."
+    },
+    {
+      "number": 17,
+      "symbol": "Cl",
+      "name": "Chlor",
+      "appearance": "blassgelb-grünes Gas",
+      "summary": "Chlor ist ein chemisches Element mit dem Symbol Cl und der Ordnungszahl 17. Seine relative Atommasse beträgt 35,5. Chlor gehört zur Gruppe der Halogene (17) und ist nach Fluor das zweitleichteste Halogen."
+    },
+    {
+      "number": 18,
+      "symbol": "Ar",
+      "name": "Argon",
+      "appearance": "farbloses Gas, das in einem elektrischen Hochspannungsfeld lila/violett leuchtet",
+      "summary": "Argon ist ein chemisches Element mit dem Symbol Ar und der Ordnungszahl 18. Es gehört zur Gruppe 18 des Periodensystems und ist ein Edelgas. Argon ist mit 0,934 % (9.340 ppmv) das dritthäufigste Gas in der Erdatmosphäre und damit mehr als doppelt so häufig wie das nächsthäufigste atmosphärische Gas, Wasserdampf (durchschnittlich etwa 4.000 ppmv, aber stark schwankend), 23-mal so häufig wie das nächsthäufigste nicht kondensierende atmosphärische Gas, Kohlendioxid (400 ppmv), und mehr als 500-mal so häufig wie das nächsthäufigste Edelgas, Neon (18 ppmv)."
+    },
+    {
+      "number": 19,
+      "symbol": "K",
+      "name": "Kalium",
+      "appearance": "silbergrau",
+      "summary": "Kalium ist ein chemisches Element mit dem Symbol K (vom neulateinischen kalium) und der Ordnungszahl 19. Es wurde erstmals aus Pottasche, der Asche von Pflanzen, isoliert, von der sich sein englischer Name ableitet. Im Periodensystem ist Kalium eines von sieben Elementen der Spalte (Gruppe) 1 (Alkalimetalle): Sie alle haben ein einzelnes Valenzelektron in ihrer äußeren Elektronenschale, das sie leicht abgeben, um ein positiv geladenes Atom – ein Kation – zu bilden, und verbinden sich mit Anionen zu Salzen."
+    },
+    {
+      "number": 20,
+      "symbol": "Ca",
+      "name": "Calcium",
+      "appearance": null,
+      "summary": "Calcium ist ein chemisches Element mit dem Symbol Ca und der Ordnungszahl 20. Calcium ist ein weiches, graues Erdalkalimetall und das fünfthäufigste Element in der Erdkruste nach Masse. Das Ion Ca2+ ist zudem nach Natrium, Chlorid, Magnesium und Sulfat das fünfthäufigste gelöste Ion im Meerwasser, sowohl nach Molarität als auch nach Masse."
+    },
+    {
+      "number": 21,
+      "symbol": "Sc",
+      "name": "Scandium",
+      "appearance": "silbrig-weiß",
+      "summary": "Scandium ist ein chemisches Element mit dem Symbol Sc und der Ordnungszahl 21. Als silberweißes metallisches Element des d-Blocks wurde es historisch zusammen mit Yttrium und den Lanthanoiden manchmal zu den Seltenerdelementen gezählt. Es wurde 1879 durch Spektralanalyse der Minerale Euxenit und Gadolinit aus Skandinavien entdeckt."
+    },
+    {
+      "number": 22,
+      "symbol": "Ti",
+      "name": "Titan",
+      "appearance": "silbrig grauweiß metallisch",
+      "summary": "Titan ist ein chemisches Element mit dem Symbol Ti und der Ordnungszahl 22. Es ist ein glänzendes Übergangsmetall von silberner Farbe mit geringer Dichte und hoher Festigkeit. Es ist sehr korrosionsbeständig gegenüber Meerwasser, Königswasser und Chlor."
+    },
+    {
+      "number": 23,
+      "symbol": "V",
+      "name": "Vanadium",
+      "appearance": "blau-silbergraues Metall",
+      "summary": "Vanadium ist ein chemisches Element mit dem Symbol V und der Ordnungszahl 23. Es ist ein hartes, silbergraues, duktiles und formbares Übergangsmetall. Das Element kommt in der Natur nur in chemisch gebundener Form vor; wird es jedoch künstlich isoliert, stabilisiert die Bildung einer Oxidschicht das freie Metall einigermaßen gegen weitere Oxidation."
+    },
+    {
+      "number": 24,
+      "symbol": "Cr",
+      "name": "Chrom",
+      "appearance": "silbrig metallisch",
+      "summary": "Chrom ist ein chemisches Element mit dem Symbol Cr und der Ordnungszahl 24. Es ist das erste Element der Gruppe 6. Es ist ein stahlgraues, glänzendes, hartes und sprödes Metall, das sich gut polieren lässt, nicht anläuft und einen hohen Schmelzpunkt besitzt."
+    },
+    {
+      "number": 25,
+      "symbol": "Mn",
+      "name": "Mangan",
+      "appearance": "silbrig metallisch",
+      "summary": "Mangan ist ein chemisches Element mit dem Symbol Mn und der Ordnungszahl 25. Es kommt in der Natur nicht als freies Element vor; häufig findet man es zusammen mit Eisen und in vielen Mineralen. Mangan ist ein Metall mit wichtigen industriellen Anwendungen in Legierungen, insbesondere in Edelstählen."
+    },
+    {
+      "number": 26,
+      "symbol": "Fe",
+      "name": "Eisen",
+      "appearance": "metallisch glänzend mit einem gräulichen Schimmer",
+      "summary": "Eisen ist ein chemisches Element mit dem Symbol Fe (von lateinisch ferrum) und der Ordnungszahl 26. Es ist ein Metall der ersten Übergangsreihe. Nach Masse ist es das häufigste Element der Erde und bildet einen Großteil des äußeren und inneren Erdkerns."
+    },
+    {
+      "number": 27,
+      "symbol": "Co",
+      "name": "Cobalt",
+      "appearance": "hartes, glänzendes graues Metall",
+      "summary": "Cobalt ist ein chemisches Element mit dem Symbol Co und der Ordnungszahl 27. Wie Nickel kommt Cobalt in der Erdkruste nur in chemisch gebundener Form vor, abgesehen von kleinen Vorkommen in Legierungen aus natürlichem Meteoreisen. Das freie Element, das durch reduktives Schmelzen gewonnen wird, ist ein hartes, glänzendes, silbergraues Metall."
+    },
+    {
+      "number": 28,
+      "symbol": "Ni",
+      "name": "Nickel",
+      "appearance": "glänzend, metallisch und silbern mit einem goldenen Schimmer",
+      "summary": "Nickel ist ein chemisches Element mit dem Symbol Ni und der Ordnungszahl 28. Es ist ein silberweiß glänzendes Metall mit einem leicht goldenen Schimmer. Nickel gehört zu den Übergangsmetallen und ist hart und duktil."
+    },
+    {
+      "number": 29,
+      "symbol": "Cu",
+      "name": "Kupfer",
+      "appearance": "rot-oranger metallischer Glanz",
+      "summary": "Kupfer ist ein chemisches Element mit dem Symbol Cu (von lateinisch cuprum) und der Ordnungszahl 29. Es ist ein weiches, formbares und duktiles Metall mit sehr hoher thermischer und elektrischer Leitfähigkeit. Eine frisch freigelegte Oberfläche aus reinem Kupfer hat eine rötlich-orange Farbe."
+    },
+    {
+      "number": 30,
+      "symbol": "Zn",
+      "name": "Zink",
+      "appearance": "silbergrau",
+      "summary": "Zink, im Handel auch „Spelter“ genannt, ist ein chemisches Element mit dem Symbol Zn und der Ordnungszahl 30. Es ist das erste Element der Gruppe 12 des Periodensystems. In mancher Hinsicht ist Zink chemisch dem Magnesium ähnlich: Sein Ion hat eine ähnliche Größe, und seine einzige gängige Oxidationsstufe ist +2."
+    },
+    {
+      "number": 31,
+      "symbol": "Ga",
+      "name": "Gallium",
+      "appearance": "silberweiß",
+      "summary": "Gallium ist ein chemisches Element mit dem Symbol Ga und der Ordnungszahl 31. Elementares Gallium kommt in der Natur nicht in freier Form vor, sondern als Gallium(III)-Verbindungen, die in Spuren in Zinkerzen und in Bauxit enthalten sind. Gallium ist ein weiches, silbriges Metall; elementares Gallium ist bei niedrigen Temperaturen ein spröder Feststoff und schmilzt bei 29,76 °C (85,57 °F), also knapp über Raumtemperatur."
+    },
+    {
+      "number": 32,
+      "symbol": "Ge",
+      "name": "Germanium",
+      "appearance": "grauweiß",
+      "summary": "Germanium ist ein chemisches Element mit dem Symbol Ge und der Ordnungszahl 32. Es ist ein glänzendes, hartes, grauweißes Halbmetall der Kohlenstoffgruppe, das seinen Gruppennachbarn Zinn und Silicium chemisch ähnelt. Gereinigtes Germanium ist ein Halbleiter, dessen Aussehen dem von elementarem Silicium sehr ähnlich ist."
+    },
+    {
+      "number": 33,
+      "symbol": "As",
+      "name": "Arsen",
+      "appearance": "metallisch grau",
+      "summary": "Arsen ist ein chemisches Element mit dem Symbol As und der Ordnungszahl 33. Arsen kommt in vielen Mineralen vor, meist zusammen mit Schwefel und Metallen, aber auch als reiner elementarer Kristall. Arsen ist ein Halbmetall."
+    },
+    {
+      "number": 34,
+      "symbol": "Se",
+      "name": "Selen",
+      "appearance": "schwarze, rote und graue (nicht abgebildet) Allotrope",
+      "summary": "Selen ist ein chemisches Element mit dem Symbol Se und der Ordnungszahl 34. Es ist ein Nichtmetall, dessen Eigenschaften zwischen denen seiner im Periodensystem benachbarten Chalkogene Schwefel und Tellur liegen. In der Natur kommt es selten in elementarer Form oder als reine Erzverbindung vor."
+    },
+    {
+      "number": 35,
+      "symbol": "Br",
+      "name": "Brom",
+      "appearance": null,
+      "summary": "Brom (von altgriechisch βρῶμος, brómos, „Gestank“) ist ein chemisches Element mit dem Symbol Br und der Ordnungszahl 35. Es ist ein Halogen. Das Element wurde 1825–1826 unabhängig voneinander von zwei Chemikern, Carl Jacob Löwig und Antoine Jérôme Balard, isoliert."
+    },
+    {
+      "number": 36,
+      "symbol": "Kr",
+      "name": "Krypton",
+      "appearance": "farbloses Gas, das in einem starken elektrischen Feld weißlich leuchtet",
+      "summary": "Krypton (von griechisch κρυπτός kryptos, „das Verborgene“) ist ein chemisches Element mit dem Symbol Kr und der Ordnungszahl 36. Es gehört zu den Elementen der Gruppe 18 (Edelgase). Krypton ist ein farbloses, geruchloses, geschmackloses Edelgas, das in Spuren in der Atmosphäre vorkommt, durch fraktionierte Destillation verflüssigter Luft gewonnen wird und häufig zusammen mit anderen Edelgasen in Leuchtstofflampen verwendet wird."
+    },
+    {
+      "number": 37,
+      "symbol": "Rb",
+      "name": "Rubidium",
+      "appearance": "grauweiß",
+      "summary": "Rubidium ist ein chemisches Element mit dem Symbol Rb und der Ordnungszahl 37. Rubidium ist ein weiches, silberweißes metallisches Element der Gruppe der Alkalimetalle mit einer Atommasse von 85,4678. Elementares Rubidium ist hochreaktiv und hat ähnliche Eigenschaften wie die anderen Alkalimetalle, etwa eine sehr schnelle Oxidation an der Luft."
+    },
+    {
+      "number": 38,
+      "symbol": "Sr",
+      "name": "Strontium",
+      "appearance": null,
+      "summary": "Strontium ist ein chemisches Element mit dem Symbol Sr und der Ordnungszahl 38. Als Erdalkalimetall ist Strontium ein weiches, silberweißes oder gelbliches metallisches Element, das chemisch sehr reaktiv ist. Das Metall färbt sich gelb, wenn es der Luft ausgesetzt wird."
+    },
+    {
+      "number": 39,
+      "symbol": "Y",
+      "name": "Yttrium",
+      "appearance": "silbrig-weiß",
+      "summary": "Yttrium ist ein chemisches Element mit dem Symbol Y und der Ordnungszahl 39. Es ist ein silbrig-metallisches Übergangsmetall, das den Lanthanoiden chemisch ähnelt, und wurde oft als „Seltenerdelement“ eingestuft. Yttrium kommt fast immer zusammen mit den Lanthanoiden in Seltenerdmineralen vor und wird in der Natur nie als freies Element gefunden."
+    },
+    {
+      "number": 40,
+      "symbol": "Zr",
+      "name": "Zirconium",
+      "appearance": "silbrig-weiß",
+      "summary": "Zirconium ist ein chemisches Element mit dem Symbol Zr und der Ordnungszahl 40. Der Name Zirconium leitet sich vom Mineral Zirkon ab, der wichtigsten Zirconiumquelle. Das Wort Zirkon stammt vom persischen Wort zargun زرگون, das „goldfarben“ bedeutet."
+    },
+    {
+      "number": 41,
+      "symbol": "Nb",
+      "name": "Niob",
+      "appearance": "grau metallisch, bläulich bei Oxidation",
+      "summary": "Niob, früher Columbium, ist ein chemisches Element mit dem Symbol Nb (früher Cb) und der Ordnungszahl 41. Es ist ein weiches, graues, duktiles Übergangsmetall, das häufig im Mineral Pyrochlor, der wichtigsten kommerziellen Quelle für Niob, sowie in Columbit vorkommt. Der Name stammt aus der griechischen Mythologie: Niobe, die Tochter des Tantalos, da es dem Tantal so ähnlich ist."
+    },
+    {
+      "number": 42,
+      "symbol": "Mo",
+      "name": "Molybdän",
+      "appearance": "grau metallisch",
+      "summary": "Molybdän ist ein chemisches Element mit dem Symbol Mo und der Ordnungszahl 42. Der Name stammt vom neulateinischen molybdaenum, das wiederum vom altgriechischen Μόλυβδος molybdos, „Blei“, abgeleitet ist, da seine Erze mit Bleierzen verwechselt wurden. Molybdänminerale sind seit jeher bekannt, doch das Element wurde (im Sinne seiner Unterscheidung als neue Substanz von den Mineralsalzen anderer Metalle) 1778 von Carl Wilhelm Scheele entdeckt."
+    },
+    {
+      "number": 43,
+      "symbol": "Tc",
+      "name": "Technetium",
+      "appearance": "glänzend graues Metall",
+      "summary": "Technetium (/tɛkˈniːʃiəm/) ist ein chemisches Element mit dem Symbol Tc und der Ordnungszahl 43. Es ist das Element mit der niedrigsten Ordnungszahl im Periodensystem, das keine stabilen Isotope besitzt: Alle seine Formen sind radioaktiv. Nahezu das gesamte Technetium wird synthetisch hergestellt, und in der Natur kommen nur winzige Mengen vor."
+    },
+    {
+      "number": 44,
+      "symbol": "Ru",
+      "name": "Ruthenium",
+      "appearance": "silbrig-weiß metallisch",
+      "summary": "Ruthenium ist ein chemisches Element mit dem Symbol Ru und der Ordnungszahl 44. Es ist ein seltenes Übergangsmetall aus der Platingruppe des Periodensystems. Wie die anderen Metalle der Platingruppe ist Ruthenium gegenüber den meisten anderen Chemikalien inert."
+    },
+    {
+      "number": 45,
+      "symbol": "Rh",
+      "name": "Rhodium",
+      "appearance": "silbrig-weiß metallisch",
+      "summary": "Rhodium ist ein chemisches Element mit dem Symbol Rh und der Ordnungszahl 45. Es ist ein seltenes, silberweißes, hartes und chemisch inertes Übergangsmetall. Es gehört zur Platingruppe."
+    },
+    {
+      "number": 46,
+      "symbol": "Pd",
+      "name": "Palladium",
+      "appearance": "silbrig-weiß",
+      "summary": "Palladium ist ein chemisches Element mit dem Symbol Pd und der Ordnungszahl 46. Es ist ein seltenes, glänzendes, silberweißes Metall, das 1803 von William Hyde Wollaston entdeckt wurde. Er benannte es nach dem Asteroiden Pallas, der seinerseits nach dem Beinamen der griechischen Göttin Athene benannt ist, den sie erhielt, als sie Pallas tötete."
+    },
+    {
+      "number": 47,
+      "symbol": "Ag",
+      "name": "Silber",
+      "appearance": "glänzend weißes Metall",
+      "summary": "Silber ist ein chemisches Element mit dem Symbol Ag (griechisch άργυρος árguros, lateinisch argentum, beide von der indoeuropäischen Wurzel *h₂erǵ- für „grau“ oder „glänzend“) und der Ordnungszahl 47. Als weiches, weißes, glänzendes Übergangsmetall besitzt es die höchste elektrische Leitfähigkeit, Wärmeleitfähigkeit und Reflektivität aller Metalle. Das Metall kommt in der Natur in reiner, freier Form (gediegenes Silber), als Legierung mit Gold und anderen Metallen sowie in Mineralen wie Argentit und Chlorargyrit vor."
+    },
+    {
+      "number": 48,
+      "symbol": "Cd",
+      "name": "Cadmium",
+      "appearance": "silbrig bläulich-grau metallisch",
+      "summary": "Cadmium ist ein chemisches Element mit dem Symbol Cd und der Ordnungszahl 48. Dieses weiche, bläulich-weiße Metall ist den beiden anderen stabilen Metallen der Gruppe 12, Zink und Quecksilber, chemisch ähnlich. Wie Zink bevorzugt es in den meisten seiner Verbindungen die Oxidationsstufe +2, und wie Quecksilber hat es im Vergleich zu Übergangsmetallen einen niedrigen Schmelzpunkt."
+    },
+    {
+      "number": 49,
+      "symbol": "In",
+      "name": "Indium",
+      "appearance": "silbrig glänzend grau",
+      "summary": "Indium ist ein chemisches Element mit dem Symbol In und der Ordnungszahl 49. Es ist ein metallisches Element aus der Gruppe der Post-Übergangsmetalle, das in der Erdkruste selten ist. Das Metall ist sehr weich, formbar und leicht schmelzbar, mit einem Schmelzpunkt, der höher als der von Natrium, aber niedriger als der von Lithium oder Zinn liegt."
+    },
+    {
+      "number": 50,
+      "symbol": "Sn",
+      "name": "Zinn",
+      "appearance": "silbrig-weiß (Beta, β) oder grau (Alpha, α)",
+      "summary": "Zinn ist ein chemisches Element mit dem Symbol Sn (von lateinisch stannum) und der Ordnungszahl 50. Es ist ein Hauptgruppenmetall der Gruppe 14 des Periodensystems. Zinn ist chemisch beiden benachbarten Elementen der Gruppe 14, Germanium und Blei, ähnlich und hat zwei mögliche Oxidationsstufen, +2 und das etwas stabilere +4."
+    },
+    {
+      "number": 51,
+      "symbol": "Sb",
+      "name": "Antimon",
+      "appearance": "silbrig glänzend grau",
+      "summary": "Antimon ist ein chemisches Element mit dem Symbol Sb (von lateinisch stibium) und der Ordnungszahl 51. Als glänzend graues Halbmetall kommt es in der Natur hauptsächlich als Sulfidmineral Stibnit (Sb2S3) vor. Antimonverbindungen sind seit der Antike bekannt und wurden für Kosmetika verwendet; auch metallisches Antimon war bekannt, wurde bei seiner Entdeckung jedoch fälschlicherweise für Blei gehalten."
+    },
+    {
+      "number": 52,
+      "symbol": "Te",
+      "name": "Tellur",
+      "appearance": null,
+      "summary": "Tellur ist ein chemisches Element mit dem Symbol Te und der Ordnungszahl 52. Es ist ein sprödes, leicht giftiges, seltenes, silberweißes Halbmetall. Tellur ist chemisch mit Selen und Schwefel verwandt."
+    },
+    {
+      "number": 53,
+      "symbol": "I",
+      "name": "Iod",
+      "appearance": "glänzend metallisch grau, violett als Gas",
+      "summary": "Iod ist ein chemisches Element mit dem Symbol I und der Ordnungszahl 53. Der Name stammt vom griechischen ἰοειδής ioeidēs, „violett“ oder „purpurn“, nach der Farbe des Ioddampfes. Iod und seine Verbindungen werden vor allem in der Ernährung sowie industriell bei der Herstellung von Essigsäure und bestimmten Polymeren verwendet."
+    },
+    {
+      "number": 54,
+      "symbol": "Xe",
+      "name": "Xenon",
+      "appearance": "farbloses Gas, das in einem elektrischen Hochspannungsfeld blau leuchtet",
+      "summary": "Xenon ist ein chemisches Element mit dem Symbol Xe und der Ordnungszahl 54. Es ist ein farbloses, dichtes, geruchloses Edelgas, das in Spuren in der Erdatmosphäre vorkommt. Obwohl Xenon im Allgemeinen reaktionsträge ist, kann es einige chemische Reaktionen eingehen, etwa die Bildung von Xenonhexafluoroplatinat, der ersten synthetisierten Edelgasverbindung."
+    },
+    {
+      "number": 55,
+      "symbol": "Cs",
+      "name": "Caesium",
+      "appearance": "silbrig-golden",
+      "summary": "Caesium (auch Cäsium oder Zäsium) ist ein chemisches Element mit dem Symbol Cs und der Ordnungszahl 55. Es ist ein weiches, silbrig-goldenes Alkalimetall mit einem Schmelzpunkt von 28 °C (82 °F) und damit eines von nur fünf elementaren Metallen, die bei oder nahe Raumtemperatur flüssig sind. Caesium ist ein Alkalimetall mit ähnlichen physikalischen und chemischen Eigenschaften wie Rubidium und Kalium."
+    },
+    {
+      "number": 56,
+      "symbol": "Ba",
+      "name": "Barium",
+      "appearance": null,
+      "summary": "Barium ist ein chemisches Element mit dem Symbol Ba und der Ordnungszahl 56. Es ist das fünfte Element der Gruppe 2, ein weiches, silbrig metallisches Erdalkalimetall. Wegen seiner hohen chemischen Reaktivität kommt Barium in der Natur nie als freies Element vor."
+    },
+    {
+      "number": 57,
+      "symbol": "La",
+      "name": "Lanthan",
+      "appearance": "silbrig-weiß",
+      "summary": "Lanthan ist ein weiches, duktiles, silberweißes metallisches chemisches Element mit dem Symbol La und der Ordnungszahl 57. Es läuft an der Luft schnell an und ist weich genug, um mit einem Messer geschnitten zu werden. Es gab der Reihe der Lanthanoide ihren Namen, einer Gruppe von 15 ähnlichen Elementen zwischen Lanthan und Lutetium im Periodensystem; manchmal wird es auch als erstes Element der Übergangsmetalle der 6. Periode betrachtet."
+    },
+    {
+      "number": 58,
+      "symbol": "Ce",
+      "name": "Cer",
+      "appearance": "silbrig-weiß",
+      "summary": "Cer ist ein chemisches Element mit dem Symbol Ce und der Ordnungszahl 58. Es ist ein weiches, silbriges, duktiles Metall, das an der Luft leicht oxidiert. Cer wurde nach dem Zwergplaneten Ceres benannt (der seinerseits nach der römischen Göttin des Ackerbaus benannt ist)."
+    },
+    {
+      "number": 59,
+      "symbol": "Pr",
+      "name": "Praseodym",
+      "appearance": "grauweiß",
+      "summary": "Praseodym ist ein chemisches Element mit dem Symbol Pr und der Ordnungszahl 59. Praseodym ist ein weiches, silbriges, formbares und duktiles Metall aus der Gruppe der Lanthanoide. Es wird wegen seiner magnetischen, elektrischen, chemischen und optischen Eigenschaften geschätzt."
+    },
+    {
+      "number": 60,
+      "symbol": "Nd",
+      "name": "Neodym",
+      "appearance": "silbrig-weiß",
+      "summary": "Neodym ist ein chemisches Element mit dem Symbol Nd und der Ordnungszahl 60. Es ist ein weiches, silbriges Metall, das an der Luft anläuft. Neodym wurde 1885 vom österreichischen Chemiker Carl Auer von Welsbach entdeckt."
+    },
+    {
+      "number": 61,
+      "symbol": "Pm",
+      "name": "Promethium",
+      "appearance": "metallisch",
+      "summary": "Promethium, ursprünglich Prometheum, ist ein chemisches Element mit dem Symbol Pm und der Ordnungszahl 61. Alle seine Isotope sind radioaktiv; es ist eines von nur zwei solchen Elementen, auf die im Periodensystem Elemente mit stabilen Formen folgen – eine Besonderheit, die es mit Technetium teilt. Chemisch ist Promethium ein Lanthanoid, das in Verbindung mit anderen Elementen Salze bildet."
+    },
+    {
+      "number": 62,
+      "symbol": "Sm",
+      "name": "Samarium",
+      "appearance": "silbrig-weiß",
+      "summary": "Samarium ist ein chemisches Element mit dem Symbol Sm und der Ordnungszahl 62. Es ist ein mäßig hartes, silbriges Metall, das an der Luft leicht oxidiert. Als typisches Mitglied der Lanthanoidenreihe nimmt Samarium gewöhnlich die Oxidationsstufe +3 an."
+    },
+    {
+      "number": 63,
+      "symbol": "Eu",
+      "name": "Europium",
+      "appearance": null,
+      "summary": "Europium ist ein chemisches Element mit dem Symbol Eu und der Ordnungszahl 63. Es wurde 1901 isoliert und ist nach dem Kontinent Europa benannt. Es ist ein mäßig hartes, silbriges Metall, das an der Luft und in Wasser leicht oxidiert."
+    },
+    {
+      "number": 64,
+      "symbol": "Gd",
+      "name": "Gadolinium",
+      "appearance": "silbrig-weiß",
+      "summary": "Gadolinium ist ein chemisches Element mit dem Symbol Gd und der Ordnungszahl 64. Es ist ein silberweißes, formbares und duktiles Seltenerdmetall. In der Natur kommt es nur in gebundener Form (als Salz) vor."
+    },
+    {
+      "number": 65,
+      "symbol": "Tb",
+      "name": "Terbium",
+      "appearance": "silbrig-weiß",
+      "summary": "Terbium ist ein chemisches Element mit dem Symbol Tb und der Ordnungszahl 65. Es ist ein silberweißes Seltenerdmetall, das formbar, duktil und weich genug ist, um mit einem Messer geschnitten zu werden. Terbium kommt in der Natur nie als freies Element vor, ist aber in vielen Mineralen enthalten, darunter Cerit, Gadolinit, Monazit, Xenotim und Euxenit."
+    },
+    {
+      "number": 66,
+      "symbol": "Dy",
+      "name": "Dysprosium",
+      "appearance": "silbrig-weiß",
+      "summary": "Dysprosium ist ein chemisches Element mit dem Symbol Dy und der Ordnungszahl 66. Es ist ein Seltenerdelement mit metallisch silbernem Glanz. Dysprosium kommt in der Natur nie als freies Element vor, ist aber in verschiedenen Mineralen wie Xenotim enthalten."
+    },
+    {
+      "number": 67,
+      "symbol": "Ho",
+      "name": "Holmium",
+      "appearance": "silbrig-weiß",
+      "summary": "Holmium ist ein chemisches Element mit dem Symbol Ho und der Ordnungszahl 67. Als Teil der Lanthanoidenreihe ist Holmium ein Seltenerdelement. Holmium wurde vom schwedischen Chemiker Per Teodor Cleve entdeckt."
+    },
+    {
+      "number": 68,
+      "symbol": "Er",
+      "name": "Erbium",
+      "appearance": "silbrig-weiß",
+      "summary": "Erbium ist ein chemisches Element der Lanthanoidenreihe mit dem Symbol Er und der Ordnungszahl 68. Künstlich isoliert ist es ein silberweißes, festes Metall; natürliches Erbium kommt auf der Erde jedoch stets in chemischer Verbindung mit anderen Elementen vor. Es ist daher ein Seltenerdelement, das zusammen mit mehreren anderen seltenen Elementen im Mineral Gadolinit aus Ytterby in Schweden vorkommt, wo Yttrium, Ytterbium und Terbium entdeckt wurden."
+    },
+    {
+      "number": 69,
+      "symbol": "Tm",
+      "name": "Thulium",
+      "appearance": "silbergrau",
+      "summary": "Thulium ist ein chemisches Element mit dem Symbol Tm und der Ordnungszahl 69. Es ist das dreizehnte und drittletzte Element der Lanthanoidenreihe. Wie bei den anderen Lanthanoiden ist seine häufigste Oxidationsstufe +3, die in seinem Oxid, seinen Halogeniden und anderen Verbindungen auftritt."
+    },
+    {
+      "number": 70,
+      "symbol": "Yb",
+      "name": "Ytterbium",
+      "appearance": null,
+      "summary": "Ytterbium ist ein chemisches Element mit dem Symbol Yb und der Ordnungszahl 70. Es ist das vierzehnte und vorletzte Element der Lanthanoidenreihe, worauf die relative Stabilität seiner Oxidationsstufe +2 beruht. Wie bei den anderen Lanthanoiden ist seine häufigste Oxidationsstufe jedoch +3, die in seinem Oxid, seinen Halogeniden und anderen Verbindungen auftritt."
+    },
+    {
+      "number": 71,
+      "symbol": "Lu",
+      "name": "Lutetium",
+      "appearance": "silbrig-weiß",
+      "summary": "Lutetium ist ein chemisches Element mit dem Symbol Lu und der Ordnungszahl 71. Es ist ein silberweißes Metall, das in trockener, nicht aber in feuchter Luft korrosionsbeständig ist. Es gilt als erstes Element der Übergangsmetalle der 6. Periode und als letztes Element der Lanthanoidenreihe und wird traditionell zu den Seltenen Erden gezählt."
+    },
+    {
+      "number": 72,
+      "symbol": "Hf",
+      "name": "Hafnium",
+      "appearance": "stahlgrau",
+      "summary": "Hafnium ist ein chemisches Element mit dem Symbol Hf und der Ordnungszahl 72. Als glänzendes, silbergraues, vierwertiges Übergangsmetall ähnelt Hafnium chemisch dem Zirconium und kommt in Zirconiummineralen vor. Seine Existenz wurde 1869 von Dmitri Mendelejew vorhergesagt, doch es wurde erst 1923 nachgewiesen und war damit das vorletzte entdeckte stabile Element (Rhenium wurde zwei Jahre später nachgewiesen)."
+    },
+    {
+      "number": 73,
+      "symbol": "Ta",
+      "name": "Tantal",
+      "appearance": "graublau",
+      "summary": "Tantal ist ein chemisches Element mit dem Symbol Ta und der Ordnungszahl 73. Früher als Tantalium bekannt, leitet sich sein Name von Tantalos ab, einem Antihelden der griechischen Mythologie. Tantal ist ein seltenes, hartes, blaugraues, glänzendes Übergangsmetall, das sehr korrosionsbeständig ist."
+    },
+    {
+      "number": 74,
+      "symbol": "W",
+      "name": "Wolfram",
+      "appearance": "grauweiß, glänzend",
+      "summary": "Wolfram, im Englischen „tungsten“ genannt, ist ein chemisches Element mit dem Symbol W und der Ordnungszahl 74. Das Wort „tungsten“ stammt aus dem Schwedischen, tung sten, was wörtlich „schwerer Stein“ bedeutet. Im Schwedischen heißt das Element jedoch volfram, um es vom Scheelit zu unterscheiden, der im Schwedischen auch tungsten genannt wird."
+    },
+    {
+      "number": 75,
+      "symbol": "Re",
+      "name": "Rhenium",
+      "appearance": "silbrig-gräulich",
+      "summary": "Rhenium ist ein chemisches Element mit dem Symbol Re und der Ordnungszahl 75. Es ist ein silberweißes, schweres Übergangsmetall der dritten Reihe in Gruppe 7 des Periodensystems. Mit einer geschätzten durchschnittlichen Konzentration von 1 Teil pro Milliarde (ppb) ist Rhenium eines der seltensten Elemente der Erdkruste."
+    },
+    {
+      "number": 76,
+      "symbol": "Os",
+      "name": "Osmium",
+      "appearance": "silbrig, bläulicher Schimmer",
+      "summary": "Osmium (von griechisch osme (ὀσμή), „Geruch“) ist ein chemisches Element mit dem Symbol Os und der Ordnungszahl 76. Es ist ein hartes, sprödes, bläulich-weißes Übergangsmetall der Platingruppe, das als Spurenelement in Legierungen vorkommt, vor allem in Platinerzen. Osmium ist das natürlich vorkommende Element mit der höchsten Dichte, nämlich 22,59 g/cm3."
+    },
+    {
+      "number": 77,
+      "symbol": "Ir",
+      "name": "Iridium",
+      "appearance": "silbrig-weiß",
+      "summary": "Iridium ist ein chemisches Element mit dem Symbol Ir und der Ordnungszahl 77. Als sehr hartes, sprödes, silberweißes Übergangsmetall der Platingruppe gilt Iridium nach gemessener Dichte allgemein als das Element mit der zweithöchsten Dichte (nach Osmium), obwohl Berechnungen anhand der Raumgitter der Elemente zeigen, dass Iridium dichter ist. Es ist zudem das korrosionsbeständigste Metall, selbst bei Temperaturen von bis zu 2000 °C. Obwohl nur bestimmte Salzschmelzen und Halogene festes Iridium angreifen, ist fein verteilter Iridiumstaub deutlich reaktiver und kann entzündlich sein."
+    },
+    {
+      "number": 78,
+      "symbol": "Pt",
+      "name": "Platin",
+      "appearance": "silbrig-weiß",
+      "summary": "Platin ist ein chemisches Element mit dem Symbol Pt und der Ordnungszahl 78. Es ist ein dichtes, formbares, duktiles, äußerst reaktionsträges, wertvolles, grauweißes Übergangsmetall. Sein Name leitet sich vom spanischen Begriff platina ab, was wörtlich „kleines Silber“ bedeutet."
+    },
+    {
+      "number": 79,
+      "symbol": "Au",
+      "name": "Gold",
+      "appearance": "metallisch gelb",
+      "summary": "Gold ist ein chemisches Element mit dem Symbol Au (von lateinisch aurum) und der Ordnungszahl 79. In seiner reinsten Form ist es ein hellgelbes, leicht rötliches, dichtes, weiches, formbares und duktiles Metall. Chemisch ist Gold ein Übergangsmetall und ein Element der Gruppe 11."
+    },
+    {
+      "number": 80,
+      "symbol": "Hg",
+      "name": "Quecksilber",
+      "appearance": "silbrig",
+      "summary": "Quecksilber ist ein chemisches Element mit dem Symbol Hg und der Ordnungszahl 80. Es hieß früher Hydrargyrum (/haɪˈdrɑːrdʒərəm/). Als schweres, silbriges Element des d-Blocks ist Quecksilber das einzige metallische Element, das unter Standardbedingungen für Temperatur und Druck flüssig ist; das einzige andere unter diesen Bedingungen flüssige Element ist Brom, obwohl Metalle wie Caesium, Gallium und Rubidium knapp über Raumtemperatur schmelzen."
+    },
+    {
+      "number": 81,
+      "symbol": "Tl",
+      "name": "Thallium",
+      "appearance": "silbrig-weiß",
+      "summary": "Thallium ist ein chemisches Element mit dem Symbol Tl und der Ordnungszahl 81. Dieses weiche, graue Post-Übergangsmetall kommt in der Natur nicht in freier Form vor. Isoliert ähnelt es Zinn, verfärbt sich jedoch an der Luft."
+    },
+    {
+      "number": 82,
+      "symbol": "Pb",
+      "name": "Blei",
+      "appearance": "metallisch grau",
+      "summary": "Blei (/lɛd/) ist ein chemisches Element der Kohlenstoffgruppe mit dem Symbol Pb (von lateinisch plumbum) und der Ordnungszahl 82. Blei ist ein weiches, formbares und schweres Post-Übergangsmetall. Metallisches Blei hat frisch geschnitten eine bläulich-weiße Farbe, läuft an der Luft jedoch bald matt gräulich an."
+    },
+    {
+      "number": 83,
+      "symbol": "Bi",
+      "name": "Bismut",
+      "appearance": "glänzend silbern",
+      "summary": "Bismut ist ein chemisches Element mit dem Symbol Bi und der Ordnungszahl 83. Bismut, ein fünfwertiges Post-Übergangsmetall, ähnelt chemisch Arsen und Antimon. Elementares Bismut kann natürlich vorkommen, doch seine Sulfide und Oxide bilden wichtige kommerzielle Erze."
+    },
+    {
+      "number": 84,
+      "symbol": "Po",
+      "name": "Polonium",
+      "appearance": "silbrig",
+      "summary": "Polonium ist ein chemisches Element mit dem Symbol Po und der Ordnungszahl 84, das 1898 von Marie Curie und Pierre Curie entdeckt wurde. Als seltenes und hochradioaktives Element ohne stabile Isotope ähnelt Polonium chemisch Bismut und Tellur und kommt in Uranerzen vor. Die Anwendungen von Polonium sind gering."
+    },
+    {
+      "number": 85,
+      "symbol": "At",
+      "name": "Astat",
+      "appearance": "unbekannt, wahrscheinlich metallisch",
+      "summary": "Astat ist ein sehr seltenes radioaktives chemisches Element mit dem chemischen Symbol At und der Ordnungszahl 85. Es kommt auf der Erde als Zerfallsprodukt verschiedener schwererer Elemente vor. Alle seine Isotope sind kurzlebig; das stabilste ist Astat-210 mit einer Halbwertszeit von 8,1 Stunden."
+    },
+    {
+      "number": 86,
+      "symbol": "Rn",
+      "name": "Radon",
+      "appearance": "farbloses Gas, leuchtet in Entladungsröhren gelegentlich grün oder rot",
+      "summary": "Radon ist ein chemisches Element mit dem Symbol Rn und der Ordnungszahl 86. Es ist ein radioaktives, farbloses, geruchloses, geschmackloses Edelgas, das natürlich als Zerfallsprodukt von Radium vorkommt. Sein stabilstes Isotop, 222Rn, hat eine Halbwertszeit von 3,8 Tagen."
+    },
+    {
+      "number": 87,
+      "symbol": "Fr",
+      "name": "Francium",
+      "appearance": null,
+      "summary": "Francium ist ein chemisches Element mit dem Symbol Fr und der Ordnungszahl 87. Es war früher als Eka-Caesium und Actinium K bekannt. Es ist nach Caesium das Element mit der zweitniedrigsten Elektronegativität. Francium ist ein hochradioaktives Metall, das zu Astat, Radium und Radon zerfällt."
+    },
+    {
+      "number": 88,
+      "symbol": "Ra",
+      "name": "Radium",
+      "appearance": "silbrig-weiß metallisch",
+      "summary": "Radium ist ein chemisches Element mit dem Symbol Ra und der Ordnungszahl 88. Es ist das sechste Element der Gruppe 2 des Periodensystems, die auch als Erdalkalimetalle bezeichnet wird. Reines Radium ist nahezu farblos, verbindet sich an der Luft jedoch leicht mit Stickstoff (statt mit Sauerstoff) und bildet eine schwarze Oberflächenschicht aus Radiumnitrid (Ra3N2)."
+    },
+    {
+      "number": 89,
+      "symbol": "Ac",
+      "name": "Actinium",
+      "appearance": null,
+      "summary": "Actinium ist ein radioaktives chemisches Element mit dem Symbol Ac (nicht zu verwechseln mit der Abkürzung für eine Acetylgruppe) und der Ordnungszahl 89, das 1899 entdeckt wurde. Es war das erste nicht primordiale radioaktive Element, das isoliert wurde. Polonium, Radium und Radon wurden vor Actinium beobachtet, aber erst 1902 isoliert."
+    },
+    {
+      "number": 90,
+      "symbol": "Th",
+      "name": "Thorium",
+      "appearance": "silbrig, oft mit schwarzem Anlauf",
+      "summary": "Thorium ist ein chemisches Element mit dem Symbol Th und der Ordnungszahl 90. Als radioaktives Actinoidmetall ist Thorium eines von nur zwei nennenswert radioaktiven Elementen, die noch immer in großen Mengen als primordiales Element natürlich vorkommen (das andere ist Uran). Es wurde 1828 vom norwegischen Pfarrer und Amateurmineralogen Morten Thrane Esmark entdeckt und vom schwedischen Chemiker Jöns Jakob Berzelius bestimmt, der es nach Thor, dem nordischen Donnergott, benannte."
+    },
+    {
+      "number": 91,
+      "symbol": "Pa",
+      "name": "Protactinium",
+      "appearance": "heller, silbrig metallischer Glanz",
+      "summary": "Protactinium ist ein chemisches Element mit dem Symbol Pa und der Ordnungszahl 91. Es ist ein dichtes, silbergraues Metall, das leicht mit Sauerstoff, Wasserdampf und anorganischen Säuren reagiert. Es bildet verschiedene chemische Verbindungen, in denen Protactinium meist in der Oxidationsstufe +5 vorliegt, aber auch die Stufen +4 und sogar +2 oder +3 annehmen kann."
+    },
+    {
+      "number": 92,
+      "symbol": "U",
+      "name": "Uran",
+      "appearance": null,
+      "summary": "Uran ist ein chemisches Element mit dem Symbol U und der Ordnungszahl 92. Es ist ein silberweißes Metall der Actinoidenreihe des Periodensystems. Ein Uranatom hat 92 Protonen und 92 Elektronen, von denen 6 Valenzelektronen sind."
+    },
+    {
+      "number": 93,
+      "symbol": "Np",
+      "name": "Neptunium",
+      "appearance": "silbrig metallisch",
+      "summary": "Neptunium ist ein chemisches Element mit dem Symbol Np und der Ordnungszahl 93. Als radioaktives Actinoidmetall ist Neptunium das erste Transuran. Seine Stellung im Periodensystem direkt nach Uran, das nach dem Planeten Uranus benannt ist, führte dazu, dass es nach Neptun benannt wurde, dem nächsten Planeten jenseits von Uranus."
+    },
+    {
+      "number": 94,
+      "symbol": "Pu",
+      "name": "Plutonium",
+      "appearance": "silbrig-weiß, läuft an der Luft dunkelgrau an",
+      "summary": "Plutonium ist ein radioaktives transuranisches chemisches Element mit dem Symbol Pu und der Ordnungszahl 94. Es ist ein Actinoidmetall von silbergrauem Aussehen, das an der Luft anläuft und bei Oxidation einen matten Überzug bildet. Das Element weist normalerweise sechs Allotrope und vier Oxidationsstufen auf."
+    },
+    {
+      "number": 95,
+      "symbol": "Am",
+      "name": "Americium",
+      "appearance": "silbrig-weiß",
+      "summary": "Americium ist ein radioaktives transuranisches chemisches Element mit dem Symbol Am und der Ordnungszahl 95. Dieses Mitglied der Actinoidenreihe steht im Periodensystem unter dem Lanthanoid Europium und wurde daher analog nach Amerika benannt. Americium wurde erstmals 1944 von der Gruppe um Glenn T. Seaborg aus Berkeley, Kalifornien, im metallurgischen Labor der University of Chicago hergestellt."
+    },
+    {
+      "number": 96,
+      "symbol": "Cm",
+      "name": "Curium",
+      "appearance": "silbrig metallisch, leuchtet im Dunkeln violett",
+      "summary": "Curium ist ein transuranisches radioaktives chemisches Element mit dem Symbol Cm und der Ordnungszahl 96. Dieses Element der Actinoidenreihe wurde nach Marie und Pierre Curie benannt, die beide für ihre Forschung zur Radioaktivität bekannt waren. Curium wurde erstmals im Juli 1944 von der Gruppe um Glenn T. Seaborg an der University of California, Berkeley, gezielt hergestellt und nachgewiesen."
+    },
+    {
+      "number": 97,
+      "symbol": "Bk",
+      "name": "Berkelium",
+      "appearance": "silbrig",
+      "summary": "Berkelium ist ein transuranisches radioaktives chemisches Element mit dem Symbol Bk und der Ordnungszahl 97. Es gehört zur Reihe der Actinoide und der Transurane. Es ist nach der Stadt Berkeley in Kalifornien benannt, dem Standort des Radiation Laboratory der University of California, wo es im Dezember 1949 entdeckt wurde."
+    },
+    {
+      "number": 98,
+      "symbol": "Cf",
+      "name": "Californium",
+      "appearance": "silbrig",
+      "summary": "Californium ist ein radioaktives metallisches chemisches Element mit dem Symbol Cf und der Ordnungszahl 98. Das Element wurde erstmals 1950 im Radiation Laboratory der University of California in Berkeley hergestellt, indem Curium mit Alphateilchen (Helium-4-Ionen) beschossen wurde. Es ist ein Actinoid, das sechste synthetisierte Transuran, und besitzt die zweithöchste Atommasse aller Elemente, die in Mengen hergestellt wurden, die groß genug sind, um sie mit bloßem Auge zu sehen (nach Einsteinium)."
+    },
+    {
+      "number": 99,
+      "symbol": "Es",
+      "name": "Einsteinium",
+      "appearance": "silberfarben",
+      "summary": "Einsteinium ist ein synthetisches Element mit dem Symbol Es und der Ordnungszahl 99. Es ist das siebte Transuran und ein Actinoid. Einsteinium wurde 1952 als Bestandteil der Trümmer der ersten Wasserstoffbombenexplosion entdeckt und nach Albert Einstein benannt."
+    },
+    {
+      "number": 100,
+      "symbol": "Fm",
+      "name": "Fermium",
+      "appearance": null,
+      "summary": "Fermium ist ein synthetisches Element mit dem Symbol Fm und der Ordnungszahl 100. Es gehört zur Actinoidenreihe. Es ist das schwerste Element, das durch Neutronenbeschuss leichterer Elemente gebildet werden kann, und damit das letzte Element, das in makroskopischen Mengen hergestellt werden kann, obwohl reines Fermiummetall bisher noch nicht hergestellt wurde."
+    },
+    {
+      "number": 101,
+      "symbol": "Md",
+      "name": "Mendelevium",
+      "appearance": null,
+      "summary": "Mendelevium ist ein synthetisches Element mit dem chemischen Symbol Md (früher Mv) und der Ordnungszahl 101. Als metallisches, radioaktives Transuran der Actinoidenreihe ist es das erste Element, das derzeit nicht in makroskopischen Mengen durch Neutronenbeschuss leichterer Elemente hergestellt werden kann. Es ist das drittletzte Actinoid und das neunte Transuran."
+    },
+    {
+      "number": 102,
+      "symbol": "No",
+      "name": "Nobelium",
+      "appearance": null,
+      "summary": "Nobelium ist ein synthetisches chemisches Element mit dem Symbol No und der Ordnungszahl 102. Es ist zu Ehren von Alfred Nobel benannt, dem Erfinder des Dynamits und Förderer der Wissenschaft. Als radioaktives Metall ist es das zehnte Transuran und das vorletzte Mitglied der Actinoidenreihe."
+    },
+    {
+      "number": 103,
+      "symbol": "Lr",
+      "name": "Lawrencium",
+      "appearance": null,
+      "summary": "Lawrencium ist ein synthetisches chemisches Element mit dem chemischen Symbol Lr (früher Lw) und der Ordnungszahl 103. Es ist zu Ehren von Ernest Lawrence benannt, dem Erfinder des Zyklotrons, eines Geräts, mit dem viele künstliche radioaktive Elemente entdeckt wurden. Als radioaktives Metall ist Lawrencium das elfte Transuran und zugleich das letzte Mitglied der Actinoidenreihe."
+    },
+    {
+      "number": 104,
+      "symbol": "Rf",
+      "name": "Rutherfordium",
+      "appearance": null,
+      "summary": "Rutherfordium ist ein chemisches Element mit dem Symbol Rf und der Ordnungszahl 104, benannt zu Ehren des Physikers Ernest Rutherford. Es ist ein synthetisches Element (ein Element, das im Labor erzeugt werden kann, aber in der Natur nicht vorkommt) und radioaktiv; das stabilste bekannte Isotop, 267Rf, hat eine Halbwertszeit von etwa 1,3 Stunden. Im Periodensystem der Elemente ist es ein Element des d-Blocks und das zweite der Übergangselemente der vierten Reihe."
+    },
+    {
+      "number": 105,
+      "symbol": "Db",
+      "name": "Dubnium",
+      "appearance": null,
+      "summary": "Dubnium ist ein chemisches Element mit dem Symbol Db und der Ordnungszahl 105. Es ist nach der Stadt Dubna in Russland (nördlich von Moskau) benannt, wo es erstmals hergestellt wurde. Es ist ein synthetisches Element (ein Element, das im Labor erzeugt werden kann, aber in der Natur nicht vorkommt) und radioaktiv; das stabilste bekannte Isotop, Dubnium-268, hat eine Halbwertszeit von etwa 28 Stunden."
+    },
+    {
+      "number": 106,
+      "symbol": "Sg",
+      "name": "Seaborgium",
+      "appearance": null,
+      "summary": "Seaborgium ist ein synthetisches Element mit dem Symbol Sg und der Ordnungszahl 106. Sein stabilstes Isotop, 271Sg, hat eine Halbwertszeit von 1,9 Minuten. Ein kürzlich entdecktes Isotop, 269Sg, hat möglicherweise eine etwas längere Halbwertszeit (ca."
+    },
+    {
+      "number": 107,
+      "symbol": "Bh",
+      "name": "Bohrium",
+      "appearance": null,
+      "summary": "Bohrium ist ein chemisches Element mit dem Symbol Bh und der Ordnungszahl 107. Es ist nach dem dänischen Physiker Niels Bohr benannt. Es ist ein synthetisches Element (ein Element, das im Labor erzeugt werden kann, aber in der Natur nicht vorkommt) und radioaktiv; das stabilste bekannte Isotop, 270Bh, hat eine Halbwertszeit von etwa 61 Sekunden."
+    },
+    {
+      "number": 108,
+      "symbol": "Hs",
+      "name": "Hassium",
+      "appearance": null,
+      "summary": "Hassium ist ein chemisches Element mit dem Symbol Hs und der Ordnungszahl 108, benannt nach dem deutschen Bundesland Hessen. Es ist ein synthetisches Element (ein Element, das im Labor erzeugt werden kann, aber in der Natur nicht vorkommt) und radioaktiv; das stabilste bekannte Isotop, 269Hs, hat eine Halbwertszeit von etwa 9,7 Sekunden, wobei ein unbestätigter metastabiler Zustand, 277mHs, eine längere Halbwertszeit von etwa 130 Sekunden haben könnte. Bis heute wurden mehr als 100 Hassiumatome synthetisiert."
+    },
+    {
+      "number": 109,
+      "symbol": "Mt",
+      "name": "Meitnerium",
+      "appearance": null,
+      "summary": "Meitnerium ist ein chemisches Element mit dem Symbol Mt und der Ordnungszahl 109. Es ist ein extrem radioaktives synthetisches Element (ein Element, das in der Natur nicht vorkommt, aber im Labor erzeugt werden kann). Das stabilste bekannte Isotop, Meitnerium-278, hat eine Halbwertszeit von 7,6 Sekunden."
+    },
+    {
+      "number": 110,
+      "symbol": "Ds",
+      "name": "Darmstadtium",
+      "appearance": null,
+      "summary": "Darmstadtium ist ein chemisches Element mit dem Symbol Ds und der Ordnungszahl 110. Es ist ein extrem radioaktives synthetisches Element. Das stabilste bekannte Isotop, Darmstadtium-281, hat eine Halbwertszeit von etwa 10 Sekunden."
+    },
+    {
+      "number": 111,
+      "symbol": "Rg",
+      "name": "Roentgenium",
+      "appearance": null,
+      "summary": "Roentgenium ist ein chemisches Element mit dem Symbol Rg und der Ordnungszahl 111. Es ist ein extrem radioaktives synthetisches Element (ein Element, das im Labor erzeugt werden kann, aber in der Natur nicht vorkommt); das stabilste bekannte Isotop, Roentgenium-282, hat eine Halbwertszeit von 2,1 Minuten. Roentgenium wurde erstmals 1994 am GSI Helmholtzzentrum für Schwerionenforschung bei Darmstadt erzeugt."
+    },
+    {
+      "number": 112,
+      "symbol": "Cn",
+      "name": "Copernicium",
+      "appearance": null,
+      "summary": "Copernicium ist ein chemisches Element mit dem Symbol Cn und der Ordnungszahl 112. Es ist ein extrem radioaktives synthetisches Element, das nur im Labor erzeugt werden kann. Das stabilste bekannte Isotop, Copernicium-285, hat eine Halbwertszeit von etwa 29 Sekunden, es ist jedoch möglich, dass dieses Isotop ein Kernisomer mit einer längeren Halbwertszeit von 8,9 Minuten besitzt."
+    },
+    {
+      "number": 113,
+      "symbol": "Nh",
+      "name": "Nihonium",
+      "appearance": null,
+      "summary": "Nihonium ist ein chemisches Element mit der Ordnungszahl 113. Sein Symbol ist Nh. Es ist ein synthetisches Element (ein Element, das im Labor erzeugt werden kann, aber in der Natur nicht vorkommt) und extrem radioaktiv; sein stabilstes bekanntes Isotop, Nihonium-286, hat eine Halbwertszeit von 20 Sekunden."
+    },
+    {
+      "number": 114,
+      "symbol": "Fl",
+      "name": "Flerovium",
+      "appearance": null,
+      "summary": "Flerovium ist ein superschweres künstliches chemisches Element mit dem Symbol Fl und der Ordnungszahl 114. Es ist ein extrem radioaktives synthetisches Element. Das Element ist nach dem Flerow-Laboratorium für Kernreaktionen des Vereinigten Instituts für Kernforschung in Dubna, Russland, benannt, wo es 1998 entdeckt wurde."
+    },
+    {
+      "number": 115,
+      "symbol": "Mc",
+      "name": "Moscovium",
+      "appearance": null,
+      "summary": "Moscovium ist der Name eines synthetischen superschweren Elements des Periodensystems mit dem Symbol Mc und der Ordnungszahl 115. Es ist ein extrem radioaktives Element; sein stabilstes bekanntes Isotop, Moscovium-289, hat eine Halbwertszeit von nur 220 Millisekunden. Es ist auch als Eka-Bismut oder einfach als Element 115 bekannt."
+    },
+    {
+      "number": 116,
+      "symbol": "Lv",
+      "name": "Livermorium",
+      "appearance": null,
+      "summary": "Livermorium ist ein synthetisches superschweres Element mit dem Symbol Lv und der Ordnungszahl 116. Es ist ein extrem radioaktives Element, das bisher nur im Labor erzeugt und in der Natur nicht beobachtet wurde. Das Element ist nach dem Lawrence Livermore National Laboratory in den Vereinigten Staaten benannt, das mit dem Vereinigten Institut für Kernforschung in Dubna, Russland, zusammenarbeitete, um Livermorium im Jahr 2000 zu entdecken."
+    },
+    {
+      "number": 117,
+      "symbol": "Ts",
+      "name": "Tenness",
+      "appearance": null,
+      "summary": "Tenness ist ein superschweres künstliches chemisches Element mit der Ordnungszahl 117 und dem Symbol Ts. Auch als Eka-Astat oder Element 117 bekannt, ist es das zweitschwerste bekannte Element und das vorletzte Element der 7. Periode des Periodensystems. Bis 2016 wurden fünfzehn Tenness-Atome beobachtet: sechs bei der ersten Synthese im Jahr 2010, sieben im Jahr 2012 und zwei im Jahr 2014."
+    },
+    {
+      "number": 118,
+      "symbol": "Og",
+      "name": "Oganesson",
+      "appearance": null,
+      "summary": "Oganesson ist der IUPAC-Name für das Transactinoid mit der Ordnungszahl 118 und dem Elementsymbol Og. Es ist auch als Eka-Radon oder Element 118 bekannt und im Periodensystem der Elemente ein Element des p-Blocks und das letzte der 7. Periode. Oganesson ist derzeit das einzige synthetische Mitglied der Gruppe 18."
+    },
+    {
+      "number": 119,
+      "symbol": "Uue",
+      "name": "Ununennium",
+      "appearance": null,
+      "summary": "Ununennium, auch Eka-Francium oder einfach Element 119 genannt, ist das hypothetische chemische Element mit dem Symbol Uue und der Ordnungszahl 119. Ununennium und Uue sind der vorläufige systematische IUPAC-Name bzw. das vorläufige Symbol, bis ein endgültiger Name festgelegt wird. Im Periodensystem der Elemente wird erwartet, dass es ein Element des s-Blocks, ein Alkalimetall und das erste Element der achten Periode ist."
+    }
+  ]
+}

@@ -1,0 +1,837 @@
+{
+  "elements": [
+    {
+      "number": 1,
+      "symbol": "H",
+      "name": "Hidrógeno",
+      "appearance": "gas incoloro",
+      "summary": "El hidrógeno es un elemento químico de símbolo H y número atómico 1. Con una masa atómica de 1,00794 u, el hidrógeno es el elemento más ligero de la tabla periódica. Su forma monoatómica (H) es la sustancia química más abundante del universo y constituye aproximadamente el 75 % de toda la masa bariónica."
+    },
+    {
+      "number": 2,
+      "symbol": "He",
+      "name": "Helio",
+      "appearance": "gas incoloro que emite un brillo rojo anaranjado cuando se coloca en un campo eléctrico de alto voltaje",
+      "summary": "El helio es un elemento químico de símbolo He y número atómico 2. Es un gas monoatómico incoloro, inodoro, insípido, no tóxico e inerte que encabeza el grupo de los gases nobles en la tabla periódica. Sus puntos de ebullición y de fusión son los más bajos de todos los elementos."
+    },
+    {
+      "number": 3,
+      "symbol": "Li",
+      "name": "Litio",
+      "appearance": "blanco plateado",
+      "summary": "El litio (del griego λίθος lithos, «piedra») es un elemento químico de símbolo Li y número atómico 3. Es un metal blando, de color blanco plateado, perteneciente al grupo de los metales alcalinos. En condiciones estándar es el metal más ligero y el elemento sólido menos denso."
+    },
+    {
+      "number": 4,
+      "symbol": "Be",
+      "name": "Berilio",
+      "appearance": "metálico gris blanquecino",
+      "summary": "El berilio es un elemento químico de símbolo Be y número atómico 4. Se forma por nucleosíntesis estelar y es un elemento relativamente raro en el universo. Es un elemento divalente que en la naturaleza solo se encuentra combinado con otros elementos en minerales."
+    },
+    {
+      "number": 5,
+      "symbol": "B",
+      "name": "Boro",
+      "appearance": "negro parduzco",
+      "summary": "El boro es un elemento químico metaloide de símbolo B y número atómico 5. Producido exclusivamente por espalación de rayos cósmicos y por supernovas, y no por nucleosíntesis estelar, es un elemento poco abundante tanto en el sistema solar como en la corteza terrestre. En la Tierra, el boro se concentra gracias a la solubilidad en agua de sus compuestos naturales más comunes, los minerales de borato."
+    },
+    {
+      "number": 6,
+      "symbol": "C",
+      "name": "Carbono",
+      "appearance": null,
+      "summary": "El carbono (del latín carbo, «carbón») es un elemento químico de símbolo C y número atómico 6. En la tabla periódica es el primero (fila 2) de los seis elementos de la columna (grupo) 14, que comparten la composición de su capa electrónica externa. Es no metálico y tetravalente, es decir, dispone de cuatro electrones para formar enlaces químicos covalentes."
+    },
+    {
+      "number": 7,
+      "symbol": "N",
+      "name": "Nitrógeno",
+      "appearance": "gas, líquido o sólido incoloro",
+      "summary": "El nitrógeno es un elemento químico de símbolo N y número atómico 7. Es el pnictógeno más ligero y, a temperatura ambiente, es un gas diatómico transparente e inodoro. El nitrógeno es un elemento común en el universo; se estima que ocupa aproximadamente el séptimo lugar en abundancia total en la Vía Láctea y el sistema solar."
+    },
+    {
+      "number": 8,
+      "symbol": "O",
+      "name": "Oxígeno",
+      "appearance": null,
+      "summary": "El oxígeno es un elemento químico de símbolo O y número atómico 8. Pertenece al grupo de los calcógenos de la tabla periódica y es un no metal muy reactivo y un agente oxidante que forma fácilmente compuestos (en particular óxidos) con la mayoría de los elementos. En masa, el oxígeno es el tercer elemento más abundante del universo, después del hidrógeno y el helio."
+    },
+    {
+      "number": 9,
+      "symbol": "F",
+      "name": "Flúor",
+      "appearance": null,
+      "summary": "El flúor es un elemento químico de símbolo F y número atómico 9. Es el halógeno más ligero y, en condiciones estándar, existe como un gas diatómico de color amarillo pálido y muy tóxico. Al ser el elemento más electronegativo, es extremadamente reactivo: casi todos los demás elementos, incluidos algunos gases nobles, forman compuestos con el flúor."
+    },
+    {
+      "number": 10,
+      "symbol": "Ne",
+      "name": "Neón",
+      "appearance": "gas incoloro que emite un brillo rojo anaranjado cuando se coloca en un campo eléctrico de alto voltaje",
+      "summary": "El neón es un elemento químico de símbolo Ne y número atómico 10. Pertenece al grupo 18 (gases nobles) de la tabla periódica. En condiciones estándar, el neón es un gas monoatómico incoloro, inodoro e inerte, con una densidad de aproximadamente dos tercios de la del aire."
+    },
+    {
+      "number": 11,
+      "symbol": "Na",
+      "name": "Sodio",
+      "appearance": "metálico blanco plateado",
+      "summary": "El sodio /ˈsoʊdiəm/ es un elemento químico de símbolo Na (del griego antiguo Νάτριο) y número atómico 11. Es un metal blando, blanco plateado y muy reactivo. En la tabla periódica se encuentra en la columna 1 (metales alcalinos) y comparte con los otros seis elementos de esa columna el hecho de tener un único electrón en su capa externa, que cede con facilidad para formar un átomo con carga positiva: un catión."
+    },
+    {
+      "number": 12,
+      "symbol": "Mg",
+      "name": "Magnesio",
+      "appearance": "sólido gris brillante",
+      "summary": "El magnesio es un elemento químico de símbolo Mg y número atómico 12. Es un sólido gris brillante que guarda un gran parecido físico con los otros cinco elementos de la segunda columna (grupo 2, o metales alcalinotérreos) de la tabla periódica: todos tienen la misma configuración electrónica en su capa externa, lo que da lugar a una estructura cristalina similar. El magnesio es el noveno elemento más abundante del universo."
+    },
+    {
+      "number": 13,
+      "symbol": "Al",
+      "name": "Aluminio",
+      "appearance": "metálico gris plateado",
+      "summary": "El aluminio (en inglés «aluminium» o «aluminum») es un elemento químico del grupo del boro, de símbolo Al y número atómico 13. Es un metal blanco plateado, blando, no magnético y dúctil. El aluminio es el tercer elemento más abundante (después del oxígeno y el silicio) y el metal más abundante de la corteza terrestre."
+    },
+    {
+      "number": 14,
+      "symbol": "Si",
+      "name": "Silicio",
+      "appearance": "cristalino, reflectante, con caras de tono azulado",
+      "summary": "El silicio es un elemento químico de símbolo Si y número atómico 14. Es un metaloide tetravalente, más reactivo que el germanio, el metaloide situado justo debajo de él en la tabla. La controversia sobre la naturaleza del silicio se remonta a su descubrimiento."
+    },
+    {
+      "number": 15,
+      "symbol": "P",
+      "name": "Fósforo",
+      "appearance": "incoloro, blanco céreo, amarillo, escarlata, rojo, violeta, negro",
+      "summary": "El fósforo es un elemento químico de símbolo P y número atómico 15. Como elemento, el fósforo existe en dos formas principales, el fósforo blanco y el fósforo rojo, pero debido a su alta reactividad nunca se encuentra como elemento libre en la Tierra. En cambio, los minerales que contienen fósforo casi siempre están en su estado de oxidación máximo, como rocas fosfáticas inorgánicas."
+    },
+    {
+      "number": 16,
+      "symbol": "S",
+      "name": "Azufre",
+      "appearance": "microcristales sinterizados de color amarillo limón",
+      "summary": "El azufre (en inglés «sulfur» o «sulphur») es un elemento químico de símbolo S y número atómico 16. Es un no metal abundante y multivalente. En condiciones normales, los átomos de azufre forman moléculas cíclicas octoatómicas de fórmula química S8."
+    },
+    {
+      "number": 17,
+      "symbol": "Cl",
+      "name": "Cloro",
+      "appearance": "gas amarillo verdoso pálido",
+      "summary": "El cloro es un elemento químico de símbolo Cl y número atómico 17. Su masa atómica relativa es de 35,5. El cloro pertenece al grupo de los halógenos (17) y es el segundo halógeno más ligero, después del flúor."
+    },
+    {
+      "number": 18,
+      "symbol": "Ar",
+      "name": "Argón",
+      "appearance": "gas incoloro que emite un brillo lila/violeta cuando se coloca en un campo eléctrico de alto voltaje",
+      "summary": "El argón es un elemento químico de símbolo Ar y número atómico 18. Pertenece al grupo 18 de la tabla periódica y es un gas noble. El argón es el tercer gas más común de la atmósfera terrestre, con un 0,934 % (9340 ppmv), lo que lo hace más del doble de abundante que el siguiente gas atmosférico más común, el vapor de agua (unos 4000 ppmv de media, aunque varía mucho), 23 veces más abundante que el siguiente gas atmosférico no condensable más común, el dióxido de carbono (400 ppmv), y más de 500 veces más abundante que el siguiente gas noble más común, el neón (18 ppmv)."
+    },
+    {
+      "number": 19,
+      "symbol": "K",
+      "name": "Potasio",
+      "appearance": "gris plateado",
+      "summary": "El potasio es un elemento químico de símbolo K (derivado del neolatín kalium) y número atómico 19. Se aisló por primera vez a partir de la potasa, las cenizas de las plantas, de la que deriva su nombre. En la tabla periódica, el potasio es uno de los siete elementos de la columna (grupo) 1 (metales alcalinos): todos tienen un único electrón de valencia en su capa electrónica externa, que ceden con facilidad para formar un átomo con carga positiva, un catión, y se combinan con aniones para formar sales."
+    },
+    {
+      "number": 20,
+      "symbol": "Ca",
+      "name": "Calcio",
+      "appearance": null,
+      "summary": "El calcio es un elemento químico de símbolo Ca y número atómico 20. Es un metal alcalinotérreo blando y gris, el quinto elemento más abundante en masa de la corteza terrestre. El ion Ca2+ es también el quinto ion disuelto más abundante en el agua de mar, tanto en molaridad como en masa, después del sodio, el cloruro, el magnesio y el sulfato."
+    },
+    {
+      "number": 21,
+      "symbol": "Sc",
+      "name": "Escandio",
+      "appearance": "blanco plateado",
+      "summary": "El escandio es un elemento químico de símbolo Sc y número atómico 21. Es un elemento metálico del bloque d de color blanco plateado que históricamente se ha clasificado a veces como tierra rara, junto con el itrio y los lantánidos. Fue descubierto en 1879 mediante el análisis espectral de los minerales euxenita y gadolinita procedentes de Escandinavia."
+    },
+    {
+      "number": 22,
+      "symbol": "Ti",
+      "name": "Titanio",
+      "appearance": "metálico blanco grisáceo plateado",
+      "summary": "El titanio es un elemento químico de símbolo Ti y número atómico 22. Es un metal de transición brillante, de color plateado, baja densidad y gran resistencia. Es muy resistente a la corrosión por el agua de mar, el agua regia y el cloro."
+    },
+    {
+      "number": 23,
+      "symbol": "V",
+      "name": "Vanadio",
+      "appearance": "metal gris plateado azulado",
+      "summary": "El vanadio es un elemento químico de símbolo V y número atómico 23. Es un metal de transición duro, gris plateado, dúctil y maleable. En la naturaleza solo se encuentra en forma químicamente combinada, pero una vez aislado artificialmente, la formación de una capa de óxido estabiliza en cierta medida el metal libre frente a una oxidación posterior."
+    },
+    {
+      "number": 24,
+      "symbol": "Cr",
+      "name": "Cromo",
+      "appearance": "metálico plateado",
+      "summary": "El cromo es un elemento químico de símbolo Cr y número atómico 24. Es el primer elemento del grupo 6. Es un metal gris acero, brillante, duro y quebradizo, que admite un pulido intenso, resiste el deslustre y tiene un punto de fusión elevado."
+    },
+    {
+      "number": 25,
+      "symbol": "Mn",
+      "name": "Manganeso",
+      "appearance": "metálico plateado",
+      "summary": "El manganeso es un elemento químico de símbolo Mn y número atómico 25. No se encuentra como elemento libre en la naturaleza; a menudo aparece combinado con hierro y en muchos minerales. El manganeso es un metal con importantes usos industriales en aleaciones, especialmente en los aceros inoxidables."
+    },
+    {
+      "number": 26,
+      "symbol": "Fe",
+      "name": "Hierro",
+      "appearance": "metálico brillante con un matiz grisáceo",
+      "summary": "El hierro es un elemento químico de símbolo Fe (del latín ferrum) y número atómico 26. Es un metal de la primera serie de transición. En masa, es el elemento más común de la Tierra y constituye gran parte del núcleo externo e interno del planeta."
+    },
+    {
+      "number": 27,
+      "symbol": "Co",
+      "name": "Cobalto",
+      "appearance": "metal gris duro y brillante",
+      "summary": "El cobalto es un elemento químico de símbolo Co y número atómico 27. Al igual que el níquel, el cobalto de la corteza terrestre solo se encuentra en forma químicamente combinada, salvo pequeños depósitos presentes en aleaciones de hierro meteórico natural. El elemento libre, obtenido por fundición reductora, es un metal duro, brillante y gris plateado."
+    },
+    {
+      "number": 28,
+      "symbol": "Ni",
+      "name": "Níquel",
+      "appearance": "brillante, metálico y plateado con un matiz dorado",
+      "summary": "El níquel es un elemento químico de símbolo Ni y número atómico 28. Es un metal blanco plateado brillante con un ligero matiz dorado. El níquel pertenece a los metales de transición y es duro y dúctil."
+    },
+    {
+      "number": 29,
+      "symbol": "Cu",
+      "name": "Cobre",
+      "appearance": "brillo metálico rojo anaranjado",
+      "summary": "El cobre es un elemento químico de símbolo Cu (del latín cuprum) y número atómico 29. Es un metal blando, maleable y dúctil, con una conductividad térmica y eléctrica muy elevada. Una superficie de cobre puro recién expuesta tiene un color rojo anaranjado."
+    },
+    {
+      "number": 30,
+      "symbol": "Zn",
+      "name": "Zinc",
+      "appearance": "gris plateado",
+      "summary": "El zinc, también llamado «spelter» en el comercio, es un elemento químico de símbolo Zn y número atómico 30. Es el primer elemento del grupo 12 de la tabla periódica. En algunos aspectos, el zinc es químicamente similar al magnesio: su ion tiene un tamaño parecido y su único estado de oxidación común es +2."
+    },
+    {
+      "number": 31,
+      "symbol": "Ga",
+      "name": "Galio",
+      "appearance": "blanco plateado",
+      "summary": "El galio es un elemento químico de símbolo Ga y número atómico 31. El galio elemental no se encuentra libre en la naturaleza, sino en forma de compuestos de galio(III) presentes en cantidades traza en los minerales de zinc y en la bauxita. El galio es un metal blando y plateado; el galio elemental es un sólido quebradizo a bajas temperaturas y se funde a 29,76 °C (85,57 °F), ligeramente por encima de la temperatura ambiente."
+    },
+    {
+      "number": 32,
+      "symbol": "Ge",
+      "name": "Germanio",
+      "appearance": "blanco grisáceo",
+      "summary": "El germanio es un elemento químico de símbolo Ge y número atómico 32. Es un metaloide brillante, duro y de color blanco grisáceo del grupo del carbono, químicamente similar a sus vecinos de grupo, el estaño y el silicio. El germanio purificado es un semiconductor cuyo aspecto se asemeja mucho al del silicio elemental."
+    },
+    {
+      "number": 33,
+      "symbol": "As",
+      "name": "Arsénico",
+      "appearance": "gris metálico",
+      "summary": "El arsénico es un elemento químico de símbolo As y número atómico 33. El arsénico está presente en muchos minerales, normalmente junto con azufre y metales, y también como cristal elemental puro. El arsénico es un metaloide."
+    },
+    {
+      "number": 34,
+      "symbol": "Se",
+      "name": "Selenio",
+      "appearance": "alótropos negro, rojo y gris (no se muestra)",
+      "summary": "El selenio es un elemento químico de símbolo Se y número atómico 34. Es un no metal cuyas propiedades son intermedias entre las de sus calcógenos adyacentes en la columna de la tabla periódica, el azufre y el telurio. Rara vez se encuentra en estado elemental en la naturaleza o como compuestos minerales puros."
+    },
+    {
+      "number": 35,
+      "symbol": "Br",
+      "name": "Bromo",
+      "appearance": null,
+      "summary": "El bromo (del griego antiguo βρῶμος, brómos, «hedor») es un elemento químico de símbolo Br y número atómico 35. Es un halógeno. El elemento fue aislado de forma independiente por dos químicos, Carl Jacob Löwig y Antoine Jérôme Balard, en 1825–1826."
+    },
+    {
+      "number": 36,
+      "symbol": "Kr",
+      "name": "Kriptón",
+      "appearance": "gas incoloro que emite un brillo blanquecino en un campo eléctrico intenso",
+      "summary": "El kriptón (del griego κρυπτός kryptos, «el oculto») es un elemento químico de símbolo Kr y número atómico 36. Pertenece a los elementos del grupo 18 (gases nobles). Gas noble incoloro, inodoro e insípido, el kriptón está presente en cantidades traza en la atmósfera, se aísla mediante destilación fraccionada del aire licuado y a menudo se utiliza junto con otros gases nobles en lámparas fluorescentes."
+    },
+    {
+      "number": 37,
+      "symbol": "Rb",
+      "name": "Rubidio",
+      "appearance": "blanco grisáceo",
+      "summary": "El rubidio es un elemento químico de símbolo Rb y número atómico 37. El rubidio es un elemento metálico blando y blanco plateado del grupo de los metales alcalinos, con una masa atómica de 85,4678. El rubidio elemental es muy reactivo, con propiedades similares a las de los demás metales alcalinos, como una oxidación muy rápida en el aire."
+    },
+    {
+      "number": 38,
+      "symbol": "Sr",
+      "name": "Estroncio",
+      "appearance": null,
+      "summary": "El estroncio es un elemento químico de símbolo Sr y número atómico 38. Metal alcalinotérreo, el estroncio es un elemento metálico blando, blanco plateado o amarillento, químicamente muy reactivo. El metal se vuelve amarillo cuando se expone al aire."
+    },
+    {
+      "number": 39,
+      "symbol": "Y",
+      "name": "Itrio",
+      "appearance": "blanco plateado",
+      "summary": "El itrio es un elemento químico de símbolo Y y número atómico 39. Es un metal de transición plateado, químicamente similar a los lantánidos, y a menudo se ha clasificado como «tierra rara». El itrio casi siempre se encuentra combinado con los lantánidos en minerales de tierras raras y nunca aparece en la naturaleza como elemento libre."
+    },
+    {
+      "number": 40,
+      "symbol": "Zr",
+      "name": "Circonio",
+      "appearance": "blanco plateado",
+      "summary": "El circonio es un elemento químico de símbolo Zr y número atómico 40. El nombre de circonio procede del mineral circón, la fuente más importante de circonio. La palabra circón viene del persa zargun زرگون, que significa «de color dorado»."
+    },
+    {
+      "number": 41,
+      "symbol": "Nb",
+      "name": "Niobio",
+      "appearance": "gris metálico, azulado cuando se oxida",
+      "summary": "El niobio, antes llamado columbio, es un elemento químico de símbolo Nb (antes Cb) y número atómico 41. Es un metal de transición blando, gris y dúctil, que se encuentra a menudo en el mineral pirocloro, la principal fuente comercial de niobio, y en la columbita. Su nombre procede de la mitología griega: Níobe, hija de Tántalo, por su gran parecido con el tantalio."
+    },
+    {
+      "number": 42,
+      "symbol": "Mo",
+      "name": "Molibdeno",
+      "appearance": "gris metálico",
+      "summary": "El molibdeno es un elemento químico de símbolo Mo y número atómico 42. El nombre procede del neolatín molybdaenum, del griego antiguo Μόλυβδος molybdos, que significa plomo, ya que sus minerales se confundían con los del plomo. Los minerales de molibdeno se conocen desde la Antigüedad, pero el elemento fue descubierto (en el sentido de distinguirlo como una entidad nueva respecto a las sales minerales de otros metales) en 1778 por Carl Wilhelm Scheele."
+    },
+    {
+      "number": 43,
+      "symbol": "Tc",
+      "name": "Tecnecio",
+      "appearance": "metal gris brillante",
+      "summary": "El tecnecio (/tɛkˈniːʃiəm/) es un elemento químico de símbolo Tc y número atómico 43. Es el elemento de menor número atómico de la tabla periódica que no tiene isótopos estables: todas sus formas son radiactivas. Casi todo el tecnecio se produce de forma sintética, y en la naturaleza solo se encuentran cantidades ínfimas."
+    },
+    {
+      "number": 44,
+      "symbol": "Ru",
+      "name": "Rutenio",
+      "appearance": "metálico blanco plateado",
+      "summary": "El rutenio es un elemento químico de símbolo Ru y número atómico 44. Es un metal de transición raro perteneciente al grupo del platino de la tabla periódica. Al igual que los demás metales del grupo del platino, el rutenio es inerte frente a la mayoría de las demás sustancias químicas."
+    },
+    {
+      "number": 45,
+      "symbol": "Rh",
+      "name": "Rodio",
+      "appearance": "metálico blanco plateado",
+      "summary": "El rodio es un elemento químico de símbolo Rh y número atómico 45. Es un metal de transición raro, blanco plateado, duro y químicamente inerte. Forma parte del grupo del platino."
+    },
+    {
+      "number": 46,
+      "symbol": "Pd",
+      "name": "Paladio",
+      "appearance": "blanco plateado",
+      "summary": "El paladio es un elemento químico de símbolo Pd y número atómico 46. Es un metal raro y brillante de color blanco plateado, descubierto en 1803 por William Hyde Wollaston. Lo bautizó en honor del asteroide Palas, que a su vez recibió su nombre del epíteto de la diosa griega Atenea, adquirido cuando dio muerte a Palas."
+    },
+    {
+      "number": 47,
+      "symbol": "Ag",
+      "name": "Plata",
+      "appearance": "metal blanco brillante",
+      "summary": "La plata es un elemento químico de símbolo Ag (griego άργυρος árguros, latín argentum, ambos de la raíz indoeuropea *h₂erǵ-, «gris» o «brillante») y número atómico 47. Metal de transición blando, blanco y brillante, posee la mayor conductividad eléctrica, conductividad térmica y reflectividad de todos los metales. El metal se encuentra en la naturaleza en su forma pura y libre (plata nativa), aleado con oro y otros metales, y en minerales como la argentita y la clorargirita."
+    },
+    {
+      "number": 48,
+      "symbol": "Cd",
+      "name": "Cadmio",
+      "appearance": "metálico gris azulado plateado",
+      "summary": "El cadmio es un elemento químico de símbolo Cd y número atómico 48. Este metal blando, de color blanco azulado, es químicamente similar a los otros dos metales estables del grupo 12, el zinc y el mercurio. Al igual que el zinc, prefiere el estado de oxidación +2 en la mayoría de sus compuestos y, como el mercurio, tiene un punto de fusión bajo en comparación con los metales de transición."
+    },
+    {
+      "number": 49,
+      "symbol": "In",
+      "name": "Indio",
+      "appearance": "gris plateado brillante",
+      "summary": "El indio es un elemento químico de símbolo In y número atómico 49. Es un elemento metálico del bloque p (metal postransicional) poco común en la corteza terrestre. El metal es muy blando, maleable y fácilmente fusible, con un punto de fusión superior al del sodio pero inferior al del litio o el estaño."
+    },
+    {
+      "number": 50,
+      "symbol": "Sn",
+      "name": "Estaño",
+      "appearance": "blanco plateado (beta, β) o gris (alfa, α)",
+      "summary": "El estaño es un elemento químico de símbolo Sn (del latín stannum) y número atómico 50. Es un metal del grupo principal, en el grupo 14 de la tabla periódica. El estaño presenta similitudes químicas con sus dos vecinos del grupo 14, el germanio y el plomo, y tiene dos estados de oxidación posibles, +2 y el ligeramente más estable +4."
+    },
+    {
+      "number": 51,
+      "symbol": "Sb",
+      "name": "Antimonio",
+      "appearance": "gris plateado brillante",
+      "summary": "El antimonio es un elemento químico de símbolo Sb (del latín stibium) y número atómico 51. Metaloide gris brillante, se encuentra en la naturaleza principalmente como el mineral sulfurado estibina (Sb2S3). Los compuestos de antimonio se conocen desde la Antigüedad y se utilizaban en cosmética; el antimonio metálico también era conocido, pero al descubrirse se identificó erróneamente como plomo."
+    },
+    {
+      "number": 52,
+      "symbol": "Te",
+      "name": "Telurio",
+      "appearance": null,
+      "summary": "El telurio es un elemento químico de símbolo Te y número atómico 52. Es un metaloide quebradizo, ligeramente tóxico, raro y de color blanco plateado. El telurio está químicamente emparentado con el selenio y el azufre."
+    },
+    {
+      "number": 53,
+      "symbol": "I",
+      "name": "Yodo",
+      "appearance": "gris metálico brillante, violeta en estado gaseoso",
+      "summary": "El yodo es un elemento químico de símbolo I y número atómico 53. El nombre procede del griego ἰοειδής ioeidēs, que significa violeta o púrpura, por el color del vapor de yodo. El yodo y sus compuestos se utilizan principalmente en nutrición y, en la industria, en la producción de ácido acético y de ciertos polímeros."
+    },
+    {
+      "number": 54,
+      "symbol": "Xe",
+      "name": "Xenón",
+      "appearance": "gas incoloro que emite un brillo azul cuando se coloca en un campo eléctrico de alto voltaje",
+      "summary": "El xenón es un elemento químico de símbolo Xe y número atómico 54. Es un gas noble incoloro, denso e inodoro, presente en cantidades traza en la atmósfera terrestre. Aunque por lo general no es reactivo, el xenón puede participar en algunas reacciones químicas, como la formación del hexafluoroplatinato de xenón, el primer compuesto de gas noble sintetizado."
+    },
+    {
+      "number": 55,
+      "symbol": "Cs",
+      "name": "Cesio",
+      "appearance": "dorado plateado",
+      "summary": "El cesio es un elemento químico de símbolo Cs y número atómico 55. Es un metal alcalino blando, de color dorado plateado, con un punto de fusión de 28 °C (82 °F), lo que lo convierte en uno de los cinco únicos metales elementales que son líquidos a temperatura ambiente o cerca de ella. El cesio es un metal alcalino con propiedades físicas y químicas similares a las del rubidio y el potasio."
+    },
+    {
+      "number": 56,
+      "symbol": "Ba",
+      "name": "Bario",
+      "appearance": null,
+      "summary": "El bario es un elemento químico de símbolo Ba y número atómico 56. Es el quinto elemento del grupo 2, un metal alcalinotérreo blando, plateado y metálico. Debido a su alta reactividad química, el bario nunca se encuentra en la naturaleza como elemento libre."
+    },
+    {
+      "number": 57,
+      "symbol": "La",
+      "name": "Lantano",
+      "appearance": "blanco plateado",
+      "summary": "El lantano es un elemento químico metálico blando, dúctil y de color blanco plateado, de símbolo La y número atómico 57. Se deslustra rápidamente al exponerse al aire y es lo bastante blando como para cortarse con un cuchillo. Dio nombre a la serie de los lantánidos, un grupo de 15 elementos similares situados entre el lantano y el lutecio en la tabla periódica; a veces también se considera el primer elemento de los metales de transición del sexto período."
+    },
+    {
+      "number": 58,
+      "symbol": "Ce",
+      "name": "Cerio",
+      "appearance": "blanco plateado",
+      "summary": "El cerio es un elemento químico de símbolo Ce y número atómico 58. Es un metal blando, plateado y dúctil que se oxida fácilmente en el aire. El cerio recibió su nombre del planeta enano Ceres (que a su vez debe su nombre a la diosa romana de la agricultura)."
+    },
+    {
+      "number": 59,
+      "symbol": "Pr",
+      "name": "Praseodimio",
+      "appearance": "blanco grisáceo",
+      "summary": "El praseodimio es un elemento químico de símbolo Pr y número atómico 59. El praseodimio es un metal blando, plateado, maleable y dúctil del grupo de los lantánidos. Es apreciado por sus propiedades magnéticas, eléctricas, químicas y ópticas."
+    },
+    {
+      "number": 60,
+      "symbol": "Nd",
+      "name": "Neodimio",
+      "appearance": "blanco plateado",
+      "summary": "El neodimio es un elemento químico de símbolo Nd y número atómico 60. Es un metal blando y plateado que se deslustra en el aire. El neodimio fue descubierto en 1885 por el químico austriaco Carl Auer von Welsbach."
+    },
+    {
+      "number": 61,
+      "symbol": "Pm",
+      "name": "Prometio",
+      "appearance": "metálico",
+      "summary": "El prometio, originalmente «prometeo», es un elemento químico de símbolo Pm y número atómico 61. Todos sus isótopos son radiactivos; es uno de los dos únicos elementos de este tipo a los que siguen en la tabla periódica elementos con formas estables, una particularidad que comparte con el tecnecio. Químicamente, el prometio es un lantánido que forma sales al combinarse con otros elementos."
+    },
+    {
+      "number": 62,
+      "symbol": "Sm",
+      "name": "Samario",
+      "appearance": "blanco plateado",
+      "summary": "El samario es un elemento químico de símbolo Sm y número atómico 62. Es un metal plateado moderadamente duro que se oxida fácilmente en el aire. Como miembro típico de la serie de los lantánidos, el samario suele adoptar el estado de oxidación +3."
+    },
+    {
+      "number": 63,
+      "symbol": "Eu",
+      "name": "Europio",
+      "appearance": null,
+      "summary": "El europio es un elemento químico de símbolo Eu y número atómico 63. Fue aislado en 1901 y debe su nombre al continente europeo. Es un metal plateado moderadamente duro que se oxida fácilmente en el aire y en el agua."
+    },
+    {
+      "number": 64,
+      "symbol": "Gd",
+      "name": "Gadolinio",
+      "appearance": "blanco plateado",
+      "summary": "El gadolinio es un elemento químico de símbolo Gd y número atómico 64. Es un metal de las tierras raras blanco plateado, maleable y dúctil. En la naturaleza solo se encuentra en forma combinada (como sal)."
+    },
+    {
+      "number": 65,
+      "symbol": "Tb",
+      "name": "Terbio",
+      "appearance": "blanco plateado",
+      "summary": "El terbio es un elemento químico de símbolo Tb y número atómico 65. Es un metal de las tierras raras blanco plateado, maleable, dúctil y lo bastante blando como para cortarse con un cuchillo. El terbio nunca se encuentra en la naturaleza como elemento libre, pero está presente en muchos minerales, como la cerita, la gadolinita, la monacita, la xenotima y la euxenita."
+    },
+    {
+      "number": 66,
+      "symbol": "Dy",
+      "name": "Disprosio",
+      "appearance": "blanco plateado",
+      "summary": "El disprosio es un elemento químico de símbolo Dy y número atómico 66. Es un elemento de las tierras raras con brillo metálico plateado. El disprosio nunca se encuentra en la naturaleza como elemento libre, aunque está presente en diversos minerales, como la xenotima."
+    },
+    {
+      "number": 67,
+      "symbol": "Ho",
+      "name": "Holmio",
+      "appearance": "blanco plateado",
+      "summary": "El holmio es un elemento químico de símbolo Ho y número atómico 67. Como parte de la serie de los lantánidos, el holmio es un elemento de las tierras raras. El holmio fue descubierto por el químico sueco Per Teodor Cleve."
+    },
+    {
+      "number": 68,
+      "symbol": "Er",
+      "name": "Erbio",
+      "appearance": "blanco plateado",
+      "summary": "El erbio es un elemento químico de la serie de los lantánidos, de símbolo Er y número atómico 68. Es un metal sólido blanco plateado cuando se aísla artificialmente, pero el erbio natural siempre se encuentra en la Tierra combinado químicamente con otros elementos. Por ello es un elemento de las tierras raras, asociado a varios otros elementos raros en el mineral gadolinita de Ytterby, en Suecia, donde se descubrieron el itrio, el iterbio y el terbio."
+    },
+    {
+      "number": 69,
+      "symbol": "Tm",
+      "name": "Tulio",
+      "appearance": "gris plateado",
+      "summary": "El tulio es un elemento químico de símbolo Tm y número atómico 69. Es el decimotercer y antepenúltimo elemento de la serie de los lantánidos. Al igual que los demás lantánidos, su estado de oxidación más común es +3, presente en su óxido, sus haluros y otros compuestos."
+    },
+    {
+      "number": 70,
+      "symbol": "Yb",
+      "name": "Iterbio",
+      "appearance": null,
+      "summary": "El iterbio es un elemento químico de símbolo Yb y número atómico 70. Es el decimocuarto y penúltimo elemento de la serie de los lantánidos, lo que explica la relativa estabilidad de su estado de oxidación +2. Sin embargo, al igual que los demás lantánidos, su estado de oxidación más común es +3, presente en su óxido, sus haluros y otros compuestos."
+    },
+    {
+      "number": 71,
+      "symbol": "Lu",
+      "name": "Lutecio",
+      "appearance": "blanco plateado",
+      "summary": "El lutecio es un elemento químico de símbolo Lu y número atómico 71. Es un metal blanco plateado que resiste la corrosión en aire seco, pero no en aire húmedo. Se considera el primer elemento de los metales de transición del sexto período y el último de la serie de los lantánidos, y tradicionalmente se cuenta entre las tierras raras."
+    },
+    {
+      "number": 72,
+      "symbol": "Hf",
+      "name": "Hafnio",
+      "appearance": "gris acero",
+      "summary": "El hafnio es un elemento químico de símbolo Hf y número atómico 72. Metal de transición tetravalente, brillante y gris plateado, el hafnio se parece químicamente al circonio y se encuentra en minerales de circonio. Su existencia fue predicha por Dmitri Mendeléyev en 1869, aunque no se identificó hasta 1923, lo que lo convierte en el penúltimo elemento estable descubierto (el renio se identificó dos años después)."
+    },
+    {
+      "number": 73,
+      "symbol": "Ta",
+      "name": "Tantalio",
+      "appearance": "gris azulado",
+      "summary": "El tantalio es un elemento químico de símbolo Ta y número atómico 73. Antes conocido como tántalo, su nombre procede de Tántalo, un antihéroe de la mitología griega. El tantalio es un metal de transición raro, duro, gris azulado y brillante, muy resistente a la corrosión."
+    },
+    {
+      "number": 74,
+      "symbol": "W",
+      "name": "Wolframio",
+      "appearance": "blanco grisáceo, brillante",
+      "summary": "El wolframio, también conocido como tungsteno, es un elemento químico de símbolo W y número atómico 74. La palabra tungsteno procede del sueco tung sten, que se traduce literalmente como «piedra pesada». Sin embargo, su nombre en sueco es volfram, para distinguirlo de la scheelita, que en sueco también se denomina tungsten."
+    },
+    {
+      "number": 75,
+      "symbol": "Re",
+      "name": "Renio",
+      "appearance": "gris plateado",
+      "summary": "El renio es un elemento químico de símbolo Re y número atómico 75. Es un metal de transición pesado, blanco plateado, de la tercera fila, situado en el grupo 7 de la tabla periódica. Con una concentración media estimada de 1 parte por mil millones (ppb), el renio es uno de los elementos más raros de la corteza terrestre."
+    },
+    {
+      "number": 76,
+      "symbol": "Os",
+      "name": "Osmio",
+      "appearance": "plateado, con reflejos azulados",
+      "summary": "El osmio (del griego osme (ὀσμή), «olor») es un elemento químico de símbolo Os y número atómico 76. Es un metal de transición duro, quebradizo y blanco azulado del grupo del platino que se encuentra como elemento traza en aleaciones, sobre todo en minerales de platino. El osmio es el elemento natural más denso, con una densidad de 22,59 g/cm3."
+    },
+    {
+      "number": 77,
+      "symbol": "Ir",
+      "name": "Iridio",
+      "appearance": "blanco plateado",
+      "summary": "El iridio es un elemento químico de símbolo Ir y número atómico 77. Metal de transición muy duro, quebradizo y blanco plateado del grupo del platino, el iridio suele considerarse el segundo elemento más denso (después del osmio) según la densidad medida, aunque los cálculos basados en las redes cristalinas de los elementos indican que el iridio es más denso. Es también el metal más resistente a la corrosión, incluso a temperaturas de hasta 2000 °C. Aunque solo ciertas sales fundidas y halógenos son corrosivos para el iridio sólido, el polvo de iridio finamente dividido es mucho más reactivo y puede ser inflamable."
+    },
+    {
+      "number": 78,
+      "symbol": "Pt",
+      "name": "Platino",
+      "appearance": "blanco plateado",
+      "summary": "El platino es un elemento químico de símbolo Pt y número atómico 78. Es un metal de transición precioso, denso, maleable, dúctil, muy poco reactivo y de color blanco grisáceo. Su nombre deriva del término español platina, que se traduce literalmente como «plata pequeña»."
+    },
+    {
+      "number": 79,
+      "symbol": "Au",
+      "name": "Oro",
+      "appearance": "amarillo metálico",
+      "summary": "El oro es un elemento químico de símbolo Au (del latín aurum) y número atómico 79. En su forma más pura es un metal de color amarillo brillante ligeramente rojizo, denso, blando, maleable y dúctil. Químicamente, el oro es un metal de transición y un elemento del grupo 11."
+    },
+    {
+      "number": 80,
+      "symbol": "Hg",
+      "name": "Mercurio",
+      "appearance": "plateado",
+      "summary": "El mercurio es un elemento químico de símbolo Hg y número atómico 80. Se le conoce comúnmente como azogue y antiguamente se llamaba hydrargyrum (/haɪˈdrɑːrdʒərəm/). Elemento pesado y plateado del bloque d, el mercurio es el único elemento metálico líquido en condiciones estándar de temperatura y presión; el único otro elemento líquido en estas condiciones es el bromo, aunque metales como el cesio, el galio y el rubidio se funden justo por encima de la temperatura ambiente."
+    },
+    {
+      "number": 81,
+      "symbol": "Tl",
+      "name": "Talio",
+      "appearance": "blanco plateado",
+      "summary": "El talio es un elemento químico de símbolo Tl y número atómico 81. Este metal postransicional blando y gris no se encuentra libre en la naturaleza. Una vez aislado, se parece al estaño, pero se decolora al exponerse al aire."
+    },
+    {
+      "number": 82,
+      "symbol": "Pb",
+      "name": "Plomo",
+      "appearance": "gris metálico",
+      "summary": "El plomo (/lɛd/) es un elemento químico del grupo del carbono, de símbolo Pb (del latín plumbum) y número atómico 82. El plomo es un metal postransicional blando, maleable y pesado. El plomo metálico tiene un color blanco azulado cuando se acaba de cortar, pero pronto se deslustra y adquiere un color grisáceo apagado al exponerse al aire."
+    },
+    {
+      "number": 83,
+      "symbol": "Bi",
+      "name": "Bismuto",
+      "appearance": "plateado brillante",
+      "summary": "El bismuto es un elemento químico de símbolo Bi y número atómico 83. El bismuto, un metal postransicional pentavalente, se parece químicamente al arsénico y al antimonio. El bismuto elemental puede encontrarse en estado natural, aunque su sulfuro y su óxido constituyen importantes menas comerciales."
+    },
+    {
+      "number": 84,
+      "symbol": "Po",
+      "name": "Polonio",
+      "appearance": "plateado",
+      "summary": "El polonio es un elemento químico de símbolo Po y número atómico 84, descubierto en 1898 por Marie Curie y Pierre Curie. Elemento raro y muy radiactivo sin isótopos estables, el polonio es químicamente similar al bismuto y al telurio, y se encuentra en minerales de uranio. Las aplicaciones del polonio son escasas."
+    },
+    {
+      "number": 85,
+      "symbol": "At",
+      "name": "Astato",
+      "appearance": "desconocida, probablemente metálica",
+      "summary": "El astato es un elemento químico radiactivo muy raro de símbolo químico At y número atómico 85. Se encuentra en la Tierra como producto de la desintegración de varios elementos más pesados. Todos sus isótopos tienen una vida corta; el más estable es el astato-210, con un período de semidesintegración de 8,1 horas."
+    },
+    {
+      "number": 86,
+      "symbol": "Rn",
+      "name": "Radón",
+      "appearance": "gas incoloro que a veces brilla en verde o rojo en tubos de descarga",
+      "summary": "El radón es un elemento químico de símbolo Rn y número atómico 86. Es un gas noble radiactivo, incoloro, inodoro e insípido, que se produce de forma natural como producto de la desintegración del radio. Su isótopo más estable, el 222Rn, tiene un período de semidesintegración de 3,8 días."
+    },
+    {
+      "number": 87,
+      "symbol": "Fr",
+      "name": "Francio",
+      "appearance": null,
+      "summary": "El francio es un elemento químico de símbolo Fr y número atómico 87. Antes se conocía como eka-cesio y actinio K. Es el segundo elemento menos electronegativo, solo por detrás del cesio. El francio es un metal muy radiactivo que se desintegra en astato, radio y radón."
+    },
+    {
+      "number": 88,
+      "symbol": "Ra",
+      "name": "Radio",
+      "appearance": "metálico blanco plateado",
+      "summary": "El radio es un elemento químico de símbolo Ra y número atómico 88. Es el sexto elemento del grupo 2 de la tabla periódica, también conocido como metales alcalinotérreos. El radio puro es casi incoloro, pero al exponerse al aire se combina fácilmente con el nitrógeno (en lugar de con el oxígeno) y forma una capa superficial negra de nitruro de radio (Ra3N2)."
+    },
+    {
+      "number": 89,
+      "symbol": "Ac",
+      "name": "Actinio",
+      "appearance": null,
+      "summary": "El actinio es un elemento químico radiactivo de símbolo Ac (que no debe confundirse con la abreviatura del grupo acetilo) y número atómico 89, descubierto en 1899. Fue el primer elemento radiactivo no primordial en ser aislado. El polonio, el radio y el radón se observaron antes que el actinio, pero no se aislaron hasta 1902."
+    },
+    {
+      "number": 90,
+      "symbol": "Th",
+      "name": "Torio",
+      "appearance": "plateado, a menudo con un deslustre negro",
+      "summary": "El torio es un elemento químico de símbolo Th y número atómico 90. Metal actínido radiactivo, el torio es uno de los dos únicos elementos significativamente radiactivos que todavía se encuentran de forma natural en grandes cantidades como elemento primordial (el otro es el uranio). Fue descubierto en 1828 por el reverendo noruego y mineralogista aficionado Morten Thrane Esmark e identificado por el químico sueco Jöns Jacob Berzelius, quien le dio el nombre de Thor, el dios nórdico del trueno."
+    },
+    {
+      "number": 91,
+      "symbol": "Pa",
+      "name": "Protactinio",
+      "appearance": "brillo metálico plateado y luminoso",
+      "summary": "El protactinio es un elemento químico de símbolo Pa y número atómico 91. Es un metal denso, gris plateado, que reacciona fácilmente con el oxígeno, el vapor de agua y los ácidos inorgánicos. Forma diversos compuestos químicos en los que el protactinio suele presentar el estado de oxidación +5, aunque también puede adoptar los estados +4 e incluso +2 o +3."
+    },
+    {
+      "number": 92,
+      "symbol": "U",
+      "name": "Uranio",
+      "appearance": null,
+      "summary": "El uranio es un elemento químico de símbolo U y número atómico 92. Es un metal blanco plateado de la serie de los actínidos de la tabla periódica. Un átomo de uranio tiene 92 protones y 92 electrones, de los cuales 6 son electrones de valencia."
+    },
+    {
+      "number": 93,
+      "symbol": "Np",
+      "name": "Neptunio",
+      "appearance": "metálico plateado",
+      "summary": "El neptunio es un elemento químico de símbolo Np y número atómico 93. Metal actínido radiactivo, el neptunio es el primer elemento transuránico. Su posición en la tabla periódica, justo después del uranio, cuyo nombre procede del planeta Urano, hizo que recibiera el nombre de Neptuno, el planeta siguiente a Urano."
+    },
+    {
+      "number": 94,
+      "symbol": "Pu",
+      "name": "Plutonio",
+      "appearance": "blanco plateado, que se oscurece a gris oscuro en el aire",
+      "summary": "El plutonio es un elemento químico radiactivo transuránico de símbolo Pu y número atómico 94. Es un metal actínido de aspecto gris plateado que se deslustra al exponerse al aire y forma un recubrimiento opaco al oxidarse. El elemento presenta normalmente seis alótropos y cuatro estados de oxidación."
+    },
+    {
+      "number": 95,
+      "symbol": "Am",
+      "name": "Americio",
+      "appearance": "blanco plateado",
+      "summary": "El americio es un elemento químico radiactivo transuránico de símbolo Am y número atómico 95. Este miembro de la serie de los actínidos se sitúa en la tabla periódica debajo del lantánido europio y, por analogía, recibió su nombre de las Américas. El americio fue producido por primera vez en 1944 por el grupo de Glenn T. Seaborg, de Berkeley (California), en el laboratorio metalúrgico de la Universidad de Chicago."
+    },
+    {
+      "number": 96,
+      "symbol": "Cm",
+      "name": "Curio",
+      "appearance": "metálico plateado, brilla de color púrpura en la oscuridad",
+      "summary": "El curio es un elemento químico radiactivo transuránico de símbolo Cm y número atómico 96. Este elemento de la serie de los actínidos recibió su nombre en honor de Marie y Pierre Curie, ambos conocidos por sus investigaciones sobre la radiactividad. El curio fue producido intencionadamente e identificado por primera vez en julio de 1944 por el grupo de Glenn T. Seaborg en la Universidad de California en Berkeley."
+    },
+    {
+      "number": 97,
+      "symbol": "Bk",
+      "name": "Berkelio",
+      "appearance": "plateado",
+      "summary": "El berkelio es un elemento químico radiactivo transuránico de símbolo Bk y número atómico 97. Pertenece a las series de los actínidos y de los elementos transuránicos. Debe su nombre a la ciudad de Berkeley (California), sede del Laboratorio de Radiación de la Universidad de California, donde fue descubierto en diciembre de 1949."
+    },
+    {
+      "number": 98,
+      "symbol": "Cf",
+      "name": "Californio",
+      "appearance": "plateado",
+      "summary": "El californio es un elemento químico metálico radiactivo de símbolo Cf y número atómico 98. El elemento se obtuvo por primera vez en 1950 en el Laboratorio de Radiación de la Universidad de California en Berkeley, bombardeando curio con partículas alfa (iones de helio-4). Es un actínido, el sexto elemento transuránico sintetizado, y tiene la segunda masa atómica más alta de todos los elementos producidos en cantidades suficientes para verse a simple vista (después del einstenio)."
+    },
+    {
+      "number": 99,
+      "symbol": "Es",
+      "name": "Einstenio",
+      "appearance": "de color plateado",
+      "summary": "El einstenio es un elemento sintético de símbolo Es y número atómico 99. Es el séptimo elemento transuránico y un actínido. El einstenio se descubrió como componente de los restos de la explosión de la primera bomba de hidrógeno en 1952 y recibió su nombre en honor de Albert Einstein."
+    },
+    {
+      "number": 100,
+      "symbol": "Fm",
+      "name": "Fermio",
+      "appearance": null,
+      "summary": "El fermio es un elemento sintético de símbolo Fm y número atómico 100. Pertenece a la serie de los actínidos. Es el elemento más pesado que puede formarse mediante bombardeo de neutrones de elementos más ligeros y, por tanto, el último que puede prepararse en cantidades macroscópicas, aunque todavía no se ha preparado fermio metálico puro."
+    },
+    {
+      "number": 101,
+      "symbol": "Md",
+      "name": "Mendelevio",
+      "appearance": null,
+      "summary": "El mendelevio es un elemento sintético de símbolo químico Md (antes Mv) y número atómico 101. Elemento transuránico metálico y radiactivo de la serie de los actínidos, es el primer elemento que actualmente no puede producirse en cantidades macroscópicas mediante bombardeo de neutrones de elementos más ligeros. Es el antepenúltimo actínido y el noveno elemento transuránico."
+    },
+    {
+      "number": 102,
+      "symbol": "No",
+      "name": "Nobelio",
+      "appearance": null,
+      "summary": "El nobelio es un elemento químico sintético de símbolo No y número atómico 102. Recibió su nombre en honor de Alfred Nobel, inventor de la dinamita y benefactor de la ciencia. Metal radiactivo, es el décimo elemento transuránico y el penúltimo miembro de la serie de los actínidos."
+    },
+    {
+      "number": 103,
+      "symbol": "Lr",
+      "name": "Lawrencio",
+      "appearance": null,
+      "summary": "El lawrencio es un elemento químico sintético de símbolo químico Lr (antes Lw) y número atómico 103. Recibió su nombre en honor de Ernest Lawrence, inventor del ciclotrón, un dispositivo que se utilizó para descubrir muchos elementos radiactivos artificiales. Metal radiactivo, el lawrencio es el undécimo elemento transuránico y también el último miembro de la serie de los actínidos."
+    },
+    {
+      "number": 104,
+      "symbol": "Rf",
+      "name": "Rutherfordio",
+      "appearance": null,
+      "summary": "El rutherfordio es un elemento químico de símbolo Rf y número atómico 104, llamado así en honor del físico Ernest Rutherford. Es un elemento sintético (un elemento que puede crearse en un laboratorio pero que no se encuentra en la naturaleza) y radiactivo; el isótopo conocido más estable, el 267Rf, tiene un período de semidesintegración de aproximadamente 1,3 horas. En la tabla periódica de los elementos, es un elemento del bloque d y el segundo de los elementos de transición de la cuarta fila."
+    },
+    {
+      "number": 105,
+      "symbol": "Db",
+      "name": "Dubnio",
+      "appearance": null,
+      "summary": "El dubnio es un elemento químico de símbolo Db y número atómico 105. Debe su nombre a la ciudad de Dubna, en Rusia (al norte de Moscú), donde se produjo por primera vez. Es un elemento sintético (un elemento que puede crearse en un laboratorio pero que no se encuentra en la naturaleza) y radiactivo; el isótopo conocido más estable, el dubnio-268, tiene un período de semidesintegración de aproximadamente 28 horas."
+    },
+    {
+      "number": 106,
+      "symbol": "Sg",
+      "name": "Seaborgio",
+      "appearance": null,
+      "summary": "El seaborgio es un elemento sintético de símbolo Sg y número atómico 106. Su isótopo más estable, el 271Sg, tiene un período de semidesintegración de 1,9 minutos. Un isótopo descubierto más recientemente, el 269Sg, tiene un período de semidesintegración potencialmente algo más largo (aprox."
+    },
+    {
+      "number": 107,
+      "symbol": "Bh",
+      "name": "Bohrio",
+      "appearance": null,
+      "summary": "El bohrio es un elemento químico de símbolo Bh y número atómico 107. Recibió su nombre en honor del físico danés Niels Bohr. Es un elemento sintético (un elemento que puede crearse en un laboratorio pero que no se encuentra en la naturaleza) y radiactivo; el isótopo conocido más estable, el 270Bh, tiene un período de semidesintegración de aproximadamente 61 segundos."
+    },
+    {
+      "number": 108,
+      "symbol": "Hs",
+      "name": "Hasio",
+      "appearance": null,
+      "summary": "El hasio es un elemento químico de símbolo Hs y número atómico 108, llamado así por el estado alemán de Hesse. Es un elemento sintético (un elemento que puede crearse en un laboratorio pero que no se encuentra en la naturaleza) y radiactivo; el isótopo conocido más estable, el 269Hs, tiene un período de semidesintegración de aproximadamente 9,7 segundos, aunque un estado metaestable no confirmado, el 277mHs, podría tener un período de semidesintegración más largo, de unos 130 segundos. Hasta la fecha se han sintetizado más de 100 átomos de hasio."
+    },
+    {
+      "number": 109,
+      "symbol": "Mt",
+      "name": "Meitnerio",
+      "appearance": null,
+      "summary": "El meitnerio es un elemento químico de símbolo Mt y número atómico 109. Es un elemento sintético extremadamente radiactivo (un elemento que no se encuentra en la naturaleza pero que puede crearse en un laboratorio). El isótopo conocido más estable, el meitnerio-278, tiene un período de semidesintegración de 7,6 segundos."
+    },
+    {
+      "number": 110,
+      "symbol": "Ds",
+      "name": "Darmstatio",
+      "appearance": null,
+      "summary": "El darmstatio es un elemento químico de símbolo Ds y número atómico 110. Es un elemento sintético extremadamente radiactivo. El isótopo conocido más estable, el darmstatio-281, tiene un período de semidesintegración de aproximadamente 10 segundos."
+    },
+    {
+      "number": 111,
+      "symbol": "Rg",
+      "name": "Roentgenio",
+      "appearance": null,
+      "summary": "El roentgenio es un elemento químico de símbolo Rg y número atómico 111. Es un elemento sintético extremadamente radiactivo (un elemento que puede crearse en un laboratorio pero que no se encuentra en la naturaleza); el isótopo conocido más estable, el roentgenio-282, tiene un período de semidesintegración de 2,1 minutos. El roentgenio fue creado por primera vez en 1994 en el Centro GSI Helmholtz de Investigación de Iones Pesados, cerca de Darmstadt (Alemania)."
+    },
+    {
+      "number": 112,
+      "symbol": "Cn",
+      "name": "Copernicio",
+      "appearance": null,
+      "summary": "El copernicio es un elemento químico de símbolo Cn y número atómico 112. Es un elemento sintético extremadamente radiactivo que solo puede crearse en un laboratorio. El isótopo conocido más estable, el copernicio-285, tiene un período de semidesintegración de aproximadamente 29 segundos, aunque es posible que este isótopo tenga un isómero nuclear con un período de semidesintegración más largo, de 8,9 minutos."
+    },
+    {
+      "number": 113,
+      "symbol": "Nh",
+      "name": "Nihonio",
+      "appearance": null,
+      "summary": "El nihonio es un elemento químico de número atómico 113. Su símbolo es Nh. Es un elemento sintético (un elemento que puede crearse en un laboratorio pero que no se encuentra en la naturaleza) y extremadamente radiactivo; su isótopo conocido más estable, el nihonio-286, tiene un período de semidesintegración de 20 segundos."
+    },
+    {
+      "number": 114,
+      "symbol": "Fl",
+      "name": "Flerovio",
+      "appearance": null,
+      "summary": "El flerovio es un elemento químico artificial superpesado de símbolo Fl y número atómico 114. Es un elemento sintético extremadamente radiactivo. El elemento debe su nombre al Laboratorio Flerov de Reacciones Nucleares del Instituto Conjunto de Investigación Nuclear de Dubna (Rusia), donde fue descubierto en 1998."
+    },
+    {
+      "number": 115,
+      "symbol": "Mc",
+      "name": "Moscovio",
+      "appearance": null,
+      "summary": "El moscovio es el nombre de un elemento sintético superpesado de la tabla periódica, de símbolo Mc y número atómico 115. Es un elemento extremadamente radiactivo; su isótopo conocido más estable, el moscovio-289, tiene un período de semidesintegración de solo 220 milisegundos. También se conoce como eka-bismuto o simplemente elemento 115."
+    },
+    {
+      "number": 116,
+      "symbol": "Lv",
+      "name": "Livermorio",
+      "appearance": null,
+      "summary": "El livermorio es un elemento sintético superpesado de símbolo Lv y número atómico 116. Es un elemento extremadamente radiactivo que solo se ha creado en laboratorio y no se ha observado en la naturaleza. El elemento debe su nombre al Laboratorio Nacional Lawrence Livermore de Estados Unidos, que colaboró con el Instituto Conjunto de Investigación Nuclear de Dubna (Rusia) para descubrir el livermorio en el año 2000."
+    },
+    {
+      "number": 117,
+      "symbol": "Ts",
+      "name": "Teneso",
+      "appearance": null,
+      "summary": "El teneso es un elemento químico artificial superpesado de número atómico 117 y símbolo Ts. También conocido como eka-astato o elemento 117, es el segundo elemento conocido más pesado y el penúltimo elemento del séptimo período de la tabla periódica. Hasta 2016 se habían observado quince átomos de teneso: seis cuando se sintetizó por primera vez en 2010, siete en 2012 y dos en 2014."
+    },
+    {
+      "number": 118,
+      "symbol": "Og",
+      "name": "Oganesón",
+      "appearance": null,
+      "summary": "Oganesón es el nombre asignado por la IUPAC al elemento transactínido de número atómico 118 y símbolo Og. También se conoce como eka-radón o elemento 118 y, en la tabla periódica de los elementos, es un elemento del bloque p y el último del séptimo período. El oganesón es actualmente el único miembro sintético del grupo 18."
+    },
+    {
+      "number": 119,
+      "symbol": "Uue",
+      "name": "Ununennio",
+      "appearance": null,
+      "summary": "El ununennio, también conocido como eka-francio o simplemente elemento 119, es el elemento químico hipotético de símbolo Uue y número atómico 119. Ununennio y Uue son, respectivamente, el nombre y el símbolo sistemáticos temporales de la IUPAC, hasta que se decida un nombre definitivo. En la tabla periódica de los elementos, se espera que sea un elemento del bloque s, un metal alcalino y el primer elemento del octavo período."
+    }
+  ]
+}

@@ -98,8 +98,8 @@ function DetailBody({
   onClose: () => void;
   temperatureUnit: TemperatureOption;
 }) {
-  const { t } = useTranslation(["elements", "ui"]);
-  const name = t(`elements:name.${element.atomicNumber}`);
+  const { t } = useTranslation(["periodicTable", "ui"]);
+  const name = t(`periodicTable:name.${element.atomicNumber}`);
   const photo = elementImageUrl(element.name);
   const spectrum = elementSpectrumUrl(element.name);
   return (
@@ -262,7 +262,7 @@ function DetailBody({
               {element.appearance && (
                 <DetailRow
                   label={t("ui:detail.field.appearance")}
-                  value={element.appearance}
+                  value={t(`periodicTable:appearance.${element.atomicNumber}`)}
                 />
               )}
               {element.discoveredBy && (
@@ -278,7 +278,7 @@ function DetailBody({
                 />
               )}
               <Text size="sm">
-                {t(`elements:summary.${element.atomicNumber}`)}
+                {t(`periodicTable:summary.${element.atomicNumber}`)}
               </Text>
             </Stack>
             {photo && (

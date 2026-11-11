@@ -32,9 +32,14 @@ import { MantineProvider } from "@mantine/core";
 import i18n from "../../i18n";
 import { ElementDetail } from "../ElementDetail";
 import type { Element, ElementCategory } from "../../data/element";
-import enElements from "../../locales/en/elements.json";
-import enUi from "../../locales/en/ui.json";
-import frUi from "../../locales/fr/ui.json";
+import enTable from "../../locales/periodic-table.en.json";
+import enUi from "../../locales/ui.en.json";
+import frUi from "../../locales/ui.fr.json";
+
+// Translated element text lives in the periodic-table locale file as an array
+// mirroring the dataset; look up one element's field by atomic number.
+const elementField = (n: number, key: "name" | "appearance" | "summary") =>
+  enTable.elements.find((e) => e.number === n)![key];
 import type { TemperatureOption } from "../../lib/temperature";
 
 const originalMatchMedia = window.matchMedia;
@@ -295,8 +300,10 @@ describe("ElementDetail", () => {
 
     await user.click(screen.getByRole("tab", { name: "Description" }));
     expect(screen.getByText("Appearance")).toBeInTheDocument();
+    // Appearance is sourced from the periodicTable namespace by atomic number
+    // (t('periodicTable:appearance.<n>')), so the resource text is what renders.
     expect(
-      screen.getByText("lustrous metallic with a grayish tinge"),
+      screen.getByText(elementField(26, "appearance")!),
     ).toBeInTheDocument();
     expect(screen.getByText("Discovered by")).toBeInTheDocument();
     expect(screen.getByText("Ancient civilizations")).toBeInTheDocument();
@@ -390,13 +397,13 @@ describe("ElementDetail", () => {
 
   it("renders the summary from the elements resource, keyed by atomic number (5.8)", async () => {
     const user = userEvent.setup();
-    // The detail sources the summary from the i18n `elements` namespace by
-    // atomicNumber (t('elements:summary.<n>')), so the resource text is what
-    // renders.
+    // The detail sources the summary from the i18n `periodicTable` namespace by
+    // atomicNumber (t('periodicTable:summary.<n>')), so the resource text is
+    // what renders.
     render(<Harness initial={makeElement()} />);
 
     await user.click(screen.getByRole("tab", { name: "Description" }));
-    expect(screen.getByText(enElements.summary["26"])).toBeInTheDocument();
+    expect(screen.getByText(elementField(26, "summary")!)).toBeInTheDocument();
   });
 
   it("exposes roving tabindex: only the selected tab is in the tab order (6.1)", () => {

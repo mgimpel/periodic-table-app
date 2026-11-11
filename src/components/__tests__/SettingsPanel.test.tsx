@@ -26,12 +26,21 @@ import { SettingsPanel } from "../SettingsPanel";
 import { ThemeControl } from "../SettingsPanel";
 import { LanguageControl } from "../SettingsPanel";
 import { TemperatureControl } from "../SettingsPanel";
-import enElements from "../../locales/en/elements.json";
-import esElements from "../../locales/es/elements.json";
-import deElements from "../../locales/de/elements.json";
-import enUi from "../../locales/en/ui.json";
-import esUi from "../../locales/es/ui.json";
-import deUi from "../../locales/de/ui.json";
+import enTable from "../../locales/periodic-table.en.json";
+import frTable from "../../locales/periodic-table.fr.json";
+import esTable from "../../locales/periodic-table.es.json";
+import deTable from "../../locales/periodic-table.de.json";
+
+// The periodic-table locale files mirror the dataset's array shape; look up one
+// element's translated field by atomic number.
+const field = (
+  table: { elements: { number: number; name: string; summary: string }[] },
+  n: number,
+  key: "name" | "summary",
+) => table.elements.find((e) => e.number === n)![key];
+import enUi from "../../locales/ui.en.json";
+import esUi from "../../locales/ui.es.json";
+import deUi from "../../locales/ui.de.json";
 import { createAppColorSchemeManager } from "../../App";
 import { ElementCell } from "../ElementCell";
 import { ElementDetail } from "../ElementDetail";
@@ -442,11 +451,11 @@ describe("LanguageControl", () => {
   });
 
   it.each([
-    ["es", esUi, esElements],
-    ["de", deUi, deElements],
+    ["es", esUi, esTable],
+    ["de", deUi, deTable],
   ] as const)(
     "selecting %s flips a chrome string and an element name live, keeping symbol and number",
-    async (locale, ui, elements) => {
+    async (locale, ui, table) => {
       const user = userEvent.setup();
       const noop = vi.fn();
       const settingsRef = { current: null } as React.RefObject<HTMLButtonElement | null>;
@@ -476,7 +485,7 @@ describe("LanguageControl", () => {
       await waitFor(() =>
         expect(screen.getByText(ui.settings.title)).toBeInTheDocument(),
       );
-      expect(screen.getByText(elements.name["1"])).toBeInTheDocument();
+      expect(screen.getByText(field(table, 1, "name"))).toBeInTheDocument();
       expect(screen.getByText("H")).toBeInTheDocument();
       expect(screen.getByText("1")).toBeInTheDocument();
     },
@@ -551,7 +560,7 @@ describe("LanguageControl", () => {
     expect(screen.getByText("1")).toBeInTheDocument();
   });
 
-  it("shows the English summary for an element with no French summary", async () => {
+  it("flips the element summary to the selected language", async () => {
     const user = userEvent.setup();
     render(
       <I18nextProvider i18n={i18n}>
@@ -562,18 +571,20 @@ describe("LanguageControl", () => {
       </I18nextProvider>,
     );
 
-    // The English summary from the dataset is shown up front (Description tab is
-    // rendered in the panel; the summary Text is always present).
-    expect(screen.getByText(enElements.summary["1"])).toBeInTheDocument();
+    // English baseline: the summary from the en resource is shown (Description
+    // tab is rendered in the panel; the summary Text is always present).
+    const enSummary = field(enTable, 1, "summary");
+    const frSummary = field(frTable, 1, "summary");
+    expect(screen.getByText(enSummary)).toBeInTheDocument();
 
     await selectLanguage(user, "fr");
     await waitFor(() => expect(i18n.language).toBe("fr"));
 
-    // No French summary exists, so i18next falls back to the English string —
-    // never blank, never the raw key.
-    expect(screen.getByText(enElements.summary["1"])).toBeInTheDocument();
+    // The summary flips to French — never blank, never the raw key.
+    expect(screen.getByText(frSummary)).toBeInTheDocument();
+    expect(screen.queryByText(enSummary)).not.toBeInTheDocument();
     expect(
-      screen.queryByText(`elements:summary.${hydrogen.atomicNumber}`),
+      screen.queryByText(`periodicTable:summary.${hydrogen.atomicNumber}`),
     ).not.toBeInTheDocument();
   });
 

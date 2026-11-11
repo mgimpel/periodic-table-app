@@ -34,7 +34,7 @@ import {
   formatTemperature,
   type TemperatureOption,
 } from "../../lib/temperature";
-import enUi from "../../locales/en/ui.json";
+import enUi from "../../locales/ui.en.json";
 
 afterEach(cleanup);
 

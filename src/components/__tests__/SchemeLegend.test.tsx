@@ -43,7 +43,7 @@ import {
   ELECTRONEGATIVITY_MAX,
   ELECTRONEGATIVITY_MIN,
 } from "../../lib/gradient";
-import enUi from "../../locales/en/ui.json";
+import enUi from "../../locales/ui.en.json";
 
 afterEach(cleanup);
 

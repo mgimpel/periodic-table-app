@@ -24,10 +24,10 @@ interface ElementCellProps {
 // gridColumn/gridRow. Uses an UnstyledButton so it is keyboard- and
 // touch-accessible with a comfortable minimum tap target (see CSS module).
 export function ElementCell({ element, onSelect, symbolOnly = false, color }: ElementCellProps) {
-  const { t } = useTranslation(["elements", "ui"]);
+  const { t } = useTranslation(["periodicTable", "ui"]);
   // Translated name: reused for both the visible text and the accessible label
   // so a French cell never carries an English name in either.
-  const name = t(`elements:name.${element.atomicNumber}`);
+  const name = t(`periodicTable:name.${element.atomicNumber}`);
   return (
     <UnstyledButton
       className={classes.cell}

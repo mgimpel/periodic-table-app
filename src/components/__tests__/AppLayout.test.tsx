@@ -34,8 +34,8 @@ import { formatTemperature } from "../../lib/temperature";
 import { getElementByNumber } from "../../data/elements";
 import { cellColor, PHASE_KEYS } from "../../lib/cellColor";
 import { CATEGORY_COLORS } from "../../data/element";
-import enUi from "../../locales/en/ui.json";
-import frUi from "../../locales/fr/ui.json";
+import enUi from "../../locales/ui.en.json";
+import frUi from "../../locales/ui.fr.json";
 
 afterEach(async () => {
   cleanup();

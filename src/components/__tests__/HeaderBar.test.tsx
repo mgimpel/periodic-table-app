@@ -20,7 +20,7 @@ import {
   COLORING_SCHEME_OPTIONS,
   type ColoringSchemeOption,
 } from "../../lib/coloringScheme";
-import enUi from "../../locales/en/ui.json";
+import enUi from "../../locales/ui.en.json";
 
 afterEach(cleanup);
 
