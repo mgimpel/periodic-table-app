@@ -155,3 +155,12 @@
   color: var(--mantine-color-dimmed);
   pointer-events: none;
 }
+
+/* Symbol-only mode drops each cell's number and name, so the row/column labels
+ * read at the same small fit-scale as a bare symbol — bump them a little to
+ * match the enlarged symbol (.symbolOnly), keeping the labels legible too. */
+.gridSymbolOnly .groupLabel,
+.gridSymbolOnly .periodLabel,
+.gridSymbolOnly .seriesLabel {
+  font-size: 11px;
+}

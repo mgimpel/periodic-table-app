@@ -78,7 +78,7 @@ export function PeriodicTable({
 
       <Box className={classes.viewport} ref={viewportRef}>
         <Box
-          className={classes.grid}
+          className={`${classes.grid}${symbolOnly ? ` ${classes.gridSymbolOnly}` : ""}`}
           ref={gridRef}
           style={
             {
