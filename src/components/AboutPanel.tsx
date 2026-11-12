@@ -66,14 +66,17 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
         <Stack gap={2}>
           <Group gap="sm" wrap="nowrap">
             <Text size="sm">{t("about.version", { version: pkg.version })}</Text>
-            <Text size="sm">{"-"}</Text>
+            {/* Separator and build line only when git info was available. */}
             {__BUILD_INFO__ && (
-              <Text size="sm" c="dimmed">
-                {t("about.buildDetails", {
-                  commit: __BUILD_INFO__.commit,
-                  date: __BUILD_INFO__.date,
-                })}
-              </Text>
+              <>
+                <Text size="sm">{"-"}</Text>
+                <Text size="sm" c="dimmed">
+                  {t("about.buildDetails", {
+                    commit: __BUILD_INFO__.commit,
+                    date: __BUILD_INFO__.date,
+                  })}
+                </Text>
+              </>
             )}
           </Group>
           <Text size="sm" lh={1.2}>{t("about.copyright")}</Text>
