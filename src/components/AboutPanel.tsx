@@ -24,26 +24,32 @@ interface AboutPanelProps {
   returnFocusRef: React.RefObject<HTMLButtonElement | null>;
 }
 
+// Link that opens in the OS default browser. In the Tauri webview a plain
+// anchor navigates the app window away from the UI, so the click is handed to
+// the opener plugin. (Don't gate on isTauri() — this app doesn't enable
+// withGlobalTauri, so that global is absent and the check would wrongly skip
+// the plugin.) If the invoke rejects — e.g. in plain browser dev (pnpm dev)
+// where there's no Rust backend — fall back to window.open.
+function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    openUrl(href).catch(() => {
+      window.open(href, "_blank", "noreferrer");
+    });
+  };
+  return (
+    <Anchor href={href} target="_blank" rel="noreferrer" onClick={onClick}>
+      {children}
+    </Anchor>
+  );
+}
+
 // About overlay, shown in the shared ResponsiveOverlay (Drawer on mobile, Modal
 // on desktop). Modeled on SettingsPanel: ResponsiveOverlay supplies the single
 // labelled close button, the accessible name (the title) and the return of
 // focus to the logo trigger on close.
 export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps) {
   const { t } = useTranslation("ui");
-
-  // In the Tauri webview a plain anchor navigates the app window away from the
-  // UI, so hand every link to the OS default browser via the opener plugin.
-  // (Don't gate on isTauri() — this app doesn't enable withGlobalTauri, so that
-  // global is absent and the check would wrongly skip the plugin.) If the
-  // invoke rejects — e.g. in plain browser dev (pnpm dev) where there's no Rust
-  // backend — fall back to window.open, which opens a real tab in a browser.
-  const openExternally =
-    (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
-      event.preventDefault();
-      openUrl(url).catch(() => {
-        window.open(url, "_blank", "noreferrer");
-      });
-    };
 
   return (
     <ResponsiveOverlay
@@ -78,25 +84,11 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
           <Text size="sm" lh={1.2}>{t("about.copyright")}</Text>
           <Text size="sm" lh={1.2}>
             {t("about.licensePrefix")}{" "}
-            <Anchor
-              href={LICENSE_URL}
-              target="_blank"
-              rel="noreferrer"
-              onClick={openExternally(LICENSE_URL)}
-            >
-              {t("about.license")}
-            </Anchor>
+            <ExternalLink href={LICENSE_URL}>{t("about.license")}</ExternalLink>
           </Text>
           <Text size="sm" lh={1.2}>
             {t("about.homepage")}{" "}
-            <Anchor
-              href={REPO_URL}
-              target="_blank"
-              rel="noreferrer"
-              onClick={openExternally(REPO_URL)}
-            >
-              {REPO_URL}
-            </Anchor>
+            <ExternalLink href={REPO_URL}>{REPO_URL}</ExternalLink>
           </Text>
           <Title order={2} size="h5">
             {t("about.thanksHeading")}
