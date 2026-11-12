@@ -98,7 +98,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Update repositories
-        run: sudo apt update && sudo apt upgrade
+        run: sudo apt update
       - name: Install Rust
         run: sudo apt install -y rustup && rustup default stable
       - name: Install Tauri prerequisits
