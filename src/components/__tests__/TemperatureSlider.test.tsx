@@ -89,10 +89,12 @@ describe("TemperatureSlider", () => {
   it("shows bound labels equal to the lib-formatted bounds in the active unit", () => {
     render(<Harness initialK={298} unit="celsius" />);
     expect(
-      screen.getByText(formatTemperature(0, "celsius")),
+      screen.getByText(formatTemperature(0, "celsius", { whole: true })),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(formatTemperature(TEMPERATURE_MAX, "celsius")),
+      screen.getByText(
+        formatTemperature(TEMPERATURE_MAX, "celsius", { whole: true }),
+      ),
     ).toBeInTheDocument();
   });
 
@@ -104,7 +106,9 @@ describe("TemperatureSlider", () => {
     render(<Harness initialK={300} unit="celsius" />);
     await user.hover(getThumb());
     expect(
-      within(getRoot()).getByText(formatTemperature(300, "celsius")),
+      within(getRoot()).getByText(
+        formatTemperature(300, "celsius", { whole: true }),
+      ),
     ).toBeInTheDocument();
   });
 

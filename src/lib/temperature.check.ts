@@ -40,4 +40,11 @@ assert.equal(formatTemperature(373.15, "fahrenheit"), "212 °F");
 assert.equal(formatTemperature(0, "fahrenheit"), "-459.67 °F");
 assert.equal(formatTemperature(20.271, "kelvin"), "20.27 K");
 
+// `whole: true` rounds the displayed value to an integer (slider thumb/marks).
+assert.equal(formatTemperature(1811, "celsius", { whole: true }), "1538 °C");
+assert.equal(formatTemperature(1811, "fahrenheit", { whole: true }), "2800 °F");
+assert.equal(formatTemperature(20.271, "kelvin", { whole: true }), "20 K");
+assert.equal(formatTemperature(0, "fahrenheit", { whole: true }), "-460 °F");
+assert.equal(formatTemperature(null, "celsius", { whole: true }), "—");
+
 console.log("ok: temperature self-check passed");

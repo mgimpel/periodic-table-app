@@ -58,10 +58,13 @@ export function TemperatureSlider({
       value={valueK}
       onChange={(k) => onChange(clampSelectedTemperature(k))}
       aria-label={t("temperatureSlider.label")}
-      label={(k) => formatTemperature(k, unit)}
+      label={(k) => formatTemperature(k, unit, { whole: true })}
       marks={[
-        { value: 0, label: formatTemperature(0, unit) },
-        { value: TEMPERATURE_MAX, label: formatTemperature(TEMPERATURE_MAX, unit) },
+        { value: 0, label: formatTemperature(0, unit, { whole: true }) },
+        {
+          value: TEMPERATURE_MAX,
+          label: formatTemperature(TEMPERATURE_MAX, unit, { whole: true }),
+        },
       ]}
       classNames={{ track: classes.track }}
       styles={{

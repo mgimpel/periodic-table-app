@@ -219,7 +219,7 @@ export function SchemeLegend({
           />
           <p className={classes.readout}>
             {t("temperatureSlider.legendReadout", {
-              temp: formatTemperature(selectedTempK, temperatureUnit),
+              temp: formatTemperature(selectedTempK, temperatureUnit, { whole: true }),
             })}
           </p>
         </div>

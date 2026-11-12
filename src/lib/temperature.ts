@@ -51,9 +51,12 @@ export function convertKelvin(k: number, unit: TemperatureOption): number {
 export function formatTemperature(
   k: number | null,
   unit: TemperatureOption,
+  { whole = false }: { whole?: boolean } = {},
 ): string {
   if (k === null) return "—";
-  // toFixed(2) drops float noise; Number() trims trailing zeros; `${-0}` is "0".
-  const value = Number(convertKelvin(k, unit).toFixed(2));
+  const converted = convertKelvin(k, unit);
+  // whole: round to an integer (slider thumb/marks). Otherwise toFixed(2) drops
+  // float noise and Number() trims trailing zeros. `${-0}` is "0".
+  const value = whole ? Math.round(converted) : Number(converted.toFixed(2));
   return `${value} ${TEMPERATURE_SYMBOLS[unit]}`;
 }
