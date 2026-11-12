@@ -33,6 +33,10 @@ export interface Element {
   boil: number | null;
   /** Melting point in Kelvin; null when unknown. */
   melt: number | null;
+  /** Melting point in Kelvin used for phase-at-temperature coloring (addendum); null when absent. */
+  phaseMelt: number | null;
+  /** Boiling point in Kelvin used for phase-at-temperature coloring (addendum); null when absent. */
+  phaseBoil: number | null;
   appearance: string | null;
   discoveredBy: string | null;
   namedBy: string | null;

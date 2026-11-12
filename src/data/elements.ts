@@ -67,6 +67,10 @@ interface RawElementAddendum {
   "symbol": string;
   "is_radioactive"?: boolean;
   "spectral_colour"?: string;
+  // Phase-at-temperature melt/boil points (Kelvin). Absent for the heaviest
+  // elements (no measured values), so these are optional and degrade to null.
+  "phase_melt"?: number;
+  "phase_boil"?: number;
 }
 
 interface RawDatasetAddendum {
@@ -98,7 +102,12 @@ function extendedFields(
   symbol: string,
 ): Pick<
   Element,
-  "electronegativity" | "origin" | "spectralColour" | "isRadioactive"
+  | "electronegativity"
+  | "origin"
+  | "spectralColour"
+  | "isRadioactive"
+  | "phaseMelt"
+  | "phaseBoil"
 > {
   const wikipediaEntry = wikipediaByElement.get(z);
   const addendumEntry = addendumByElement.get(z);
@@ -113,6 +122,8 @@ function extendedFields(
     origin: wikipediaEntry?.Origin ?? "",
     spectralColour: addendumEntry?.spectral_colour ?? null,
     isRadioactive: addendumEntry?.is_radioactive ?? false,
+    phaseMelt: addendumEntry?.phase_melt ?? null,
+    phaseBoil: addendumEntry?.phase_boil ?? null,
   };
 }
 

@@ -30,8 +30,8 @@ export type PhaseKey = (typeof PHASE_KEYS)[number];
  * and the missing-value gradient sentinel).
  */
 export const PHASE_COLORS: Record<PhaseKey, string> = {
-  solid: "#90caf9",
-  liquid: "#80cbc4",
+  solid: "#a48980",
+  liquid: "#90caf9",
   gas: "#ffcc80",
   unknown: MISSING_VALUE_COLOR,
 };
@@ -57,25 +57,28 @@ function isKnownTemperature(v: number | null): v is number {
 }
 
 /**
- * Phase bucket for `element` at `tempK` (Kelvin), from its melt/boil points.
- *   both unknown                          → unknown
- *   both known but melt >= boil           → unknown (inconsistent data)
- *   melt known, boil unknown: T<melt solid, else unknown
+ * Phase bucket for `element` at `tempK` (Kelvin), from its phase melt/boil
+ * points (`phaseMelt`/`phaseBoil`, sourced from the addendum — distinct from the
+ * display `melt`/`boil` used by the gradient schemes and the detail view).
+ *   both unknown                       → unknown
+ *   both known but melt > boil         → unknown (inconsistent data - Arsenic)
+ *   both known but melt == boil        → sublimates (solid → gas)
+ *   melt known, boil unknown: T<=melt solid, else unknown
  *   boil known, melt unknown: T>=boil gas, else unknown
- *   both known & consistent: T<melt solid, melt<=T<boil liquid, T>=boil gas
+ *   both known & consistent: T>=boil gas, melt<T<boil liquid, T<=melt solid
  * Total: always returns a PHASE_KEYS member.
  */
 export function phaseAtTemperature(tempK: number, element: Element): PhaseKey {
-  const melt = isKnownTemperature(element.melt) ? element.melt : null;
-  const boil = isKnownTemperature(element.boil) ? element.boil : null;
+  const melt = isKnownTemperature(element.phaseMelt) ? element.phaseMelt : null;
+  const boil = isKnownTemperature(element.phaseBoil) ? element.phaseBoil : null;
 
   if (melt !== null && boil !== null) {
-    if (melt >= boil) return "unknown"; // inconsistent data
-    if (tempK < melt) return "solid";
-    if (tempK < boil) return "liquid";
-    return "gas";
+    //if (melt > boil) return "unknown"; // inconsistent data (Arsenic data)
+    if (tempK >= boil) return "gas";
+    if (tempK <= melt) return "solid";
+    return "liquid";
   }
-  if (melt !== null) return tempK < melt ? "solid" : "unknown";
+  if (melt !== null) return tempK <= melt ? "solid" : "unknown";
   if (boil !== null) return tempK >= boil ? "gas" : "unknown";
   return "unknown";
 }

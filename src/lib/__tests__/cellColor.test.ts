@@ -50,6 +50,8 @@ const element = (
     phase: phaseArb,
     melt: fc.option(fc.double({ min: 0, max: 10000, noNaN: true }), { nil: null }),
     boil: fc.option(fc.double({ min: 0, max: 10000, noNaN: true }), { nil: null }),
+    phaseMelt: fc.option(fc.double({ min: 0, max: 10000, noNaN: true }), { nil: null }),
+    phaseBoil: fc.option(fc.double({ min: 0, max: 10000, noNaN: true }), { nil: null }),
     electronegativity: electronegativityArb,
     origin: originArb,
     spectralColour: spectralColourArb,
@@ -74,6 +76,8 @@ const element = (
     densityUnit: null,
     boil: v.boil,
     melt: v.melt,
+    phaseMelt: v.phaseMelt,
+    phaseBoil: v.phaseBoil,
     appearance: null,
     discoveredBy: null,
     namedBy: null,
@@ -335,9 +339,9 @@ const meltBoilValue: fc.Arbitrary<number | null> = fc.oneof(
 // are irrelevant to phaseAtTemperature and fixed by the base element() helper.
 const phaseElement = (): fc.Arbitrary<Element> =>
   fc
-    .record({ melt: meltBoilValue, boil: meltBoilValue })
-    .chain(({ melt, boil }) =>
-      element().map((el) => ({ ...el, melt, boil })),
+    .record({ phaseMelt: meltBoilValue, phaseBoil: meltBoilValue })
+    .chain(({ phaseMelt, phaseBoil }) =>
+      element().map((el) => ({ ...el, phaseMelt, phaseBoil })),
     );
 
 // Finite temperatures across and beyond the slider range, including edges.
@@ -359,9 +363,9 @@ const consistentElement = (): fc.Arbitrary<Element> =>
     .tuple(knownTempK, knownTempK)
     .filter(([a, b]) => a !== b)
     .chain(([a, b]) => {
-      const melt = Math.min(a, b);
-      const boil = Math.max(a, b);
-      return element().map((el) => ({ ...el, melt, boil }));
+      const phaseMelt = Math.min(a, b);
+      const phaseBoil = Math.max(a, b);
+      return element().map((el) => ({ ...el, phaseMelt, phaseBoil }));
     });
 
 // True when the melt/boil value counts as "known" per Requirement 4.1:
@@ -383,21 +387,22 @@ describe("phaseAtTemperature — totality", () => {
 });
 
 // Feature: phase-at-temperature-coloring, Property 2: Consistent-data
-// classification by region — both known & melt < boil: solid for T < melt,
-// liquid for melt <= T < boil, gas for T >= boil.
+// classification by region — both known & melt < boil: gas for T >= boil,
+// solid for T <= melt, liquid for melt < T < boil (boundaries closed on the
+// solid and gas ends).
 describe("phaseAtTemperature — consistent-data classification by region", () => {
   it("classifies solid/liquid/gas by the temperature region", () => {
     fc.assert(
       fc.property(finiteTempK, consistentElement(), (tempK, el) => {
-        const melt = el.melt as number;
-        const boil = el.boil as number;
+        const melt = el.phaseMelt as number;
+        const boil = el.phaseBoil as number;
         const bucket = phaseAtTemperature(tempK, el);
-        if (tempK < melt) {
-          expect(bucket).toBe("solid");
-        } else if (tempK < boil) {
-          expect(bucket).toBe("liquid");
-        } else {
+        if (tempK >= boil) {
           expect(bucket).toBe("gas");
+        } else if (tempK <= melt) {
+          expect(bucket).toBe("solid");
+        } else {
+          expect(bucket).toBe("liquid");
         }
       }),
       { numRuns: 100 },
@@ -431,32 +436,35 @@ describe("phaseAtTemperature — monotonic in temperature", () => {
   });
 });
 
-// Feature: phase-at-temperature-coloring, Property 4: Partial and inconsistent
+// Feature: phase-at-temperature-coloring, Property 4: Partial and sublimation
 // data classification — both-unknown, melt-only, boil-only, and melt >= boil
-// branches resolve exactly as specified.
-describe("phaseAtTemperature — partial and inconsistent data", () => {
-  it("resolves each missing/inconsistent branch exactly", () => {
+// (no liquid region) branches resolve exactly as specified. With both points
+// known the boundaries are closed on gas and solid: T>=boil gas, T<=melt solid.
+describe("phaseAtTemperature — partial and sublimation data", () => {
+  it("resolves each missing/sublimation branch exactly", () => {
     fc.assert(
       fc.property(finiteTempK, phaseElement(), (tempK, el) => {
-        const meltKnown = isKnown(el.melt);
-        const boilKnown = isKnown(el.boil);
+        const meltKnown = isKnown(el.phaseMelt);
+        const boilKnown = isKnown(el.phaseBoil);
         const bucket = phaseAtTemperature(tempK, el);
 
         if (meltKnown && boilKnown) {
-          // Only assert the inconsistent branch here; the consistent branch is
-          // Property 2's job.
-          if ((el.melt as number) >= (el.boil as number)) {
-            expect(bucket).toBe("unknown");
+          // Only assert the no-liquid branch here (melt >= boil); the
+          // consistent branch is Property 2's job. With no liquid region,
+          // T>=boil is gas and everything below is solid — never liquid.
+          if ((el.phaseMelt as number) >= (el.phaseBoil as number)) {
+            const boil = el.phaseBoil as number;
+            expect(bucket).toBe(tempK >= boil ? "gas" : "solid");
           }
         } else if (!meltKnown && !boilKnown) {
           expect(bucket).toBe("unknown");
         } else if (!meltKnown && boilKnown) {
-          const boil = el.boil as number;
+          const boil = el.phaseBoil as number;
           expect(bucket).toBe(tempK >= boil ? "gas" : "unknown");
         } else {
-          // meltKnown && !boilKnown
-          const melt = el.melt as number;
-          expect(bucket).toBe(tempK < melt ? "solid" : "unknown");
+          // meltKnown && !boilKnown: T<=melt solid, else unknown.
+          const melt = el.phaseMelt as number;
+          expect(bucket).toBe(tempK <= melt ? "solid" : "unknown");
         }
       }),
       { numRuns: 100 },
@@ -481,20 +489,20 @@ describe("cellColor — phase branch at a temperature", () => {
 
 // Feature: phase-at-temperature-coloring, Property 6: Phase classification is
 // independent of the Temperature_Unit — the bucket is a function of
-// (T, melt, boil) alone; the unit is never an argument to phaseAtTemperature.
+// (T, phaseMelt, phaseBoil) alone; the unit is never an argument to phaseAtTemperature.
 describe("phaseAtTemperature — independent of the temperature unit", () => {
-  it("depends only on (T, melt, boil), not on any display unit", () => {
+  it("depends only on (T, phaseMelt, phaseBoil), not on any display unit", () => {
     fc.assert(
       fc.property(finiteTempK, phaseElement(), (tempK, el) => {
         // Same Kelvin inputs ⇒ same bucket, regardless of how the value might
-        // be displayed. Re-deriving from a clone with identical melt/boil must
-        // match; varying unrelated display fields must not change the bucket.
+        // be displayed. Re-deriving from a clone with identical phaseMelt/phaseBoil
+        // must match; varying unrelated display fields must not change the bucket.
         const clone: Element = { ...el };
         expect(phaseAtTemperature(tempK, clone)).toBe(
           phaseAtTemperature(tempK, el),
         );
-        // The bucket is determined solely by (T, melt, boil): an element with
-        // the same melt/boil but a different raw `phase` string buckets alike.
+        // The bucket is determined solely by (T, phaseMelt, phaseBoil): an element
+        // with the same phase points but a different raw `phase` string buckets alike.
         const relabeled: Element = { ...el, phase: `${el.phase}-xyz` };
         expect(phaseAtTemperature(tempK, relabeled)).toBe(
           phaseAtTemperature(tempK, el),

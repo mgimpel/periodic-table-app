@@ -168,21 +168,23 @@ for (const element of ELEMENTS) {
   );
 }
 
-// phaseAtTemperature: only melt/boil matter, so build a minimal element with the
-// two Kelvin values under test (other fields are irrelevant to the classifier).
-const el = (melt: number | null, boil: number | null): Element =>
-  ({ melt, boil } as Element);
+// phaseAtTemperature: only phaseMelt/phaseBoil matter, so build a minimal
+// element with the two Kelvin values under test (other fields are irrelevant to
+// the classifier).
+const el = (phaseMelt: number | null, phaseBoil: number | null): Element =>
+  ({ phaseMelt, phaseBoil } as Element);
 
 // Consistent (water-like) element across the three temperature regions.
 const water = el(273.15, 373.15);
 assert.equal(phaseAtTemperature(200, water), "solid"); // below melt
 assert.equal(phaseAtTemperature(300, water), "liquid"); // between
-assert.equal(phaseAtTemperature(273.15, water), "liquid"); // at melt → liquid
+assert.equal(phaseAtTemperature(273.15, water), "solid"); // at melt → solid
 assert.equal(phaseAtTemperature(400, water), "gas"); // above boil
 assert.equal(phaseAtTemperature(373.15, water), "gas"); // at boil → gas
 
-// Partial data: melt-only (T<melt solid, else unknown).
+// Partial data: melt-only (T<=melt solid, else unknown).
 assert.equal(phaseAtTemperature(200, el(273.15, null)), "solid");
+assert.equal(phaseAtTemperature(273.15, el(273.15, null)), "solid"); // at melt → solid
 assert.equal(phaseAtTemperature(300, el(273.15, null)), "unknown");
 
 // Partial data: boil-only (T>=boil gas, else unknown).
@@ -192,9 +194,10 @@ assert.equal(phaseAtTemperature(300, el(null, 373.15)), "unknown");
 // Both null → unknown.
 assert.equal(phaseAtTemperature(300, el(null, null)), "unknown");
 
-// Inconsistent data: melt >= boil → unknown (both equal and inverted).
-assert.equal(phaseAtTemperature(300, el(400, 300)), "unknown");
-assert.equal(phaseAtTemperature(300, el(300, 300)), "unknown");
+// Sublimation (melt == boil): no liquid region, so T >= that point is gas and
+// below it is solid.
+assert.equal(phaseAtTemperature(300, el(300, 300)), "gas"); // at point → gas
+assert.equal(phaseAtTemperature(299, el(300, 300)), "solid"); // below → solid
 
 // "Unknown" value edges: 0, negative, and non-finite melt/boil are not "known",
 // so an element carrying only such values classifies as unknown.

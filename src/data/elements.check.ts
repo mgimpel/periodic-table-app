@@ -64,6 +64,17 @@ for (const e of ELEMENTS) {
     typeof e.isRadioactive === "boolean",
     `isRadioactive should be boolean for ${e.symbol}, got ${e.isRadioactive}`,
   );
+  // phaseMelt/phaseBoil drive phase-at-temperature coloring. They degrade to
+  // null for the heaviest elements (no measured values in the addendum), so
+  // number|null is the invariant, not "always present".
+  assert(
+    e.phaseMelt === null || typeof e.phaseMelt === "number",
+    `phaseMelt should be number|null for ${e.symbol}, got ${e.phaseMelt}`,
+  );
+  assert(
+    e.phaseBoil === null || typeof e.phaseBoil === "number",
+    `phaseBoil should be number|null for ${e.symbol}, got ${e.phaseBoil}`,
+  );
 }
 
 // Spot-checks for known positions.
@@ -98,5 +109,14 @@ assert(
   `H namedBy should map, got ${h?.namedBy}`,
 );
 assert(h?.isRadioactive === false, "H isRadioactive should map from the addendum");
+assert(h?.phaseMelt === 13.99, `H phaseMelt should map, got ${h?.phaseMelt}`);
+assert(h?.phaseBoil === 20.271, `H phaseBoil should map, got ${h?.phaseBoil}`);
+
+// The heaviest elements have no phase melt/boil in the addendum: they must
+// degrade to null (graceful, no throw), which phaseAtTemperature treats as
+// "unknown".
+const og = getElementByNumber(118);
+assert(og?.phaseMelt === null, `Og phaseMelt should degrade to null, got ${og?.phaseMelt}`);
+assert(og?.phaseBoil === null, `Og phaseBoil should degrade to null, got ${og?.phaseBoil}`);
 
 console.log(`ok: ${ELEMENTS.length} elements validated`);

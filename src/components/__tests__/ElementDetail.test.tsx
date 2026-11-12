@@ -72,6 +72,8 @@ function makeElement(overrides: Partial<Element> = {}): Element {
     densityUnit: "g/cm3",
     boil: 3134,
     melt: 1811,
+    phaseMelt: 1811,
+    phaseBoil: 3134,
     appearance: "lustrous metallic with a grayish tinge",
     discoveredBy: "Ancient civilizations",
     namedBy: "Ancient namers",
