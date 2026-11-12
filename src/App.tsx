@@ -35,13 +35,13 @@ function App() {
 
 /**
  * Builds a {@link MantineColorSchemeManager} whose `get` returns the validated
- * stored theme (Req 5.2, 5.3). `set` is a no-op: ThemeControl persists via
+ * stored theme. `set` is a no-op: ThemeControl persists via
  * {@link persistTheme} so it can surface a failure, and Mantine only calls
  * `set` from `setColorScheme` (already applied in memory) or `subscribe` (a
  * cross-tab storage event, value already stored). `subscribe`/`unsubscribe`/
  * `clear` delegate directly.
  *
- * ponytail: the no-op `set` relies on Mantine 9.7.3 only calling `set` from
+ * ponytail: the no-op `set` relies on Mantine 9.8.0 only calling `set` from
  * `setColorScheme`/`subscribe`; re-verify on a Mantine upgrade.
  */
 export function createAppColorSchemeManager(): MantineColorSchemeManager {

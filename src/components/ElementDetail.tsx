@@ -145,7 +145,7 @@ function DetailBody({
               the dialog's aria-labelledby target, so the dialog is named by the
               element name without moving it into the overlay title. Modal/Drawer
               don't forward aria-labelledby to the dialog element. Verified
-              against Mantine 9.7.3; the dialog-name tests guard it. */}
+              against Mantine 9.8.0; the dialog-name tests guard it. */}
           <Title
             order={2}
             size="h4"

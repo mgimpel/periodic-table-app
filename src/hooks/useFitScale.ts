@@ -6,13 +6,13 @@
 // Wires the pure computeFitScale to live DOM measurements: reads the viewport's
 // client size and the grid's natural (unscaled) size, then recomputes on
 // ResizeObserver callbacks and orientationchange, debounced to the 200 ms
-// recompute budget (Req 2.3). All scaling math lives in computeFitScale — this
+// recompute budget. All scaling math lives in computeFitScale — this
 // hook only measures and schedules.
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { computeFitScale, type FitResult } from "../lib/fitScale";
 
-/** Debounce window for recomputes; must stay within the 200 ms budget (Req 2.3). */
+/** Debounce window for recomputes; must stay within the 200 ms budget. */
 const RECOMPUTE_DEBOUNCE_MS = 150;
 
 export function useFitScale(

@@ -5,7 +5,7 @@
 */
 
 /* Thin header bar: full viewport width, fixed height clamped between the 44px
- * touch-target minimum and 48px (Req 1.5, 1.6). flex-shrink:0 so the table
+ * touch-target minimum and 48px. flex-shrink:0 so the table
  * region below takes the remaining height. */
 .header {
   flex: 0 0 auto;

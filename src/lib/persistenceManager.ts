@@ -3,8 +3,9 @@
 // (https://github.com/mgimpel/periodic-table-app).
 // SPDX-License-Identifier: BSD-3-Clause
 
-// Shared localStorage read/persist pair for user preferences (theme, language,
-// temperature).
+// Shared localStorage read/persist pair for the persisted user preferences
+// (theme, language, temperature). The coloring scheme is session-only and has
+// no pair here.
 //
 // ponytail: no generic preference store or hook — just the two functions the
 // preferences share. Upgrade path (retry / alternative storage) is not needed
@@ -52,20 +53,18 @@ export function persistPref(
   }
 }
 
-// localStorage persistence for the theme preference. The read-back and
-// never-throw write delegate to the shared src/lib/storage.ts helper; this
-// module additionally owns a read-only Mantine color-scheme manager so
-// MantineProvider starts from the validated stored value. ThemeControl persists
-// explicitly via persistTheme.
-
-// The localStorage key Mantine's localStorageColorSchemeManager (and
-// ColorSchemeScript) uses by default (@mantine/core 9.7.3). Keeping it means
-// the pre-hydration script and cross-tab subscribe still see our writes.
+// Each preference below owns only its storage key and normalizer; the read-back
+// and never-throw write are readPref/persistPref above.
+//
+// Theme: THEME_STORAGE_KEY is the key Mantine's localStorageColorSchemeManager
+// (and ColorSchemeScript) uses by default, so the pre-hydration script and
+// cross-tab subscribe still see our writes. The read-only Mantine manager that
+// reads it is createAppColorSchemeManager in src/App.tsx.
 
 /**
  * Reads the persisted ThemeOption and runs it through
  * {@link normalizeStoredTheme}. A missing, unreadable (blocked storage), or
- * invalid value resolves to "auto" (Req 5.3).
+ * invalid value resolves to "auto".
  */
 export function readStoredTheme(): ThemeOption {
   return readPref(THEME_STORAGE_KEY, normalizeStoredTheme);
@@ -74,8 +73,7 @@ export function readStoredTheme(): ThemeOption {
 /**
  * Persists the chosen ThemeOption. Never throws: a failure (private mode /
  * quota) is caught and `onSaveError` fires so the UI can tell the user the
- * preference was not saved. The session keeps the chosen option regardless
- * (Req 5.4).
+ * preference was not saved. The session keeps the chosen option regardless.
  */
 export function persistTheme(
   option: ThemeOption,
@@ -84,10 +82,8 @@ export function persistTheme(
   persistPref(THEME_STORAGE_KEY, option, onSaveError);
 }
 
-// localStorage persistence for the language preference. Delegates the read-back
-// and never-throw write to the shared src/lib/storage.ts helper; this module
-// owns only the storage key and the language normalizer. readStoredLanguage
-// re-reads storage each call, the only state source the control needs.
+// Language: readStoredLanguage re-reads storage on each call, the only state
+// source LanguageControl needs.
 
 /**
  * Reads the persisted LanguageOption and runs it through
@@ -109,10 +105,6 @@ export function persistLanguage(
 ): void {
   persistPref(LANGUAGE_STORAGE_KEY, option, onSaveError);
 }
-
-// localStorage persistence for the temperature unit. Delegates the read-back
-// and never-throw write to the shared src/lib/storage.ts helper; this module
-// owns only the storage key and the unit normalizer.
 
 /**
  * Reads the persisted TemperatureOption through

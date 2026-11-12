@@ -79,8 +79,9 @@ interface RawDatasetAddendum {
 
 // Build the Z→entry lookup once at module load.
 // ponytail: O(1) per-element merge, no second typed model. Ceiling: assumes the
-// source datasets agree on element identifiers; missing entries use the
-// null/"" fallbacks below (graceful degrade, no throw).
+// source datasets agree on element numbers. A missing wikipedia/addendum entry
+// throws at startup (fail loud); a missing field inside an entry falls back to
+// the null/""/false defaults below.
 const wikipediaByElement = new Map<number, RawElementWikipedia>(
   (raw_wikipedia as unknown as RawDatasetWikipedia).elements.map((e) => [e.number, e]),
 );
@@ -118,12 +119,12 @@ function extendedFields(
     throw new Error(`Missing addendum entry for element ${z} (${symbol})`);
   }
   return {
-    electronegativity: parseElectronegativity(wikipediaEntry?.["Electro-negativity"]),
-    origin: wikipediaEntry?.Origin ?? "",
-    spectralColour: addendumEntry?.spectral_colour ?? null,
-    isRadioactive: addendumEntry?.is_radioactive ?? false,
-    phaseMelt: addendumEntry?.phase_melt ?? null,
-    phaseBoil: addendumEntry?.phase_boil ?? null,
+    electronegativity: parseElectronegativity(wikipediaEntry["Electro-negativity"]),
+    origin: wikipediaEntry.Origin ?? "",
+    spectralColour: addendumEntry.spectral_colour ?? null,
+    isRadioactive: addendumEntry.is_radioactive ?? false,
+    phaseMelt: addendumEntry.phase_melt ?? null,
+    phaseBoil: addendumEntry.phase_boil ?? null,
   };
 }
 

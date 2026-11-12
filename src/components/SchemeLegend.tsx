@@ -50,7 +50,7 @@ export const CATEGORY_LEGEND_ORDER: readonly ElementCategory[] = [
   "post-transition-metal",
 ];
 
-// Every element has a known block, so the "unknown" bucket is omitted.
+// Every element has a known origin, so the "unknown" bucket is omitted.
 export const ORIGIN_LEGEND_ORDER = ORIGIN_KEYS.filter(
   (key) => key !== "unknown",
 );
@@ -97,7 +97,7 @@ function LegendFrame({
 }
 
 // Scheme-aware color key rendered as a grid item placed in the table's empty
-// top-center region (see .legend in PeriodicTable.module.css), so it scales
+// top-center region (see .legend in SchemeLegend.module.css), so it scales
 // with the table via the grid's transform. The legend always shows swatches and
 // labels (or, for the gradient schemes, the bar and endpoint labels): because
 // it lives inside the transformed grid, its text shrinks and grows uniformly

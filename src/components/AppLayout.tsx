@@ -20,13 +20,12 @@ import { clampSelectedTemperature } from "../lib/cellColor";
 import { readStoredTemperature } from "../lib/persistenceManager";
 import classes from "./AppLayout.module.css";
 
-// Owns the Settings_Panel open/close state and the full-height flex column
-// layout (Req 1.1, 2.1), keeping App.tsx a thin composition. The single
-// `opened` boolean plus an idempotent open() means re-activating the button
-// while open never spawns a second panel (Req 3.4); the panel is a sibling
-// overlay that never unmounts PeriodicTable, so the selected element and scroll
-// position survive opening settings (Req 3.8). settingsButtonRef lets the panel
-// return focus to the trigger on close (Req 6.9).
+// Owns the settings/about open state and the full-height flex column layout,
+// keeping App.tsx a thin composition. The single `opened` boolean plus an
+// idempotent open() means re-activating the button while open never spawns a
+// second panel; the panel is a sibling overlay that never unmounts
+// PeriodicTable, so the selected element survives opening settings.
+// settingsButtonRef lets the panel return focus to the trigger on close.
 export function AppLayout() {
   const { t } = useTranslation("ui");
   const [opened, { open, close }] = useDisclosure(false);
@@ -36,7 +35,7 @@ export function AppLayout() {
     useDisclosure(false);
   // Which preference failed to persist, or null for no notice. A single active
   // kind — the latest failure wins, matching the one-Alert UI. A failed save is
-  // non-blocking: the session keeps the selected value (Req 5.4).
+  // non-blocking: the session keeps the selected value.
   const [saveError, setSaveError] = useState<SaveErrorKind | null>(null);
   const settingsButtonRef = useRef<HTMLButtonElement>(null);
   // Lets AboutPanel return focus to the logo trigger on close.
@@ -48,10 +47,9 @@ export function AppLayout() {
   // Not persisted — it resets to the default scheme each session.
   const [coloringScheme, setColoringScheme] =
     useState<ColoringSchemeOption>(DEFAULT_COLORING_SCHEME);
-  // Selected_Temperature driving the phase scheme (Req 7.1). Session-only — not
+  // Selected temperature (Kelvin) driving the phase scheme. Session-only — not
   // persisted, so no persistenceManager pair. Never reset on a scheme change, so
-  // switching away from "phase" and back restores the same Kelvin value for free
-  // (Req 1.5, 1.6, 7.3, 7.4). Default 298.15 K (Req 2.5, 7.5).
+  // switching away from "phase" and back restores the same Kelvin value for free.
   const [selectedTempK, setSelectedTempK] = useState(298.15);
 
   return (

@@ -23,7 +23,7 @@ interface AppLogoProps extends AssetProps {
 }
 
 // Small app brand mark (the same artwork as the Tauri app icon). Standalone it
-// carries the accessible name identifying the app (Req 6.2); inside a labelled
+// carries the accessible name identifying the app; inside a labelled
 // button it is decorative so the name is not announced twice.
 export function AppLogo({ size = 28, decorative = false }: AppLogoProps) {
   const { t } = useTranslation("ui");
@@ -38,7 +38,7 @@ export function AppLogo({ size = 28, decorative = false }: AppLogoProps) {
 }
 
 // Gear (settings) icon. Decorative: its accessible name comes from the
-// consuming ActionIcon's aria-label ("Open settings", Req 6.1/6.2), so the
+// consuming ActionIcon's aria-label ("Open settings"), so the
 // wrapper is hidden from assistive tech.
 //
 // The gear.svg is inlined (not an <img>) so its stroke="currentColor" inherits

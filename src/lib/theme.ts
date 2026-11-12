@@ -5,15 +5,15 @@
 
 // Pure theme helper (mirrors language.ts). Owns the set of valid theme options
 // and the safe fallback used when the persisted preference is missing or
-// unreadable (Req 5.3: an absent, unreadable, or invalid stored value renders
-// as Same_As_Device).
+// invalid (an absent, unreadable, or invalid stored value renders as "auto",
+// i.e. same as device).
 
 /** The three user-selectable theme options, in display order; "auto" follows the device. */
 export const THEME_OPTIONS = ["auto", "light", "dark"] as const;
 
 export type ThemeOption = (typeof THEME_OPTIONS)[number];
 
-/** Fallback when no valid stored preference exists — Same_As_Device. */
+/** Fallback when no valid stored preference exists — same as device. */
 export const DEFAULT_THEME: ThemeOption = "auto";
 
 /**

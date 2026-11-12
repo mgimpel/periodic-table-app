@@ -22,12 +22,11 @@ interface HeaderBarProps {
 }
 
 // Thin header bar: Logo left, Title centered (truncating, not wrapping), and on
-// the right the coloring-scheme dropdown then the gear Settings_Button (Req
-// 1.2-1.5, 1.7, 1.9). The dropdown sits to the LEFT of the gear so the gear
-// stays at the far right where users expect it. The Group pins the edges while
-// the flex:1 centered Title truncates; the ActionIcon is a >=44x44 touch target
-// (Req 1.8, 6.3) and carries the accessible name (Req 6.1). ref lets the
-// Settings_Panel return focus here on close (Req 6.9).
+// the right the coloring-scheme dropdown then the gear settings button. The
+// dropdown sits to the LEFT of the gear so the gear stays at the far right
+// where users expect it. The Group pins the edges while the flex:1 centered
+// Title truncates; the ActionIcon is a >=44x44 touch target and carries the
+// accessible name. The refs let the overlays return focus here on close.
 export function HeaderBar({
   onOpenAbout,
   logoButtonRef,

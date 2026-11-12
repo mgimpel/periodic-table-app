@@ -4,8 +4,8 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Best-effort, synchronous OS-platform detection. Used to gate
-// useOrientationLock and mobile-only UI (Req 1.1 mobile landscape lock,
-// Req 1.3 desktop follows the OS). Kept synchronous so callers (hooks, render)
+// useOrientationLock and mobile-only UI (mobile prefers a landscape lock;
+// desktop follows the OS). Kept synchronous so callers (hooks, render)
 // can branch without awaiting.
 //
 // Primary source: @tauri-apps/plugin-os platform(), which the plugin injects

@@ -60,12 +60,12 @@ function isKnownTemperature(v: number | null): v is number {
  * Phase bucket for `element` at `tempK` (Kelvin), from its phase melt/boil
  * points (`phaseMelt`/`phaseBoil`, sourced from the addendum — distinct from the
  * display `melt`/`boil` used by the gradient schemes and the detail view).
- *   both unknown                       → unknown
- *   both known but melt > boil         → unknown (inconsistent data - Arsenic)
- *   both known but melt == boil        → sublimates (solid → gas)
+ *   both unknown:             unknown
  *   melt known, boil unknown: T<=melt solid, else unknown
  *   boil known, melt unknown: T>=boil gas, else unknown
- *   both known & consistent: T>=boil gas, melt<T<boil liquid, T<=melt solid
+ *   both known:               T>=boil gas, T<=melt solid, else liquid
+ * When melt >= boil (a sublimating element, e.g. arsenic) there is no liquid
+ * range: T>=boil is gas, anything below is solid.
  * Total: always returns a PHASE_KEYS member.
  */
 export function phaseAtTemperature(tempK: number, element: Element): PhaseKey {
@@ -73,7 +73,6 @@ export function phaseAtTemperature(tempK: number, element: Element): PhaseKey {
   const boil = isKnownTemperature(element.phaseBoil) ? element.phaseBoil : null;
 
   if (melt !== null && boil !== null) {
-    //if (melt > boil) return "unknown"; // inconsistent data (Arsenic data)
     if (tempK >= boil) return "gas";
     if (tempK <= melt) return "solid";
     return "liquid";

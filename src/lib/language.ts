@@ -69,7 +69,7 @@ export function resolveLanguage(
  *
  * ponytail: navigator may be absent/unusual (non-browser env, private
  * context); we return [] and let resolveLanguage degrade to English. No full
- * BCP-47 negotiation — primary-subtag match is enough for en/fr/es/de. Upgrade path
+ * BCP-47 negotiation — primary-subtag match is enough for the shipped locales. Upgrade path
  * is a richer negotiator if more regional locales are ever added.
  */
 export function navigatorLanguages(): readonly string[] {

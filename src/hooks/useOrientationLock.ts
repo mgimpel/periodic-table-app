@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 // Mobile orientation-lock shim around the Web Screen Orientation API, plus the
-// Req 1.5 fallback notice state. On mobile it attempts to lock the display to
+// fallback notice state. On mobile it attempts to lock the display to
 // landscape on mount; when the lock is denied or unsupported (iOS) it reports
 // `showNotice` until the user dismisses it or rotates the device. Desktop/web
 // never attempts a lock and never shows the notice.
