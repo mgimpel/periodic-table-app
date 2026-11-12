@@ -8,7 +8,7 @@ import { Alert, Box, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { ELEMENTS, type Element } from "../data/elements";
 import { ElementCell } from "./ElementCell";
-import { GroupLabels, PeriodLabels, SeriesLabels } from "./TableLabels";
+import { TableLabels } from "./TableLabels";
 import { SchemeLegend } from "./SchemeLegend";
 import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
@@ -93,9 +93,7 @@ export function PeriodicTable({
             selectedTempK={selectedTempK}
             onSelectedTempChange={onSelectedTempChange}
           />
-          <GroupLabels />
-          <PeriodLabels />
-          <SeriesLabels />
+          <TableLabels />
           {ELEMENTS.map((element) => (
             <ElementCell
               key={element.atomicNumber}

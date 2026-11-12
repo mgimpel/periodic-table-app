@@ -50,6 +50,12 @@ export interface Element {
   isRadioactive: boolean;
 }
 
+/**
+ * Highest confirmed atomic number. The source datasets also carry the
+ * hypothetical element 119; entries above this are dropped everywhere.
+ */
+export const MAX_ATOMIC_NUMBER = 118;
+
 // Canonical display order for the ten categories (legend order), and the single
 // source of truth for the category set: `ElementCategory` is derived from it
 // below. Explicit and stable: the legend iterates this rather than relying on

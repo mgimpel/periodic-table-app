@@ -19,7 +19,7 @@ import raw from "./periodic-table.json";
 import raw_wikipedia from "./periodic-table-wikipedia.json";
 import raw_addendum from "./periodic-table-addendum.json";
 import type { Element, ElementCategory } from "./element";
-import { CATEGORY_KEYS } from "./element";
+import { CATEGORY_KEYS, MAX_ATOMIC_NUMBER } from "./element";
 
 export type { Element } from "./element";
 
@@ -167,7 +167,7 @@ function adapt(entry: RawElement): Element {
 }
 
 export const ELEMENTS: Element[] = (raw.elements as unknown as RawElement[])
-  .filter((e) => e.number <= 118)
+  .filter((e) => e.number <= MAX_ATOMIC_NUMBER)
   .map(adapt)
   .sort((a, b) => a.atomicNumber - b.atomicNumber);
 

@@ -28,6 +28,7 @@ import itUi from "./ui.it.json";
 import itPeriodicTable from "./periodic-table.it.json";
 import ptUi from "./ui.pt.json";
 import ptPeriodicTable from "./periodic-table.pt.json";
+import { MAX_ATOMIC_NUMBER } from "../data/element";
 
 // Locale entries may omit English-fallback fields such as appearance/summary.
 interface LocaleElement {
@@ -44,14 +45,14 @@ interface PeriodicTableLocale {
 // summary maps keyed by atomic number), so t(`periodicTable:name.<n>`) resolves
 // a single element's field. The locale files ship an array (mirroring the
 // dataset) for readability and diff-friendliness; this adapter keys it. Entries
-// above 118 (the source's hypothetical element 119) are dropped to match the
-// 118 elements the app exposes. Missing/null fields fall back to English.
+// above MAX_ATOMIC_NUMBER (the source's hypothetical element 119) are dropped
+// to match the elements the app exposes. Missing/null fields fall back to English.
 function toNamespace(locale: PeriodicTableLocale) {
   const name: Record<string, string> = {};
   const appearance: Record<string, string> = {};
   const summary: Record<string, string> = {};
   for (const e of locale.elements) {
-    if (e.number > 118) continue;
+    if (e.number > MAX_ATOMIC_NUMBER) continue;
     const key = String(e.number);
     name[key] = e.name;
     if (e.summary !== undefined) summary[key] = e.summary;
