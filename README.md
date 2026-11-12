@@ -1,10 +1,18 @@
+<p align="center">
+<img src="public/logo.svg" role="img" alt="Singleton Ebook Logo" />
+</p>
+
+[![license](https://img.shields.io/github/license/mgimpel/periodic-table-app?color=blue)](https://github.com/mgimpel/periodic-table-app?tab=BSD-3-Clause-1-ov-file) [![pnpm version](https://img.shields.io/badge/pnpm-%E2%89%A512-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/) [![node version](https://img.shields.io/node/v/vite?logo=nodedotjs&logoColor=white)](https://nodejs.org/en/about/previous-releases) [![tauri version](https://img.shields.io/badge/tauri-%E2%89%A52-blue?logo=tauri&logoColor=white)](https://tauri.app/)
+[![vite version](https://img.shields.io/badge/vite-%E2%89%A58.3-8A2BE2?logo=vite&logoColor=white)](https://vite.dev/) [![react version](https://img.shields.io/badge/react-%E2%89%A519.3-blue?logo=react&logoColor=white)](https://react.dev/)
+[![mantine version](https://img.shields.io/badge/mantine-%E2%89%A59.8-blue?logo=mantine&logoColor=white)](https://mantine.dev/)
+
 # Periodic Table App
 
 The Periodic Table project aims de develop a lightweight interactive Periodic Table of Elements, with a simple interface that displays the table of elements. When you click or select an element from the table more detailed information about the element will be displayed.
 
 It is targeted primarily at mobile phones and tablets (Android, iPhone, iPad). Desktop (Windows, Mac, Linux) and web access are a secondary target.
 
-From a technical point of view, the application will be built using [Tauri](https://v2.tauri.app/) cross-platform framework with a React frontend. The UI should use the [Mantine](https://mantine.dev/) components.
+From a technical point of view, the application will be built using [Tauri](https://v2.tauri.app/) cross-platform framework with a [React](https://react.dev/) frontend. The UI should use the [Mantine](https://mantine.dev/) components.
 
 ## Recommended IDE Setup
 
