@@ -9,6 +9,7 @@ import { CATEGORY_COLORS, type ElementCategory } from "../data/element";
 import {
   BLOCK_COLORS,
   BLOCK_KEYS,
+  DEFAULT_SELECTED_TEMPERATURE_K,
   ORIGIN_COLORS,
   ORIGIN_KEYS,
   PHASE_COLORS,
@@ -113,9 +114,9 @@ function LegendFrame({
 export function SchemeLegend({
   scheme,
   temperatureUnit,
-  // Default to the Selected_Temperature default (298.15 K) so callers that do
-  // not drive the phase slider (non-phase schemes, isolated tests) still render.
-  selectedTempK = 298.15,
+  // Defaults let callers that do not drive the phase slider (non-phase
+  // schemes, isolated tests) still render.
+  selectedTempK = DEFAULT_SELECTED_TEMPERATURE_K,
   onSelectedTempChange = () => {},
 }: {
   scheme: ColoringSchemeOption;

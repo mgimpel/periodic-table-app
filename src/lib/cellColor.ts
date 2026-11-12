@@ -82,6 +82,9 @@ export function phaseAtTemperature(tempK: number, element: Element): PhaseKey {
   return "unknown";
 }
 
+/** Session default for the phase scheme's selected temperature: 298.15 K (25 °C). */
+export const DEFAULT_SELECTED_TEMPERATURE_K = 298.15;
+
 /**
  * Clamp a requested Selected_Temperature into the valid slider range:
  * below `0` K → `0`, above `TEMPERATURE_MAX` → `TEMPERATURE_MAX`, else `k`.

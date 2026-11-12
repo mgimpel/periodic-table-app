@@ -14,7 +14,7 @@ import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
 import { NATURAL_CELL_PX } from "../lib/fitScale";
 import { useOrientationLock } from "../hooks/useOrientationLock";
-import { cellColor } from "../lib/cellColor";
+import { cellColor, DEFAULT_SELECTED_TEMPERATURE_K } from "../lib/cellColor";
 import {
   DEFAULT_COLORING_SCHEME,
   type ColoringSchemeOption,
@@ -39,9 +39,9 @@ import classes from "./PeriodicTable.module.css";
 export function PeriodicTable({
   coloringScheme = DEFAULT_COLORING_SCHEME,
   temperatureUnit = DEFAULT_TEMPERATURE,
-  // Default to the Selected_Temperature default (298.15 K) so existing callers
-  // and tests compile; AppLayout supplies the live value.
-  selectedTempK = 298.15,
+  // Defaults let isolated callers (tests) omit the phase slider wiring;
+  // AppLayout supplies the live value.
+  selectedTempK = DEFAULT_SELECTED_TEMPERATURE_K,
   onSelectedTempChange = () => {},
 }: {
   coloringScheme?: ColoringSchemeOption;

@@ -16,7 +16,7 @@ import {
   DEFAULT_COLORING_SCHEME,
   type ColoringSchemeOption,
 } from "../lib/coloringScheme";
-import { clampSelectedTemperature } from "../lib/cellColor";
+import { DEFAULT_SELECTED_TEMPERATURE_K } from "../lib/cellColor";
 import { readStoredTemperature } from "../lib/persistenceManager";
 import classes from "./AppLayout.module.css";
 
@@ -50,7 +50,8 @@ export function AppLayout() {
   // Selected temperature (Kelvin) driving the phase scheme. Session-only — not
   // persisted, so no persistenceManager pair. Never reset on a scheme change, so
   // switching away from "phase" and back restores the same Kelvin value for free.
-  const [selectedTempK, setSelectedTempK] = useState(298.15);
+  // TemperatureSlider already clamps what it reports, so no second clamp here.
+  const [selectedTempK, setSelectedTempK] = useState(DEFAULT_SELECTED_TEMPERATURE_K);
 
   return (
     <div className={classes.root}>
@@ -81,7 +82,7 @@ export function AppLayout() {
           temperatureUnit={temperatureUnit}
           coloringScheme={coloringScheme}
           selectedTempK={selectedTempK}
-          onSelectedTempChange={(k) => setSelectedTempK(clampSelectedTemperature(k))}
+          onSelectedTempChange={setSelectedTempK}
         />
       </div>
 
