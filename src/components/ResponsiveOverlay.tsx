@@ -13,6 +13,10 @@ interface ResponsiveOverlayProps {
   title?: React.ReactNode;
   // A caller that renders its own labelled close control can opt out.
   withCloseButton?: boolean;
+  // Trigger to focus on close. Mantine already restores focus to the
+  // previously-focused element; this makes it explicit, so focus lands on the
+  // trigger even if focus moved while the overlay was open.
+  returnFocusRef?: React.RefObject<HTMLElement | null>;
   children: React.ReactNode;
 }
 
@@ -24,13 +28,17 @@ export function ResponsiveOverlay({
   onClose,
   title,
   withCloseButton = true,
+  returnFocusRef,
   children,
 }: ResponsiveOverlayProps) {
   const { t } = useTranslation("ui");
   const isWide = useMediaQuery("(min-width: 48em)");
   const common = {
     opened,
-    onClose,
+    onClose: () => {
+      onClose();
+      returnFocusRef?.current?.focus();
+    },
     title,
     withCloseButton,
     closeButtonProps: { "aria-label": t("common.close") },

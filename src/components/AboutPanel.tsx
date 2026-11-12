@@ -26,15 +26,10 @@ interface AboutPanelProps {
 
 // About overlay, shown in the shared ResponsiveOverlay (Drawer on mobile, Modal
 // on desktop). Modeled on SettingsPanel: ResponsiveOverlay supplies the single
-// labelled close button and the accessible name (the title). Returns focus to
-// the logo trigger on close, mirroring SettingsPanel's handleClose.
+// labelled close button, the accessible name (the title) and the return of
+// focus to the logo trigger on close.
 export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps) {
   const { t } = useTranslation("ui");
-
-  const handleClose = () => {
-    onClose();
-    returnFocusRef.current?.focus();
-  };
 
   // In the Tauri webview a plain anchor navigates the app window away from the
   // UI, so hand every link to the OS default browser via the opener plugin.
@@ -53,7 +48,8 @@ export function AboutPanel({ opened, onClose, returnFocusRef }: AboutPanelProps)
   return (
     <ResponsiveOverlay
       opened={opened}
-      onClose={handleClose}
+      onClose={onClose}
+      returnFocusRef={returnFocusRef}
       title={t("about.title")}
     >
       <Stack gap="md">

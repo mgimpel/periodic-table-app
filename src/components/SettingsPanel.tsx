@@ -42,10 +42,7 @@ interface SettingsPanelProps {
 }
 
 // Settings overlay, shown in the shared ResponsiveOverlay (Drawer on mobile,
-// Modal on desktop). Returns focus to the settings trigger on close. Mantine
-// restores focus to the previously-focused
-// element by default, which is the trigger button; `returnFocusRef` is applied
-// explicitly so focus lands there even if focus moved while the panel was open.
+// Modal on desktop), which returns focus to the settings trigger on close.
 //
 // Each setting gets a visible title via Input.Wrapper, reusing the control's
 // own `*.label` i18n string so the title and the control's accessible name stay
@@ -59,15 +56,12 @@ export function SettingsPanel({
   onTemperatureUnitChange,
 }: SettingsPanelProps) {
   const { t } = useTranslation("ui");
-  const handleClose = () => {
-    onClose();
-    returnFocusRef.current?.focus();
-  };
 
   return (
     <ResponsiveOverlay
       opened={opened}
-      onClose={handleClose}
+      onClose={onClose}
+      returnFocusRef={returnFocusRef}
       title={t("settings.title")}
     >
       <Stack gap="lg">
