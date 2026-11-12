@@ -134,6 +134,18 @@
   pointer-events: none;
 }
 
+/* Lanthanide/actinide series range (57-71, 89-103) filling the empty period-6/7
+ * column-3 cell, centered like an element symbol. As a grid item of .grid it
+ * inherits the fit-scale transform. */
+.seriesLabel {
+  align-self: center;
+  justify-self: center;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--mantine-color-dimmed);
+  pointer-events: none;
+}
+
 /* Period number (1-7) in the leftmost label column, vertically centered on its
  * row and nudged to the right so it sits just left of the row's first element.
  * As a grid item of .grid it inherits the fit-scale transform. */

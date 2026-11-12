@@ -10,6 +10,7 @@ import { ELEMENTS, type Element } from "../data/elements";
 import { ElementCell } from "./ElementCell";
 import { GroupLabels } from "./GroupLabels";
 import { PeriodLabels } from "./PeriodLabels";
+import { SeriesLabels } from "./SeriesLabels";
 import { SchemeLegend } from "./SchemeLegend";
 import { ElementDetail } from "./ElementDetail";
 import { useFitScale } from "../hooks/useFitScale";
@@ -96,6 +97,7 @@ export function PeriodicTable({
           />
           <GroupLabels />
           <PeriodLabels />
+          <SeriesLabels />
           {ELEMENTS.map((element) => (
             <ElementCell
               key={element.atomicNumber}
