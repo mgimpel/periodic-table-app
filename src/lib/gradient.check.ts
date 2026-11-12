@@ -72,7 +72,7 @@ for (const v of [ELECTRONEGATIVITY_MIN - 10, ELECTRONEGATIVITY_MIN, mid, ELECTRO
   }
 }
 
-// Sanity: the two EN_STOPS carry the asserted endpoint colors.
+// Sanity: the two ELECTRONEGATIVITY_GRADIENT_STOPS carry the asserted endpoint colors.
 assert.deepEqual(ELECTRONEGATIVITY_GRADIENT_STOPS[0].rgb, [102, 189, 99]);
 assert.deepEqual(ELECTRONEGATIVITY_GRADIENT_STOPS[ELECTRONEGATIVITY_GRADIENT_STOPS.length - 1].rgb, [118, 42, 131]);
 

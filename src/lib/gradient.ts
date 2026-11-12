@@ -100,8 +100,8 @@ export const TEMPERATURE_GRADIENT_STOPS: readonly Stop[] = [
 
 /**
  * Map an absolute temperature in Kelvin to a cell color via piecewise-linear
- * RGB interpolation between adjacent GRADIENT_STOPS. Clamped: k <= 0 yields the
- * blue endpoint, k >= DATASET_MAX yields the red endpoint. Always returns a
+ * RGB interpolation between adjacent TEMPERATURE_GRADIENT_STOPS. Clamped: k <= 0 yields the
+ * blue endpoint, k >= TEMPERATURE_MAX yields the red endpoint. Always returns a
  * valid "rgb(r, g, b)" string with integer channels.
  */
 export function temperatureColor(kelvin: number): string {
@@ -135,7 +135,7 @@ export const ELECTRONEGATIVITY_GRADIENT_STOPS: readonly Stop[] = [
 
 /**
  * Map a Pauling electronegativity to a cell color via piecewise-linear RGB
- * interpolation between EN_STOPS. Clamped at both endpoints. Always returns a
+ * interpolation between ELECTRONEGATIVITY_GRADIENT_STOPS. Clamped at both endpoints. Always returns a
  * valid "rgb(r, g, b)" string with integer channels.
  */
 export function electronegativityColor(value: number): string {

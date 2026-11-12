@@ -61,16 +61,39 @@ export const BLOCK_LEGEND_ORDER = BLOCK_KEYS.filter(
   (key) => key !== "unknown",
 );
 
+// Schemes with a non-discrete legend (gradient bar or explanatory note).
+type NonDiscreteScheme =
+  | "melting-point"
+  | "boiling-point"
+  | "electronegativity"
+  | "spectral-colour";
+
+interface DiscreteLegend {
+  keys: readonly string[];
+  colors: Record<string, string>;
+  fourColumns?: boolean;
+}
+
 // The discrete schemes draw one swatch per key: their i18n label prefix
-// equals the scheme name (t(`category.${key}`), t(`phase.${key}`),
-// t(`origin.${key}`), t(`block.${key}`), t(`radioactive.${key}`)).
-const DISCRETE = {
-  category: [CATEGORY_LEGEND_ORDER, CATEGORY_COLORS],
-  phase: [PHASE_KEYS, PHASE_COLORS],
-  origin: [ORIGIN_LEGEND_ORDER, ORIGIN_COLORS],
-  block: [BLOCK_LEGEND_ORDER, BLOCK_COLORS],
-  radioactive: [RADIOACTIVE_KEYS, RADIOACTIVE_COLORS],
-} as const;
+// equals the scheme name (t(`category.${key}`), t(`phase.${key}`), ...).
+// Typed over every remaining scheme, so a new ColoringSchemeOption fails tsc
+// until it gets an entry here or a branch in SchemeLegend.
+const DISCRETE: Record<Exclude<ColoringSchemeOption, NonDiscreteScheme>, DiscreteLegend> = {
+  category: { keys: CATEGORY_LEGEND_ORDER, colors: CATEGORY_COLORS },
+  phase: { keys: PHASE_KEYS, colors: PHASE_COLORS, fourColumns: true },
+  origin: { keys: ORIGIN_LEGEND_ORDER, colors: ORIGIN_COLORS },
+  block: { keys: BLOCK_LEGEND_ORDER, colors: BLOCK_COLORS, fourColumns: true },
+  radioactive: { keys: RADIOACTIVE_KEYS, colors: RADIOACTIVE_COLORS },
+};
+
+// Schemes with a dedicated legend title; every other scheme reuses its control
+// label (coloringScheme.<scheme>) rather than adding parity-sensitive keys.
+const TITLE_KEYS: Partial<Record<ColoringSchemeOption, string>> = {
+  category: "legend.categoryTitle",
+  phase: "legend.phaseTitle",
+  "melting-point": "legend.meltingPointTitle",
+  "boiling-point": "legend.boilingPointTitle",
+};
 
 // The repeated legend frame: a labelled group with the scheme title and the
 // scheme-specific body (discrete swatches, gradient bar, or the spectral note).
@@ -126,28 +149,18 @@ export function SchemeLegend({
 }) {
   const { t } = useTranslation("ui");
 
-  // New schemes have no dedicated legend.*Title key; reuse their control label
-  // (coloringScheme.<scheme>) rather than adding parity-sensitive title keys.
-  const schemeTitle =
-    scheme === "category"
-      ? t("legend.categoryTitle")
-      : scheme === "phase"
-      ? t("legend.phaseTitle")
-      : scheme === "melting-point"
-      ? t("legend.meltingPointTitle")
-      : scheme === "boiling-point"
-      ? t("legend.boilingPointTitle")
-      : t(`coloringScheme.${scheme}`);
+  const schemeTitle = t(TITLE_KEYS[scheme] ?? `coloringScheme.${scheme}`);
+  const groupLabel = t("legend.groupLabel");
 
   if (scheme === "melting-point" || scheme === "boiling-point") {
     return (
       <GradientLegend
         title={schemeTitle}
-        groupLabel={t("legend.groupLabel")}
+        groupLabel={groupLabel}
         stops={TEMPERATURE_GRADIENT_STOPS}
-        // Temperature endpoints: raw 0 K and DATASET_MAX, formatted in the
+        // Temperature endpoints: raw 0 K and TEMPERATURE_MAX, formatted in the
         // active unit. With first.x === 0 the generic positioning formula below
-        // reduces to (x / DATASET_MAX) * 100%, matching the per-cell colors.
+        // reduces to (x / TEMPERATURE_MAX) * 100%, matching the per-cell colors.
         minLabel={formatTemperature(0, temperatureUnit)}
         maxLabel={formatTemperature(TEMPERATURE_MAX, temperatureUnit)}
       />
@@ -158,7 +171,7 @@ export function SchemeLegend({
     return (
       <GradientLegend
         title={schemeTitle}
-        groupLabel={t("legend.groupLabel")}
+        groupLabel={groupLabel}
         stops={ELECTRONEGATIVITY_GRADIENT_STOPS}
         // Electronegativity is a unitless Pauling value: show the raw dataset
         // min/max numbers, unaffected by the temperature unit.
@@ -172,7 +185,7 @@ export function SchemeLegend({
     // Each cell shows its own element's spectral colour, so there is no finite
     // key to swatch and no single gradient: just explain what the colors mean.
     return (
-      <LegendFrame title={schemeTitle} groupLabel={t("legend.groupLabel")}>
+      <LegendFrame title={schemeTitle} groupLabel={groupLabel}>
         <p className={classes.description}>
           {t("schemeLegend.spectral.description")}
         </p>
@@ -180,19 +193,15 @@ export function SchemeLegend({
     );
   }
 
-  // Discrete legend: one swatch per key for each discrete scheme. Keys, colors
-  // and the i18n label prefix all key off the scheme.
-  // Keys and colors are paired per scheme, so every key indexes its colors;
-  // the cast bridges the distinct Record types the lookup unions into.
-  const [keys, colors] = DISCRETE[
-    scheme as "category" | "phase" | "origin" | "block" | "radioactive"
-  ] as readonly [readonly string[], Record<string, string>];
+  // Discrete legend: one swatch per key. The early returns above narrow
+  // `scheme` to the discrete schemes, so the lookup needs no cast.
+  const { keys, colors, fourColumns } = DISCRETE[scheme];
 
   return (
     <LegendFrame
       title={schemeTitle}
-      groupLabel={t("legend.groupLabel")}
-      className={scheme === "block" || scheme === "phase" ? classes.fourColumnLegend : undefined}
+      groupLabel={groupLabel}
+      className={fourColumns ? classes.fourColumnLegend : undefined}
     >
       {keys.map((key) => {
         const label = t(`${scheme}.${key}`);
@@ -234,7 +243,7 @@ export function SchemeLegend({
  * electronegativity schemes. Each stop is positioned generically at
  * ((x - first.x) / (last.x - first.x)) * 100% so the visual bar matches the
  * per-cell interpolation for any axis (for temperature, first.x === 0 so this
- * reduces to (x / DATASET_MAX) * 100%). Endpoint labels are pre-formatted by
+ * reduces to (x / TEMPERATURE_MAX) * 100%). Endpoint labels are pre-formatted by
  * the caller (unit-formatted temperatures, or raw electronegativity numbers).
  */
 function GradientLegend({
