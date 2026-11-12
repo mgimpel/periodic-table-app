@@ -4,709 +4,945 @@
       "number": 1,
       "symbol": "H",
       "is_radioactive": false,
-      "spectral_colour": "FF497E"
+      "spectral_colour": "FF497E",
+      "phase_melt": 13.99,
+      "phase_boil": 20.271
     },
     {
       "number": 2,
       "symbol": "He",
       "is_radioactive": false,
-      "spectral_colour": "FFEC8E"
+      "spectral_colour": "FFEC8E",
+      "phase_melt": 0.95,
+      "phase_boil": 4.222
     },
     {
       "number": 3,
       "symbol": "Li",
       "is_radioactive": false,
-      "spectral_colour": "FF4B61"
+      "spectral_colour": "FF4B61",
+      "phase_melt": 453.65,
+      "phase_boil": 1603
     },
     {
       "number": 4,
       "symbol": "Be",
       "is_radioactive": false,
-      "spectral_colour": "44FFFF"
+      "spectral_colour": "44FFFF",
+      "phase_melt": 1560,
+      "phase_boil": 2742
     },
     {
       "number": 5,
       "symbol": "B",
       "is_radioactive": false,
-      "spectral_colour": "F8FFE1"
+      "spectral_colour": "F8FFE1",
+      "phase_melt": 2349,
+      "phase_boil": 4200
     },
     {
       "number": 6,
       "symbol": "C",
       "is_radioactive": false,
-      "spectral_colour": "FFFFB3"
+      "spectral_colour": "FFFFB3",
+      "phase_melt": 3915,
+      "phase_boil": 3915
     },
     {
       "number": 7,
       "symbol": "N",
       "is_radioactive": false,
-      "spectral_colour": "FFFFF0"
+      "spectral_colour": "FFFFF0",
+      "phase_melt": 63.15,
+      "phase_boil": 77.355
     },
     {
       "number": 8,
       "symbol": "O",
       "is_radioactive": false,
-      "spectral_colour": "C4AEFF"
+      "spectral_colour": "C4AEFF",
+      "phase_melt": 54.36,
+      "phase_boil": 90.188
     },
     {
       "number": 9,
       "symbol": "F",
       "is_radioactive": false,
-      "spectral_colour": "FF4466"
+      "spectral_colour": "FF4466",
+      "phase_melt": 53.48,
+      "phase_boil": 85.03
     },
     {
       "number": 10,
       "symbol": "Ne",
       "is_radioactive": false,
-      "spectral_colour": "FF6532"
+      "spectral_colour": "FF6532",
+      "phase_melt": 24.56,
+      "phase_boil": 27.104
     },
     {
       "number": 11,
       "symbol": "Na",
       "is_radioactive": false,
-      "spectral_colour": "FFD122"
+      "spectral_colour": "FFD122",
+      "phase_melt": 370.944,
+      "phase_boil": 1156.09
     },
     {
       "number": 12,
       "symbol": "Mg",
       "is_radioactive": false,
-      "spectral_colour": "64FFFF"
+      "spectral_colour": "64FFFF",
+      "phase_melt": 923,
+      "phase_boil": 1363
     },
     {
       "number": 13,
       "symbol": "Al",
       "is_radioactive": false,
-      "spectral_colour": "80E0FF"
+      "spectral_colour": "80E0FF",
+      "phase_melt": 933.47,
+      "phase_boil": 2743
     },
     {
       "number": 14,
       "symbol": "Si",
       "is_radioactive": false,
-      "spectral_colour": "FFF5AC"
+      "spectral_colour": "FFF5AC",
+      "phase_melt": 1687,
+      "phase_boil": 3538
     },
     {
       "number": 15,
       "symbol": "P",
       "is_radioactive": false,
-      "spectral_colour": "5CFFD9"
+      "spectral_colour": "5CFFD9",
+      "phase_melt": 317.3,
+      "phase_boil": 553.6
     },
     {
       "number": 16,
       "symbol": "S",
       "is_radioactive": false,
-      "spectral_colour": "4F86FF"
+      "spectral_colour": "4F86FF",
+      "phase_melt": 388.36,
+      "phase_boil": 717.8
     },
     {
       "number": 17,
       "symbol": "Cl",
       "is_radioactive": false,
-      "spectral_colour": "8DC0FF"
+      "spectral_colour": "8DC0FF",
+      "phase_melt": 171.6,
+      "phase_boil": 239.11
     },
     {
       "number": 18,
       "symbol": "Ar",
       "is_radioactive": false,
-      "spectral_colour": "CEB0FF"
+      "spectral_colour": "CEB0FF",
+      "phase_melt": 83.81,
+      "phase_boil": 87.302
     },
     {
       "number": 19,
       "symbol": "K",
       "is_radioactive": false,
-      "spectral_colour": "B196FF"
+      "spectral_colour": "B196FF",
+      "phase_melt": 336.7,
+      "phase_boil": 1032
     },
     {
       "number": 20,
       "symbol": "Ca",
       "is_radioactive": false,
-      "spectral_colour": "FF9C8A"
+      "spectral_colour": "FF9C8A",
+      "phase_melt": 1115,
+      "phase_boil": 1757
     },
     {
       "number": 21,
       "symbol": "Sc",
       "is_radioactive": false,
-      "spectral_colour": "FFFCFF"
+      "spectral_colour": "FFFCFF",
+      "phase_melt": 1814,
+      "phase_boil": 3109
     },
     {
       "number": 22,
       "symbol": "Ti",
       "is_radioactive": false,
-      "spectral_colour": "76D3FF"
+      "spectral_colour": "76D3FF",
+      "phase_melt": 1941,
+      "phase_boil": 3560
     },
     {
       "number": 23,
       "symbol": "V",
       "is_radioactive": false,
-      "spectral_colour": "EDFFFF"
+      "spectral_colour": "EDFFFF",
+      "phase_melt": 2183,
+      "phase_boil": 3680
     },
     {
       "number": 24,
       "symbol": "Cr",
       "is_radioactive": false,
-      "spectral_colour": "AAFFFF"
+      "spectral_colour": "AAFFFF",
+      "phase_melt": 2180,
+      "phase_boil": 2944
     },
     {
       "number": 25,
       "symbol": "Mn",
       "is_radioactive": false,
-      "spectral_colour": "5594FF"
+      "spectral_colour": "5594FF",
+      "phase_melt": 1519,
+      "phase_boil": 2334
     },
     {
       "number": 26,
       "symbol": "Fe",
       "is_radioactive": false,
-      "spectral_colour": "52D9FF"
+      "spectral_colour": "52D9FF",
+      "phase_melt": 1811,
+      "phase_boil": 3134
     },
     {
       "number": 27,
       "symbol": "Co",
       "is_radioactive": false,
-      "spectral_colour": "5CFFD1"
+      "spectral_colour": "5CFFD1",
+      "phase_melt": 1768,
+      "phase_boil": 3200
     },
     {
       "number": 28,
       "symbol": "Ni",
       "is_radioactive": false,
-      "spectral_colour": "5FFFFF"
+      "spectral_colour": "5FFFFF",
+      "phase_melt": 1728,
+      "phase_boil": 3003
     },
     {
       "number": 29,
       "symbol": "Cu",
       "is_radioactive": false,
-      "spectral_colour": "A8FFFF"
+      "spectral_colour": "A8FFFF",
+      "phase_melt": 1357.77,
+      "phase_boil": 2835
     },
     {
       "number": 30,
       "symbol": "Zn",
       "is_radioactive": false,
-      "spectral_colour": "426AFF"
+      "spectral_colour": "426AFF",
+      "phase_melt": 692.68,
+      "phase_boil": 1180
     },
     {
       "number": 31,
       "symbol": "Ga",
       "is_radioactive": false,
-      "spectral_colour": "6D3EFF"
+      "spectral_colour": "6D3EFF",
+      "phase_melt": 302.9146,
+      "phase_boil": 2673
     },
     {
       "number": 32,
       "symbol": "Ge",
       "is_radioactive": false,
-      "spectral_colour": "FFFFF6"
+      "spectral_colour": "FFFFF6",
+      "phase_melt": 1211.4,
+      "phase_boil": 3106
     },
     {
       "number": 33,
       "symbol": "As",
       "is_radioactive": false,
-      "spectral_colour": "4EADFF"
+      "spectral_colour": "4EADFF",
+      "phase_melt": 1090,
+      "phase_boil": 887
     },
     {
       "number": 34,
       "symbol": "Se",
       "is_radioactive": false,
-      "spectral_colour": "4CADFF"
+      "spectral_colour": "4CADFF",
+      "phase_melt": 494,
+      "phase_boil": 958
     },
     {
       "number": 35,
       "symbol": "Br",
       "is_radioactive": false,
-      "spectral_colour": "99F0FF"
+      "spectral_colour": "99F0FF",
+      "phase_melt": 265.8,
+      "phase_boil": 332
     },
     {
       "number": 36,
       "symbol": "Kr",
       "is_radioactive": false,
-      "spectral_colour": "FFF8FC"
+      "spectral_colour": "FFF8FC",
+      "phase_melt": 115.78,
+      "phase_boil": 119.93
     },
     {
       "number": 37,
       "symbol": "Rb",
       "is_radioactive": false,
-      "spectral_colour": "FF7D7D"
+      "spectral_colour": "FF7D7D",
+      "phase_melt": 312.45,
+      "phase_boil": 961
     },
     {
       "number": 38,
       "symbol": "Sr",
       "is_radioactive": false,
-      "spectral_colour": "FF9AA9"
+      "spectral_colour": "FF9AA9",
+      "phase_melt": 1050,
+      "phase_boil": 1650
     },
     {
       "number": 39,
       "symbol": "Y",
       "is_radioactive": false,
-      "spectral_colour": "FFFFE9"
+      "spectral_colour": "FFFFE9",
+      "phase_melt": 1799,
+      "phase_boil": 3203
     },
     {
       "number": 40,
       "symbol": "Zr",
       "is_radioactive": false,
-      "spectral_colour": "84D4FF"
+      "spectral_colour": "84D4FF",
+      "phase_melt": 2128,
+      "phase_boil": 4650
     },
     {
       "number": 41,
       "symbol": "Nb",
       "is_radioactive": false,
-      "spectral_colour": "A7FFFF"
+      "spectral_colour": "A7FFFF",
+      "phase_melt": 2750,
+      "phase_boil": 5017
     },
     {
       "number": 42,
       "symbol": "Mo",
       "is_radioactive": false,
-      "spectral_colour": "92FFFF"
+      "spectral_colour": "92FFFF",
+      "phase_melt": 2896,
+      "phase_boil": 4912
     },
     {
       "number": 43,
       "symbol": "Tc",
       "is_radioactive": true,
-      "spectral_colour": "5A9CFF"
+      "spectral_colour": "5A9CFF",
+      "phase_melt": 2430,
+      "phase_boil": 4538
     },
     {
       "number": 44,
       "symbol": "Ru",
       "is_radioactive": false,
-      "spectral_colour": "5DC1FF"
+      "spectral_colour": "5DC1FF",
+      "phase_melt": 2607,
+      "phase_boil": 4423
     },
     {
       "number": 45,
       "symbol": "Rh",
       "is_radioactive": false,
-      "spectral_colour": "EEFFFC"
+      "spectral_colour": "EEFFFC",
+      "phase_melt": 2237,
+      "phase_boil": 3968
     },
     {
       "number": 46,
       "symbol": "Pd",
       "is_radioactive": false,
-      "spectral_colour": "82FFFF"
+      "spectral_colour": "82FFFF",
+      "phase_melt": 1828.05,
+      "phase_boil": 3236
     },
     {
       "number": 47,
       "symbol": "Ag",
       "is_radioactive": false,
-      "spectral_colour": "59FFA0"
+      "spectral_colour": "59FFA0",
+      "phase_melt": 1234.93,
+      "phase_boil": 2435
     },
     {
       "number": 48,
       "symbol": "Cd",
       "is_radioactive": false,
-      "spectral_colour": "76B8FF"
+      "spectral_colour": "76B8FF",
+      "phase_melt": 594.22,
+      "phase_boil": 1040
     },
     {
       "number": 49,
       "symbol": "In",
       "is_radioactive": false,
-      "spectral_colour": "7C4EFF"
+      "spectral_colour": "7C4EFF",
+      "phase_melt": 429.7485,
+      "phase_boil": 2345
     },
     {
       "number": 50,
       "symbol": "Sn",
       "is_radioactive": false,
-      "spectral_colour": "FFF4FF"
+      "spectral_colour": "FFF4FF",
+      "phase_melt": 505.08,
+      "phase_boil": 2875
     },
     {
       "number": 51,
       "symbol": "Sb",
       "is_radioactive": false,
-      "spectral_colour": "FFFFF1"
+      "spectral_colour": "FFFFF1",
+      "phase_melt": 903.78,
+      "phase_boil": 1908
     },
     {
       "number": 52,
       "symbol": "Te",
       "is_radioactive": false,
-      "spectral_colour": "65F0FF"
+      "spectral_colour": "65F0FF",
+      "phase_melt": 722.66,
+      "phase_boil": 1261
     },
     {
       "number": 53,
       "symbol": "I",
       "is_radioactive": false,
-      "spectral_colour": "E3FFC9"
+      "spectral_colour": "E3FFC9",
+      "phase_melt": 386.85,
+      "phase_boil": 457.4
     },
     {
       "number": 54,
       "symbol": "Xe",
       "is_radioactive": false,
-      "spectral_colour": "C0B9FF"
+      "spectral_colour": "C0B9FF",
+      "phase_melt": 161.4,
+      "phase_boil": 165.051
     },
     {
       "number": 55,
       "symbol": "Cs",
       "is_radioactive": false,
-      "spectral_colour": "A18FFF"
+      "spectral_colour": "A18FFF",
+      "phase_melt": 301.7,
+      "phase_boil": 944
     },
     {
       "number": 56,
       "symbol": "Ba",
       "is_radioactive": false,
-      "spectral_colour": "FFD9AD"
+      "spectral_colour": "FFD9AD",
+      "phase_melt": 1000,
+      "phase_boil": 2118
     },
     {
       "number": 57,
       "symbol": "La",
       "is_radioactive": false,
-      "spectral_colour": "AAFFFF"
+      "spectral_colour": "AAFFFF",
+      "phase_melt": 1193,
+      "phase_boil": 3737
     },
     {
       "number": 58,
       "symbol": "Ce",
       "is_radioactive": false,
-      "spectral_colour": "D2FFFF"
+      "spectral_colour": "D2FFFF",
+      "phase_melt": 1068,
+      "phase_boil": 3716
     },
     {
       "number": 59,
       "symbol": "Pr",
       "is_radioactive": false,
-      "spectral_colour": "72B7FF"
+      "spectral_colour": "72B7FF",
+      "phase_melt": 1208,
+      "phase_boil": 3403
     },
     {
       "number": 60,
       "symbol": "Nd",
       "is_radioactive": false,
-      "spectral_colour": "ACEEFF"
+      "spectral_colour": "ACEEFF",
+      "phase_melt": 1297,
+      "phase_boil": 3347
     },
     {
       "number": 61,
       "symbol": "Pm",
       "is_radioactive": true,
-      "spectral_colour": "93AAFF"
+      "spectral_colour": "93AAFF",
+      "phase_melt": 1315,
+      "phase_boil": 3273
     },
     {
       "number": 62,
       "symbol": "Sm",
       "is_radioactive": false,
-      "spectral_colour": "A7E0FF"
+      "spectral_colour": "A7E0FF",
+      "phase_melt": 1345,
+      "phase_boil": 2173
     },
     {
       "number": 63,
       "symbol": "Eu",
       "is_radioactive": false,
-      "spectral_colour": "FFFFE5"
+      "spectral_colour": "FFFFE5",
+      "phase_melt": 1099,
+      "phase_boil": 1802
     },
     {
       "number": 64,
       "symbol": "Gd",
       "is_radioactive": false,
-      "spectral_colour": "D4D4FF"
+      "spectral_colour": "D4D4FF",
+      "phase_melt": 1585,
+      "phase_boil": 3273
     },
     {
       "number": 65,
       "symbol": "Tb",
       "is_radioactive": false,
-      "spectral_colour": "A5FFFF"
+      "spectral_colour": "A5FFFF",
+      "phase_melt": 1629,
+      "phase_boil": 3396
     },
     {
       "number": 66,
       "symbol": "Dy",
       "is_radioactive": false,
-      "spectral_colour": "76CAFF"
+      "spectral_colour": "76CAFF",
+      "phase_melt": 1680,
+      "phase_boil": 2840
     },
     {
       "number": 67,
       "symbol": "Ho",
       "is_radioactive": false,
-      "spectral_colour": "E9FFF1"
+      "spectral_colour": "E9FFF1",
+      "phase_melt": 1734,
+      "phase_boil": 2873
     },
     {
       "number": 68,
       "symbol": "Er",
       "is_radioactive": false,
-      "spectral_colour": "99FFCD"
+      "spectral_colour": "99FFCD",
+      "phase_melt": 1802,
+      "phase_boil": 3141
     },
     {
       "number": 69,
       "symbol": "Tm",
       "is_radioactive": false,
-      "spectral_colour": "7AE2FF"
+      "spectral_colour": "7AE2FF",
+      "phase_melt": 1818,
+      "phase_boil": 2223
     },
     {
       "number": 70,
       "symbol": "Yb",
       "is_radioactive": false,
-      "spectral_colour": "C3F0FF"
+      "spectral_colour": "C3F0FF",
+      "phase_melt": 1097,
+      "phase_boil": 1469
     },
     {
       "number": 71,
       "symbol": "Lu",
       "is_radioactive": false,
-      "spectral_colour": "CCFFFF"
+      "spectral_colour": "CCFFFF",
+      "phase_melt": 1925,
+      "phase_boil": 3675
     },
     {
       "number": 72,
       "symbol": "Hf",
       "is_radioactive": false,
-      "spectral_colour": "6FCAFF"
+      "spectral_colour": "6FCAFF",
+      "phase_melt": 2506,
+      "phase_boil": 4876
     },
     {
       "number": 73,
       "symbol": "Ta",
       "is_radioactive": false,
-      "spectral_colour": "A1CBFF"
+      "spectral_colour": "A1CBFF",
+      "phase_melt": 3290,
+      "phase_boil": 5731
     },
     {
       "number": 74,
       "symbol": "W",
       "is_radioactive": false,
-      "spectral_colour": "78FFFF"
+      "spectral_colour": "78FFFF",
+      "phase_melt": 3695,
+      "phase_boil": 6203
     },
     {
       "number": 75,
       "symbol": "Re",
       "is_radioactive": false,
-      "spectral_colour": "7CF9FF"
+      "spectral_colour": "7CF9FF",
+      "phase_melt": 3459,
+      "phase_boil": 5869
     },
     {
       "number": 76,
       "symbol": "Os",
       "is_radioactive": false,
-      "spectral_colour": "48BFFF"
+      "spectral_colour": "48BFFF",
+      "phase_melt": 3306,
+      "phase_boil": 5285
     },
     {
       "number": 77,
       "symbol": "Ir",
       "is_radioactive": false,
-      "spectral_colour": "4F9FFF"
+      "spectral_colour": "4F9FFF",
+      "phase_melt": 2719,
+      "phase_boil": 4403
     },
     {
       "number": 78,
       "symbol": "Pt",
       "is_radioactive": false,
-      "spectral_colour": "A1FFFF"
+      "spectral_colour": "A1FFFF",
+      "phase_melt": 2041.4,
+      "phase_boil": 4098
     },
     {
       "number": 79,
       "symbol": "Au",
       "is_radioactive": false,
-      "spectral_colour": "CFD8FF"
+      "spectral_colour": "CFD8FF",
+      "phase_melt": 1337.33,
+      "phase_boil": 3243
     },
     {
       "number": 80,
       "symbol": "Hg",
       "is_radioactive": false,
-      "spectral_colour": "8AFFFF"
+      "spectral_colour": "8AFFFF",
+      "phase_melt": 234.321,
+      "phase_boil": 629.88
     },
     {
       "number": 81,
       "symbol": "Tl",
       "is_radioactive": false,
-      "spectral_colour": "52FF63"
+      "spectral_colour": "52FF63",
+      "phase_melt": 577,
+      "phase_boil": 1746
     },
     {
       "number": 82,
       "symbol": "Pb",
       "is_radioactive": false,
-      "spectral_colour": "F2FFFF"
+      "spectral_colour": "F2FFFF",
+      "phase_melt": 600.61,
+      "phase_boil": 2022
     },
     {
       "number": 83,
       "symbol": "Bi",
       "is_radioactive": false,
-      "spectral_colour": "6092FF"
+      "spectral_colour": "6092FF",
+      "phase_melt": 544.7,
+      "phase_boil": 1837
     },
     {
       "number": 84,
       "symbol": "Po",
       "is_radioactive": true,
-      "spectral_colour": "5FA9FF"
+      "spectral_colour": "5FA9FF",
+      "phase_melt": 527,
+      "phase_boil": 1235
     },
     {
       "number": 85,
       "symbol": "At",
       "is_radioactive": true,
-      "spectral_colour": "000000"
+      "spectral_colour": "000000",
+      "phase_melt": 575,
+      "phase_boil": 610
     },
     {
       "number": 86,
       "symbol": "Rn",
       "is_radioactive": true,
-      "spectral_colour": "FF4AA2"
+      "spectral_colour": "FF4AA2",
+      "phase_melt": 202,
+      "phase_boil": 211.5
     },
     {
       "number": 87,
       "symbol": "Fr",
       "is_radioactive": true,
-      "spectral_colour": "FF7EF7"
+      "spectral_colour": "FF7EF7",
+      "phase_melt": 300,
+      "phase_boil": 950
     },
     {
       "number": 88,
       "symbol": "Ra",
       "is_radioactive": true,
-      "spectral_colour": "FF876A"
+      "spectral_colour": "FF876A",
+      "phase_melt": 1233,
+      "phase_boil": 2010
     },
     {
       "number": 89,
       "symbol": "Ac",
       "is_radioactive": true,
-      "spectral_colour": "E3FFFF"
+      "spectral_colour": "E3FFFF",
+      "phase_melt": 1500,
+      "phase_boil": 3500
     },
     {
       "number": 90,
       "symbol": "Th",
       "is_radioactive": true,
-      "spectral_colour": "9FFFFF"
+      "spectral_colour": "9FFFFF",
+      "phase_melt": 2023,
+      "phase_boil": 5061
     },
     {
       "number": 91,
       "symbol": "Pa",
       "is_radioactive": true,
-      "spectral_colour": "E93EFF"
+      "spectral_colour": "E93EFF",
+      "phase_melt": 1841,
+      "phase_boil": 4300
     },
     {
       "number": 92,
       "symbol": "U",
       "is_radioactive": true,
-      "spectral_colour": "90CAFF"
+      "spectral_colour": "90CAFF",
+      "phase_melt": 1405.3,
+      "phase_boil": 4404
     },
     {
       "number": 93,
       "symbol": "Np",
       "is_radioactive": true,
-      "spectral_colour": "FFE836"
+      "spectral_colour": "FFE836",
+      "phase_melt": 912,
+      "phase_boil": 4447
     },
     {
       "number": 94,
       "symbol": "Pu",
       "is_radioactive": true,
-      "spectral_colour": "FF75DB"
+      "spectral_colour": "FF75DB",
+      "phase_melt": 912.5,
+      "phase_boil": 3505
     },
     {
       "number": 95,
       "symbol": "Am",
       "is_radioactive": true,
-      "spectral_colour": "A997FF"
+      "spectral_colour": "A997FF",
+      "phase_melt": 1449,
+      "phase_boil": 2880
     },
     {
       "number": 96,
       "symbol": "Cm",
       "is_radioactive": true,
-      "spectral_colour": "FF64C6"
+      "spectral_colour": "FF64C6",
+      "phase_melt": 1613,
+      "phase_boil": 3383
     },
     {
       "number": 97,
       "symbol": "Bk",
       "is_radioactive": true,
-      "spectral_colour": "6EFF6F"
+      "spectral_colour": "6EFF6F",
+      "phase_melt": 1259,
+      "phase_boil": 2900
     },
     {
       "number": 98,
       "symbol": "Cf",
       "is_radioactive": true,
-      "spectral_colour": "BAFFD2"
+      "spectral_colour": "BAFFD2",
+      "phase_melt": 1173,
+      "phase_boil": 1743
     },
     {
       "number": 99,
       "symbol": "Es",
       "is_radioactive": true,
-      "spectral_colour": "39FFC8"
+      "spectral_colour": "39FFC8",
+      "phase_melt": 1133,
+      "phase_boil": 1269
     },
     {
       "number": 100,
       "symbol": "Fm",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": 1800,
+      "phase_boil": null
     },
     {
       "number": 101,
       "symbol": "Md",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": 1100,
+      "phase_boil": null
     },
     {
       "number": 102,
       "symbol": "No",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": 1100,
+      "phase_boil": null
     },
     {
       "number": 103,
       "symbol": "Lr",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": 1900,
+      "phase_boil": null
     },
     {
       "number": 104,
       "symbol": "Rf",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 105,
       "symbol": "Db",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 106,
       "symbol": "Sg",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 107,
       "symbol": "Bh",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 108,
       "symbol": "Hs",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 109,
       "symbol": "Mt",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 110,
       "symbol": "Ds",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 111,
       "symbol": "Rg",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 112,
       "symbol": "Cn",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 113,
       "symbol": "Nh",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 114,
       "symbol": "Fl",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 115,
       "symbol": "Mc",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 116,
       "symbol": "Lv",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 117,
       "symbol": "Ts",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     },
     {
       "number": 118,
       "symbol": "Og",
       "is_radioactive": true,
-      "spectral_colour": ""
+      "spectral_colour": "",
+      "phase_melt": null,
+      "phase_boil": null
     }
   ]
 }
