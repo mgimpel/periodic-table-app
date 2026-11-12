@@ -85,7 +85,7 @@ function renderLegend(
 function expectedReadout(tempK: number, unit: TemperatureOption): string {
   return enUi.temperatureSlider.legendReadout.replace(
     "{{temp}}",
-    formatTemperature(tempK, unit),
+    formatTemperature(tempK, unit, { whole: true }),
   );
 }
 

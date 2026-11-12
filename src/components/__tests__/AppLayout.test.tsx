@@ -308,7 +308,7 @@ describe("AppLayout — Selected_Temperature (phase scheme)", () => {
   const readout = () => enUi.temperatureSlider.legendReadout;
   // The legend readout text "At <formatted>" for a Kelvin value in a unit.
   const readoutText = (k: number, unit: Parameters<typeof formatTemperature>[1]) =>
-    readout().replace("{{temp}}", formatTemperature(k, unit));
+    readout().replace("{{temp}}", formatTemperature(k, unit, { whole: true }));
 
   it("defaults to 298.15 K and writes no temperature state to localStorage (7.1)", async () => {
     const user = userEvent.setup();
