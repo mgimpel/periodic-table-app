@@ -57,7 +57,7 @@ jobs:
         with:
           path: src-tauri/target/release/bundle/nsis/*.exe
           archive: false
-  build-macos:
+  build-macos-arm64:
     runs-on: macos-latest
     if: ${{ inputs.build-macos }}
     steps:
@@ -87,6 +87,32 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           path: src-tauri/target/release/bundle/macos/*.app
+  build-macos-intel:
+    runs-on: macos-26-intel
+    if: ${{ inputs.build-macos }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Install Rust
+        run: curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > rustup.sh && chmod +x ./rustup.sh && ./rustup.sh -y
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ inputs.pnpm_version }}
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm tauri build
+      - name: Upload DMG Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: src-tauri/target/release/bundle/dmg/*.dmg
+          archive: false
   build-linux-and-android:
     runs-on: ubuntu-latest
     if: ${{ inputs.build-linux-and-android }}
