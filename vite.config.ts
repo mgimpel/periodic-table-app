@@ -11,12 +11,9 @@ const host = process.env.TAURI_DEV_HOST;
 // ponytail: build-time git read, naive — a stale working tree isn't detected.
 function buildInfo(): { commit: string; date: string } | null {
   try {
-    const commit = execSync("git rev-parse --short HEAD", {
-      stdio: ["ignore", "pipe", "ignore"],
-    })
-      .toString()
-      .trim();
-    return { commit, date: new Date().toISOString().slice(0, 10) };
+    const commit = execSync("git log -1 --format=%h").toString().trim();
+    const date = execSync("git log -1 --format=%cs").toString().trim();
+    return { commit, date };
   } catch {
     return null;
   }
