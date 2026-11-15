@@ -28,6 +28,7 @@ interface AppLogoProps extends AssetProps {
 // button it is decorative so the name is not announced twice.
 export function AppLogo({ size = 28, decorative = false }: AppLogoProps) {
   const { t } = useTranslation("ui");
+
   return (
     <img
       src={logoUrl}

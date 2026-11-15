@@ -43,6 +43,7 @@ export const PHASE_COLORS: Record<PhaseKey, string> = {
  */
 export function phaseBucket(phase: string): PhaseKey {
   const key = phase.toLowerCase();
+
   return (PHASE_KEYS as readonly string[]).includes(key)
     ? (key as PhaseKey)
     : "unknown";
@@ -74,11 +75,16 @@ export function phaseAtTemperature(tempK: number, element: Element): PhaseKey {
 
   if (melt !== null && boil !== null) {
     if (tempK >= boil) return "gas";
+
     if (tempK <= melt) return "solid";
+
     return "liquid";
   }
+
   if (melt !== null) return tempK <= melt ? "solid" : "unknown";
+
   if (boil !== null) return tempK >= boil ? "gas" : "unknown";
+
   return "unknown";
 }
 
@@ -93,7 +99,9 @@ export const DEFAULT_SELECTED_TEMPERATURE_K = 298.15;
  */
 export function clampSelectedTemperature(k: number): number {
   if (k < 0) return 0;
+
   if (k > TEMPERATURE_MAX) return TEMPERATURE_MAX;
+
   return k;
 }
 
@@ -178,6 +186,7 @@ export function radioactiveBucket(isRadioactive: boolean): RadioactiveKey {
  */
 export function blockBucket(raw: string): BlockKey {
   const key = raw.toLowerCase();
+
   return (BLOCK_KEYS as readonly string[]).includes(key)
     ? (key as BlockKey)
     : "unknown";

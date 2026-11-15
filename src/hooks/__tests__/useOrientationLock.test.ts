@@ -41,6 +41,7 @@ afterEach(() => {
     // jsdom may not define it natively; drop the fake so nothing leaks.
     delete (screen as unknown as { orientation?: unknown }).orientation;
   }
+
   vi.clearAllMocks();
 });
 

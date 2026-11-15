@@ -14,6 +14,7 @@ import { ResponsiveOverlay } from "./ResponsiveOverlay";
 import pkg from "../../package.json";
 
 const REPO_URL = "https://github.com/mgimpel/periodic-table-app";
+
 // Link straight to the license text so the "BSD 3-Clause License" link lands on
 // the actual terms rather than the repo home.
 const LICENSE_URL = `${REPO_URL}/blob/main/LICENSE`;
@@ -37,6 +38,7 @@ function ExternalLink({ href, children }: { href: string; children: React.ReactN
       window.open(href, "_blank", "noreferrer");
     });
   };
+
   return (
     <Anchor href={href} target="_blank" rel="noreferrer" onClick={onClick}>
       {children}

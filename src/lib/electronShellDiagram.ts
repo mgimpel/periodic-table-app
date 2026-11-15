@@ -17,8 +17,10 @@
 
 /** Nucleus radius in user units. */
 const NUCLEUS_RADIUS = 200;
+
 /** Radius of the innermost electron orbit. */
 const FIRST_SHELL_RADIUS = 300;
+
 /** Radial gap between successive shells. */
 const SHELL_SPACING = 100;
 
@@ -30,6 +32,7 @@ function buildShellsMarkup(shells: number[]): string {
     lines.push(`<circle fill="none" r="${radius}"/>`);
     lines.push(`<circle r="30" cy="-${radius}"/>`);
     const angle = 360 / shell;
+
     for (let i = 1; i < shell; i++) {
       lines.push(
         `<circle r="30" cy="-${radius}" transform="rotate(${Math.trunc(
@@ -38,6 +41,7 @@ function buildShellsMarkup(shells: number[]): string {
       );
     }
   });
+
   return lines.join("\n");
 }
 

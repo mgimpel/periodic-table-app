@@ -51,13 +51,16 @@ export function resolveLanguage(
   navigatorLanguages: readonly string[],
 ): SupportedLocale {
   if (option !== "system") return option;
+
   for (const lang of navigatorLanguages) {
     if (typeof lang !== "string" || lang.length === 0) continue;
     const primary = lang.toLowerCase().split("-")[0];
+
     if ((SUPPORTED_LOCALES as string[]).includes(primary)) {
       return primary as SupportedLocale;
     }
   }
+
   return FALLBACK_LOCALE;
 }
 
@@ -75,6 +78,8 @@ export function resolveLanguage(
 export function navigatorLanguages(): readonly string[] {
   if (typeof navigator === "undefined") return [];
   const list = navigator.languages;
+
   if (list && list.length > 0) return list;
+
   return navigator.language ? [navigator.language] : [];
 }

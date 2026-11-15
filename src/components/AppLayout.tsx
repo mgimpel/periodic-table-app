@@ -29,10 +29,12 @@ import classes from "./AppLayout.module.css";
 export function AppLayout() {
   const { t } = useTranslation("ui");
   const [opened, { open, close }] = useDisclosure(false);
+
   // About panel open/close, wired like Settings. Idempotent open() means
   // re-activating the logo while open never spawns a second panel.
   const [aboutOpened, { open: openAbout, close: closeAbout }] =
     useDisclosure(false);
+
   // Which preference failed to persist, or null for no notice. A single active
   // kind — the latest failure wins, matching the one-Alert UI. A failed save is
   // non-blocking: the session keeps the selected value.
@@ -40,13 +42,16 @@ export function AppLayout() {
   const settingsButtonRef = useRef<HTMLButtonElement>(null);
   // Lets AboutPanel return focus to the logo trigger on close.
   const logoButtonRef = useRef<HTMLButtonElement>(null);
+
   // Shared by the settings control and the element detail, so it lives here.
   const [temperatureUnit, setTemperatureUnit] =
     useState<TemperatureOption>(readStoredTemperature);
+
   // Shared by the header control and the periodic table, so it lives here.
   // Not persisted — it resets to the default scheme each session.
   const [coloringScheme, setColoringScheme] =
     useState<ColoringSchemeOption>(DEFAULT_COLORING_SCHEME);
+
   // Selected temperature (Kelvin) driving the phase scheme. Session-only — not
   // persisted, so no persistenceManager pair. Never reset on a scheme change, so
   // switching away from "phase" and back restores the same Kelvin value for free.

@@ -38,6 +38,7 @@ const field = (
   n: number,
   key: "name" | "summary",
 ) => table.elements.find((e) => e.number === n)![key];
+
 import enUi from "../../locales/ui.en.json";
 import esUi from "../../locales/ui.es.json";
 import deUi from "../../locales/ui.de.json";
@@ -78,6 +79,7 @@ function Harness() {
   const [opened, setOpened] = useState(false);
   const [unit, setUnit] = useState<TemperatureOption>("kelvin");
   const triggerRef = useRef<HTMLButtonElement>(null);
+
   return (
     <MantineProvider env="test" defaultColorScheme="auto">
       <button ref={triggerRef} onClick={() => setOpened(true)}>
@@ -134,12 +136,14 @@ describe("SettingsPanel", () => {
     const group = screen.getByRole("radiogroup", {
       name: enUi.temperature.label,
     });
+
     const radios = within(group).getAllByRole("radio") as HTMLInputElement[];
     expect(radios.map((r) => r.value)).toEqual([
       "kelvin",
       "celsius",
       "fahrenheit",
     ]);
+
     for (const label of [
       enUi.temperature.kelvin,
       enUi.temperature.celsius,
@@ -176,6 +180,7 @@ describe("SettingsPanel", () => {
     const overlay = container.querySelector(
       ".mantine-Drawer-overlay, .mantine-Modal-overlay",
     );
+
     expect(overlay).not.toBeNull();
     await user.click(overlay as Element);
 
@@ -418,9 +423,11 @@ const selectLanguage = async (
 ) => {
   await user.click(select());
   const listbox = await screen.findByRole("listbox");
+
   const option = listbox.querySelector(
     `[role="option"][value="${value}"]`,
   ) as HTMLElement;
+
   await user.click(option);
 };
 
@@ -437,9 +444,11 @@ describe("LanguageControl", () => {
 
     await user.click(select());
     const listbox = await screen.findByRole("listbox");
+
     const options = Array.from(
       listbox.querySelectorAll('[role="option"]'),
     ) as HTMLElement[];
+
     // Order matters: System default first, then the registered locales.
     expect(options.map((o) => o.getAttribute("value"))).toEqual([
       ...LANGUAGE_OPTIONS,
@@ -651,6 +660,7 @@ const TEMPERATURE_STORAGE_KEY = "app-temperature-unit";
 
 function TemperatureHarness({ onSaveError }: { onSaveError?: (e: unknown) => void }) {
   const [unit, setUnit] = useState<TemperatureOption>(readStoredTemperature);
+
   return (
     <MantineProvider env="test">
       <TemperatureControl value={unit} onChange={setUnit} onSaveError={onSaveError} />

@@ -43,6 +43,7 @@ describe("normalizeStoredLanguage: total and safe", () => {
         expect(LANGUAGE_OPTIONS).toContain(result);
 
         const isValidOption = LANGUAGE_OPTIONS.includes(raw as LanguageOption);
+
         if (isValidOption) {
           expect(result).toBe(raw);
         } else {
@@ -59,6 +60,7 @@ describe("resolveLanguage: always a supported locale", () => {
     const anyNavigator = fc.array(
       fc.oneof(fc.string(), fc.constantFrom<unknown>(null, undefined, 42)),
     );
+
     fc.assert(
       fc.property(
         fc.constantFrom<LanguageOption>(...LANGUAGE_OPTIONS),
@@ -93,6 +95,7 @@ describe("resolveLanguage: always a supported locale", () => {
             .filter((l) => typeof l === "string" && l.length > 0)
             .map((l) => l.toLowerCase().split("-")[0])
             .find((p) => (SUPPORTED_LOCALES as string[]).includes(p)) ?? "en";
+
         expect(resolveLanguage("system", langs)).toBe(expected);
       }),
       { numRuns: 100 },

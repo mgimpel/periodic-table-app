@@ -39,6 +39,7 @@ import { computeFitScale } from "./fitScale";
     { width: 40, height: 40 },
     { naturalCellPx: 40, legibilityMinCellPx: 40 },
   );
+
   assert(r.scale === 0.5, `expected scale 0.5, got ${r.scale}`);
   assert(r.symbolOnly, `expected symbol-only below threshold (scaled cell ${40 * r.scale})`);
 }
@@ -51,6 +52,7 @@ import { computeFitScale } from "./fitScale";
     { width: 40, height: 40 },
     { naturalCellPx: 40, legibilityMinCellPx: 40 },
   );
+
   assert(r.scale === 1, `expected scale 1, got ${r.scale}`);
   assert(!r.symbolOnly, `exactly at threshold should not be symbol-only (scaled cell ${40 * r.scale})`);
 }
@@ -62,6 +64,7 @@ import { computeFitScale } from "./fitScale";
     { width: 100, height: 100 },
     { naturalCellPx: 30, legibilityMinCellPx: 40 },
   );
+
   // scale 1, 30 * 1 = 30 < 40 → symbol-only, which the defaults (56) would not give.
   assert(r.symbolOnly, "override naturalCellPx should drive symbol-only");
 }
@@ -72,6 +75,7 @@ for (const bad of [0, -5, NaN, Infinity, -Infinity]) {
     { width: bad, height: bad },
     { width: bad, height: bad },
   );
+
   assert(Number.isFinite(r.scale), `scale must be finite for input ${bad}, got ${r.scale}`);
   assert(r.scale > 0 && r.scale <= 1, `scale must be in (0,1] for input ${bad}, got ${r.scale}`);
 }

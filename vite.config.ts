@@ -3,6 +3,7 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import process from "node:process";
 import { execSync } from "node:child_process";
+
 const host = process.env.TAURI_DEV_HOST;
 
 // Build details injected at build time (shown in the About panel after the
@@ -13,6 +14,7 @@ function buildInfo(): { commit: string; date: string } | null {
   try {
     const commit = execSync("git log -1 --format=%h").toString().trim();
     const date = execSync("git log -1 --format=%cs").toString().trim();
+
     return { commit, date };
   } catch {
     return null;

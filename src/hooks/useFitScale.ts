@@ -25,6 +25,7 @@ export function useFitScale(
   useEffect(() => {
     const viewport = viewportRef.current;
     const grid = gridRef.current;
+
     if (!viewport || !grid) return;
 
     const measure = () => {

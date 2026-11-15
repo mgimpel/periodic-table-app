@@ -16,6 +16,7 @@ import "./i18n";
 // the OS can't change mid-session. Skip "unknown" so the attribute is absent in
 // non-Tauri/unrecognized contexts rather than carrying a meaningless value.
 const os = currentPlatform();
+
 if (os !== "unknown") {
   document.documentElement.dataset.os = os;
 }

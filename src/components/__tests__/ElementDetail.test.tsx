@@ -40,6 +40,7 @@ import frUi from "../../locales/ui.fr.json";
 // mirroring the dataset; look up one element's field by atomic number.
 const elementField = (n: number, key: "name" | "appearance" | "summary") =>
   enTable.elements.find((e) => e.number === n)![key];
+
 import type { TemperatureOption } from "../../lib/temperature";
 
 const originalMatchMedia = window.matchMedia;
@@ -112,6 +113,7 @@ function Harness({
   temperatureUnit?: TemperatureOption;
 }) {
   const [element, setElement] = useState<Element | null>(initial);
+
   return (
     <MantineProvider env="test">
       <ElementDetail
@@ -147,6 +149,7 @@ describe("ElementDetail", () => {
     const builtInTitle = document.querySelector(
       ".mantine-Modal-title, .mantine-Drawer-title",
     );
+
     expect(builtInTitle).toBeNull();
   });
 
@@ -184,6 +187,7 @@ describe("ElementDetail", () => {
     const tablist = screen.getByRole("tablist", {
       name: "Element detail sections",
     });
+
     const tabs = within(tablist).getAllByRole("tab");
     expect(tabs.map((t) => t.textContent)).toEqual(TAB_NAMES);
   });
@@ -218,6 +222,7 @@ describe("ElementDetail", () => {
     const selected = screen
       .getAllByRole("tab")
       .filter((t) => t.getAttribute("aria-selected") === "true");
+
     expect(selected).toHaveLength(1);
     expect(selected[0]).toHaveAccessibleName("Physical properties");
   });
@@ -253,6 +258,7 @@ describe("ElementDetail", () => {
     expect(screen.getByText("3134 K")).toBeVisible();
     expect(screen.getByText("Melting point")).toBeVisible();
     expect(screen.getByText("1811 K")).toBeVisible();
+
     for (const label of atomicLabels) {
       expect(screen.getByText(label)).not.toBeVisible();
     }
@@ -269,9 +275,11 @@ describe("ElementDetail", () => {
   it("converts melting and boiling points to the chosen unit and updates live", async () => {
     const user = userEvent.setup();
     const element = makeElement(); // boil 3134 K, melt 1811 K
+
     const { rerender } = render(
       <Harness initial={element} temperatureUnit="celsius" />,
     );
+
     await user.click(screen.getByRole("tab", { name: enUi.detail.tab.physical }));
     const panel = screen.getByRole("tabpanel", { name: enUi.detail.tab.physical });
     expect(within(panel).getByText("2860.85 °C")).toBeVisible();
@@ -345,6 +353,7 @@ describe("ElementDetail", () => {
 
   it("translates the spectrum alt text with the localized name in French", async () => {
     await i18n.changeLanguage("fr");
+
     try {
       render(<Harness initial={makeElement()} />);
       expect(
@@ -373,6 +382,7 @@ describe("ElementDetail", () => {
 
   it("translates the phase value in French (a 'Solid' phase keys off phase.solid)", async () => {
     await i18n.changeLanguage("fr");
+
     try {
       // makeElement() has phase "Solid"; the detail view keys off
       // phaseBucket("Solid") → "solid", so it renders the fr phase.solid string.
@@ -416,6 +426,7 @@ describe("ElementDetail", () => {
     expect(
       screen.getByRole("tab", { name: "Atomic details" }),
     ).toHaveAttribute("tabindex", "0");
+
     for (const name of TAB_NAMES.slice(1)) {
       expect(screen.getByRole("tab", { name })).toHaveAttribute(
         "tabindex",
@@ -509,6 +520,7 @@ describe("ElementDetail", () => {
   it("closes when the outside overlay region is clicked (1.6)", async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();
+
     const { container } = render(
       <Harness initial={makeElement()} onClose={onClose} />,
     );
@@ -516,6 +528,7 @@ describe("ElementDetail", () => {
     const overlay = container.querySelector(
       ".mantine-Drawer-overlay, .mantine-Modal-overlay",
     );
+
     expect(overlay).not.toBeNull();
     // `overlay` is a DOM element from querySelector; avoid the `Element` type
     // name here since this file imports the data-model `Element` type.
@@ -538,9 +551,11 @@ describe("ElementDetail", () => {
       render(<Harness initial={makeElement()} onClose={onClose} />);
 
       const dialog = screen.getByRole("dialog");
+
       const buttons = within(dialog).getAllByRole("button", {
         name: enUi.common.close,
       });
+
       expect(buttons).toHaveLength(1);
       const button = buttons[0];
 

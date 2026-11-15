@@ -23,6 +23,7 @@ function installStore(store: Pick<Storage, "getItem" | "setItem">): void {
 
 // Working store: read-back returns the normalized stored value.
 const backing = new Map<string, string>();
+
 installStore({
   getItem: (k) => backing.get(k) ?? null,
   setItem: (k, v) => {
@@ -31,7 +32,9 @@ installStore({
 });
 
 persistPref("k", "value");
+
 assert.equal(readPref("k", normalize), "value", "normal read-back");
+
 assert.equal(readPref("missing", normalize), "DEFAULT", "absent key -> default");
 
 // Throwing read falls back via normalize(undefined), never throws.
@@ -41,21 +44,26 @@ installStore({
   },
   setItem: () => {},
 });
+
 assert.equal(readPref("k", normalize), "DEFAULT", "throwing read -> default");
 
 // Throwing write never throws and fires onSaveError with the thrown error.
 const failure = new Error("quota");
+
 installStore({
   getItem: () => null,
   setItem: () => {
     throw failure;
   },
 });
+
 let captured: unknown = null;
+
 assert.doesNotThrow(
   () => persistPref("k", "v", (e) => (captured = e)),
   "throwing write must not throw",
 );
+
 assert.equal(captured, failure, "onSaveError receives the thrown error");
 
 console.log("ok: storage helper self-check passed");

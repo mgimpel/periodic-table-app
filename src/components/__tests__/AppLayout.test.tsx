@@ -174,9 +174,11 @@ describe("AppLayout", () => {
         // confirm the combobox reflects the choice — which also switches the
         // UI to French, so the displayed label is now the French one.
         const key = value as keyof typeof enUi.language;
+
         const combobox = screen.getByRole("combobox", {
           name: enUi.language.label,
         }) as HTMLInputElement;
+
         await user.click(combobox);
         await user.click(
           within(await screen.findByRole("listbox")).getByRole("option", {
@@ -189,6 +191,7 @@ describe("AppLayout", () => {
         // the language-neutral value, so select it and confirm it's checked.
         const option = () =>
           screen.getByDisplayValue(value) as HTMLInputElement;
+
         await user.click(option());
         expect(option().checked).toBe(true);
       }
@@ -225,6 +228,7 @@ describe("AppLayout", () => {
     const legend = screen.getByRole("group", {
       name: enUi.legend.groupLabel,
     });
+
     const swatches = legend.querySelectorAll('span[style*="background-color"]');
     expect(swatches).not.toHaveLength(PHASE_KEYS.length);
 
@@ -232,6 +236,7 @@ describe("AppLayout", () => {
     const oxygenCell = screen.getByRole("button", {
       name: "Oxygen, atomic number 8",
     });
+
     expect(oxygenCell).toHaveStyle({
       backgroundColor: CATEGORY_COLORS[oxygen.category],
     });
@@ -248,6 +253,7 @@ describe("AppLayout", () => {
 
     const oxygenCell = () =>
       screen.getByRole("button", { name: "Oxygen, atomic number 8" });
+
     expect(oxygenCell()).toHaveStyle({
       backgroundColor: cellColor("category", oxygen),
     });
@@ -256,6 +262,7 @@ describe("AppLayout", () => {
     const schemeSelect = screen.getByRole("combobox", {
       name: enUi.coloringScheme.label,
     }) as HTMLInputElement;
+
     await user.click(schemeSelect);
     await user.click(
       within(await screen.findByRole("listbox")).getByRole("option", {
@@ -268,9 +275,11 @@ describe("AppLayout", () => {
     expect(oxygenCell()).toHaveStyle({
       backgroundColor: cellColor("phase", oxygen),
     });
+
     const legend = screen.getByRole("group", {
       name: enUi.legend.groupLabel,
     });
+
     expect(
       legend.querySelectorAll('span[style*="background-color"]'),
     ).toHaveLength(PHASE_KEYS.length);
@@ -306,6 +315,7 @@ describe("AppLayout — Selected_Temperature (phase scheme)", () => {
   }
 
   const readout = () => enUi.temperatureSlider.legendReadout;
+
   // The legend readout text "At <formatted>" for a Kelvin value in a unit.
   const readoutText = (k: number, unit: Parameters<typeof formatTemperature>[1]) =>
     readout().replace("{{temp}}", formatTemperature(k, unit, { whole: true }));
@@ -348,10 +358,12 @@ describe("AppLayout — Selected_Temperature (phase scheme)", () => {
     // The readout prefix ("At ") is the literal part of the legendReadout
     // template; find the single paragraph that carries it and read its text.
     const prefix = readout().replace("{{temp}}", "");
+
     const readoutNode = () =>
       within(screen.getByRole("group", { name: enUi.legend.groupLabel })).getByText(
         (content) => content.startsWith(prefix),
       );
+
     const adjusted = readoutNode().textContent;
     // The value actually moved off the 298.15 K default.
     expect(adjusted).not.toBe(readoutText(298.15, "kelvin"));
@@ -376,8 +388,10 @@ describe("AppLayout — Selected_Temperature (phase scheme)", () => {
     // Kelvin: the legend reads the default and Oxygen is colored by its phase
     // bucket at 298.15 K (gas) — the same color the pure resolver computes.
     expect(screen.getByText(readoutText(298.15, "kelvin"))).toBeInTheDocument();
+
     const oxygenCell = () =>
       screen.getByRole("button", { name: "Oxygen, atomic number 8" });
+
     const bucketColor = cellColor("phase", oxygen, 298.15);
     expect(oxygenCell()).toHaveStyle({ backgroundColor: bucketColor });
 

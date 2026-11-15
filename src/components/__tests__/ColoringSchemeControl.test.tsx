@@ -27,6 +27,7 @@ afterEach(() => {
 
 function Harness({ initial }: { initial?: ColoringSchemeOption }) {
   const [scheme, setScheme] = useState<ColoringSchemeOption>(initial ?? "category");
+
   return (
     <MantineProvider env="test">
       <ColoringSchemeControl value={scheme} onChange={setScheme} />
@@ -54,6 +55,7 @@ describe("ColoringSchemeControl", () => {
 
     await user.click(select());
     const listbox = await screen.findByRole("listbox");
+
     for (const option of COLORING_SCHEME_OPTIONS) {
       expect(
         within(listbox).getByRole("option", {

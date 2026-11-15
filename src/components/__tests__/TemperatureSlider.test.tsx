@@ -48,6 +48,7 @@ function Harness({
   unit?: TemperatureOption;
 }) {
   const [valueK, setValueK] = useState(initialK);
+
   return (
     <MantineProvider env="test">
       <TemperatureSlider valueK={valueK} onChange={setValueK} unit={unit} />
@@ -58,6 +59,7 @@ function Harness({
 // The thumb carries role="slider" (and the live aria-value* state); the
 // accessible name lives on its Slider-root ancestor.
 const getThumb = () => screen.getByRole("slider");
+
 const getRoot = () =>
   getThumb().closest(".mantine-Slider-root") as HTMLElement;
 

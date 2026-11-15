@@ -36,6 +36,7 @@ export function HeaderBar({
   onColoringSchemeChange,
 }: HeaderBarProps) {
   const { t } = useTranslation("ui");
+
   return (
     <Group
       component="header"

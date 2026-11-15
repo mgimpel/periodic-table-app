@@ -29,6 +29,7 @@ export function linearGradientCss(stops: readonly Stop[]): string {
   const first = stops[0];
   const last = stops[stops.length - 1];
   const span = last.x - first.x;
+
   return `linear-gradient(to right, ${stops
     .map(
       (stop) => `${rgb(stop.rgb)} ${((stop.x - first.x) / span) * 100}%`,
@@ -45,16 +46,20 @@ export function linearGradientCss(stops: readonly Stop[]): string {
 export function interpolateStops(stops: readonly Stop[], x: number): string {
   const first = stops[0];
   const last = stops[stops.length - 1];
+
   if (x <= first.x) return rgb(first.rgb);
+
   if (x >= last.x) return rgb(last.rgb);
 
   for (let i = 1; i < stops.length; i++) {
     const hi = stops[i];
+
     if (x <= hi.x) {
       const lo = stops[i - 1];
       // hi.x > lo.x here: x > first.x on the first pass, and callers order
       // stops strictly ascending, so this denominator is never zero.
       const t = (x - lo.x) / (hi.x - lo.x);
+
       return rgb([
         Math.round(lo.rgb[0] + (hi.rgb[0] - lo.rgb[0]) * t),
         Math.round(lo.rgb[1] + (hi.rgb[1] - lo.rgb[1]) * t),
@@ -62,6 +67,7 @@ export function interpolateStops(stops: readonly Stop[], x: number): string {
       ]);
     }
   }
+
   // Unreachable: x < last.x is handled by the loop. Kept total for safety.
   return rgb(last.rgb);
 }

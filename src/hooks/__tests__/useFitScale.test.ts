@@ -48,6 +48,7 @@ function makeViewport(box: SizeBox): HTMLElement {
   const el = document.createElement("div");
   Object.defineProperty(el, "clientWidth", { get: () => box.w });
   Object.defineProperty(el, "clientHeight", { get: () => box.h });
+
   return el;
 }
 
@@ -55,6 +56,7 @@ function makeGrid(box: SizeBox): HTMLElement {
   const el = document.createElement("div");
   Object.defineProperty(el, "scrollWidth", { get: () => box.w });
   Object.defineProperty(el, "scrollHeight", { get: () => box.h });
+
   return el;
 }
 
@@ -78,6 +80,7 @@ describe("useFitScale", () => {
     viewportRef.current = makeViewport(viewportBox);
     gridRef.current = makeGrid(gridBox);
     const view = renderHook(() => useFitScale(viewportRef, gridRef));
+
     return { ...view, viewportBox, gridBox };
   }
 

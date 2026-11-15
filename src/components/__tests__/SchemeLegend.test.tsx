@@ -60,6 +60,7 @@ const spectralDescription = enUi.schemeLegend.spectral.description;
 function normalizeColor(color: string): string {
   const el = document.createElement("span");
   el.style.backgroundColor = color;
+
   return el.style.backgroundColor;
 }
 
@@ -143,6 +144,7 @@ describe("SchemeLegend discrete schemes", () => {
     (scheme, keys, colors, labels) => {
       renderLegend(scheme);
       const legend = screen.getByRole("group", { name: groupName });
+
       // The group's first child is the <h3> title; entries are the labeled rows.
       const entries = Array.from(
         legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
@@ -179,6 +181,7 @@ describe("SchemeLegend phase scheme temperature readout", () => {
   it("renders exactly four phase swatches with their translated labels and colors", () => {
     renderLegend("phase", "kelvin", 350);
     const legend = screen.getByRole("group", { name: groupName });
+
     const entries = Array.from(
       legend.querySelectorAll<HTMLElement>(":scope > [aria-label]"),
     );
@@ -244,6 +247,7 @@ describe("SchemeLegend phase scheme temperature readout", () => {
 // The former fast-check property (numRuns: 100) spanned a domain of only
 // 3 units x 2 schemes = 6 cases, so it is enumerated directly here.
 const TEMP_GRADIENT_SCHEMES = ["melting-point", "boiling-point"] as const;
+
 const UNIT_SCHEME_CASES: ReadonlyArray<[TemperatureOption, Scheme]> =
   TEMPERATURE_OPTIONS.flatMap((unit) =>
     TEMP_GRADIENT_SCHEMES.map((scheme) => [unit, scheme] as [TemperatureOption, Scheme]),

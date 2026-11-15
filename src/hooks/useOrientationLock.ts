@@ -41,8 +41,10 @@ export function useOrientationLock(): {
         // Missing API (undefined orientation or lock) → fallback path.
         if (!orientation?.lock) {
           if (!cancelled) setLockFailed(true);
+
           return;
         }
+
         // Success: leave lockFailed false, so no notice shows.
         await orientation.lock("landscape");
       } catch {
@@ -72,6 +74,7 @@ export function useOrientationLock(): {
     const orientation = screen.orientation;
     orientation?.addEventListener?.("change", dismiss);
     window.addEventListener("orientationchange", dismiss);
+
     return () => {
       orientation?.removeEventListener?.("change", dismiss);
       window.removeEventListener("orientationchange", dismiss);

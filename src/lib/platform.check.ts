@@ -25,22 +25,27 @@ const UA = {
 };
 
 assert(detectPlatform(UA.windows, 0) === "windows", "Windows UA → windows");
+
 assert(detectPlatform(UA.mac, 0) === "macos", "non-touch Macintosh UA → macos");
+
 assert(detectPlatform(UA.linux, 0) === "linux", "Linux UA → linux");
 
 // Android reports "Linux" in its UA, so it must be matched before linux.
 assert(detectPlatform(UA.android, 5) === "android", "Android UA → android");
 
 assert(detectPlatform(UA.iphone, 5) === "ios", "iPhone UA → ios");
+
 assert(detectPlatform(UA.ipadClassic, 5) === "ios", "classic iPad UA → ios");
 
 // iPadOS 13+ masquerades as "Macintosh"; touch points disambiguate it from a
 // real Mac, so the same UA string splits on maxTouchPoints.
 assert(detectPlatform(UA.mac, 5) === "ios", "touch Macintosh UA (iPadOS) → ios");
+
 assert(detectPlatform(UA.mac, 0) === "macos", "non-touch Macintosh UA → macos");
 
 // Unknown / non-browser env → unknown (safe default).
 assert(detectPlatform("", 0) === "unknown", "empty UA → unknown");
+
 assert(
   detectPlatform("SomeRandomCrawler/1.0", 0) === "unknown",
   "unrecognized UA → unknown",

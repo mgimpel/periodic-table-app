@@ -15,6 +15,7 @@ import {
 
 // All valid options pass through unchanged.
 assert.equal(COLORING_SCHEME_OPTIONS.length, 9);
+
 for (const opt of COLORING_SCHEME_OPTIONS) {
   assert.equal(normalizeStoredColoringScheme(opt), opt);
 }
@@ -23,6 +24,7 @@ for (const opt of COLORING_SCHEME_OPTIONS) {
 for (const bad of ["", "colour", null, undefined, 42]) {
   assert.equal(normalizeStoredColoringScheme(bad), "category", String(bad));
 }
+
 assert.equal(normalizeStoredColoringScheme({}), "category", "{}");
 
 console.log("ok: coloringScheme self-check passed");

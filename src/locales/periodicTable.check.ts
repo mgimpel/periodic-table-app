@@ -29,6 +29,7 @@ const expectedKeys = new Set(ELEMENTS.map((e) => String(e.atomicNumber)));
 // source array shape; only elements 1–118 are checked (119 is the source's
 // hypothetical entry, dropped by the app).
 const enByNumber = new Map(enPeriodicTable.elements.map((e) => [e.number, e]));
+
 for (const e of ELEMENTS) {
   const src = enByNumber.get(e.atomicNumber);
   assert(src !== undefined, `periodic-table.en.json missing element ${e.atomicNumber}`);
@@ -49,16 +50,19 @@ for (const e of ELEMENTS) {
 // (2) The adapted en namespace: a name + summary for exactly the 118 atomic
 // numbers, no strays, and appearance only where the source has a value.
 const enNs = resources.en.periodicTable;
+
 for (const field of ["name", "summary"] as const) {
   const keys = Object.keys(enNs[field]);
   assert(
     keys.length === expectedKeys.size,
     `periodicTable.en ${field} has ${keys.length} keys, expected ${expectedKeys.size}`,
   );
+
   for (const k of keys) {
     assert(expectedKeys.has(k), `stray ${field} key "${k}" in periodicTable.en`);
   }
 }
+
 for (const k of Object.keys(enNs.appearance)) {
   assert(expectedKeys.has(k), `stray appearance key "${k}" in periodicTable.en`);
 }
@@ -72,9 +76,11 @@ const flatKeys = (obj: object, prefix = ""): Map<string, unknown> =>
         : [[`${prefix}${k}`, v] as const],
     ),
   );
+
 const tokens = (s: string) => (s.match(/\{\{\w+\}\}/g) ?? []).sort().join(",");
 
 const enUi = flatKeys(resources.en.ui);
+
 for (const [locale, res] of Object.entries(resources)) {
   // (a) ui leaf keys match en exactly; every value a non-empty string.
   const ui = flatKeys(res.ui);
@@ -82,6 +88,7 @@ for (const [locale, res] of Object.entries(resources)) {
   const extra = [...ui.keys()].filter((k) => !enUi.has(k));
   assert(missing.length === 0, `ui.${locale}.json missing keys: ${missing.join(", ")}`);
   assert(extra.length === 0, `ui.${locale}.json extra keys: ${extra.join(", ")}`);
+
   for (const [k, v] of ui) {
     assert(
       typeof v === "string" && v.length > 0,
@@ -102,6 +109,7 @@ for (const [locale, res] of Object.entries(resources)) {
     nameKeys.length === expectedKeys.size,
     `periodic-table.${locale}.json has ${nameKeys.length} names, expected ${expectedKeys.size}`,
   );
+
   for (const k of expectedKeys) {
     const n = ns.name[k as keyof typeof ns.name];
     assert(
@@ -109,6 +117,7 @@ for (const [locale, res] of Object.entries(resources)) {
       `periodic-table.${locale}.json name.${k} should be a non-empty string`,
     );
   }
+
   for (const field of ["appearance", "summary"] as const) {
     for (const k of Object.keys(ns[field])) {
       assert(expectedKeys.has(k), `stray ${field} key "${k}" in periodic-table.${locale}.json`);

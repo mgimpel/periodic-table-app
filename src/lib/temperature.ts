@@ -36,7 +36,9 @@ export function normalizeStoredTemperature(raw: unknown): TemperatureOption {
 /** Convert a Kelvin value to `unit` (unrounded). */
 export function convertKelvin(k: number, unit: TemperatureOption): number {
   if (unit === "celsius") return k - 273.15;
+
   if (unit === "fahrenheit") return (k * 9) / 5 - 459.67;
+
   return k;
 }
 
@@ -58,5 +60,6 @@ export function formatTemperature(
   // whole: round to an integer (slider thumb/marks). Otherwise toFixed(2) drops
   // float noise and Number() trims trailing zeros. `${-0}` is "0".
   const value = whole ? Math.round(converted) : Number(converted.toFixed(2));
+
   return `${value} ${TEMPERATURE_SYMBOLS[unit]}`;
 }

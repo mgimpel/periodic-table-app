@@ -33,11 +33,15 @@ function renderHeader(
   const onOpenAbout = props.onOpenAbout ?? vi.fn();
   const logoButtonRef = props.logoButtonRef ?? createRef<HTMLButtonElement>();
   const onOpenSettings = props.onOpenSettings ?? vi.fn();
+
   const settingsButtonRef =
     props.settingsButtonRef ?? createRef<HTMLButtonElement>();
+
   const onColoringSchemeChange = props.onColoringSchemeChange ?? vi.fn();
+
   const coloringScheme: ColoringSchemeOption =
     props.coloringScheme ?? "category";
+
   render(
     <MantineProvider env="test">
       <HeaderBar
@@ -50,6 +54,7 @@ function renderHeader(
       />
     </MantineProvider>,
   );
+
   return {
     onOpenAbout,
     logoButtonRef,
@@ -151,9 +156,11 @@ describe("HeaderBar", () => {
 
   it("renders the coloring-scheme dropdown with its accessible name and current value", () => {
     renderHeader({ coloringScheme: "phase" });
+
     const select = screen.getByRole("combobox", {
       name: enUi.coloringScheme.label,
     }) as HTMLInputElement;
+
     expect(select).toBeInTheDocument();
     expect(select.value).toBe(enUi.coloringScheme.phase);
   });

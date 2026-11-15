@@ -172,6 +172,7 @@ describe("PeriodicTable in-grid scheme legend", () => {
     const legends = screen.getAllByRole("group", {
       name: LEGEND_GROUP_NAME,
     });
+
     expect(legends).toHaveLength(1);
     const legend = legends[0];
 
@@ -348,6 +349,7 @@ describe("PeriodicTable recolors cells across a phase transition", () => {
       coloringScheme: "phase",
       selectedTempK: belowMelt,
     });
+
     expect(cellFor(sample)).toHaveStyle({ backgroundColor: solidColor });
 
     // Moving the slider's value across the melt→boil span recolors the cell to

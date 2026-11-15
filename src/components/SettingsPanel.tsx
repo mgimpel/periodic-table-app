@@ -101,6 +101,7 @@ export function ThemeControl({ onSaveError }: ThemeControlProps) {
   const { t } = useTranslation("ui");
   const { colorScheme, setColorScheme } = useMantineColorScheme();
   const data = THEME_OPTIONS.map((o) => ({ value: o, label: t(`theme.${o}`) }));
+
   const onChange = (v: string) => {
     const opt = normalizeStoredTheme(v);
     setColorScheme(opt); // applies for the session even if the save fails
@@ -139,10 +140,12 @@ interface LanguageControlProps {
 export function LanguageControl({ onSaveError }: LanguageControlProps) {
   const { t, i18n } = useTranslation("ui");
   const [option, setOption] = useState<LanguageOption>(readStoredLanguage);
+
   const data = LANGUAGE_OPTIONS.map((o) => ({
     value: o,
     label: t(`language.${o}`),
   }));
+
   const onChange = (v: string | null) => {
     // allowDeselect={false} keeps v non-null, but normalize guards anyway.
     const opt = normalizeStoredLanguage(v);
@@ -185,10 +188,12 @@ export function TemperatureControl({
   onSaveError,
 }: TemperatureControlProps) {
   const { t } = useTranslation("ui");
+
   const data = TEMPERATURE_OPTIONS.map((o) => ({
     value: o,
     label: t(`temperature.${o}`),
   }));
+
   const handleChange = (v: string) => {
     const opt = normalizeStoredTemperature(v);
     onChange(opt); // applies for the session even if the save fails

@@ -33,6 +33,7 @@ describe("TableLabels", () => {
     const elementCells = new Set(ELEMENTS.map((e) => `${e.xpos + 1},${e.ypos + 1}`));
     const labels = [...container.querySelectorAll<HTMLElement>("span")];
     expect(labels).toHaveLength(18 + 7 + 2);
+
     for (const label of labels) {
       expect(elementCells.has(placement(label).join(",")), label.textContent ?? "").toBe(false);
     }

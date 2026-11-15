@@ -30,34 +30,42 @@ assert(
   resolveLanguage("system", ["fr-FR", "en"]) === "fr",
   "system with [fr-FR, en] should resolve to fr",
 );
+
 assert(
   resolveLanguage("system", ["ja"]) === "en",
   "system with unsupported [ja] should fall back to en",
 );
+
 assert(
   resolveLanguage("system", ["es-MX"]) === "es",
   "system with [es-MX] should resolve to es",
 );
+
 assert(
   resolveLanguage("system", ["de-AT", "en"]) === "de",
   "system with [de-AT, en] should resolve to de",
 );
+
 assert(
   resolveLanguage("system", ["it-IT", "en"]) === "it",
   "system with [it-IT, en] should resolve to it",
 );
+
 assert(
   resolveLanguage("system", ["pt-BR", "en"]) === "pt",
   "system with [pt-BR, en] should resolve to pt",
 );
+
 assert(
   resolveLanguage("system", ["ja", "DE-CH", "fr"]) === "de",
   "system with [ja, DE-CH, fr] should resolve to the first supported (de)",
 );
+
 assert(
   resolveLanguage("system", []) === "en",
   "system with empty list should fall back to en",
 );
+
 assert(
   resolveLanguage("fr", ["en"]) === "fr",
   "explicit fr should resolve to fr regardless of navigator",

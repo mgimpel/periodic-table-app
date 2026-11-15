@@ -23,6 +23,7 @@ import pkg from "../../../package.json";
 // assert the anchor click hands the URL to the opener plugin (openUrl) rather
 // than letting the webview navigate.
 const openUrlMock = vi.hoisted(() => vi.fn(() => Promise.resolve()));
+
 vi.mock("@tauri-apps/plugin-opener", () => ({ openUrl: openUrlMock }));
 
 afterEach(() => {
@@ -33,13 +34,16 @@ afterEach(() => {
 function renderAbout(props: Partial<Parameters<typeof AboutPanel>[0]> = {}) {
   const opened = props.opened ?? true;
   const onClose = props.onClose ?? vi.fn();
+
   const returnFocusRef =
     props.returnFocusRef ?? createRef<HTMLButtonElement>();
+
   render(
     <MantineProvider env="test">
       <AboutPanel opened={opened} onClose={onClose} returnFocusRef={returnFocusRef} />
     </MantineProvider>,
   );
+
   return { onClose, returnFocusRef };
 }
 

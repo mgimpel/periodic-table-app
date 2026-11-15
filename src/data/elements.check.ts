@@ -28,6 +28,7 @@ ELEMENTS.forEach((e, i) => {
 const validCategories = new Set(
   Object.keys(CATEGORY_COLORS) as ElementCategory[],
 );
+
 for (const e of ELEMENTS) {
   // (b) + (e) category is a valid key present in CATEGORY_COLORS
   assert(
@@ -79,15 +80,19 @@ for (const e of ELEMENTS) {
 
 // Spot-checks for known positions.
 assert(getElementByNumber(1)?.xpos === 1, "H should be in group/column 1");
+
 assert(getElementByNumber(2)?.xpos === 18, "He should be in column 18");
+
 assert(
   getElementByNumber(26)?.category === "transition-metal",
   "Fe should be a transition metal",
 );
+
 assert(
   getElementByNumber(57)?.category === "lanthanide",
   "La should be a lanthanide",
 );
+
 assert(
   getElementByNumber(89)?.category === "actinide",
   "Ac should be an actinide",
@@ -96,27 +101,38 @@ assert(
 // Newly mapped fields (physical/electron/description tabs). Hydrogen carries
 // non-null values for all of them, so a single element exercises the mapping.
 const h = getElementByNumber(1);
+
 assert(h?.boil === 20.271, `H boil should map, got ${h?.boil}`);
+
 assert(h?.melt === 13.99, `H melt should map, got ${h?.melt}`);
+
 assert(h?.density === 0.08988, `H density should map, got ${h?.density}`);
+
 assert(h?.densityUnit === "g/L", `H densityUnit should map, got ${h?.densityUnit}`);
+
 assert(
   h?.electronAffinity === 72.769,
   `H electronAffinity should map, got ${h?.electronAffinity}`,
 );
+
 assert(
   h?.namedBy === "Antoine Lavoisier",
   `H namedBy should map, got ${h?.namedBy}`,
 );
+
 assert(h?.isRadioactive === false, "H isRadioactive should map from the addendum");
+
 assert(h?.phaseMelt === 13.99, `H phaseMelt should map, got ${h?.phaseMelt}`);
+
 assert(h?.phaseBoil === 20.271, `H phaseBoil should map, got ${h?.phaseBoil}`);
 
 // The heaviest elements have no phase melt/boil in the addendum: they must
 // degrade to null (graceful, no throw), which phaseAtTemperature treats as
 // "unknown".
 const og = getElementByNumber(118);
+
 assert(og?.phaseMelt === null, `Og phaseMelt should degrade to null, got ${og?.phaseMelt}`);
+
 assert(og?.phaseBoil === null, `Og phaseBoil should degrade to null, got ${og?.phaseBoil}`);
 
 console.log(`ok: ${ELEMENTS.length} elements validated`);

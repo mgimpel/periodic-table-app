@@ -94,6 +94,7 @@ const addendumByElement = new Map<number, RawElementAddendum>(
 function parseElectronegativity(value: string | undefined): number | null {
   if (value === undefined || value === "–") return null;
   const n = Number(value);
+
   return Number.isFinite(n) ? n : null;
 }
 
@@ -112,12 +113,15 @@ function extendedFields(
 > {
   const wikipediaEntry = wikipediaByElement.get(z);
   const addendumEntry = addendumByElement.get(z);
+
   if (!wikipediaEntry) {
     throw new Error(`Missing wikipedia entry for element ${z} (${symbol})`);
   }
+
   if (!addendumEntry) {
     throw new Error(`Missing addendum entry for element ${z} (${symbol})`);
   }
+
   return {
     electronegativity: parseElectronegativity(wikipediaEntry["Electro-negativity"]),
     origin: wikipediaEntry.Origin ?? "",
@@ -131,10 +135,14 @@ function extendedFields(
 /** Map a raw source category string onto the fixed `ElementCategory` union. */
 function normalizeCategory(rawCategory: string): ElementCategory {
   const c = rawCategory.toLowerCase().trim();
+
   if (c.startsWith("unknown")) return "unknown";
+
   if (c.includes("nonmetal")) return "reactive-nonmetal"; // diatomic + polyatomic nonmetals
   const hyphenated = c.replace(/\s+/g, "-");
+
   if ((CATEGORY_KEYS as readonly string[]).includes(hyphenated)) return hyphenated as ElementCategory;
+
   return "unknown";
 }
 

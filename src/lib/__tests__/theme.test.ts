@@ -43,6 +43,7 @@ describe("normalizeStoredTheme property 1: stored-theme normalization is total a
         expect(THEME_OPTIONS).toContain(result);
 
         const isValidOption = THEME_OPTIONS.includes(raw as ThemeOption);
+
         if (isValidOption) {
           // Equals the input iff the input is itself a valid option.
           expect(result).toBe(raw);

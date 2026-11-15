@@ -46,6 +46,7 @@ describe("computeFitScale property 1: scaled table fits within the viewport", ()
     );
   });
 });
+
 describe("computeFitScale property 2: scale never upscales", () => {
   // Feature: responsive-table-layout, Property 2
   // Validates: Requirements 2.1, 2.4
@@ -72,6 +73,7 @@ describe("computeFitScale property 3: fit uses the full available space in the b
           viewport.width / natural.width,
           viewport.height / natural.height,
         );
+
         // Only exercise the "does not fit at scale 1" input space.
         fc.pre(ratio < 1);
 
@@ -110,6 +112,7 @@ describe("computeFitScale example cases", () => {
       { width: 800, height: 600 },
       { width: 800, height: 600 },
     );
+
     expect(scale).toBe(1);
   });
 
@@ -118,6 +121,7 @@ describe("computeFitScale example cases", () => {
       { width: 800, height: 600 },
       { width: 400, height: 300 },
     );
+
     expect(scale).toBe(0.5);
   });
 
@@ -127,6 +131,7 @@ describe("computeFitScale example cases", () => {
       { width: 1000, height: 1000 },
       { width: 250, height: 500 },
     );
+
     expect(scale).toBe(0.25);
   });
 
@@ -136,6 +141,7 @@ describe("computeFitScale example cases", () => {
       { width: 1000, height: 1000 },
       { width: 500, height: 200 },
     );
+
     expect(scale).toBe(0.2);
   });
 
@@ -179,6 +185,7 @@ describe("computeFitScale example cases", () => {
       // Missing dimensions entirely (cast through unknown to model bad input).
       [{} as unknown as Size, {} as unknown as Size],
     ];
+
     for (const [natural, viewport] of cases) {
       const { scale } = computeFitScale(natural, viewport);
       expect(Number.isFinite(scale)).toBe(true);

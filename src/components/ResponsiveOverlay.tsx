@@ -33,6 +33,7 @@ export function ResponsiveOverlay({
 }: ResponsiveOverlayProps) {
   const { t } = useTranslation("ui");
   const isWide = useMediaQuery("(min-width: 48em)");
+
   const common = {
     opened,
     onClose: () => {

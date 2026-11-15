@@ -13,6 +13,7 @@ function buildInfo(): { commit: string; date: string } | null {
     })
       .toString()
       .trim();
+
     return { commit, date: new Date().toISOString().slice(0, 10) };
   } catch {
     return null;

@@ -18,6 +18,7 @@ const mockPlatform = vi.mocked(platform);
 
 async function loadCurrentPlatform() {
   vi.resetModules();
+
   return (await import("../platform")).currentPlatform;
 }
 
@@ -36,6 +37,7 @@ describe("currentPlatform native-preference / UA-fallback wiring", () => {
 
   it("maps every Platform-union OS value straight through", async () => {
     const currentPlatform = await loadCurrentPlatform();
+
     for (const os of ["windows", "macos", "linux", "android", "ios"] as const) {
       mockPlatform.mockReturnValue(os);
       expect(currentPlatform()).toBe(os);

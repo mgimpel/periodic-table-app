@@ -41,6 +41,7 @@ function renderCell(props: Partial<Parameters<typeof ElementCell>[0]> = {}) {
       />
     </MantineProvider>,
   );
+
   return { onSelect };
 }
 

@@ -140,12 +140,14 @@ describe("cellColor — phase scheme", () => {
         (s) => {
           const bucket = phaseBucket(s);
           expect(PHASE_KEYS).toContain(bucket);
+
           // Prototype-free map: a generated phase like "toString" must not
           // pick up Object.prototype members as a false expected value.
           const known: Record<string, string> = Object.assign(
             Object.create(null),
             { Solid: "solid", Liquid: "liquid", Gas: "gas" },
           );
+
           expect(bucket).toBe(known[s] ?? "unknown");
         },
       ),
@@ -172,8 +174,10 @@ describe("cellColor — gradient schemes", () => {
         fc.constantFrom("melting-point" as const, "boiling-point" as const),
         (el, scheme) => {
           const value = scheme === "melting-point" ? el.melt : el.boil;
+
           const expected =
             value === null ? MISSING_VALUE_COLOR : temperatureColor(value);
+
           expect(cellColor(scheme, el)).toBe(expected);
         },
       ),
@@ -198,6 +202,7 @@ describe("cellColor — electronegativity scheme", () => {
             el.electronegativity === null
               ? MISSING_VALUE_COLOR
               : electronegativityColor(el.electronegativity);
+
           expect(cellColor("electronegativity", el)).toBe(expected);
         },
       ),
@@ -226,6 +231,7 @@ describe("cellColor — origin scheme", () => {
         (s) => {
           const bucket = originBucket(s);
           expect(ORIGIN_KEYS).toContain(bucket);
+
           // Prototype-free map: a generated origin like "toString" must not
           // pick up Object.prototype members as a false expected value.
           const known: Record<string, string> = Object.assign(
@@ -236,6 +242,7 @@ describe("cellColor — origin scheme", () => {
               synthetic: "synthetic",
             },
           );
+
           expect(bucket).toBe(known[s] ?? "unknown");
         },
       ),
@@ -272,9 +279,11 @@ describe("cellColor — spectral-colour scheme", () => {
   // Raw spectral values: valid 6-hex strings mixed with null and malformed
   // inputs (wrong length, non-hex chars, a leading "#") so both branches run.
   const hexChar = fc.constantFrom(..."0123456789abcdefABCDEF".split(""));
+
   const validHex = fc
     .array(hexChar, { minLength: 6, maxLength: 6 })
     .map((cs) => cs.join(""));
+
   const rawSpectral: fc.Arbitrary<string | null> = fc.oneof(
     validHex,
     fc.constant(null),
@@ -296,6 +305,7 @@ describe("cellColor — spectral-colour scheme", () => {
           raw !== null && /^[0-9a-fA-F]{6}$/.test(raw)
             ? `#${raw}`
             : MISSING_VALUE_COLOR;
+
         expect(spectralCellColor(raw)).toBe(expected);
       }),
     );
@@ -365,6 +375,7 @@ const consistentElement = (): fc.Arbitrary<Element> =>
     .chain(([a, b]) => {
       const phaseMelt = Math.min(a, b);
       const phaseBoil = Math.max(a, b);
+
       return element().map((el) => ({ ...el, phaseMelt, phaseBoil }));
     });
 
@@ -397,6 +408,7 @@ describe("phaseAtTemperature — consistent-data classification by region", () =
         const melt = el.phaseMelt as number;
         const boil = el.phaseBoil as number;
         const bucket = phaseAtTemperature(tempK, el);
+
         if (tempK >= boil) {
           expect(bucket).toBe("gas");
         } else if (tempK <= melt) {
@@ -525,6 +537,7 @@ describe("clampSelectedTemperature — clamps into [0, TEMPERATURE_MAX]", () => 
           const clamped = clampSelectedTemperature(k);
           expect(clamped).toBeGreaterThanOrEqual(0);
           expect(clamped).toBeLessThanOrEqual(TEMPERATURE_MAX);
+
           if (k < 0) {
             expect(clamped).toBe(0);
           } else if (k > TEMPERATURE_MAX) {

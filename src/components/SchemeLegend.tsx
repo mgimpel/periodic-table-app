@@ -205,6 +205,7 @@ export function SchemeLegend({
     >
       {keys.map((key) => {
         const label = t(`${scheme}.${key}`);
+
         return (
           <div
             key={key}

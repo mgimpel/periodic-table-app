@@ -34,7 +34,9 @@ const syncHtmlLang = (lang: string) => {
     document.documentElement.lang = lang;
   }
 };
+
 syncHtmlLang(i18n.language);
+
 i18n.on("languageChanged", syncHtmlLang);
 
 export default i18n;

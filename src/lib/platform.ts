@@ -52,6 +52,7 @@ export function currentPlatform(): Platform {
   } catch {
     // No native binding (plain browser / dev / vitest) → UA fallback below.
   }
+
   return detectPlatform(currentUserAgent());
 }
 
@@ -63,6 +64,7 @@ export function currentPlatform(): Platform {
  */
 export function isMobilePlatform(): boolean {
   const platform = currentPlatform();
+
   return platform === "android" || platform === "ios";
 }
 
@@ -87,12 +89,17 @@ export function detectPlatform(
   maxTouchPoints = typeof navigator !== "undefined" ? navigator.maxTouchPoints : 0,
 ): Platform {
   if (/Android/i.test(userAgent)) return "android";
+
   if (/iPhone|iPad|iPod/i.test(userAgent)) return "ios";
+
   if (/Windows/i.test(userAgent)) return "windows";
+
   // iPadOS before macOS: a touch-enabled "Macintosh" is really an iPad.
   if (/Macintosh|Mac OS X/i.test(userAgent)) {
     return maxTouchPoints > 1 ? "ios" : "macos";
   }
+
   if (/Linux/i.test(userAgent)) return "linux";
+
   return "unknown";
 }

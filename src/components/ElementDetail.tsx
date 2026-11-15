@@ -52,7 +52,9 @@ function ElectronShellDiagram({
   name: string;
 }) {
   const { t } = useTranslation("ui");
+
   if (element.shells.length === 0) return null;
+
   const svg = buildElectronShellDiagram(
     element.atomicNumber,
     element.symbol,
@@ -61,7 +63,9 @@ function ElectronShellDiagram({
     element.shells,
     CATEGORY_COLORS[element.category],
   );
+
   const src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+
   return (
     <Image
       src={src}
@@ -103,6 +107,7 @@ function DetailBody({
   const name = t(`periodicTable:name.${element.atomicNumber}`);
   const photo = elementImageUrl(element.name);
   const spectrum = elementSpectrumUrl(element.name);
+
   return (
     <Stack gap="md">
       <Group gap="sm" align="center" wrap="nowrap">

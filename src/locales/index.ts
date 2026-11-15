@@ -37,6 +37,7 @@ interface LocaleElement {
   appearance?: string | null;
   summary?: string;
 }
+
 interface PeriodicTableLocale {
   elements: LocaleElement[];
 }
@@ -51,15 +52,19 @@ function toNamespace(locale: PeriodicTableLocale) {
   const name: Record<string, string> = {};
   const appearance: Record<string, string> = {};
   const summary: Record<string, string> = {};
+
   for (const e of locale.elements) {
     if (e.number > MAX_ATOMIC_NUMBER) continue;
     const key = String(e.number);
     name[key] = e.name;
+
     if (e.summary !== undefined) summary[key] = e.summary;
+
     if (e.appearance !== undefined && e.appearance !== null) {
       appearance[key] = e.appearance;
     }
   }
+
   return { name, appearance, summary };
 }
 
@@ -73,6 +78,7 @@ export const resources = {
 } as const;
 
 export type SupportedLocale = keyof typeof resources; // "en" | "fr" | "es" | "de" | "it" | "pt"
+
 export const SUPPORTED_LOCALES = Object.keys(resources) as SupportedLocale[];
 export const FALLBACK_LOCALE: SupportedLocale = "en";
 export const NAMESPACES = ["ui", "periodicTable"] as const;

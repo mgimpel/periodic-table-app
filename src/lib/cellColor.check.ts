@@ -33,7 +33,9 @@ import { ELEMENTS } from "../data/elements";
 
 // phaseBucket: known dataset values map to their lowercase bucket.
 assert.equal(phaseBucket("Solid"), "solid");
+
 assert.equal(phaseBucket("Liquid"), "liquid");
+
 assert.equal(phaseBucket("Gas"), "gas");
 
 // phaseBucket: absent/empty/unrecognized values fall back to "unknown".
@@ -67,15 +69,20 @@ const withNullMelt = ELEMENTS.find((e) => e.melt === null);
 const withMelt = ELEMENTS.find((e) => e.melt !== null);
 const withNullBoil = ELEMENTS.find((e) => e.boil === null);
 const withBoil = ELEMENTS.find((e) => e.boil !== null);
+
 assert.ok(withNullMelt && withMelt, "dataset must have null and non-null melt");
+
 assert.ok(withNullBoil && withBoil, "dataset must have null and non-null boil");
 
 assert.equal(cellColor("melting-point", withNullMelt), MISSING_VALUE_COLOR);
+
 assert.equal(
   cellColor("melting-point", withMelt),
   temperatureColor(withMelt.melt as number),
 );
+
 assert.equal(cellColor("boiling-point", withNullBoil), MISSING_VALUE_COLOR);
+
 assert.equal(
   cellColor("boiling-point", withBoil),
   temperatureColor(withBoil.boil as number),
@@ -83,7 +90,9 @@ assert.equal(
 
 // originBucket: known dataset values map to their bucket.
 assert.equal(originBucket("primordial"), "primordial");
+
 assert.equal(originBucket("from decay"), "from-decay");
+
 assert.equal(originBucket("synthetic"), "synthetic");
 
 // originBucket: absent/empty/unrecognized values fall back to "unknown".
@@ -106,8 +115,11 @@ for (const bad of [null, "fff", "gggggg", "#ff497e"]) {
 // gradient color. Checked against real elements so both branches are exercised.
 const withNullEn = ELEMENTS.find((e) => e.electronegativity === null);
 const withEn = ELEMENTS.find((e) => e.electronegativity !== null);
+
 assert.ok(withNullEn && withEn, "dataset must have null and non-null en");
+
 assert.equal(cellColor("electronegativity", withNullEn), MISSING_VALUE_COLOR);
+
 assert.equal(
   cellColor("electronegativity", withEn),
   electronegativityColor(withEn.electronegativity as number),
@@ -134,9 +146,13 @@ for (const element of ELEMENTS) {
 
 // blockBucket: s/p/d/f (any case) map to their bucket; else "unknown".
 assert.equal(blockBucket("s"), "s");
+
 assert.equal(blockBucket("P"), "p");
+
 assert.equal(blockBucket("d"), "d");
+
 assert.equal(blockBucket("F"), "f");
+
 for (const bad of ["", "g", "sp", "unknown"]) {
   assert.equal(blockBucket(bad), "unknown", bad);
 }
@@ -158,8 +174,11 @@ for (const element of ELEMENTS) {
 
 // Resolver, radioactive scheme: the boolean maps to its matching color bucket.
 assert.equal(radioactiveBucket(false), "stable");
+
 assert.equal(radioactiveBucket(true), "radioactive");
+
 assert.equal(new Set(Object.values(RADIOACTIVE_COLORS)).size, 2);
+
 for (const element of ELEMENTS) {
   assert.equal(
     cellColor("radioactive", element),
@@ -176,19 +195,27 @@ const el = (phaseMelt: number | null, phaseBoil: number | null): Element =>
 
 // Consistent (water-like) element across the three temperature regions.
 const water = el(273.15, 373.15);
+
 assert.equal(phaseAtTemperature(200, water), "solid"); // below melt
+
 assert.equal(phaseAtTemperature(300, water), "liquid"); // between
+
 assert.equal(phaseAtTemperature(273.15, water), "solid"); // at melt → solid
+
 assert.equal(phaseAtTemperature(400, water), "gas"); // above boil
+
 assert.equal(phaseAtTemperature(373.15, water), "gas"); // at boil → gas
 
 // Partial data: melt-only (T<=melt solid, else unknown).
 assert.equal(phaseAtTemperature(200, el(273.15, null)), "solid");
+
 assert.equal(phaseAtTemperature(273.15, el(273.15, null)), "solid"); // at melt → solid
+
 assert.equal(phaseAtTemperature(300, el(273.15, null)), "unknown");
 
 // Partial data: boil-only (T>=boil gas, else unknown).
 assert.equal(phaseAtTemperature(400, el(null, 373.15)), "gas");
+
 assert.equal(phaseAtTemperature(300, el(null, 373.15)), "unknown");
 
 // Both null → unknown.
@@ -197,6 +224,7 @@ assert.equal(phaseAtTemperature(300, el(null, null)), "unknown");
 // Sublimation (melt == boil): no liquid region, so T >= that point is gas and
 // below it is solid.
 assert.equal(phaseAtTemperature(300, el(300, 300)), "gas"); // at point → gas
+
 assert.equal(phaseAtTemperature(299, el(300, 300)), "solid"); // below → solid
 
 // "Unknown" value edges: 0, negative, and non-finite melt/boil are not "known",
@@ -204,15 +232,21 @@ assert.equal(phaseAtTemperature(299, el(300, 300)), "solid"); // below → solid
 for (const bad of [0, -50, Number.NaN, Number.POSITIVE_INFINITY]) {
   assert.equal(phaseAtTemperature(300, el(bad, bad)), "unknown", String(bad));
 }
+
 // A 0/negative/non-finite boil beside a known melt falls back to melt-only rules.
 assert.equal(phaseAtTemperature(200, el(273.15, 0)), "solid");
+
 assert.equal(phaseAtTemperature(300, el(273.15, -1)), "unknown");
 
 // clampSelectedTemperature: below 0 → 0; in range → unchanged; above max → max.
 assert.equal(clampSelectedTemperature(-10), 0);
+
 assert.equal(clampSelectedTemperature(0), 0);
+
 assert.equal(clampSelectedTemperature(TEMPERATURE_MAX / 2), TEMPERATURE_MAX / 2);
+
 assert.equal(clampSelectedTemperature(TEMPERATURE_MAX), TEMPERATURE_MAX);
+
 assert.equal(clampSelectedTemperature(TEMPERATURE_MAX + 100), TEMPERATURE_MAX);
 
 console.log("ok: cellColor self-check passed");

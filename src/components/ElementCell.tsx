@@ -28,6 +28,7 @@ export function ElementCell({ element, onSelect, symbolOnly = false, color }: El
   // Translated name: reused for both the visible text and the accessible label
   // so a French cell never carries an English name in either.
   const name = t(`periodicTable:name.${element.atomicNumber}`);
+
   return (
     <UnstyledButton
       className={classes.cell}
