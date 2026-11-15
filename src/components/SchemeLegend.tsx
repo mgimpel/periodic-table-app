@@ -109,14 +109,13 @@ function LegendFrame({
   children: ReactNode;
 }) {
   return (
-    <div
+    <fieldset
       className={className ? `${classes.legend} ${className}` : classes.legend}
-      role="group"
       aria-label={groupLabel}
     >
       <h3 className={classes.legendTitle}>{title}</h3>
       {children}
-    </div>
+    </fieldset>
   );
 }
 

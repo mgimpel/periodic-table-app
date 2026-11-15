@@ -5,7 +5,9 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
 To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 -->
-<svg id="periodictableicon" width="320" height="320" viewBox="0 0 320 320" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg id="periodictableicon" width="320" height="320" viewBox="0 0 320 320" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  role="img" aria-label="Periodic Table">
+  <title>Periodic Table</title>
   <style>
     .shadow {fill:#c0c0c0;stroke-width:0}
     .base {fill:#e0e0e0;stroke-width:0}

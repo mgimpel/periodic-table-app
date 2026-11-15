@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2026 Marc Gimpel.
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+<svg id="radioactive" width="18" height="18" viewBox="-50 -50 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  role="img" aria-label="Radioactive" fill="black">
+  <title>Radioactive</title>
+  <circle r="48" fill="yellow" stroke="black" strokeWidth="4" />
+  <circle r="12" />
+  <path d="M-21 36A42 42 0 01-41.677 0h25.552A16 16 0 00-8 14ZM8 14A16 16 0 0016.125 0h25.552A42 42 0 0121 36ZM-21-36a42 42 0 0142 0L8-14a16 16 0 00-16 0Z"/>
+</svg>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (C) 2026 Marc Gimpel.
-This SVG file is part of the Periodic Table App project (https://github.com/mgimpel/periodic-table-app).
 SPDX-License-Identifier: CC-BY-SA-4.0
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
-To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
 -->
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+<svg id="gear" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  role="img" aria-label="Settings" fill="none" stroke="currentColor" stroke-width="1.5">
+  <title>Settings</title>
   <circle cx="12" cy="12" r="3"/>
-  <path d="M 10 3 A 2 2 0 0 1 14 3 A 1.7 1.7 0 0 0 16.95 4.22 A 2 2 0 0 1 19.78 7.05 A 1.7 1.7 0 0 0 21 10 A 2 2 0 0 1 21 14 A 1.7 1.7 0 0 0 19.78 16.95 A 2 2 0 0 1 16.95 19.78 A 1.7 1.7 0 0 0 14 21 A 2 2 0 0 1 10 21 A 1.7 1.7 0 0 0 7.05 19.78 A 2 2 0 0 1 4.22 16.95 A 1.7 1.7 0 0 0 3 14 A 2 2 0 0 1 3 10 A 1.7 1.7 0 0 0 4.22 7.05 A 2 2 0 0 1 7.05 4.22 A 1.7 1.7 0 0 0 10 3 Z"/>
+  <path d="M10 3A2 2 0 0114 3 1.7 1.7 0 0016.95 4.22 2 2 0 0119.78 7.05 1.7 1.7 0 0021 10 2 2 0 0121 14 1.7 1.7 0 0019.78 16.95 2 2 0 0116.95 19.78 1.7 1.7 0 0014 21 2 2 0 0110 21 1.7 1.7 0 007.05 19.78 2 2 0 014.22 16.95 1.7 1.7 0 003 14 2 2 0 013 10 1.7 1.7 0 004.22 7.05 2 2 0 017.05 4.22 1.7 1.7 0 0010 3Z"/>
 </svg>

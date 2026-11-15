@@ -12,6 +12,7 @@ export default defineConfig({
     "unicorn",
     "oxc",
     "import",
+    "jsx-a11y",
     //"vitest",
   ],
   jsPlugins: [
