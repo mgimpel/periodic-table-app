@@ -5,8 +5,7 @@
 
 // The app's SVG icons. The logo and gear artwork live in src/assets files (one
 // source each), imported here: the logo as a bundled URL, the gear as raw
-// markup inlined into the DOM. The radiation trefoil is a handful of paths, so
-// it is drawn inline.
+// markup inlined into the DOM. The radiation trefoil is also a bundled URL.
 
 import { useTranslation } from "react-i18next";
 import logoUrl from "../assets/logo.svg";
@@ -60,7 +59,7 @@ export function GearIcon({ size = 24 }: AssetProps) {
 }
 
 // Standard radiation trefoil in the fixed hazard colors (black on yellow, not
-// theme-dependent).
+// theme-dependent). Rendered as an <img> so  `alt` carries it's accessible name.
 // SVG carries its own accessible name (role="img" + aria-label + <title>).
 export function RadioactiveIcon({ label, size = 18 }: { label: string; size?: number }) {
   return (
