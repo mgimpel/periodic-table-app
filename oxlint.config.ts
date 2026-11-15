@@ -5,10 +5,13 @@ export default defineConfig({
     typeAware: true,
   },
   plugins: [
+    "eslint",
     "react",
+    "react-perf",
     "typescript",
     "unicorn",
     "oxc",
+    "import",
     //"vitest",
   ],
   jsPlugins: [
