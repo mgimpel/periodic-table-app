@@ -1,0 +1,3 @@
+[submodule "submodules/anti-slop"]
+	path = submodules/anti-slop
+	url = https://github.com/dmmulroy/anti-slop.git
