@@ -28,6 +28,16 @@ LICENSE    text
 *.html     text eol=lf diff=html
 *.ts       text eol=lf
 *.tsx      text eol=lf
+*.cts      text eol=lf
+*.mts      text eol=lf
+*.ctsx     text eol=lf
+*.mtsx     text eol=lf
+*.js       text eol=lf
+*.jsx      text eol=lf
+*.cjs      text eol=lf
+*.mjs      text eol=lf
+*.cjsx     text eol=lf
+*.mjsx     text eol=lf
 
 # Rust files
 *.rs       text eol=lf diff=rust
