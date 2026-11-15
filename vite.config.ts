@@ -59,5 +59,11 @@ export default defineConfig(() => ({
     globals: true,
     // Register jest-dom matchers once for every test file.
     setupFiles: ["./src/test-setup.ts"],
+    exclude: [
+      './dist/**',
+      './node_modules/**',
+      './src-tauri/**',
+      './submodules/**',
+    ],
   },
 }));
