@@ -90,7 +90,7 @@ export function SettingsPanel({
 interface ThemeControlProps {
   // Fired when persisting the choice fails, so the caller can show a
   // non-blocking save-error notice.
-  onSaveError?: (error: unknown) => void;
+  onSaveError?: (cause: unknown) => void;
 }
 
 // Theme picker: one option per THEME_OPTIONS entry. Mantine's color-scheme
@@ -126,7 +126,7 @@ export function ThemeControl({ onSaveError }: ThemeControlProps) {
 interface LanguageControlProps {
   // Fired when persisting the choice fails, so the caller can show a
   // non-blocking save-error notice.
-  onSaveError?: (error: unknown) => void;
+  onSaveError?: (cause: unknown) => void;
 }
 
 // Language picker: "System default" first, then one option per
@@ -176,7 +176,7 @@ interface TemperatureControlProps {
   onChange: (option: TemperatureOption) => void;
   // Fired when persisting the choice fails, so the caller can show a
   // non-blocking save-error notice.
-  onSaveError?: (error: unknown) => void;
+  onSaveError?: (cause: unknown) => void;
 }
 
 // Kelvin / Celsius / Fahrenheit picker. Controlled, unlike ThemeControl and

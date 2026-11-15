@@ -44,9 +44,7 @@ export const PHASE_COLORS: Record<PhaseKey, string> = {
 export function phaseBucket(phase: string): PhaseKey {
   const key = phase.toLowerCase();
 
-  return (PHASE_KEYS as readonly string[]).includes(key)
-    ? (key as PhaseKey)
-    : "unknown";
+  return PHASE_KEYS.find((k) => k === key) ?? "unknown";
 }
 
 /**
@@ -187,9 +185,7 @@ export function radioactiveBucket(isRadioactive: boolean): RadioactiveKey {
 export function blockBucket(raw: string): BlockKey {
   const key = raw.toLowerCase();
 
-  return (BLOCK_KEYS as readonly string[]).includes(key)
-    ? (key as BlockKey)
-    : "unknown";
+  return BLOCK_KEYS.find((k) => k === key) ?? "unknown";
 }
 
 /**

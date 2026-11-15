@@ -12,7 +12,7 @@
 // mobile Drawer. `env="test"` disables Mantine transitions so open/close is
 // synchronous and deterministic.
 
-import { useRef, useState } from "react";
+import { createRef, useRef, useState } from "react";
 import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
 import { render, screen, cleanup, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -49,6 +49,7 @@ import { getElementByNumber } from "../../data/elements";
 import { LANGUAGE_OPTIONS } from "../../lib/language";
 import type { TemperatureOption } from "../../lib/temperature";
 import { readStoredTemperature } from "../../lib/persistenceManager";
+import { asHtmlElement, asInput, asInputs } from "../../test-utils";
 
 // The i18next instance is a shared singleton; reset storage and locale around
 // every test so each starts from a known English baseline and no test leaks a
@@ -114,7 +115,7 @@ describe("SettingsPanel", () => {
     // The panel now also hosts the LanguageControl, so scope the theme-option
     // assertion to the Color theme radiogroup rather than the whole tree.
     const themeGroup = screen.getByRole("radiogroup", { name: "Color theme" });
-    const radios = within(themeGroup).getAllByRole("radio") as HTMLInputElement[];
+    const radios = asInputs(within(themeGroup).getAllByRole("radio"));
     expect(radios).toHaveLength(3);
     expect(
       within(themeGroup).getByRole("radio", { name: "Light" }),
@@ -137,7 +138,7 @@ describe("SettingsPanel", () => {
       name: enUi.temperature.label,
     });
 
-    const radios = within(group).getAllByRole("radio") as HTMLInputElement[];
+    const radios = asInputs(within(group).getAllByRole("radio"));
     expect(radios.map((r) => r.value)).toEqual([
       "kelvin",
       "celsius",
@@ -182,7 +183,7 @@ describe("SettingsPanel", () => {
     );
 
     expect(overlay).not.toBeNull();
-    await user.click(overlay as Element);
+    await user.click(asHtmlElement(overlay));
 
     await waitFor(() =>
       expect(screen.queryByText("Settings")).not.toBeInTheDocument(),
@@ -223,7 +224,7 @@ const THEME_STORAGE_KEY = "mantine-color-scheme-value";
 
 // Mirrors the app's MantineProvider (defaultColorScheme="auto" + the app's
 // manager). With nothing in storage, the control should reflect "auto".
-function renderControl(onSaveError?: (error: unknown) => void) {
+function renderControl(onSaveError?: (cause: unknown) => void) {
   return render(
     <MantineProvider
       defaultColorScheme="auto"
@@ -237,7 +238,7 @@ function renderControl(onSaveError?: (error: unknown) => void) {
 // Mantine SegmentedControl renders each option as a native radio input whose
 // accessible name is the visible label; exactly one is checked at a time.
 const radio = (label: string) =>
-  screen.getByRole("radio", { name: label }) as HTMLInputElement;
+  asInput(screen.getByRole("radio", { name: label }));
 
 const appliedScheme = () =>
   document.documentElement.getAttribute("data-mantine-color-scheme");
@@ -248,7 +249,7 @@ describe("ThemeControl", () => {
   it("renders exactly three options with exactly one selected, defaulting to auto", () => {
     renderControl();
 
-    const radios = screen.getAllByRole("radio") as HTMLInputElement[];
+    const radios = asInputs(screen.getAllByRole("radio"));
     expect(radios).toHaveLength(3);
     expect(screen.getByRole("radio", { name: "Light" })).toBeInTheDocument();
     expect(screen.getByRole("radio", { name: "Dark" })).toBeInTheDocument();
@@ -379,7 +380,7 @@ const LANGUAGE_STORAGE_KEY = "app-language-option";
 
 const hydrogen = getElementByNumber(1)!;
 
-function renderLanguageControl(onSaveError?: (error: unknown) => void) {
+function renderLanguageControl(onSaveError?: (cause: unknown) => void) {
   return render(
     <I18nextProvider i18n={i18n}>
       <MantineProvider env="test">
@@ -408,12 +409,12 @@ function renderLanguageControlWithCell() {
 
 // The sole combobox on screen, located without a name so the lookup survives a
 // live locale flip of the aria-label.
-const select = () => screen.getByRole("combobox") as HTMLInputElement;
+const select = () => asInput(screen.getByRole("combobox"));
 
 // The current LanguageOption, read from the Select's language-neutral hidden
 // input rather than the translated visible value.
 const currentOption = () =>
-  (document.querySelector('input[type="hidden"]') as HTMLInputElement).value;
+  asInput(document.querySelector('input[type="hidden"]')).value;
 
 // Open the dropdown and click the option whose language-neutral `value`
 // attribute matches, so the click target is stable across locales.
@@ -424,9 +425,9 @@ const selectLanguage = async (
   await user.click(select());
   const listbox = await screen.findByRole("listbox");
 
-  const option = listbox.querySelector(
-    `[role="option"][value="${value}"]`,
-  ) as HTMLElement;
+  const option = asHtmlElement(
+    listbox.querySelector(`[role="option"][value="${value}"]`),
+  );
 
   await user.click(option);
 };
@@ -445,9 +446,7 @@ describe("LanguageControl", () => {
     await user.click(select());
     const listbox = await screen.findByRole("listbox");
 
-    const options = Array.from(
-      listbox.querySelectorAll('[role="option"]'),
-    ) as HTMLElement[];
+    const options = Array.from(listbox.querySelectorAll('[role="option"]'));
 
     // Order matters: System default first, then the registered locales.
     expect(options.map((o) => o.getAttribute("value"))).toEqual([
@@ -467,7 +466,7 @@ describe("LanguageControl", () => {
     async (locale, ui, table) => {
       const user = userEvent.setup();
       const noop = vi.fn();
-      const settingsRef = { current: null } as React.RefObject<HTMLButtonElement | null>;
+      const settingsRef = createRef<HTMLButtonElement>();
       render(
         <I18nextProvider i18n={i18n}>
           <MantineProvider env="test">
@@ -511,7 +510,7 @@ describe("LanguageControl", () => {
   it("selecting French flips a chrome string and an element name live, keeping symbol and number", async () => {
     const user = userEvent.setup();
     const noop = vi.fn();
-    const settingsRef = { current: null } as React.RefObject<HTMLButtonElement | null>;
+    const settingsRef = createRef<HTMLButtonElement>();
     // SettingsPanel already hosts a LanguageControl; drive the switch through it
     // (no extra standalone control) so there is a single language Select to open.
     render(
@@ -658,7 +657,7 @@ describe("LanguageControl", () => {
 
 const TEMPERATURE_STORAGE_KEY = "app-temperature-unit";
 
-function TemperatureHarness({ onSaveError }: { onSaveError?: (e: unknown) => void }) {
+function TemperatureHarness({ onSaveError }: { onSaveError?: (cause: unknown) => void }) {
   const [unit, setUnit] = useState<TemperatureOption>(readStoredTemperature);
 
   return (
@@ -669,12 +668,12 @@ function TemperatureHarness({ onSaveError }: { onSaveError?: (e: unknown) => voi
 }
 
 const radioByValue = (value: string) =>
-  screen.getByDisplayValue(value) as HTMLInputElement;
+  asInput(screen.getByDisplayValue(value));
 
 describe("TemperatureControl", () => {
   it("renders Kelvin / Celsius / Fahrenheit in order, defaulting to Kelvin", () => {
     render(<TemperatureHarness />);
-    const radios = screen.getAllByRole("radio") as HTMLInputElement[];
+    const radios = asInputs(screen.getAllByRole("radio"));
     expect(radios.map((r) => r.value)).toEqual(["kelvin", "celsius", "fahrenheit"]);
     expect(screen.getByRole("radio", { name: enUi.temperature.kelvin })).toBeChecked();
     expect(screen.getByRole("radio", { name: enUi.temperature.celsius })).toBeInTheDocument();

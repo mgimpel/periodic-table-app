@@ -69,8 +69,8 @@ interface RawElementAddendum {
   "spectral_colour"?: string;
   // Phase-at-temperature melt/boil points (Kelvin). Absent for the heaviest
   // elements (no measured values), so these are optional and degrade to null.
-  "phase_melt"?: number;
-  "phase_boil"?: number;
+  "phase_melt"?: number | null;
+  "phase_boil"?: number | null;
 }
 
 interface RawDatasetAddendum {
@@ -82,12 +82,18 @@ interface RawDatasetAddendum {
 // source datasets agree on element numbers. A missing wikipedia/addendum entry
 // throws at startup (fail loud); a missing field inside an entry falls back to
 // the null/""/false defaults below.
+// The JSON imports are typed structurally: the raw interfaces list only the
+// fields we merge, so no assertion is needed.
+const wikipediaDataset: RawDatasetWikipedia = raw_wikipedia;
+
 const wikipediaByElement = new Map<number, RawElementWikipedia>(
-  (raw_wikipedia as unknown as RawDatasetWikipedia).elements.map((e) => [e.number, e]),
+  wikipediaDataset.elements.map((e) => [e.number, e]),
 );
 
+const addendumDataset: RawDatasetAddendum = raw_addendum;
+
 const addendumByElement = new Map<number, RawElementAddendum>(
-  (raw_addendum as unknown as RawDatasetAddendum).elements.map((e) => [e.number, e]),
+  addendumDataset.elements.map((e) => [e.number, e]),
 );
 
 /** Parse the en-dash-placeholder electronegativity string into a number or null. */
@@ -141,9 +147,7 @@ function normalizeCategory(rawCategory: string): ElementCategory {
   if (c.includes("nonmetal")) return "reactive-nonmetal"; // diatomic + polyatomic nonmetals
   const hyphenated = c.replace(/\s+/g, "-");
 
-  if ((CATEGORY_KEYS as readonly string[]).includes(hyphenated)) return hyphenated as ElementCategory;
-
-  return "unknown";
+  return CATEGORY_KEYS.find((key) => key === hyphenated) ?? "unknown";
 }
 
 function adapt(entry: RawElement): Element {
@@ -174,9 +178,10 @@ function adapt(entry: RawElement): Element {
   };
 }
 
-export const ELEMENTS: Element[] = (raw.elements as unknown as RawElement[])
-  .filter((e) => e.number <= MAX_ATOMIC_NUMBER)
-  .map(adapt)
+const rawElements: RawElement[] = raw.elements;
+
+export const ELEMENTS: Element[] = rawElements
+  .flatMap((e) => (e.number <= MAX_ATOMIC_NUMBER ? [adapt(e)] : []))
   .sort((a, b) => a.atomicNumber - b.atomicNumber);
 
 export function getElementByNumber(n: number): Element | undefined {

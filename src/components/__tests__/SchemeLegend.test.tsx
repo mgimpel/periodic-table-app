@@ -14,6 +14,7 @@
 // inline style (backgroundColor / backgroundImage) rather than by class name.
 // Expected labels are read from the en ui.json resources, never duplicated.
 
+import { asHtmlElement } from "../../test-utils";
 import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, within, cleanup } from "@testing-library/react";
 import { MantineProvider } from "@mantine/core";
@@ -105,7 +106,7 @@ function gradientBars(container: HTMLElement): HTMLElement[] {
 //   Req 1.3 (legend reflects the scheme), 2.3/3.3/7.3 (one swatch per key in
 //   canonical order), 2.4/3.4/7.4 (localized label, not the raw key).
 const label = (group: Record<string, string>, k: string) =>
-  group[k as keyof typeof group] as string;
+  group[k] ?? "";
 
 const DISCRETE_SCHEMES: ReadonlyArray<
   [Scheme, readonly string[], Record<string, string>, Record<string, string>]
@@ -159,7 +160,7 @@ describe("SchemeLegend discrete schemes", () => {
       // Each entry shows its swatch (scheme color) and visible localized label.
       entries.forEach((entry, i) => {
         const key = keys[i];
-        const swatch = entry.querySelector("span[style]") as HTMLElement | null;
+        const swatch = asHtmlElement(entry.querySelector("span[style]"));
         expect(swatch).not.toBeNull();
         expect(normalizeColor(swatch!.style.backgroundColor)).toBe(
           normalizeColor(colors[key]),
@@ -193,7 +194,7 @@ describe("SchemeLegend phase scheme temperature readout", () => {
     );
     entries.forEach((entry, i) => {
       const key = PHASE_KEYS[i];
-      const swatch = entry.querySelector("span[style]") as HTMLElement | null;
+      const swatch = asHtmlElement(entry.querySelector("span[style]"));
       expect(swatch).not.toBeNull();
       expect(normalizeColor(swatch!.style.backgroundColor)).toBe(
         normalizeColor(PHASE_COLORS[key]),
@@ -250,7 +251,7 @@ const TEMP_GRADIENT_SCHEMES = ["melting-point", "boiling-point"] as const;
 
 const UNIT_SCHEME_CASES: ReadonlyArray<[TemperatureOption, Scheme]> =
   TEMPERATURE_OPTIONS.flatMap((unit) =>
-    TEMP_GRADIENT_SCHEMES.map((scheme) => [unit, scheme] as [TemperatureOption, Scheme]),
+    TEMP_GRADIENT_SCHEMES.map((scheme): [TemperatureOption, Scheme] => [unit, scheme]),
   );
 
 describe("SchemeLegend temperature gradient schemes", () => {

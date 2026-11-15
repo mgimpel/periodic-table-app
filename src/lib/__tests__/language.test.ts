@@ -23,14 +23,10 @@ import { SUPPORTED_LOCALES, type SupportedLocale } from "../../locales";
  */
 const storedValue = () =>
   fc.oneof(
-    fc.constantFrom<unknown>(...LANGUAGE_OPTIONS),
+    fc.constantFrom(...LANGUAGE_OPTIONS),
     fc.string(),
-    fc.constantFrom<unknown>(null, undefined),
-    fc.integer(),
-    fc.double(),
-    fc.boolean(),
-    fc.object(),
-    fc.array(fc.anything()),
+    fc.constant(null),
+    fc.constant(undefined),
   );
 
 describe("normalizeStoredLanguage: total and safe", () => {
@@ -42,7 +38,7 @@ describe("normalizeStoredLanguage: total and safe", () => {
         // Output is always one of the valid options (total + safe).
         expect(LANGUAGE_OPTIONS).toContain(result);
 
-        const isValidOption = LANGUAGE_OPTIONS.includes(raw as LanguageOption);
+        const isValidOption = LANGUAGE_OPTIONS.some((option) => option === raw);
 
         if (isValidOption) {
           expect(result).toBe(raw);
@@ -57,16 +53,14 @@ describe("normalizeStoredLanguage: total and safe", () => {
 
 describe("resolveLanguage: always a supported locale", () => {
   it("returns a SupportedLocale for any option and any navigator list", () => {
-    const anyNavigator = fc.array(
-      fc.oneof(fc.string(), fc.constantFrom<unknown>(null, undefined, 42)),
-    );
+    const anyNavigator = fc.array(fc.string());
 
     fc.assert(
       fc.property(
         fc.constantFrom<LanguageOption>(...LANGUAGE_OPTIONS),
         anyNavigator,
         (option, langs) => {
-          const result = resolveLanguage(option, langs as string[]);
+          const result = resolveLanguage(option, langs);
           expect(SUPPORTED_LOCALES).toContain(result);
         },
       ),
@@ -92,9 +86,8 @@ describe("resolveLanguage: always a supported locale", () => {
       fc.property(fc.array(fc.string()), (langs) => {
         const expected =
           langs
-            .filter((l) => typeof l === "string" && l.length > 0)
             .map((l) => l.toLowerCase().split("-")[0])
-            .find((p) => (SUPPORTED_LOCALES as string[]).includes(p)) ?? "en";
+            .find((p) => SUPPORTED_LOCALES.some((locale) => locale === p)) ?? "en";
 
         expect(resolveLanguage("system", langs)).toBe(expected);
       }),
@@ -110,9 +103,7 @@ describe("resolveLanguage: always a supported locale", () => {
     expect(resolveLanguage("system", ["DE"])).toBe("de");
     expect(resolveLanguage("system", ["fr-CA", "en"])).toBe("fr");
     expect(resolveLanguage("system", ["FR"])).toBe("fr");
-    // Non-string / empty junk entries are filtered safely.
-    expect(
-      resolveLanguage("system", ["", null as unknown as string, "fr"]),
-    ).toBe("fr");
+    // Empty junk entries are skipped safely.
+    expect(resolveLanguage("system", ["", "fr"])).toBe("fr");
   });
 });

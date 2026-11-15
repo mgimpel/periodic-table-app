@@ -10,7 +10,7 @@
 
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react";
-import { createRef, type RefObject } from "react";
+import { createRef } from "react";
 import { useFitScale } from "../useFitScale";
 
 // --- Mock ResizeObserver ---------------------------------------------------
@@ -33,7 +33,7 @@ class MockResizeObserver {
  * so empty entries and a stub observer are sufficient.
  */
 function triggerResize() {
-  observerCallback?.([], {} as ResizeObserver);
+  if (observerCallback) observerCallback([], new MockResizeObserver(observerCallback));
 }
 
 // --- DOM measurement stubs -------------------------------------------------
@@ -74,8 +74,8 @@ describe("useFitScale", () => {
   });
 
   function renderFit(viewportBox: SizeBox, gridBox: SizeBox) {
-    const viewportRef = createRef<HTMLElement>() as RefObject<HTMLElement>;
-    const gridRef = createRef<HTMLElement>() as RefObject<HTMLElement>;
+    const viewportRef = createRef<HTMLElement>();
+    const gridRef = createRef<HTMLElement>();
     // Refs must be populated before the hook's effect runs so it can measure.
     viewportRef.current = makeViewport(viewportBox);
     gridRef.current = makeGrid(gridBox);

@@ -27,7 +27,7 @@ const TEMPERATURE_STORAGE_KEY = "app-temperature-unit";
  */
 export function readPref<T>(
   key: string,
-  normalize: (raw: unknown) => T,
+  normalize: (raw: string | null | undefined) => T,
 ): T {
   try {
     return normalize(window.localStorage.getItem(key));
@@ -44,12 +44,12 @@ export function readPref<T>(
 export function persistPref(
   key: string,
   value: string,
-  onSaveError?: (error: unknown) => void,
+  onSaveError?: (cause: unknown) => void,
 ): void {
   try {
     window.localStorage.setItem(key, value);
-  } catch (error) {
-    onSaveError?.(error);
+  } catch (cause) {
+    onSaveError?.(cause);
   }
 }
 
@@ -77,7 +77,7 @@ export function readStoredTheme(): ThemeOption {
  */
 export function persistTheme(
   option: ThemeOption,
-  onSaveError?: (error: unknown) => void,
+  onSaveError?: (cause: unknown) => void,
 ): void {
   persistPref(THEME_STORAGE_KEY, option, onSaveError);
 }
@@ -101,7 +101,7 @@ export function readStoredLanguage(): LanguageOption {
  */
 export function persistLanguage(
   option: LanguageOption,
-  onSaveError?: (error: unknown) => void,
+  onSaveError?: (cause: unknown) => void,
 ): void {
   persistPref(LANGUAGE_STORAGE_KEY, option, onSaveError);
 }
@@ -122,7 +122,7 @@ export function readStoredTemperature(): TemperatureOption {
  */
 export function persistTemperature(
   option: TemperatureOption,
-  onSaveError?: (error: unknown) => void,
+  onSaveError?: (cause: unknown) => void,
 ): void {
   persistPref(TEMPERATURE_STORAGE_KEY, option, onSaveError);
 }

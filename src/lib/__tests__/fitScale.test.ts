@@ -177,13 +177,15 @@ describe("computeFitScale example cases", () => {
   });
 
   it("guards zero/missing dimensions, keeping scale finite in (0, 1]", () => {
+    // SAFETY: `{}` deliberately models a Size with its dimensions missing, to
+    // exercise the guard; the function must tolerate that bad input.
     const cases: Array<[Size, Size]> = [
       [{ width: 0, height: 600 }, { width: 800, height: 600 }],
       [{ width: 800, height: 600 }, { width: 0, height: 0 }],
       [{ width: -10, height: 600 }, { width: 800, height: 600 }],
       [{ width: NaN, height: 600 }, { width: 800, height: 600 }],
-      // Missing dimensions entirely (cast through unknown to model bad input).
-      [{} as unknown as Size, {} as unknown as Size],
+      // Missing dimensions entirely.
+      [{} as Size, {} as Size],
     ];
 
     for (const [natural, viewport] of cases) {

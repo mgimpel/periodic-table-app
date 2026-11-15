@@ -12,9 +12,10 @@
 import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { useOrientationLock } from "../useOrientationLock";
-import { isMobilePlatform } from "../../lib/platform";
+import { setNativePlatform } from "../../test-utils";
 
-vi.mock("../../lib/platform", () => ({ isMobilePlatform: vi.fn(() => true) }));
+// The platform is chosen by faking the native OS binding the real
+// isMobilePlatform() reads (see setNativePlatform); no module is mocked.
 
 // Swap screen.orientation for the duration of a test, then restore it. The
 // property is replaced (not just .lock) so the "missing API entirely" case can
@@ -22,7 +23,11 @@ vi.mock("../../lib/platform", () => ({ isMobilePlatform: vi.fn(() => true) }));
 // so we don't leak a fake across tests.
 const originalDescriptor = Object.getOwnPropertyDescriptor(screen, "orientation");
 
-function setOrientation(value: unknown): void {
+interface FakeOrientation {
+  lock?: () => Promise<void>;
+}
+
+function setOrientation(value: FakeOrientation | undefined): void {
   Object.defineProperty(screen, "orientation", {
     value,
     configurable: true,
@@ -31,7 +36,7 @@ function setOrientation(value: unknown): void {
 }
 
 beforeEach(() => {
-  vi.mocked(isMobilePlatform).mockReturnValue(true);
+  setNativePlatform("android");
 });
 
 afterEach(() => {
@@ -39,9 +44,10 @@ afterEach(() => {
     Object.defineProperty(screen, "orientation", originalDescriptor);
   } else {
     // jsdom may not define it natively; drop the fake so nothing leaks.
-    delete (screen as unknown as { orientation?: unknown }).orientation;
+    Reflect.deleteProperty(screen, "orientation");
   }
 
+  setNativePlatform(undefined);
   vi.clearAllMocks();
 });
 
@@ -85,7 +91,7 @@ describe("useOrientationLock", () => {
   });
 
   it("does not attempt a lock or show the notice on desktop", async () => {
-    vi.mocked(isMobilePlatform).mockReturnValue(false);
+    setNativePlatform("windows");
     const lock = vi.fn().mockResolvedValue(undefined);
     setOrientation({ lock });
 

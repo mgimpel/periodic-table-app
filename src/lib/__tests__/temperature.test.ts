@@ -14,7 +14,6 @@ import {
   DEFAULT_TEMPERATURE,
   TEMPERATURE_OPTIONS,
   TEMPERATURE_SYMBOLS,
-  type TemperatureOption,
 } from "../temperature";
 
 const kelvin = () => fc.double({ min: 0, max: 10000, noNaN: true });
@@ -24,12 +23,17 @@ describe("normalizeStoredTemperature", () => {
   it("is total: always a valid option, passing through iff the input is one", () => {
     fc.assert(
       fc.property(
-        fc.oneof(fc.constantFrom<unknown>(...TEMPERATURE_OPTIONS), fc.anything()),
+        fc.oneof(
+          fc.constantFrom(...TEMPERATURE_OPTIONS),
+          fc.string(),
+          fc.constant(null),
+          fc.constant(undefined),
+        ),
         (raw) => {
           const result = normalizeStoredTemperature(raw);
           expect(TEMPERATURE_OPTIONS).toContain(result);
           expect(result).toBe(
-            TEMPERATURE_OPTIONS.includes(raw as TemperatureOption)
+            TEMPERATURE_OPTIONS.some((option) => option === raw)
               ? raw
               : DEFAULT_TEMPERATURE,
           );

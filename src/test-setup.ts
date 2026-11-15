@@ -17,21 +17,20 @@
 //    reports zero-size layout anyway, so there is nothing to observe.
 import "@testing-library/jest-dom/vitest";
 
-if (typeof window !== "undefined" && typeof window.matchMedia !== "function") {
-  window.matchMedia = (query: string): MediaQueryList =>
-    ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: () => {},
-      removeListener: () => {},
-      addEventListener: () => {},
-      removeEventListener: () => {},
-      dispatchEvent: () => false,
-    }) as MediaQueryList;
+if (typeof window !== "undefined" && typeof window.matchMedia === "undefined") {
+  window.matchMedia = (query: string): MediaQueryList => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  });
 }
 
-if (typeof globalThis.ResizeObserver !== "function") {
+if (typeof globalThis.ResizeObserver === "undefined") {
   globalThis.ResizeObserver = class {
     observe() {}
     unobserve() {}
@@ -46,7 +45,7 @@ if (typeof globalThis.ResizeObserver !== "function") {
 //    enough since jsdom has no scroll viewport.
 if (
   typeof Element !== "undefined" &&
-  typeof Element.prototype.scrollIntoView !== "function"
+  typeof Element.prototype.scrollIntoView === "undefined"
 ) {
   Element.prototype.scrollIntoView = () => {};
 }

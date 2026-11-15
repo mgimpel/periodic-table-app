@@ -27,10 +27,10 @@ export const TEMPERATURE_SYMBOLS: Record<TemperatureOption, string> = {
  * Total, safe normalizer for a persisted unit value: returns `raw` when it is
  * one of the three valid options, otherwise `DEFAULT_TEMPERATURE`.
  */
-export function normalizeStoredTemperature(raw: unknown): TemperatureOption {
-  return (TEMPERATURE_OPTIONS as readonly unknown[]).includes(raw)
-    ? (raw as TemperatureOption)
-    : DEFAULT_TEMPERATURE;
+export function normalizeStoredTemperature(
+  raw: string | null | undefined,
+): TemperatureOption {
+  return TEMPERATURE_OPTIONS.find((option) => option === raw) ?? DEFAULT_TEMPERATURE;
 }
 
 /** Convert a Kelvin value to `unit` (unrounded). */

@@ -70,10 +70,7 @@ export function isMobilePlatform(): boolean {
 
 /** Current user-agent, or "" in a non-browser env. Shared by the wrappers. */
 function currentUserAgent(): string {
-  return typeof navigator !== "undefined" &&
-    typeof navigator.userAgent === "string"
-    ? navigator.userAgent
-    : "";
+  return typeof navigator === "undefined" ? "" : navigator.userAgent;
 }
 
 /**

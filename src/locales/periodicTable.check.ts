@@ -42,7 +42,7 @@ for (const e of ELEMENTS) {
     `periodic-table.en.json name.${e.atomicNumber} should equal "${e.name}", got "${src.name}"`,
   );
   assert(
-    typeof src.summary === "string" && src.summary.length > 0,
+    src.summary.length > 0,
     `periodic-table.en.json summary.${e.atomicNumber} should be a present non-empty string`,
   );
 }
@@ -68,16 +68,21 @@ for (const k of Object.keys(enNs.appearance)) {
 }
 
 // (3) Every registered locale is in parity with en.
-const flatKeys = (obj: object, prefix = ""): Map<string, unknown> =>
+const tokens = (s: string) => (s.match(/\{\{\w+\}\}/g) ?? []).sort().join(",");
+
+interface UiTree {
+  readonly [key: string]: string | UiTree;
+}
+
+// Flatten a nested ui tree to dotted-key -> string leaves.
+const flatKeys = (tree: UiTree, prefix = ""): Map<string, string> =>
   new Map(
-    Object.entries(obj).flatMap(([k, v]) =>
-      v !== null && typeof v === "object"
+    Object.entries(tree).flatMap(([k, v]) =>
+      v instanceof Object
         ? [...flatKeys(v, `${prefix}${k}.`)]
         : [[`${prefix}${k}`, v] as const],
     ),
   );
-
-const tokens = (s: string) => (s.match(/\{\{\w+\}\}/g) ?? []).sort().join(",");
 
 const enUi = flatKeys(resources.en.ui);
 
@@ -91,11 +96,11 @@ for (const [locale, res] of Object.entries(resources)) {
 
   for (const [k, v] of ui) {
     assert(
-      typeof v === "string" && v.length > 0,
+      v.length > 0,
       `ui.${locale}.json ${k} should be a non-empty string`,
     );
     // (b) interpolation tokens preserved.
-    const enValue = enUi.get(k) as string;
+    const enValue = enUi.get(k) ?? "";
     assert(
       tokens(v) === tokens(enValue),
       `ui.${locale}.json ${k} tokens "${tokens(v)}" differ from en "${tokens(enValue)}"`,
@@ -111,9 +116,9 @@ for (const [locale, res] of Object.entries(resources)) {
   );
 
   for (const k of expectedKeys) {
-    const n = ns.name[k as keyof typeof ns.name];
+    const n = ns.name[k];
     assert(
-      typeof n === "string" && n.length > 0,
+      n !== undefined && n.length > 0,
       `periodic-table.${locale}.json name.${k} should be a non-empty string`,
     );
   }

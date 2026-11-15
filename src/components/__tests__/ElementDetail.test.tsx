@@ -31,7 +31,7 @@ import { MantineProvider } from "@mantine/core";
 // resources instead of raw keys.
 import i18n from "../../i18n";
 import { ElementDetail } from "../ElementDetail";
-import type { Element, ElementCategory } from "../../data/element";
+import type { Element } from "../../data/element";
 import enTable from "../../locales/periodic-table.en.json";
 import enUi from "../../locales/ui.en.json";
 import frUi from "../../locales/ui.fr.json";
@@ -58,7 +58,7 @@ function makeElement(overrides: Partial<Element> = {}): Element {
     symbol: "Fe",
     name: "Iron",
     atomicMass: 55.845,
-    category: "transition-metal" as ElementCategory,
+    category: "transition-metal",
     group: 8,
     period: 4,
     xpos: 8,
@@ -88,7 +88,7 @@ function makeElement(overrides: Partial<Element> = {}): Element {
 
 // Force the wide-viewport branch (Modal) by making the min-width query match.
 function useWideViewport() {
-  window.matchMedia = ((query: string) => ({
+  window.matchMedia = (query: string): MediaQueryList => ({
     matches: true,
     media: query,
     onchange: null,
@@ -97,7 +97,7 @@ function useWideViewport() {
     addListener: () => {},
     removeListener: () => {},
     dispatchEvent: () => false,
-  })) as unknown as typeof window.matchMedia;
+  });
 }
 
 // Controlled harness: owns the selected element so onClose actually closes the

@@ -21,6 +21,7 @@ if (os !== "unknown") {
   document.documentElement.dataset.os = os;
 }
 
+// SAFETY: index.html always ships the #root container this entry mounts into.
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <App />

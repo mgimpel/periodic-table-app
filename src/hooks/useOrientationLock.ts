@@ -19,10 +19,7 @@ type LockableOrientation = ScreenOrientation & {
   lock?: (orientation: "landscape") => Promise<void>;
 };
 
-export function useOrientationLock(): {
-  showNotice: boolean;
-  dismissNotice: () => void;
-} {
+export function useOrientationLock() {
   // Read once per mount: the platform can't change mid-session.
   const [mobile] = useState(() => isMobilePlatform());
   // True only once a lock attempt has failed (denied or unsupported); the
@@ -34,6 +31,9 @@ export function useOrientationLock(): {
     if (!mobile) return;
 
     let cancelled = false;
+    // SAFETY: `lock` exists at runtime on Android WebViews but is missing from the
+    // DOM lib types, and `orientation` itself can be undefined on old WebViews;
+    // both are handled below before use.
     const orientation = screen.orientation as LockableOrientation | undefined;
 
     const run = async () => {

@@ -16,6 +16,7 @@
 // Slider-root wrapper, so the accessible name is asserted on the root and the
 // thumb (value, bounds, arrow stepping) is located by its unnamed slider role.
 
+import { asHtmlElement } from "../../test-utils";
 import { useState } from "react";
 import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, cleanup, within } from "@testing-library/react";
@@ -61,7 +62,7 @@ function Harness({
 const getThumb = () => screen.getByRole("slider");
 
 const getRoot = () =>
-  getThumb().closest(".mantine-Slider-root") as HTMLElement;
+  asHtmlElement(getThumb().closest(".mantine-Slider-root"));
 
 describe("TemperatureSlider", () => {
   // Req 8.1: the accessible name comes from the i18next key, not a literal.
@@ -156,8 +157,8 @@ describe("TemperatureSlider", () => {
   it("wires the temperature gradient onto the track and clears the bar fill", () => {
     render(<Harness initialK={298} />);
     const root = getRoot();
-    const track = root.querySelector(".mantine-Slider-track") as HTMLElement;
-    const bar = root.querySelector(".mantine-Slider-bar") as HTMLElement;
+    const track = asHtmlElement(root.querySelector(".mantine-Slider-track"));
+    const bar = asHtmlElement(root.querySelector(".mantine-Slider-bar"));
     expect(track).not.toBeNull();
     expect(bar).not.toBeNull();
     expect(track.style.getPropertyValue("--track-gradient")).toBe(

@@ -12,6 +12,7 @@
 // (4.2, 4.3), selecting another cell swaps the detail (4.4), and dismissing
 // closes it while the scaled grid stays mounted with its fit-scale (4.5).
 
+import { asHtmlElement } from "../../test-utils";
 import { describe, it, expect, afterEach } from "vitest";
 import {
   render,
@@ -286,7 +287,7 @@ describe("PeriodicTable temperature slider gating", () => {
 
     // Operable: the accessible name comes from the i18n key (on the root), and
     // the thumb is focusable.
-    const root = thumb.closest(".mantine-Slider-root") as HTMLElement;
+    const root = asHtmlElement(thumb.closest(".mantine-Slider-root"));
     expect(root).toHaveAttribute("aria-label", SLIDER_NAME);
     thumb.focus();
     expect(document.activeElement).toBe(thumb);

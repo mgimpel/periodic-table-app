@@ -11,7 +11,6 @@ import {
   normalizeStoredTheme,
   DEFAULT_THEME,
   THEME_OPTIONS,
-  type ThemeOption,
 } from "../theme";
 
 /**
@@ -21,14 +20,10 @@ import {
  */
 const storedValue = () =>
   fc.oneof(
-    fc.constantFrom<unknown>(...THEME_OPTIONS),
+    fc.constantFrom(...THEME_OPTIONS),
     fc.string(),
-    fc.constantFrom<unknown>(null, undefined),
-    fc.integer(),
-    fc.double(),
-    fc.boolean(),
-    fc.object(),
-    fc.array(fc.anything()),
+    fc.constant(null),
+    fc.constant(undefined),
   );
 
 describe("normalizeStoredTheme property 1: stored-theme normalization is total and safe", () => {
@@ -42,7 +37,7 @@ describe("normalizeStoredTheme property 1: stored-theme normalization is total a
         // Output is always one of the three valid options (total + safe).
         expect(THEME_OPTIONS).toContain(result);
 
-        const isValidOption = THEME_OPTIONS.includes(raw as ThemeOption);
+        const isValidOption = THEME_OPTIONS.some((option) => option === raw);
 
         if (isValidOption) {
           // Equals the input iff the input is itself a valid option.

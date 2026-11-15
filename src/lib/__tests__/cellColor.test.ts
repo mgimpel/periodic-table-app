@@ -405,8 +405,8 @@ describe("phaseAtTemperature — consistent-data classification by region", () =
   it("classifies solid/liquid/gas by the temperature region", () => {
     fc.assert(
       fc.property(finiteTempK, consistentElement(), (tempK, el) => {
-        const melt = el.phaseMelt as number;
-        const boil = el.phaseBoil as number;
+        const melt = el.phaseMelt ?? Number.NaN;
+        const boil = el.phaseBoil ?? Number.NaN;
         const bucket = phaseAtTemperature(tempK, el);
 
         if (tempK >= boil) {
@@ -426,7 +426,10 @@ describe("phaseAtTemperature — consistent-data classification by region", () =
 // temperature for consistent data — T1 <= T2 ⇒ phase never moves backward
 // under solid < liquid < gas.
 describe("phaseAtTemperature — monotonic in temperature", () => {
-  const RANK: Record<string, number> = { solid: 0, liquid: 1, gas: 2 };
+  const RANK = { unknown: -1, solid: 0, liquid: 1, gas: 2 } satisfies Record<
+    ReturnType<typeof phaseAtTemperature>,
+    number
+  >;
 
   it("never moves backward through solid < liquid < gas as temperature rises", () => {
     fc.assert(
@@ -464,18 +467,18 @@ describe("phaseAtTemperature — partial and sublimation data", () => {
           // Only assert the no-liquid branch here (melt >= boil); the
           // consistent branch is Property 2's job. With no liquid region,
           // T>=boil is gas and everything below is solid — never liquid.
-          if ((el.phaseMelt as number) >= (el.phaseBoil as number)) {
-            const boil = el.phaseBoil as number;
+          if (((el.phaseMelt ?? Number.NaN)) >= ((el.phaseBoil ?? Number.NaN))) {
+            const boil = el.phaseBoil ?? Number.NaN;
             expect(bucket).toBe(tempK >= boil ? "gas" : "solid");
           }
         } else if (!meltKnown && !boilKnown) {
           expect(bucket).toBe("unknown");
         } else if (!meltKnown && boilKnown) {
-          const boil = el.phaseBoil as number;
+          const boil = el.phaseBoil ?? Number.NaN;
           expect(bucket).toBe(tempK >= boil ? "gas" : "unknown");
         } else {
           // meltKnown && !boilKnown: T<=melt solid, else unknown.
-          const melt = el.phaseMelt as number;
+          const melt = el.phaseMelt ?? Number.NaN;
           expect(bucket).toBe(tempK <= melt ? "solid" : "unknown");
         }
       }),

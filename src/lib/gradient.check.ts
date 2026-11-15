@@ -62,7 +62,9 @@ assert.equal(electronegativityColor(ELECTRONEGATIVITY_MAX + 10), "rgb(118, 42, 1
 // electronegativityColor no longer has a collapse guard. Exercise the
 // zero-width stop-set clamp directly against interpolateStops: a single-stop
 // (min === max) set clamps every input to that one endpoint color.
-const degenerate = [{ x: 3, rgb: [118, 42, 131] as [number, number, number] }];
+const degenerate: Parameters<typeof interpolateStops>[0] = [
+  { x: 3, rgb: [118, 42, 131] },
+];
 
 assert.equal(interpolateStops(degenerate, 3), "rgb(118, 42, 131)");
 

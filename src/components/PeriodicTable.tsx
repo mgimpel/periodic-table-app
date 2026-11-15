@@ -57,6 +57,13 @@ export function PeriodicTable({
   const { scale, symbolOnly } = useFitScale(viewportRef, gridRef);
   const { showNotice, dismissNotice } = useOrientationLock();
 
+  // SAFETY: React.CSSProperties has no index for CSS custom properties, but
+  // `--*` keys are valid inline-style keys and React forwards them verbatim.
+  const gridStyle = {
+    "--fit-scale": scale,
+    "--cell-size": `${NATURAL_CELL_PX}px`,
+  } as React.CSSProperties;
+
   // Fill the parent table region (AppLayout's flex:1 child) as a full-height
   // flex column so .viewport's flex:1 expands to the space below the header.
   // That makes useFitScale's measured clientHeight already exclude the header
@@ -80,12 +87,7 @@ export function PeriodicTable({
         <Box
           className={`${classes.grid}${symbolOnly ? ` ${classes.gridSymbolOnly}` : ""}`}
           ref={gridRef}
-          style={
-            {
-              "--fit-scale": scale,
-              "--cell-size": `${NATURAL_CELL_PX}px`,
-            } as React.CSSProperties
-          }
+          style={gridStyle}
         >
           <SchemeLegend
             scheme={coloringScheme}

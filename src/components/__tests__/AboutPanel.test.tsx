@@ -9,26 +9,39 @@
 // version is sourced from package.json so it can't rot.
 
 import { createRef } from "react";
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
+import type { InvokeArgs } from "@tauri-apps/api/core";
+import { clearMocks, mockIPC } from "@tauri-apps/api/mocks";
 // Initialise the shared i18next instance so useTranslation resolves English.
 import "../../i18n";
 import { AboutPanel } from "../AboutPanel";
 import enUi from "../../locales/ui.en.json";
 import pkg from "../../../package.json";
 
-// Stub the Tauri opener bindings: in jsdom there's no backend, and we want to
-// assert the anchor click hands the URL to the opener plugin (openUrl) rather
-// than letting the webview navigate.
-const openUrlMock = vi.hoisted(() => vi.fn(() => Promise.resolve()));
+// In jsdom there's no Tauri backend, so route the plugin's IPC through Tauri's
+// own test seam (mockIPC) and record the calls. That lets us assert the anchor
+// click hands the URL to the opener plugin rather than letting the webview
+// navigate, without replacing any module.
+interface IpcCall {
+  cmd: string;
+  payload: InvokeArgs | undefined;
+}
 
-vi.mock("@tauri-apps/plugin-opener", () => ({ openUrl: openUrlMock }));
+let ipcCalls: IpcCall[] = [];
+
+beforeEach(() => {
+  ipcCalls = [];
+  mockIPC((cmd, payload) => {
+    ipcCalls.push({ cmd, payload });
+  });
+});
 
 afterEach(() => {
   cleanup();
-  openUrlMock.mockClear();
+  clearMocks();
 });
 
 function renderAbout(props: Partial<Parameters<typeof AboutPanel>[0]> = {}) {
@@ -76,10 +89,14 @@ describe("AboutPanel", () => {
     renderAbout();
     const licenseLink = screen.getByRole("link", { name: enUi.about.license });
     await user.click(licenseLink);
-    expect(openUrlMock).toHaveBeenCalledTimes(1);
+    expect(ipcCalls).toHaveLength(1);
     // Opens the same URL the anchor points at, rather than letting the webview
     // navigate to it.
-    expect(openUrlMock).toHaveBeenCalledWith(licenseLink.getAttribute("href"));
+    expect(ipcCalls[0]?.cmd).toBe("plugin:opener|open_url");
+
+    expect(ipcCalls[0]?.payload).toMatchObject({
+      url: licenseLink.getAttribute("href"),
+    });
   });
 
   it("does not render content when closed", () => {

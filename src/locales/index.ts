@@ -79,6 +79,8 @@ export const resources = {
 
 export type SupportedLocale = keyof typeof resources; // "en" | "fr" | "es" | "de" | "it" | "pt"
 
+// SAFETY: Object.keys(resources) yields exactly the literal keys of `resources`,
+// which is what SupportedLocale is derived from.
 export const SUPPORTED_LOCALES = Object.keys(resources) as SupportedLocale[];
 export const FALLBACK_LOCALE: SupportedLocale = "en";
 export const NAMESPACES = ["ui", "periodicTable"] as const;

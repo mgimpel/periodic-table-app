@@ -9,7 +9,7 @@
 
 import assert from "node:assert/strict";
 import { ELEMENTS, getElementByNumber } from "./elements";
-import { CATEGORY_COLORS, type ElementCategory } from "./element";
+import { CATEGORY_KEYS } from "./element";
 
 // (a) exactly 118 elements
 assert(
@@ -25,9 +25,7 @@ ELEMENTS.forEach((e, i) => {
   );
 });
 
-const validCategories = new Set(
-  Object.keys(CATEGORY_COLORS) as ElementCategory[],
-);
+const validCategories = new Set<string>(CATEGORY_KEYS);
 
 for (const e of ELEMENTS) {
   // (b) + (e) category is a valid key present in CATEGORY_COLORS
@@ -46,34 +44,30 @@ for (const e of ELEMENTS) {
   );
   // Extended dataset fields: present with the right type on every element.
   assert(
-    e.electronegativity === null || typeof e.electronegativity === "number",
+    e.electronegativity === null || Number.isFinite(e.electronegativity),
     `electronegativity should be number|null for ${e.symbol}, got ${e.electronegativity}`,
   );
   assert(
-    typeof e.origin === "string",
+    e.origin !== undefined,
     `origin should be a string for ${e.symbol}, got ${e.origin}`,
-  );
-  assert(
-    e.spectralColour === null || typeof e.spectralColour === "string",
-    `spectralColour should be string|null for ${e.symbol}, got ${e.spectralColour}`,
   );
   assert(
     e.spectralColour !== null,
     `spectralColour addendum entry missing for ${e.symbol}`,
   );
   assert(
-    typeof e.isRadioactive === "boolean",
+    e.isRadioactive === true || e.isRadioactive === false,
     `isRadioactive should be boolean for ${e.symbol}, got ${e.isRadioactive}`,
   );
   // phaseMelt/phaseBoil drive phase-at-temperature coloring. They degrade to
   // null for the heaviest elements (no measured values in the addendum), so
   // number|null is the invariant, not "always present".
   assert(
-    e.phaseMelt === null || typeof e.phaseMelt === "number",
+    e.phaseMelt === null || Number.isFinite(e.phaseMelt),
     `phaseMelt should be number|null for ${e.symbol}, got ${e.phaseMelt}`,
   );
   assert(
-    e.phaseBoil === null || typeof e.phaseBoil === "number",
+    e.phaseBoil === null || Number.isFinite(e.phaseBoil),
     `phaseBoil should be number|null for ${e.symbol}, got ${e.phaseBoil}`,
   );
 }

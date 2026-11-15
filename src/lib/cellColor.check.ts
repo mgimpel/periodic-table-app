@@ -78,14 +78,14 @@ assert.equal(cellColor("melting-point", withNullMelt), MISSING_VALUE_COLOR);
 
 assert.equal(
   cellColor("melting-point", withMelt),
-  temperatureColor(withMelt.melt as number),
+  temperatureColor(withMelt.melt ?? Number.NaN),
 );
 
 assert.equal(cellColor("boiling-point", withNullBoil), MISSING_VALUE_COLOR);
 
 assert.equal(
   cellColor("boiling-point", withBoil),
-  temperatureColor(withBoil.boil as number),
+  temperatureColor(withBoil.boil ?? Number.NaN),
 );
 
 // originBucket: known dataset values map to their bucket.
@@ -122,7 +122,7 @@ assert.equal(cellColor("electronegativity", withNullEn), MISSING_VALUE_COLOR);
 
 assert.equal(
   cellColor("electronegativity", withEn),
-  electronegativityColor(withEn.electronegativity as number),
+  electronegativityColor(withEn.electronegativity ?? Number.NaN),
 );
 
 // Resolver, origin scheme: every element resolves to its bucket's origin color.
@@ -190,8 +190,15 @@ for (const element of ELEMENTS) {
 // phaseAtTemperature: only phaseMelt/phaseBoil matter, so build a minimal
 // element with the two Kelvin values under test (other fields are irrelevant to
 // the classifier).
-const el = (phaseMelt: number | null, phaseBoil: number | null): Element =>
-  ({ phaseMelt, phaseBoil } as Element);
+const baseElement = ELEMENTS.at(0);
+
+assert.ok(baseElement, "dataset must not be empty");
+
+const el = (phaseMelt: number | null, phaseBoil: number | null): Element => ({
+  ...baseElement,
+  phaseMelt,
+  phaseBoil,
+});
 
 // Consistent (water-like) element across the three temperature regions.
 const water = el(273.15, 373.15);

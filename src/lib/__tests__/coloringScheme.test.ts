@@ -11,7 +11,6 @@ import {
   normalizeStoredColoringScheme,
   DEFAULT_COLORING_SCHEME,
   COLORING_SCHEME_OPTIONS,
-  type ColoringSchemeOption,
 } from "../coloringScheme";
 
 describe("normalizeStoredColoringScheme", () => {
@@ -20,14 +19,16 @@ describe("normalizeStoredColoringScheme", () => {
     fc.assert(
       fc.property(
         fc.oneof(
-          fc.constantFrom<unknown>(...COLORING_SCHEME_OPTIONS),
-          fc.anything(),
+          fc.constantFrom(...COLORING_SCHEME_OPTIONS),
+          fc.string(),
+          fc.constant(null),
+          fc.constant(undefined),
         ),
         (raw) => {
           const result = normalizeStoredColoringScheme(raw);
           expect(COLORING_SCHEME_OPTIONS).toContain(result);
           expect(result).toBe(
-            COLORING_SCHEME_OPTIONS.includes(raw as ColoringSchemeOption)
+            COLORING_SCHEME_OPTIONS.some((option) => option === raw)
               ? raw
               : DEFAULT_COLORING_SCHEME,
           );

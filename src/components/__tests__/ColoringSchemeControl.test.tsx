@@ -7,6 +7,7 @@
 // in the header. Expected labels are read from the en ui.json so the
 // assertions track the localized strings, not hardcoded copy.
 
+import { asInput } from "../../test-utils";
 import { useState } from "react";
 import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, cleanup, within } from "@testing-library/react";
@@ -37,9 +38,9 @@ function Harness({ initial }: { initial?: ColoringSchemeOption }) {
 
 // The Select's input carries the aria-label and is the combobox trigger.
 const select = () =>
-  screen.getByRole("combobox", {
-    name: enUi.coloringScheme.label,
-  }) as HTMLInputElement;
+  asInput(
+    screen.getByRole("combobox", { name: enUi.coloringScheme.label }),
+  );
 
 describe("ColoringSchemeControl", () => {
   it("exposes an accessible name from the locale and shows the current value", () => {

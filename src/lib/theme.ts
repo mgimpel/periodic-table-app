@@ -18,11 +18,9 @@ export const DEFAULT_THEME: ThemeOption = "auto";
 
 /**
  * Total, safe normalizer for a persisted theme value: returns `raw` when it is
- * one of the three valid options, otherwise `DEFAULT_THEME`. Accepts `unknown`
- * so callers can pass whatever came out of storage without pre-checking.
+ * one of the three valid options, otherwise `DEFAULT_THEME`. Takes the raw
+ * storage string (or null/undefined when absent) straight from localStorage.
  */
-export function normalizeStoredTheme(raw: unknown): ThemeOption {
-  return (THEME_OPTIONS as readonly unknown[]).includes(raw)
-    ? (raw as ThemeOption)
-    : DEFAULT_THEME;
+export function normalizeStoredTheme(raw: string | null | undefined): ThemeOption {
+  return THEME_OPTIONS.find((option) => option === raw) ?? DEFAULT_THEME;
 }

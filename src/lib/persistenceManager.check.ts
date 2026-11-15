@@ -12,13 +12,10 @@ import assert from "node:assert/strict";
 import { persistPref, readPref } from "./persistenceManager";
 
 // A total normalizer: echoes a string value, otherwise the default sentinel.
-const normalize = (raw: unknown): string =>
-  typeof raw === "string" ? raw : "DEFAULT";
+const normalize = (raw: string | null | undefined): string => raw ?? "DEFAULT";
 
 function installStore(store: Pick<Storage, "getItem" | "setItem">): void {
-  (globalThis as unknown as { window: { localStorage: unknown } }).window = {
-    localStorage: store,
-  };
+  Object.assign(globalThis, { window: { localStorage: store } });
 }
 
 // Working store: read-back returns the normalized stored value.
@@ -57,13 +54,13 @@ installStore({
   },
 });
 
-let captured: unknown = null;
+const captured: unknown[] = [];
 
 assert.doesNotThrow(
-  () => persistPref("k", "v", (e) => (captured = e)),
+  () => persistPref("k", "v", (cause) => captured.push(cause)),
   "throwing write must not throw",
 );
 
-assert.equal(captured, failure, "onSaveError receives the thrown error");
+assert.equal(captured[0], failure, "onSaveError receives the thrown error");
 
 console.log("ok: storage helper self-check passed");

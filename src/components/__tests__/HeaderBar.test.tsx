@@ -7,6 +7,7 @@
 // h1, and the Settings_Button's accessible name, activation (pointer +
 // keyboard), and touch-target sizing.
 
+import { asInput } from "../../test-utils";
 import { createRef } from "react";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, cleanup, within } from "@testing-library/react";
@@ -157,9 +158,9 @@ describe("HeaderBar", () => {
   it("renders the coloring-scheme dropdown with its accessible name and current value", () => {
     renderHeader({ coloringScheme: "phase" });
 
-    const select = screen.getByRole("combobox", {
-      name: enUi.coloringScheme.label,
-    }) as HTMLInputElement;
+    const select = asInput(
+      screen.getByRole("combobox", { name: enUi.coloringScheme.label }),
+    );
 
     expect(select).toBeInTheDocument();
     expect(select.value).toBe(enUi.coloringScheme.phase);

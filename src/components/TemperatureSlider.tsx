@@ -30,6 +30,10 @@ interface TemperatureSliderProps {
 // linearGradientCss (first stop x === 0).
 const TRACK_GRADIENT = linearGradientCss(TEMPERATURE_GRADIENT_STOPS);
 
+// SAFETY: React.CSSProperties has no index for CSS custom properties, but
+// `--*` keys are valid inline-style keys and React forwards them verbatim.
+const TRACK_STYLE = { "--track-gradient": TRACK_GRADIENT } as React.CSSProperties;
+
 // Thin wrapper over Mantine Slider, controlled by AppLayout via the phase
 // SchemeLegend. Kelvin internally (min 0, max TEMPERATURE_MAX, step 1),
 // unit-aware display. Arrow-key stepping (+-1 K, clamped) is Mantine's built-in
@@ -68,7 +72,7 @@ export function TemperatureSlider({
       ]}
       classNames={{ track: classes.track }}
       styles={{
-        track: { "--track-gradient": TRACK_GRADIENT } as React.CSSProperties,
+        track: TRACK_STYLE,
         bar: { backgroundColor: "transparent" },
       }}
     />

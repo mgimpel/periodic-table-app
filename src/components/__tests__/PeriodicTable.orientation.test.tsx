@@ -5,12 +5,12 @@
 
 // Focused test for the orientation notice: it shows on mobile when the
 // landscape lock can't be applied, and auto-dismisses when the device rotates.
-// Forces the mobile path by mocking the platform module; jsdom has no
+// Forces the mobile path by faking the native OS binding; jsdom has no
 // screen.orientation.lock, which is the real "missing API" fallback (the
 // selection-flow test deliberately runs the desktop path, where the notice
 // never shows).
 
-import { describe, it, expect, afterEach, vi } from "vitest";
+import { describe, it, expect, afterEach, beforeEach } from "vitest";
 import {
   render,
   screen,
@@ -23,11 +23,19 @@ import { MantineProvider } from "@mantine/core";
 // resolves to its English resource text instead of raw keys.
 import "../../i18n";
 
-vi.mock("../../lib/platform", () => ({ isMobilePlatform: () => true }));
-
 import { PeriodicTable } from "../PeriodicTable";
+import { setNativePlatform } from "../../test-utils";
 
-afterEach(cleanup);
+// Force the mobile path through the native OS binding the real
+// isMobilePlatform() reads; no module is mocked.
+beforeEach(() => {
+  setNativePlatform("android");
+});
+
+afterEach(() => {
+  cleanup();
+  setNativePlatform(undefined);
+});
 
 function renderTable() {
   return render(

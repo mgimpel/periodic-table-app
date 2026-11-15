@@ -32,9 +32,10 @@ export const DEFAULT_COLORING_SCHEME: ColoringSchemeOption = "category";
  * one of the valid options, otherwise `DEFAULT_COLORING_SCHEME`.
  */
 export function normalizeStoredColoringScheme(
-  raw: unknown,
+  raw: string | null | undefined,
 ): ColoringSchemeOption {
-  return (COLORING_SCHEME_OPTIONS as readonly unknown[]).includes(raw)
-    ? (raw as ColoringSchemeOption)
-    : DEFAULT_COLORING_SCHEME;
+  return (
+    COLORING_SCHEME_OPTIONS.find((option) => option === raw) ??
+    DEFAULT_COLORING_SCHEME
+  );
 }

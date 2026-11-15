@@ -14,6 +14,7 @@
 // ElementDetail render their mobile Drawer. `env="test"` disables Mantine
 // transitions so open/close is synchronous and deterministic.
 
+import { asInput } from "../../test-utils";
 import { describe, it, expect, afterEach, vi } from "vitest";
 import {
   render,
@@ -173,11 +174,13 @@ describe("AppLayout", () => {
         // the current locale) and pick the option by its English label, then
         // confirm the combobox reflects the choice — which also switches the
         // UI to French, so the displayed label is now the French one.
-        const key = value as keyof typeof enUi.language;
+        // The language row of the table above; typed as a locale key so the
+        // translated labels can be indexed without a cast.
+        const key = "fr";
 
-        const combobox = screen.getByRole("combobox", {
-          name: enUi.language.label,
-        }) as HTMLInputElement;
+        const combobox = asInput(
+          screen.getByRole("combobox", { name: enUi.language.label }),
+        );
 
         await user.click(combobox);
         await user.click(
@@ -190,7 +193,7 @@ describe("AppLayout", () => {
         // Theme and temperature are SegmentedControls: a hidden radio carries
         // the language-neutral value, so select it and confirm it's checked.
         const option = () =>
-          screen.getByDisplayValue(value) as HTMLInputElement;
+          asInput(screen.getByDisplayValue(value));
 
         await user.click(option());
         expect(option().checked).toBe(true);
@@ -259,9 +262,9 @@ describe("AppLayout", () => {
     });
 
     // The coloring-scheme dropdown lives in the header. Open it and pick Phase.
-    const schemeSelect = screen.getByRole("combobox", {
-      name: enUi.coloringScheme.label,
-    }) as HTMLInputElement;
+    const schemeSelect = asInput(
+      screen.getByRole("combobox", { name: enUi.coloringScheme.label }),
+    );
 
     await user.click(schemeSelect);
     await user.click(
@@ -300,9 +303,9 @@ describe("AppLayout — Selected_Temperature (phase scheme)", () => {
   // Validates: Requirements 1.5, 1.6, 5.4, 5.5, 7.1, 7.3, 7.4
 
   const schemeSelect = () =>
-    screen.getByRole("combobox", {
-      name: enUi.coloringScheme.label,
-    }) as HTMLInputElement;
+    asInput(
+      screen.getByRole("combobox", { name: enUi.coloringScheme.label }),
+    );
 
   // Pick a scheme from the header dropdown by its English option label.
   async function chooseScheme(user: ReturnType<typeof userEvent.setup>, label: string) {

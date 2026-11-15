@@ -28,13 +28,13 @@ export const DEFAULT_LANGUAGE: LanguageOption = "system";
 
 /**
  * Total, safe normalizer for a persisted language value: returns `raw` when it
- * is "system" or a supported locale, otherwise `DEFAULT_LANGUAGE`. Accepts
- * `unknown` so callers can pass whatever came out of storage without checking.
+ * is "system" or a supported locale, otherwise `DEFAULT_LANGUAGE`. Takes the
+ * raw storage string (or null/undefined when absent).
  */
-export function normalizeStoredLanguage(raw: unknown): LanguageOption {
-  return (LANGUAGE_OPTIONS as readonly unknown[]).includes(raw)
-    ? (raw as LanguageOption)
-    : DEFAULT_LANGUAGE;
+export function normalizeStoredLanguage(
+  raw: string | null | undefined,
+): LanguageOption {
+  return LANGUAGE_OPTIONS.find((option) => option === raw) ?? DEFAULT_LANGUAGE;
 }
 
 /**
@@ -53,12 +53,10 @@ export function resolveLanguage(
   if (option !== "system") return option;
 
   for (const lang of navigatorLanguages) {
-    if (typeof lang !== "string" || lang.length === 0) continue;
     const primary = lang.toLowerCase().split("-")[0];
+    const match = SUPPORTED_LOCALES.find((locale) => locale === primary);
 
-    if ((SUPPORTED_LOCALES as string[]).includes(primary)) {
-      return primary as SupportedLocale;
-    }
+    if (match) return match;
   }
 
   return FALLBACK_LOCALE;
