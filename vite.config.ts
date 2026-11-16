@@ -31,6 +31,11 @@ export default defineConfig(() => ({
     __BUILD_INFO__: JSON.stringify(buildInfo()),
   },
 
+  build: {
+    //license: true,
+    assetsInlineLimit: 2048, // 2 KiB (default 4 KiB) - reduce to avoid bloating the binary
+  },
+
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
   // 1. prevent Vite from obscuring rust errors
