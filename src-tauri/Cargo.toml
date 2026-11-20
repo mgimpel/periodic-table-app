@@ -5,11 +5,15 @@
 
 [package]
 name = "periodic-table-app"
-version = "0.1.0"
+version = "0.9.3"
 description = "Periodic Table App"
 authors = ["Marc Gimpel <mgimpel@gmail.com>"]
 license = "BSD-3-Clause"
+license-file = "../LICENSE"
 edition = "2024"
+readme = "../README.md"
+homepage = "https://www.gimpel.org/periodic-table-app"
+repository = "https://github.com/mgimpel/periodic-table-app"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -28,11 +32,13 @@ tauri = { version = "2", features = [] }
 tauri-plugin-opener = "2"
 tauri-plugin-os = "2"
 
+[profile.dev]
+incremental = true # Compile your binary in smaller steps.
 
 # Read the optimization guideline for more details: https://tauri.app/concept/size/#cargo-configuration
 [profile.release]
-codegen-units = 1
-lto = true
-opt-level = 3
-panic = "abort"
-strip = true
+codegen-units = 1 # Allows LLVM to perform better optimization.
+lto = true # Enables link-time-optimizations.
+opt-level = "s" # Prioritizes small binary size. Use `3` if you prefer speed.
+panic = "abort" # Higher performance by disabling panic handlers.
+strip = true # Ensures debug symbols are removed.
