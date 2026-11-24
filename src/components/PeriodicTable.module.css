@@ -3,6 +3,8 @@
  * (https://github.com/mgimpel/periodic-table-app).
  * SPDX-License-Identifier: BSD-3-Clause
 */
+@charset "UTF-8";
+
 /* Fit-to-viewport strategy:
  * The full 18-column table cannot fit a phone portrait screen at natural cell
  * size, and shrinking cells via CSS to unreadable widths is worse than scaling

@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@mantine/core':
-        specifier: 9.8.1
-        version: 9.8.1(@mantine/hooks@9.8.1(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: 9.8.2
+        version: 9.8.2(@mantine/hooks@9.8.2(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@mantine/hooks':
-        specifier: 9.8.1
-        version: 9.8.1(react@19.3.1)
+        specifier: 9.8.2
+        version: 9.8.2(react@19.3.1)
       '@tauri-apps/api':
         specifier: 2.12.5
         version: 2.12.5
@@ -24,8 +24,8 @@ importers:
         specifier: 2.4.0
         version: 2.4.0
       i18next:
-        specifier: 27.2.2
-        version: 27.2.2(typescript@7.0.2)
+        specifier: 27.2.5
+        version: 27.2.5(typescript@7.0.2)
       react:
         specifier: 19.3.1
         version: 19.3.1
@@ -34,7 +34,7 @@ importers:
         version: 19.3.1(react@19.3.1)
       react-i18next:
         specifier: 18.0.3
-        version: 18.0.3(@types/react@19.3.0)(i18next@27.2.2(typescript@7.0.2))(react@19.3.1)(typescript@7.0.2)
+        version: 18.0.3(@types/react@19.3.0)(i18next@27.2.5(typescript@7.0.2))(react@19.3.1)(typescript@7.0.2)
     devDependencies:
       '@oxlint/plugins':
         specifier: 1.94.0
@@ -64,17 +64,17 @@ importers:
         specifier: 6.3.0
         version: 6.3.0(vite@8.3.8(@types/node@26.6.6)(sugarss@5.0.2(postcss@8.5.33)))
       fast-check:
-        specifier: 4.10.3
-        version: 4.10.3
+        specifier: 4.11.0
+        version: 4.11.0
       jsdom:
         specifier: 31.0.1
         version: 31.0.1
       oxlint:
         specifier: 1.94.0
-        version: 1.94.0(oxlint-tsgolint@7.0.2007)
+        version: 1.94.0(oxlint-tsgolint@7.0.2008)
       oxlint-tsgolint:
-        specifier: 7.0.2007
-        version: 7.0.2007
+        specifier: 7.0.2008
+        version: 7.0.2008
       postcss:
         specifier: 8.5.33
         version: 8.5.33
@@ -113,8 +113,8 @@ packages:
     resolution: {integrity: sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/runtime@7.29.14':
-    resolution: {integrity: sha512-Y5tqevQaUAZhhj82BpYMNC1ssvLQTVAfwKdm8iy8qwmhvC2/CpcAu8OC+QEtjM7pMk7knx83u1Qj8gzkicyelw==}
+  '@babel/runtime@7.29.15':
+    resolution: {integrity: sha512-304gsbbGVmQc+cNGHzwHBlqepYdWLKj3VXCQBGt/EGcV7PUPfKI7kAUNW1FZEOCwlQiLvQjg1JEaAlRQ616h+Q==}
     engines: {node: '>=6.9.0'}
 
   '@emnapi/core@2.0.0-beta.2':
@@ -166,15 +166,15 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@mantine/core@9.8.1':
-    resolution: {integrity: sha512-+ayBTxun7MslJL6x4qaylVy6TyHu3o68+PH22gt70eJSHgy0CHYR/c2q+BYxS8WvORuc4f5mr0xFbi0vzlgHug==}
+  '@mantine/core@9.8.2':
+    resolution: {integrity: sha512-PEBlIr5A80Indc8mIp+JcMzmmtv2YioubzXsLossk4cDhgm3YX2DBFQi/hQknmOaU6wt9h8l4T8s4gh6WPM21Q==}
     peerDependencies:
-      '@mantine/hooks': 9.8.1
+      '@mantine/hooks': 9.8.2
       react: ^19.2.0
       react-dom: ^19.2.0
 
-  '@mantine/hooks@9.8.1':
-    resolution: {integrity: sha512-aAbY3zcqrS/n+wbMnKBXMiF5TJ7HZ06sH455Cf4ZkWRXko9Td2FYSe9aONCzXFaW62XqaWHBICyeIsAmUds3uA==}
+  '@mantine/hooks@9.8.2':
+    resolution: {integrity: sha512-BZa+6fLEvAxaos2qInPZfNzq0k1WSIIkHA3CdD4quozJhmp7Kt1KE05YAkVPNrPisCx3c5YgmkRqtu9NcRegCw==}
     peerDependencies:
       react: ^19.2.0
 
@@ -188,33 +188,33 @@ packages:
   '@oxc-project/types@0.156.0':
     resolution: {integrity: sha512-1Duyg48TdJNdyhEB8Xn1L36bT9Pv6GUtlKjHxOys8xkaF/rQq3XJE+bAurSK/AgIz5mGFsb77cn9Pb20+WCScw==}
 
-  '@oxlint-tsgolint/darwin-arm64@7.0.2007':
-    resolution: {integrity: sha512-bjNxPFyu1wNK74epHzXrtVLrj7oEuB8jQvJZDSia2d5EZ/0YgnyhI37E9U530IUZlNCqlTWjko1iT3CKAYF9+A==}
+  '@oxlint-tsgolint/darwin-arm64@7.0.2008':
+    resolution: {integrity: sha512-RXcQ439KXqspwHtw39825cyFmvrkOa1AA2CnqFNNG0pVJB0FdhpfQZsDLjRc/3Mt/uEG0MWOG50Hl09J2Ra9UA==}
     cpu: [arm64]
     os: [darwin]
 
-  '@oxlint-tsgolint/darwin-x64@7.0.2007':
-    resolution: {integrity: sha512-dCd7mzk2FeTaU46LLeXy5mQyEFICaPqlew/LpehNzEuL86D0jTYlwZHbibRqdRrvkSNgq1szz/7014FIHgyV1g==}
+  '@oxlint-tsgolint/darwin-x64@7.0.2008':
+    resolution: {integrity: sha512-4FpkHVDF1I4W0Owgsff8rDdf/XVcI9aoqflqyh3JiMCg7zCzWNkB0hfKMNjMDYDAeK/k1CNawAb7Y7mYGr/Xhg==}
     cpu: [x64]
     os: [darwin]
 
-  '@oxlint-tsgolint/linux-arm64@7.0.2007':
-    resolution: {integrity: sha512-qb0XUQXuTmQ8H++zsx/tQitG0/fU3BE16KGp1qXExeDgRzEc7WIlCuN1i+rmA40lty9gQs+x3a73BFODVhTZqA==}
+  '@oxlint-tsgolint/linux-arm64@7.0.2008':
+    resolution: {integrity: sha512-CmheyZowc+sbXlZ2ksFrbqR6Mnu+HHheZZKTP3FpDBe64eCp6DzSrjcR2VHRj6mC2UKF1ZO0J8Z1e9Bgji4kKw==}
     cpu: [arm64]
     os: [linux]
 
-  '@oxlint-tsgolint/linux-x64@7.0.2007':
-    resolution: {integrity: sha512-75vx0067HSgxq/HEZzlHwqhcujn3bshg43fVLTx604jZdZZMQfPVCcxTh2RTEShP7ACT1PRty6vboZlWh5RtEA==}
+  '@oxlint-tsgolint/linux-x64@7.0.2008':
+    resolution: {integrity: sha512-7by4bup5rF9q7i19G6zPDXgywBi3tFB6jGzefoc/BfleNS0Q/eleYpD2SDLmsXzN2hFpDrfAskx7H0WnUtKbtQ==}
     cpu: [x64]
     os: [linux]
 
-  '@oxlint-tsgolint/win32-arm64@7.0.2007':
-    resolution: {integrity: sha512-6zl7I+BvScfOPtnPtSEP5JA+z8NkDPGd47YnQChL5lLF/Dzs7Rasr1G+q0zGlQcP8OEgW43hW4QlUTXxPfD13Q==}
+  '@oxlint-tsgolint/win32-arm64@7.0.2008':
+    resolution: {integrity: sha512-u12UqT/xG64vXclqfe3/7I4j2mWSMZmXsMRBxbgmGfHaEfZUEzxl1QCNyx3TDM5OfsWWKH4dAHJtDRxTAiYA7A==}
     cpu: [arm64]
     os: [win32]
 
-  '@oxlint-tsgolint/win32-x64@7.0.2007':
-    resolution: {integrity: sha512-VptFHYhBm0SIWCUkx89hmTrKVOQsDg0iB1YE3EBlvRRtCHGUd3pU1kMxPBg1wOd83ZMmIn7zB6maBROtpmrP5g==}
+  '@oxlint-tsgolint/win32-x64@7.0.2008':
+    resolution: {integrity: sha512-Vjev4Ns8rdGa4Tb85ZsBkei0reLa77j3FNJsCKPo2gi5oTPK5O2eN42sim2ewoorgx7JQ3+49YuUKa1d6UKHPw==}
     cpu: [x64]
     os: [win32]
 
@@ -777,8 +777,8 @@ packages:
   bcp-47@2.1.2:
     resolution: {integrity: sha512-wsv86UuNFuPnVieKLyECTT+CP1WSAHeoIg5P3xu2kA9Z+7fVPoKt7dxzSeEhtJel0AI+NW3fIW3KtTKQKUCngg==}
 
-  cac@7.1.0:
-    resolution: {integrity: sha512-LMDU/U2yA4IPIY8KT0NsNPWEYZvAMkbgyspxJ6btJaYV+WMDOHAZCmB0lsTObiHaRS1V/ztKAl7+TSkTqXyeoA==}
+  cac@7.1.1:
+    resolution: {integrity: sha512-8zc+h51HxpodKsA7L4PpBNd+9qlrfuUcyUDE5a793BJfN4NZgwk7v9NmrY3ptZ+Sk0+ToigxSzkb47AsEgyizw==}
     engines: {node: '>=20.19.0'}
 
   camelcase-css@2.0.1:
@@ -856,8 +856,8 @@ packages:
     resolution: {integrity: sha512-KfYbmpRm0VbLjEvVa9yGwCi9GI34xvi7A/HXYWQO65CSD2u3MczUJSuwXKFIxlGsgBQizV9q5J9NHj4VG0n+pA==}
     engines: {node: '>=12.0.0'}
 
-  fast-check@4.10.3:
-    resolution: {integrity: sha512-SBaU6nhh+sXxb05r2IHAKfxnR/1Pu6MqtHYaewM1BY6V5xzOxOk+4yoWO7WfeeyZG1iArFE6/DO/7iLYMUuOJg==}
+  fast-check@4.11.0:
+    resolution: {integrity: sha512-V4Uc238rhQOdQlc+Gz7JG6SGBtrWnWL8d/6RyiBeCMcNKMhF6DZ0KkAVHJSyNV5r4lA0PmIpZ6iRpTVoz4qjoA==}
     engines: {node: '>=12.17.0'}
 
   fdir@6.5.0:
@@ -893,8 +893,8 @@ packages:
   html-parse-stringify@4.0.1:
     resolution: {integrity: sha512-0zHsZJrK7S3K2aucXWL6ycoYJ/iNtIcFHC/nYQgFklPtrv5LpJctIiSCroWZWeuoXvuyFdzp6KzjJQ+OT5MfFw==}
 
-  i18next@27.2.2:
-    resolution: {integrity: sha512-1/AJgz/bpE/YL6tqekQlZAzDhkmrUBbgU8+Xon/Lwv6c5WdYuyFZ9mb86OVfR2C2XujUDT7Rz23Ydaq4l981lA==}
+  i18next@27.2.5:
+    resolution: {integrity: sha512-hzw6DP/OV8u9LPLFRNLxoDbehhbEeMwpjQanJv5sRLsYUVYsgqftUSRfWJUbQN5lodGIiFjV9e+lA6M2UILt2g==}
     engines: {node: '>=22'}
     peerDependencies:
       typescript: ^5 || ^6 || ^7
@@ -1036,8 +1036,8 @@ packages:
     resolution: {integrity: sha512-5vvB5+W7ePv+p3uqxi+RcW1XAzLW0/hxt3/4X4Lc4qHudzOhmBiBwOY6DRob4WnanAEGvNcLjF+KNOufrUoEQw==}
     engines: {node: '>=12.20.0'}
 
-  oxlint-tsgolint@7.0.2007:
-    resolution: {integrity: sha512-i8X2qf6VVqFzoNVP34joMKuZpO6T2uXMOgKJaSPFc6p+E3FTnbIGPRbI8K4ZApmtDTMu2CIeGfpzeK1zzGwfnA==}
+  oxlint-tsgolint@7.0.2008:
+    resolution: {integrity: sha512-QuRK+gdriCwpOs+1PGq6/aImEEEK+EClNptdVtI0y4bDOhJ0uH/v3noz+yPKe+DYOTdkej75/5f3ouOGP5EGrQ==}
     hasBin: true
 
   oxlint@1.94.0:
@@ -1280,8 +1280,8 @@ packages:
   thenby@1.4.1:
     resolution: {integrity: sha512-D5a/bO0KdalOE3q8MlrRmSxjbKZHT3MQmXkJP+r97Vw8MMwOZKOwUSEyTtK7eSMj2y0kyAjpYMRMZmmLw1FtNQ==}
 
-  tinybench@6.2.4:
-    resolution: {integrity: sha512-SQ52jEncXxbMCzJuY2A/jGIbbAu6NYsBWW7grz2pNE+EnzQdoGaoBfpk4qC/opE7qiUcGmGgaGIz5EoHdS1O9w==}
+  tinybench@6.2.5:
+    resolution: {integrity: sha512-b/8GRMdnY4cqkfCLyaFpTGIv1qwfi3oT0mWaepwT++6Z/ZrYehNfZZ2JDKVLKGhNoEkS3IIB1ELtCT0XS5DtOA==}
     engines: {node: '>=20.0.0'}
 
   tinyexec@1.3.1:
@@ -1292,11 +1292,11 @@ packages:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
     engines: {node: '>=12.0.0'}
 
-  tldts-core@7.5.4:
-    resolution: {integrity: sha512-9+4zWtKEDZ3V3FoZ1B97rv+5z5oqp7yeXGVze3CxgQ+CJro9do9DCPD00wxstYZDXDMXsurkBerFfiB6GYtPbA==}
+  tldts-core@7.5.5:
+    resolution: {integrity: sha512-rEJz/8cJFY/bdF354gl14yxavbrIbvM+FcbkYVQ6CSCMQTJdUFUIm39TTWSiGPvcpQh7/F6qHrD3SkwwdgtDCw==}
 
-  tldts@7.5.4:
-    resolution: {integrity: sha512-Rn2ABgjHZrA+jzqom5zhxA0hLohzYrIgfCPyhpTUxqsUrcsBYuab49LseR9waB9Jr8/MxdodvMHA91oRiGLO3Q==}
+  tldts@7.5.5:
+    resolution: {integrity: sha512-Hy6IImaWALzJOgCIss4gIFi4G0M9lqk95pFKCUVxQPZw+biZ1Pv6f28JpYgahpJB+BufA0HYsIU/aP/WIx3KRg==}
     hasBin: true
 
   tough-cookie@6.1.0:
@@ -1322,8 +1322,8 @@ packages:
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
-  undici@8.12.4:
-    resolution: {integrity: sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==}
+  undici@8.13.1:
+    resolution: {integrity: sha512-Kt7EaPjh0s93lJH/PmW3d5rhkcpUa6fS3jqZ7+YGxNd9L7Xy/i827xe4C2uhhq+pJebM4tQOl5AgHmW11G5Skg==}
     engines: {node: '>=22.19.0'}
 
   use-callback-ref@1.3.3:
@@ -1494,7 +1494,7 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.29.7': {}
 
-  '@babel/runtime@7.29.14': {}
+  '@babel/runtime@7.29.15': {}
 
   '@emnapi/core@2.0.0-beta.2':
     dependencies:
@@ -1548,10 +1548,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.3
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@mantine/core@9.8.1(@mantine/hooks@9.8.1(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@mantine/core@9.8.2(@mantine/hooks@9.8.2(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@floating-ui/react': 0.27.20(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@mantine/hooks': 9.8.1(react@19.3.1)
+      '@mantine/hooks': 9.8.2(react@19.3.1)
       clsx: 2.1.1
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
@@ -1561,7 +1561,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@mantine/hooks@9.8.1(react@19.3.1)':
+  '@mantine/hooks@9.8.2(react@19.3.1)':
     dependencies:
       react: 19.3.1
 
@@ -1574,22 +1574,22 @@ snapshots:
 
   '@oxc-project/types@0.156.0': {}
 
-  '@oxlint-tsgolint/darwin-arm64@7.0.2007':
+  '@oxlint-tsgolint/darwin-arm64@7.0.2008':
     optional: true
 
-  '@oxlint-tsgolint/darwin-x64@7.0.2007':
+  '@oxlint-tsgolint/darwin-x64@7.0.2008':
     optional: true
 
-  '@oxlint-tsgolint/linux-arm64@7.0.2007':
+  '@oxlint-tsgolint/linux-arm64@7.0.2008':
     optional: true
 
-  '@oxlint-tsgolint/linux-x64@7.0.2007':
+  '@oxlint-tsgolint/linux-x64@7.0.2008':
     optional: true
 
-  '@oxlint-tsgolint/win32-arm64@7.0.2007':
+  '@oxlint-tsgolint/win32-arm64@7.0.2008':
     optional: true
 
-  '@oxlint-tsgolint/win32-x64@7.0.2007':
+  '@oxlint-tsgolint/win32-x64@7.0.2008':
     optional: true
 
   '@oxlint/binding-android-arm-eabi@1.94.0':
@@ -1765,7 +1765,7 @@ snapshots:
   '@testing-library/dom@10.4.2':
     dependencies:
       '@babel/code-frame': 7.29.7
-      '@babel/runtime': 7.29.14
+      '@babel/runtime': 7.29.15
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       dom-accessibility-api: 0.5.16
@@ -1787,7 +1787,7 @@ snapshots:
 
   '@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
-      '@babel/runtime': 7.29.14
+      '@babel/runtime': 7.29.15
       '@testing-library/dom': 10.4.2
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
@@ -1927,7 +1927,7 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
 
-  cac@7.1.0: {}
+  cac@7.1.1: {}
 
   camelcase-css@2.0.1: {}
 
@@ -1984,7 +1984,7 @@ snapshots:
 
   expect-type@1.4.0: {}
 
-  fast-check@4.10.3:
+  fast-check@4.11.0:
     dependencies:
       pure-rand: 8.4.2
 
@@ -2009,7 +2009,7 @@ snapshots:
 
   html-parse-stringify@4.0.1: {}
 
-  i18next@27.2.2(typescript@7.0.2):
+  i18next@27.2.5(typescript@7.0.2):
     optionalDependencies:
       typescript: 7.0.2
 
@@ -2042,7 +2042,7 @@ snapshots:
       parse5-parser-stream: 8.1.1
       saxes: 6.0.0
       tough-cookie: 6.1.0
-      undici: 8.12.4
+      undici: 8.13.1
       w3c-xmlserializer: 6.0.0
       webidl-conversions: 8.0.1
       whatwg-mimetype: 5.0.0
@@ -2118,16 +2118,16 @@ snapshots:
 
   obug@3.0.0: {}
 
-  oxlint-tsgolint@7.0.2007:
+  oxlint-tsgolint@7.0.2008:
     optionalDependencies:
-      '@oxlint-tsgolint/darwin-arm64': 7.0.2007
-      '@oxlint-tsgolint/darwin-x64': 7.0.2007
-      '@oxlint-tsgolint/linux-arm64': 7.0.2007
-      '@oxlint-tsgolint/linux-x64': 7.0.2007
-      '@oxlint-tsgolint/win32-arm64': 7.0.2007
-      '@oxlint-tsgolint/win32-x64': 7.0.2007
+      '@oxlint-tsgolint/darwin-arm64': 7.0.2008
+      '@oxlint-tsgolint/darwin-x64': 7.0.2008
+      '@oxlint-tsgolint/linux-arm64': 7.0.2008
+      '@oxlint-tsgolint/linux-x64': 7.0.2008
+      '@oxlint-tsgolint/win32-arm64': 7.0.2008
+      '@oxlint-tsgolint/win32-x64': 7.0.2008
 
-  oxlint@1.94.0(oxlint-tsgolint@7.0.2007):
+  oxlint@1.94.0(oxlint-tsgolint@7.0.2008):
     optionalDependencies:
       '@oxlint/binding-android-arm-eabi': 1.94.0
       '@oxlint/binding-android-arm64': 1.94.0
@@ -2148,7 +2148,7 @@ snapshots:
       '@oxlint/binding-win32-arm64-msvc': 1.94.0
       '@oxlint/binding-win32-ia32-msvc': 1.94.0
       '@oxlint/binding-win32-x64-msvc': 1.94.0
-      oxlint-tsgolint: 7.0.2007
+      oxlint-tsgolint: 7.0.2008
 
   parse5-parser-stream@8.1.1:
     dependencies:
@@ -2249,10 +2249,10 @@ snapshots:
       react: 19.3.1
       scheduler: 0.28.0
 
-  react-i18next@18.0.3(@types/react@19.3.0)(i18next@27.2.2(typescript@7.0.2))(react@19.3.1)(typescript@7.0.2):
+  react-i18next@18.0.3(@types/react@19.3.0)(i18next@27.2.5(typescript@7.0.2))(react@19.3.1)(typescript@7.0.2):
     dependencies:
       html-parse-stringify: 4.0.1
-      i18next: 27.2.2(typescript@7.0.2)
+      i18next: 27.2.5(typescript@7.0.2)
       react: 19.3.1
     optionalDependencies:
       '@types/react': 19.3.0
@@ -2366,7 +2366,7 @@ snapshots:
 
   thenby@1.4.1: {}
 
-  tinybench@6.2.4: {}
+  tinybench@6.2.5: {}
 
   tinyexec@1.3.1: {}
 
@@ -2375,15 +2375,15 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
 
-  tldts-core@7.5.4: {}
+  tldts-core@7.5.5: {}
 
-  tldts@7.5.4:
+  tldts@7.5.5:
     dependencies:
-      tldts-core: 7.5.4
+      tldts-core: 7.5.5
 
   tough-cookie@6.1.0:
     dependencies:
-      tldts: 7.5.4
+      tldts: 7.5.5
 
   tr46@7.0.0:
     dependencies:
@@ -2420,7 +2420,7 @@ snapshots:
 
   undici-types@8.9.0: {}
 
-  undici@8.12.4: {}
+  undici@8.13.1: {}
 
   use-callback-ref@1.3.3(@types/react@19.3.0)(react@19.3.1):
     dependencies:
@@ -2441,7 +2441,7 @@ snapshots:
 
   vite-node@6.0.0(@types/node@26.6.6)(sugarss@5.0.2(postcss@8.5.33)):
     dependencies:
-      cac: 7.1.0
+      cac: 7.1.1
       es-module-lexer: 2.3.2
       obug: 2.2.1
       pathe: 2.0.3
@@ -2483,7 +2483,7 @@ snapshots:
       obug: 3.0.0
       picomatch: 4.0.7
       std-env: 4.3.0
-      tinybench: 6.2.4
+      tinybench: 6.2.5
       tinyexec: 1.3.1
       tinyglobby: 0.2.17
       vite: 8.3.8(@types/node@26.6.6)(sugarss@5.0.2(postcss@8.5.33))

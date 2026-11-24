@@ -3,6 +3,8 @@
  * (https://github.com/mgimpel/periodic-table-app).
  * SPDX-License-Identifier: BSD-3-Clause
 */
+@charset "UTF-8";
+
 /* Vertical layout: a full-height flex column. The HeaderBar is a fixed-height
  * flex child and the table region is the remaining flex:1 child. This lets the
  * table region's clientHeight exclude the header height structurally, so

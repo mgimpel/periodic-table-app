@@ -3,6 +3,8 @@
  * (https://github.com/mgimpel/periodic-table-app).
  * SPDX-License-Identifier: BSD-3-Clause
 */
+@charset "UTF-8";
+
 /* All SchemeLegend styles: discrete swatches (category / phase / origin /
  * block / radioactive), the gradient-bar legend (melting-point, boiling-point,
  * electronegativity) and the spectral-colour note. The .legend frame is a grid

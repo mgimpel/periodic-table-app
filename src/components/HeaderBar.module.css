@@ -3,6 +3,7 @@
  * (https://github.com/mgimpel/periodic-table-app).
  * SPDX-License-Identifier: BSD-3-Clause
 */
+@charset "UTF-8";
 
 /* Thin header bar: full viewport width, fixed height clamped between the 44px
  * touch-target minimum and 48px. flex-shrink:0 so the table

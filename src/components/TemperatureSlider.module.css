@@ -3,6 +3,7 @@
  * (https://github.com/mgimpel/periodic-table-app).
  * SPDX-License-Identifier: BSD-3-Clause
 */
+@charset "UTF-8";
 
 /* Paint the temperature color gradient onto the slider track. Mantine renders
  * the track's visible fill as a ::before pseudo-element (background-color:
